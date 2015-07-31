@@ -24,7 +24,22 @@
 		<!--prova-->
         // MACROCATEGORIE
 		
-		
+		function onDeviceReady() {
+        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFileSystemSuccess, fail);
+        window.resolveLocalFileSystemURI(cordova.file.dataDirectory, onResolveSuccess, fail);
+			}
+
+			function onFileSystemSuccess(fileSystem) {
+				alert(fileSystem.name);
+			}
+
+			function onResolveSuccess(fileEntry) {
+				alert(fileEntry.name);
+			}
+
+			function fail(error) {
+				alert(error.code);
+			}
 
         $(document).on("pageinit", "#page_index", function () {
 			var logOb;
@@ -32,21 +47,7 @@
 			
 			
 			
-        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFileSystemSuccess, fail);
-        window.resolveLocalFileSystemURI(cordova.file.dataDirectory, onResolveSuccess, fail);
-    
-
-    function onFileSystemSuccess(fileSystem) {
-        alert(fileSystem.name);
-    }
-
-    function onResolveSuccess(fileEntry) {
-       alert(fileEntry.name);
-    }
-
-    function fail(error) {
-       alert(error.code);
-    }
+       
 			
             $.mobile.page.prototype.options.domCache = true;
             $.mobile.ajaxEnabled = true;
