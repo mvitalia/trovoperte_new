@@ -116,8 +116,8 @@ $(document).ready(function () {
 
     // Cordova is ready
     function onDeviceReady() {
-      var db = window.sqlitePlugin.openDatabase({name: "DatabaseProva1.db"});
-	alert("Accesso al db")
+      var db = window.sqlitePlugin.openDatabase({name: "DatabaseProva1"});
+		alert("Accesso al db");
       db.transaction(function(tx) {
         tx.executeSql('DROP TABLE IF EXISTS test_table');
         tx.executeSql('CREATE TABLE IF NOT EXISTS test_table (id integer primary key, data text, data_num integer)');
@@ -135,6 +135,8 @@ $(document).ready(function () {
             tx.executeSql("select count(id) as cnt from test_table;", [], function(tx, res) {
               console.log("res.rows.length: " + res.rows.length + " -- should be 1");
               console.log("res.rows.item(0).cnt: " + res.rows.item(0).cnt + " -- should be 1");
+			  p=res.rows.item(0).cnt;
+			  $("#page_richiestaInfo").append(p);
             });
           });
 
