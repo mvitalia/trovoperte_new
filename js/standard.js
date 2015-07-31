@@ -122,7 +122,7 @@ $(document).ready(function () {
 
 
 // Cordova is ready
-document.addEventListener("deviceready", onDeviceReady, false);
+/*document.addEventListener("deviceready", onDeviceReady, false);
 
 // Cordova is ready
 function onDeviceReady() {
@@ -152,7 +152,7 @@ function onDeviceReady() {
       console.log("ERROR: " + e.message);
     });
   });
-}
+}*/
 	
 	
     
