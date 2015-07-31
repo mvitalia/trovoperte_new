@@ -1,0 +1,607 @@
+html, body
+{
+    position: relative;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+.link_index
+{
+    position: relative !important;
+    top: 0 !important;
+    left: auto !important;
+}
+.logo_trovo
+{
+    width: 46%;
+    max-height: 50px;
+    max-width: 312px;
+    padding-top: 8px;
+    min-height: 29px;
+    padding-bottom: 8px;
+}
+.ui-header
+{
+    text-align: center;
+}
+.txtwrapper
+{
+    font-size: 15px;
+}
+
+
+.box_search
+{
+    margin-top: 10px;
+    margin-bottom: 0 !important;
+    width: 100%;
+    clear: both;
+}
+
+#search
+{
+    line-height:45px;    
+}
+
+.btn_settings
+{
+    float: right;
+}
+.btn_search
+{
+    clear: both;
+    width: 100%;
+    position: relative !important;
+    margin-top: 10px !important;
+    padding-bottom: 10px !important;
+    right: inherit !important;
+    text-align:left;
+    line-height:45px;
+    font-size:1em !important;
+}
+
+
+.testo_finto
+{
+    display: none;
+}
+
+#contenitoreImmaginiScoop .ultimeAziende_left
+{
+    float:left !important;    
+}
+
+#contenitoreImmaginiScoop .ultimeNews_right
+{
+    float:right !important;
+    }
+    
+#contenitoreImmaginiScoop .ultimePromo_center
+{
+    float:initial !important;
+    }
+
+/* menù laterale */
+
+#myPanel
+{
+    background-color:#FAA517;    
+}
+
+.sideOption
+{
+    line-height:normal;    
+}
+
+/* scheda azienda */
+#scheda_azienda
+{
+}
+#scheda_azienda .logo_azienda
+{
+    float: left;
+    width: 20%;
+}
+#scheda_azienda .info_azienda
+{
+    float: left;
+    padding-left: 30px;
+    width: 70%;
+}
+#scheda_azienda .info_azienda h1
+{
+    padding: 0;
+    margin: 0;
+}
+#scheda_azienda .info_azienda p
+{
+    margin: 0;
+}
+#scheda_azienda .info_circuito h4 a
+{
+    text-decoration: none;
+    color: #333333;
+    font-size: 10px;
+}
+
+#scheda_azienda .box_extra
+{
+    clear: both;
+    text-align: center;
+}
+#scheda_azienda .descrizione
+{
+    clear: both;
+    padding-top: 0px;
+    text-align: justify;
+}
+#scheda_azienda .servizi
+{
+    padding-top: 20px;
+    text-align: justify;
+}
+
+#scheda_azienda h3
+{
+    width: 100%;
+    border-bottom: 1px solid silver;
+}
+#scheda_azienda .btn-tel-dettagli
+{
+    border: none;
+    background: none !important;
+    font-weight: normal;
+    margin-top: 0;
+}
+
+.img_gallery
+{
+    width: 100%;
+}
+.img_azienda
+{
+    width: 100%;
+    height: auto;
+}
+#img_circuito
+{
+    width: 15%;
+}
+
+.liste_foto img
+{
+    padding-right: 20px;
+    padding-bottom: 20px;
+}
+/* fine scheda azienda */
+
+
+
+
+
+
+
+
+#footer_dettaglio
+{
+    background-color: #f4f4f4;
+}
+
+
+/* colori pulsanti */
+.box_extra .azienda_gallery
+{
+    background-color: #db1d27 !important;
+    color: #fff !important;
+    text-shadow: none !important;
+}
+.box_extra .azienda_news
+{
+    background-color: #089a47 !important;
+    color: #fff !important;
+    text-shadow: none !important;
+}
+.box_extra .azienda_promo
+{
+    background-color: #f8931f !important;
+    color: #fff !important;
+    text-shadow: none !important;
+}
+
+
+.btn_web
+{
+    background-color: #2692c0 !important;
+    color: #fff !important;
+    text-shadow: none !important;
+}
+.btn_mail
+{
+    background-color: #76bf43 !important;
+    color: #fff !important;
+    text-shadow: none !important;
+}
+.btn_tel
+{
+    background-color: #faa517 !important;
+    color: #fff !important;
+    text-shadow: none !important;
+}
+.btn_fax
+{
+    background-color: #e85970 !important;
+    color: #fff !important;
+    text-shadow: none !important;
+}
+
+.btn_info
+{
+    left: 0.4em;
+}
+
+/*forzature jquery*/
+.ui-content
+{
+    padding: 0.2em !important;
+}
+
+/* header */
+#btnApriLaterale
+{
+    margin-top: 35%;
+}
+
+#btnChiudiLaterale
+{
+    margin-top: 35%;
+}
+
+/* immagini delle ultime novità */
+
+
+
+#contenitoreImmaginiScoop
+{
+    text-align: center;
+    margin-top: 18px;
+}
+
+#contenitoreImmaginiScoop .contenitoreTestoImg
+{
+    margin: 0 auto;
+    padding: 0;
+    width: 32%;
+    float: left;
+    text-decoration: none;
+    display: block;
+    border: 1px solid #e9e9e9;
+}
+
+.contenitoreTestoImg h3
+{
+    font-size: 1em;
+    font-weight: 700;
+    color: Black;
+    width: 100%;
+}
+
+.contenitoreTestoImg img
+{
+    width: 50%;
+}
+
+
+/* footer */
+#btnCircuitiConvenzionati
+{
+    float: right;
+}
+
+
+/* pagina delle news e delle promo */
+
+.sottotitolo_news
+{
+    font-size: .67em !important;
+}
+
+#lista_news .news_imgCentrata
+{
+      top:50% ;
+      transform: translateY(-50%) ;  
+}
+
+#lista_promo .news_imgCentrata
+{
+      top:50% ;
+      transform: translateY(-50%) ;  
+}
+
+/* Pagina dei dettagli delle news e delle promo */
+
+#scheda_newsPromo .info_newsPromo img
+{
+   width:100%;
+}
+
+
+
+#scheda_newsPromo .info_newsPromo  h6
+{
+    margin-bottom:0 !important;
+     margin-top:0 !important;
+}
+
+#scheda_newsPromo .info_newsPromo  h1
+{
+    margin-top:0 !important;
+}
+
+#page_dettaglio_newsPromo #footer_dettaglio .info_azienda
+{
+    background-color:White;
+    border-top: 2px solid #E9E9E9;    
+}
+
+#page_dettaglio_newsPromo #footer_dettaglio .info_azienda p 
+{
+    margin-top:0 !important;
+    margin-bottom:0 !important;
+}
+
+#page_dettaglio_newsPromo #footer_dettaglio .info_azienda h1
+{
+    margin-bottom:0 !important;
+}
+
+#page_dettaglio_newsPromo #footer_dettaglio .info_azienda p a
+{
+    margin-top:0 !important;
+    margin-bottom:0 !important;
+      border:none !important;
+    background:none !important;
+}
+
+#azienda_link
+{
+    background-color: #76bf43;
+}
+
+#azienda_link a
+{
+    width: 100%;
+    margin-left: -50px;
+    text-align:center;
+}
+
+#descrizione_newsPromo
+    {
+        text-align:justify;     
+    }
+
+@media screen and (min-width: 500px)
+{
+    .info_newsPromo img
+    {
+        width:50% !important;   
+        float:left;  
+        margin-right:25px;    
+    }
+    #descrizione_newsPromo
+    {
+        display:block;  
+        margin-left:15px; 
+        text-align:justify;     
+    }
+    #scheda_newsPromo .info_azienda
+    {
+        clear: both !important;   
+        margin-top: 30%;
+    }
+}
+
+
+/*slider*/
+
+body {
+  -webkit-text-size-adjust:none;
+}
+
+#azienda_news-popup, #azienda_gallery-popup, #azienda_promo-popup
+{
+    width:50%;    
+    height:70%;    
+}
+
+#azienda_news, #azienda_promo
+{
+   max-height:75%;
+  
+   overflow-y:auto;    
+}
+
+.swipe {
+  overflow: hidden;
+  visibility: hidden;
+  position: relative;
+  width:100%;
+}
+.swipe-wrap {
+  overflow: hidden;
+  position: relative;
+}
+.swipe-wrap > div {
+  float:left;
+  width:100%;
+  position: relative;
+  overflow:hidden;
+}
+
+
+html, body {
+  background: #f3f3f3;
+}
+
+#console {
+  font-size: 12px;
+  font-family:"Inconsolata", "Monaco", "Consolas", "Andale Mono", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
+  color: #999;
+  line-height: 18px;
+  margin-top: 20px;
+  max-height: 150px;
+  overflow: auto;
+}
+
+#mySwipe div b {
+  display:block;
+  font-weight:bold;
+  color:#14ADE5;
+  font-size:20px;
+  text-align:center;
+  margin:10px;
+  padding:100px 10px;
+  box-shadow: 0 1px #EBEBEB;
+  background: #fff;
+  border-radius: 3px;
+  border: 1px solid;
+  border-color: #E5E5E5 #D3D3D3 #B9C1C6;
+}
+
+.slider_prev 
+{
+    
+    float:left;
+    margin-right: 0;
+    padding-right: 0px;
+    height: 20px;
+    width: 0px;
+    border-radius: 20px;
+    border:none;
+    background-color:#FFF !important;
+}
+
+.slider_next 
+{
+  float:right;
+  margin-right: 0;
+    padding-right: 0px;
+    height: 20px;
+    width: 0px;
+    border-radius: 20px;
+     border:none;
+    background-color:#FFF !important;
+}
+
+.slider_news div h1
+{
+    text-align:center;    
+}
+
+.slider_promo div h1
+{
+    text-align:center;    
+}
+
+.slider_prev:hover
+{
+    background-color:#FFF !important;   
+}
+
+.slider_next:hover
+{
+  background-color:#FFF !important;
+}
+
+/* Slider per il mobile */
+@media screen and (max-width: 800px)
+{
+   #azienda_news-popup, #azienda_gallery-popup, #azienda_promo-popup
+    {
+        width:90%;    
+    } 
+   
+        
+}
+  
+/* Form di registrazione e di richiesta info */
+#btnInvioInfo div
+{
+    background-color:#57BA46 !important;   
+    color:White; 
+}
+
+
+#btnInvioRegistrazione div
+{
+    background-color:#57BA46 !important;  
+    color:White;  
+}
+
+.emailInfo
+{
+    clear:both !important;
+    padding: 0 10px 0 10px;    
+}
+
+.textAreaInfo
+{
+        padding: 0 10px 0 10px;  
+}       
+
+
+ #chkConferma_Richiesta
+    {
+       
+        float:left;
+        margin-top:0 !important;
+    }
+    
+     #chkConferma_info
+    {
+         
+        float:left; 
+        margin-top:0 !important; 
+    }
+
+@media screen and (min-width: 850px)
+{
+
+    
+
+    .form_left
+    {
+        float:left;  
+        width:45%;  
+        padding-left:10px;
+    }
+
+    .form_right
+    {
+        float:right;   
+        width:45%; 
+        padding-right:10px;
+    }
+    
+}
+
+@media screen and (max-width: 850px)
+{
+     #page_registrazione
+    {
+        width:85% !important;
+        margin: 0 auto;       
+    }
+    
+     #page_richiestaInfo
+    {
+        width:85% !important;
+        margin: 0 auto;       
+    }
+    
+    .form_left, .form_right
+    {
+        padding-right:10px; 
+        padding-left:10px;
+    }      
+}
+

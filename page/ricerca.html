@@ -1,0 +1,207 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"> 
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<link rel="stylesheet" href="../css/jquery.mobile-1.4.5.min.css">
+<link rel="stylesheet" href="../css/default_theme.min.css">
+<link rel="stylesheet" href="../css/jquery.mobile.icons.min.css">
+<link rel="stylesheet" href="../css/style.css">
+
+
+
+<script src="../js/jquery-1.11.2.min.js"></script>
+<script src="../js/jquery.mobile-1.4.5.min.js"></script>
+<script src="../js/standard.js"></script>
+
+
+</head>
+<body>
+<div class="txtwrapper">
+
+    <!-- ricerca -->
+	<div id="page_ricerca" data-role="page">
+        <!-- pannello laterale -->
+        <div data-role="panel" id="myPanel" data-display="overlay" data-position="right"> 
+            <div class="ui-btn-right">
+                <a href="#myPanel" class="ui-btn ui-shadow ui-btn-inline ui-btn-icon-left ui-icon-grid" data-role="button" data-icon="grid" >&nbsp;</a>
+            </div>
+            <br><br><br>
+            
+            <a href="../index.html" class="btn_search ui-btn sideOption ui-btn-inline ui-icon-home ui-btn-icon-left" data-role="button" data-icon="home" data-ajax="false" >Home</a>
+            <a href="ricerca.html" class="btn_search ui-btn sideOption ui-btn-inline ui-icon-search ui-btn-icon-left" data-role="button" data-icon="search"  data-ajax="false" >Cerca</a>
+
+
+			<a href='#settings' data-icon='gear' data-rel='popup' data-position-to='window' data-transition='pop' class='btn_search ui-btn sideOption ui-btn-inline ui-icon-gear ui-btn-icon-left'>Impostazioni</a>
+            <!-- setting -->
+            <div id="settings" data-role="popup">
+                <div data-role="header">
+                    <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all sideOption ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right" data-rel="back" data-icon="delete">&nbsp;</a>
+                    
+                    
+                    <h1>Impostazioni</h1>
+                </div>
+                <div data-role="content">
+                    <ul data-role="listview" style="margin:0 !important">
+                        <li><a href="#" class="small">Testo piccolo</a></li>    
+                        <li><a href="#" class="med">Testo medio</a></li>    
+                        <li><a href="#" class="large">Testo grande</a></li>    
+                    </ul>
+                </div>
+            </div>
+            
+            
+            
+			<a href='#page_info' data-icon='info' data-rel='popup' data-position-to='window' data-transition='pop' class='btn_search ui-btn sideOption ui-btn-inline ui-icon-info ui-btn-icon-left'>Info</a>
+              
+            <!-- info -->
+            <div data-role="popup" id="page_info">
+              <div data-role="header">
+              	 <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right" data-rel="back" data-icon="delete">&nbsp;</a>
+                <h1>Info</h1>
+              </div>
+            
+              <div data-role="main" class="ui-content">
+              	<b>Trovo per te: il portale creato apposta per te, per trovare in modo facile e veloce quello che ti serve nel tuo territorio.</b><br><br>
+
+<b>Sei un privato?</b><br>
+Questa App troverà professionisti ed aziende in base alle tue necessità.
+<br>
+<i>Esempio:<br>
+Vuoi cercare un elettricista, acquistare un elettrodomestico o realizzare un sito web?<br>
+Scarica l'App e naviga sulle categorie, oppure clicca su Cerca.</i><br>
+
+<br>
+<b>Sei un'azienda?</b><br>
+Ideale per espandere la tua visibilità sui dispositivi mobili a basso costo e in assoluta autonomia.<br>
+Nessun costo di gestione, sarai tu a gestire i tuoi contenuti.<br>
+Richiedi come inserire la tua attività o la tua professione scrivendoci direttamente <a href="http://www.trovoperte.com/trovo_per_te_iscrizione.html" rel="external">qui</a>.
+<br><br>
+
+<b>Caratteristiche: </b><br>
+- Semplicità di ricerca<br>
+- Compatibile con tutti i dispositivi<br>
+- Lettura facilitata<br>
+- Aggiornamenti gestiti direttamente dall'azienda iscritta <br><br>
+Per richiedere informazioni o registrare la propria attività <a href="http://www.trovoperte.com/trovo_per_te_iscrizione.html" rel="external">clicca qui</a></p>
+                
+              </div>
+            
+              <div data-role="footer" style="text-align:center">
+                per info e assistenza scrivi a <a href="mailto:info@trovoperte.com">info@trovoperte.com</a>
+              </div>
+            </div>
+            
+        </div> 
+    	<!-- fine pannello laterale -->
+        
+        <div data-role="header" data-position="fixed">
+            <a href="#" data-rel="back" data-icon="back" data-position="inline" class="ui-btn-left" >&nbsp;</a>
+			
+            
+            <div class="ui-btn-right">
+                <a href="#myPanel" class="ui-btn ui-shadow ui-btn-inline ui-btn-icon-left ui-icon-grid" data-role="button" data-icon="grid" >&nbsp;</a>
+                
+            </div>
+            
+            <h1>Ricerca</h1>
+            
+            <form role="form" class="box_search">
+                <div class="form-group">
+                  <input type="search" name="search" class="form-control input-lg" data-mini="true" id="search" placeholder="Cerca..."  />
+                </div>
+            </form>
+            
+        </div>
+        
+      
+        <div data-role="content">
+            <ul data-role="listview" id="results" data-divider-theme="a" data-inset="true">
+                <li data-role="list-divider" data-theme="b" role="heading">Elenco aziende trovate</li>
+            </ul>
+        </div>
+    </div>
+
+	
+
+
+	<!-- setting -->
+	<div id="settings" data-role="page">
+            <div data-role="header">
+                <a href="#" data-rel="back" data-icon="back">&nbsp;</a>
+                <h1>Impostazioni</h1>
+            </div>
+            <div data-role="content">
+                <ul data-role="listview">
+                    <li><a href="#" class="small">Small</a></li>    
+                    <li><a href="#" class="med">Medium</a></li>    
+                    <li><a href="#" class="large">Large</a></li>    
+                </ul>
+            </div>
+    </div>
+    
+    
+    <!-- info -->
+    <div data-role="page" data-dialog="true" id="page_info">
+      <div data-role="header">
+        <h1>Info</h1>
+      </div>
+    
+      <div data-role="main" class="ui-content">
+        Maurizio Voglino<br>
+        <a href="mailto:info@mvitalia.com">info@mvitalia.com</a><br>
+        <a href="http://www.mvitalia.com/" target="_blank">www.mvitalia.com</a></p>
+        
+      </div>
+    
+      <div data-role="footer">
+        <h1></h1>
+      </div>
+    </div> 
+    
+</div>
+
+
+<script>
+
+$("#page_ricerca").on("pageshow", function(event){
+    //append list to ul
+	$('#search').keyup(function(){
+		var searchField = $('#search').val();
+		var regex = new RegExp(searchField, "i");
+		var output = '';
+		var count = 1;
+		$.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp", function (info) {
+			$.each(info, function (key, val) {
+				if ((val.ragione_sociale.search(regex) != -1) || (val.servizi.search(regex) != -1) || (val.macrocategoria.search(regex) != -1) || (val.categoria.search(regex) != -1) || (val.paese.search(regex) != -1)) {
+				 
+				  output += '<li class="ui-li-has-thumb ui-last-child"><a href="dettaglio.html?id_azienda=' + val.id + '" id="' + val.id + '" class="azienda-go ui-btn ui-btn-icon-right ui-icon-carat-r" data-ajax="false">';
+	
+				  if (name.foto_principale != "" && name.foto_princinpale != "undefined" ){
+					output += '<img src="http://www.trovoperte.com/public/upload_gallery/immagini/' + val.foto_principale + '" class="ui-li-thumb"/>';
+				  }
+				  output += '<h3 class="ui-li-heading">' + val.ragione_sociale + '</h3><p class="ui-li-desc">' + val.paese + '</p></a></li>';
+				  
+				  
+				
+				  count++;
+				}
+			  });
+			  //$('#results').html(output);
+			  $("#results").html(output).promise().done(function () {
+			
+			 });
+			  
+			  $(this).listview("refresh");
+	   	  });
+		  
+		  
+	   }); 
+})   
+
+
+
+</script>
+</body>
+</html>

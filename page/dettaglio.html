@@ -1,0 +1,610 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    
+	<script type='text/javascript' src='../js/jquery-1.11.2.min.js'></script>
+	<script type="text/javascript" src="../js/jquery.mobile-1.4.5.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/jquery.mobile-1.4.5.min.css">
+     
+    <link rel="stylesheet" href="../css/default_theme.min.css">
+    <link rel="stylesheet" href="../css/jquery.mobile.icons.min.css">
+    
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+
+	<script type="text/javascript" src="../js/swipe.js"></script>
+    <script type="text/javascript" src="../js/standard.js"></script>
+    <script type='text/javascript'>//<![CDATA[ 
+    $(window).load(function(){
+    
+        var elem = document.getElementById('mySwipe');
+        window.mySwipe = Swipe(elem, {
+           startSlide: 1,
+           auto: 100,
+           continuous: true,
+          // disableScroll: true,
+          // stopPropagation: true,
+          // callback: function(index, element) {},
+          // transitionEnd: function(index, element) {}
+        });
+    });//]]>  
+    
+    </script>
+
+
+</head>
+<body>
+
+ 
+		<!-- dettaglio -->
+        <div data-role="page" id="page_dettaglio">
+        	
+    
+            <!-- pannello laterale -->
+            <div data-role="panel" id="myPanel" data-display="overlay" data-position="right">
+                <div class="ui-btn-right">
+                    <a href="#myPanel" class="ui-btn ui-shadow ui-btn-inline ui-btn-icon-left ui-icon-grid"
+                        data-role="button" data-icon="grid">&nbsp;</a>
+                </div>
+                <br>
+                <br>
+                <br>
+                <a href="../index.html" class="btn_search ui-btn sideOption ui-btn-inline ui-icon-home ui-btn-icon-left"
+                    data-role="button" data-icon="home" data-ajax="false">Home</a> <a href="ricerca.html"
+                        class="btn_search ui-btn sideOption ui-btn-inline ui-icon-search ui-btn-icon-left"
+                        data-role="button" data-icon="search" data-ajax="false">Cerca</a> <a href='#settings'
+                            data-icon='gear' data-rel='popup' data-position-to='window' data-transition='pop'
+                            class='btn_search ui-btn sideOption ui-btn-inline ui-icon-gear ui-btn-icon-left'>
+                            Impostazioni</a>
+                <!-- setting -->
+                <div id="settings" data-role="popup">
+                    <div data-role="header">
+                        <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all sideOption ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right"
+                            data-rel="back" data-icon="delete">&nbsp;</a>
+                        <h1>
+                            Impostazioni</h1>
+                    </div>
+                    <div data-role="content">
+                        <ul data-role="listview" style="margin: 0 !important">
+                            <li><a href="#" class="small">Testo piccolo</a></li>
+                            <li><a href="#" class="med">Testo medio</a></li>
+                            <li><a href="#" class="large">Testo grande</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <a href='#page_info' data-icon='info' data-rel='popup' data-position-to='window'
+                    data-transition='pop' class='btn_search ui-btn sideOption ui-btn-inline ui-icon-info ui-btn-icon-left'>
+                    Info</a>
+                <!-- info -->
+                <div data-role="popup" id="page_info">
+                    <div data-role="header">
+                        <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all sideOption ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right"
+                            data-rel="back" data-icon="delete">&nbsp;</a>
+                        <h1>
+                            Info</h1>
+                    </div>
+                    <div data-role="main" class="ui-content">
+                        <b>Trovo per te: il portale creato apposta per te, per trovare in modo facile e veloce
+                            quello che ti serve nel tuo territorio.</b><br>
+                        <br>
+                        <b>Sei un privato?</b><br>
+                        Questa App troverà professionisti ed aziende in base alle tue necessità.
+                        <br>
+                        <i>Esempio:<br>
+                            Vuoi cercare un elettricista, acquistare un elettrodomestico o realizzare un sito
+                            web?<br>
+                            Scarica l'App e naviga sulle categorie, oppure clicca su Cerca.</i><br>
+                        <br>
+                        <b>Sei un'azienda?</b><br>
+                        Ideale per espandere la tua visibilità sui dispositivi mobili a basso costo e in
+                        assoluta autonomia.<br>
+                        Nessun costo di gestione, sarai tu a gestire i tuoi contenuti.<br>
+                        Richiedi come inserire la tua attività o la tua professione scrivendoci direttamente
+                        <a href="http://www.trovoperte.com/trovo_per_te_iscrizione.html" rel="external">qui</a>.
+                        <br>
+                        <br>
+                        <b>Caratteristiche: </b>
+                        <br>
+                        - Semplicità di ricerca<br>
+                        - Compatibile con tutti i dispositivi<br>
+                        - Lettura facilitata<br>
+                        - Aggiornamenti gestiti direttamente dall'azienda iscritta
+                        <br>
+                        <br>
+                        Per richiedere informazioni o registrare la propria attività <a href="http://www.trovoperte.com/trovo_per_te_iscrizione.html"
+                            rel="external">clicca qui</a></p>
+                    </div>
+                    <div data-role="footer" style="text-align: center">
+                        per info e assistenza scrivi a <a href="mailto:info@trovoperte.com">info@trovoperte.com</a>
+                    </div>
+                </div>
+            </div>
+            <!-- fine pannello laterale -->
+            <div data-role="header" data-position="fixed">
+                <a href="#" data-rel="back" data-icon="back" data-position="inline" class="ui-btn-left">
+                    &nbsp;</a> <a href="../index.html" data-role="none" class="link_index" data-ajax="false">
+                        <img src="../img/logo_trovoperte.png" class="logo_trovo"></a>
+                <div class="ui-btn-right">
+                    <a href="#myPanel" class="ui-btn ui-shadow ui-btn-inline ui-btn-icon-left ui-icon-grid"
+                        data-role="button" data-icon="grid">&nbsp;</a>
+                </div>
+            </div>
+            <div role="main" id="" class="ui-content">
+                <div data-role="content">
+                    <div id="scheda_azienda" data-divider-theme="a" data-inset="true">
+                        <span class="testo_finto">testo finto</span>
+                    </div>
+                    <!-- gallery -->
+                    <div data-role="popup" id="azienda_gallery">
+                        <div data-role="header">
+                            <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right"
+                                data-rel="back" data-icon="delete">&nbsp;</a>
+                            <h1>
+                                Gallery</h1>
+                        </div>
+                      <div data-role="main" class="ui-content">
+                        <!-- Swiper -->
+                        <div id="scheda_gallery" data-divider-theme="a" data-inset="true">
+                            <div id="lista_immagini" class="liste_foto">
+                                <div data-role="content" id="contentSlider">
+                                   
+                                        <a href="#" onclick='mySwipe.prev()' class="slider_prev ui-btn ui-icon-carat-l ui-btn-icon-left"></a>
+                                   
+                                    
+                                        <a href="#" onclick='mySwipe.next()' class=" slider_next ui-btn ui-icon-carat-r ui-btn-icon-left"></a>
+                                    
+                                    <div id='mySwipeGallery' style='margin: 0 auto' class='swipe'>
+                                        <div class='swipe-wrap slider_gallery'>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        <div data-role="footer" data-position="fixed">
+                        </div>
+                    </div>
+                    <!-- news -->
+                    <div data-role="popup" id="azienda_news">
+                        <div data-role="header">
+                            <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right"
+                                data-rel="back" data-icon="delete">&nbsp;</a>
+                            <h1>
+                                News</h1>
+                        </div>
+                      <div data-role="main" class="ui-content">
+                        <div id="scheda_news" data-divider-theme="a" data-inset="true">
+                            <div id="lista_news" class="liste_foto">
+                                <div data-role="content" id="contentSlider">
+                                      <a href="#" onclick='mySwipe.prev()' class="slider_prev ui-btn ui-icon-carat-l ui-btn-icon-left"></a>
+                                   
+                                    
+                                        <a href="#" onclick='mySwipe.next()' class=" slider_next ui-btn ui-icon-carat-r ui-btn-icon-left"></a>
+                                    <div id='mySwipe' style='margin: 0 auto' class='swipe'>
+                                        <div class='swipe-wrap slider_news'>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        <div data-role="footer" data-position="fixed">
+                        </div>
+                    </div>
+                    <!-- promo -->
+                    <div data-role="popup" id="azienda_promo">
+                        <div data-role="header">
+                            <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right"
+                                data-rel="back" data-icon="delete">&nbsp;</a>
+                            <h1>
+                                Promo</h1>
+                        </div>
+                       <div data-role="main" class="ui-content">
+                        <div id="scheda_promo" data-divider-theme="a" data-inset="true">
+                            <div id="lista_promo" class="liste_foto">
+                                <div data-role="content" id="contentSlider">
+                                      <a href="#" onclick='mySwipe.prev()' class="slider_prev ui-btn ui-icon-carat-l ui-btn-icon-left"></a>
+                                   
+                                    
+                                        <a href="#" onclick='mySwipe.next()' class=" slider_next ui-btn ui-icon-carat-r ui-btn-icon-left"></a>
+                                    <div id='mySwipePromo' style='margin: 0 auto' class='swipe'>
+                                        <div class='swipe-wrap slider_promo'>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        <div data-role="footer" data-position="fixed">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div data-role="footer" data-position="fixed">
+                <div data-role="navbar" class="ui-navbar">
+                    <ul id="footer_dettaglio" class="ui-grid-c">
+                        <li><span class="testo_finto">testo finto</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--page-->
+    </div>
+    <script>
+
+        function caricaSlider() {
+             var elem = document.getElementById('mySwipe');
+        window.mySwipe = Swipe(elem, {
+           startSlide: 0,
+           auto: 3000,
+           continuous: true,
+          // disableScroll: true,
+          // stopPropagation: true,
+          // callback: function(index, element) {},
+          // transitionEnd: function(index, element) {}
+        });
+        }
+
+        function caricaSliderPromo() {
+             var elem = document.getElementById('mySwipePromo');
+        window.mySwipe = Swipe(elem, {
+           startSlide: 0,
+           auto: 3000,
+           continuous: true,
+          // disableScroll: true,
+          // stopPropagation: true,
+          // callback: function(index, element) {},
+          // transitionEnd: function(index, element) {}
+        });
+        }
+
+        function caricaSliderGallery() {
+             var elem = document.getElementById('mySwipeGallery');
+        window.mySwipe = Swipe(elem, {
+           startSlide: 0,
+           auto: 3000,
+           continuous: true,
+          // disableScroll: true,
+          // stopPropagation: true,
+          // callback: function(index, element) {},
+          // transitionEnd: function(index, element) {}
+        });
+        }
+
+        $(document).one("pagecreate", ".demo-page", function () {
+
+            
+
+            // Initialize the external persistent header and footer
+            $("#header").toolbar({ theme: "b" });
+            $("#footer").toolbar({ theme: "b" });
+            // Handler for navigating to the next page
+            function navnext(next) {
+                $(":mobile-pagecontainer").pagecontainer("change", next + ".html", {
+                    transition: "slide"
+                });
+            }
+            // Handler for navigating to the previous page
+            function navprev(prev) {
+                $(":mobile-pagecontainer").pagecontainer("change", prev + ".html", {
+                    transition: "slide",
+                    reverse: true
+                });
+            }
+            // Navigate to the next page on swipeleft
+            $(document).on("swipeleft", ".ui-page", function (event) {
+                // Get the filename of the next page. We stored that in the data-next
+                // attribute in the original markup.
+                var next = $(this).jqmData("next");
+                // Check if there is a next page and
+                // swipes may also happen when the user highlights text, so ignore those.
+                // We're only interested in swipes on the page.
+                if (next && (event.target === $(this)[0])) {
+                    navnext(next);
+                }
+            });
+            // Navigate to the next page when the "next" button in the footer is clicked
+            $(document).on("click", ".next", function () {
+                var next = $(".ui-page-active").jqmData("next");
+                // Check if there is a next page
+                if (next) {
+                    navnext(next);
+                }
+            });
+            // The same for the navigating to the previous page
+            $(document).on("swiperight", ".ui-page", function (event) {
+                var prev = $(this).jqmData("prev");
+                if (prev && (event.target === $(this)[0])) {
+                    navprev(prev);
+                }
+            });
+            $(document).on("click", ".prev", function () {
+                var prev = $(".ui-page-active").jqmData("prev");
+                if (prev) {
+                    navprev(prev);
+                }
+            });
+        });
+        $(document).on("pageshow", ".demo-page", function () {
+
+
+
+
+            var thePage = $(this),
+        title = thePage.jqmData("title"),
+        next = thePage.jqmData("next"),
+        prev = thePage.jqmData("prev");
+            // Point the "Trivia" button to the popup for the current page.
+            $("#trivia-button").attr("href", "#" + thePage.find(".trivia").attr("id"));
+            // We use the same header on each page
+            // so we have to update the title
+            $("#header h1").text(title);
+            // Prefetch the next page
+            // We added data-dom-cache="true" to the page so it won't be deleted
+            // so there is no need to prefetch it
+            if (next) {
+                $(":mobile-pagecontainer").pagecontainer("load", next + ".html");
+            }
+            // We disable the next or previous buttons in the footer
+            // if there is no next or previous page
+            // We use the same footer on each page
+            // so first we remove the disabled class if it is there
+            $(".next.ui-state-disabled, .prev.ui-state-disabled").removeClass("ui-state-disabled");
+            if (!next) {
+                $(".next").addClass("ui-state-disabled");
+            }
+            if (!prev) {
+                $(".prev").addClass("ui-state-disabled");
+            }
+        });
+
+        /*-------------------------------------------------------*/
+
+        var elenco_news = new Array();
+        var elenco_promo = new Array();
+
+        $("#page_dettaglio").on("pageshow", function (event) {
+            var id_azienda = getParameterByName("id_azienda");
+
+            $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp?id_azienda=" + id_azienda, function (info_dettaglio) {
+
+                var scheda = "";
+                var footer_dettaglio = "";
+
+                var scheda_gallery = "";
+                var scheda_promo = "";
+                var scheda_news = "";
+                var count_gallery = 0;
+                var count_promo = 0;
+                var count_news = 0;
+                //container for $li to be added
+                $.each(info_dettaglio, function (i, name) {
+                    //add the <li> to "li" variable
+                    //note the use of += in the variable
+                    //meaning I'm adding to the existing data. not replacing it.
+                    //store index value in array as id of the <a> tag
+                    if (name.id == id_azienda) {
+
+                        if (name.foto_principale != '') {
+                            scheda += "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/" + name.foto_principale + "' class='logo_azienda' >";
+                        } else {
+                            scheda += "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/ico_vuoto.jpg' class='logo_azienda' >";
+                        }
+
+                        // IMMAGINE PRINCIPALE
+                        $.each(name.foto, function (i, foto) {
+
+
+                            // GALLERY
+                            if (foto.tipologia == 'gallery') {
+                                scheda_gallery += "<div><img src='http://www.trovoperte.com/public/upload_gallery/immagini/" + foto.immagine + "' class='img_azienda'/></div>";
+
+                                //<div data-role='popup' id='myPopup_" + count_gallery + "'><img src='http://www.trovoperte.com%5Cpublic%5Cupload_gallery%5Cimmagini%5C" + foto.immagine + "' style='width:800px;height:400px;'></div>
+                                count_gallery += 1;
+                            }
+
+
+
+                            /*if (name.tipo_contratto != 'intermedio') {
+
+                            // NEWS
+                            if (foto.tipologia == 'news') {
+                            scheda_news += "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/" + foto.immagine + "' class='img_azienda'>";
+                            count_news += 1;
+                            }
+
+
+                            // PROMO
+                            if (foto.tipologia == 'promo') {
+                            scheda_promo += "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/" + foto.immagine + "' class='img_azienda'>";
+                            count_promo += 1;
+                            }
+
+
+                            }*/
+
+                        });
+
+
+                        if (count_gallery == 0) {
+                            scheda_gallery += "<p>Nessuna immagine da visualizzare</p>";
+                        }
+                        /* if (count_news == 0) {
+                        scheda_news += "Nessuna immagine da visualizzare";
+                        }
+                        if (count_promo == 0) {
+                        scheda_promo += "Nessuna immagine da visualizzare";
+                        }*/
+
+                        scheda += "<div class='info_azienda'><h1>" + name.ragione_sociale + "</h1>"; // RAGIONE SOCIALE
+                        scheda += "<p>" + name.indirizzo + " " + name.num + "</p><p>" + name.cap + " " + name.paese + " " + name.provincia + "</p>";
+                        scheda += "<p><a href='tel:" + name.tel + "' data-icon='phone' class=' btn-tel-dettagli ui-btn ui-icon-phone ui-btn-icon-left ui-state-persist ui-btn-up-a ui-btn-inline'>" + name.tel + "</a></p>"; // INDIRIZZO
+                        if (name.circuito != "" && name.circuito != undefined) {
+                            scheda += "<p class='info_circuito'><a href='lista_aziende.html?id_circuito=" + name.id_circuito + "' data-ajax='false'><img id='img_circuito' src='http://www.trovoperte.com/public/upload_gallery/immagini/" + name.icona_circuito + "' class='ui-li-thumb'/></p>";
+                        }
+                        scheda += "</div>"
+                        if (name.tipo_contratto != 'base' && name.tipo_contratto != 'free') {
+                            scheda += "<div class='box_extra'><a id=" + name.id + " onClick='caricaSliderGallery()' href='#azienda_gallery' data-icon='camera' data-rel='popup' data-position-to='window' data-transition='pop' class='azienda_gallery ui-btn ui-shadow ui-btn-inline ui-icon-camera ui-btn-icon-left' >Gallery</a>";
+
+                            if (name.tipo_contratto == 'avanzato') {
+                                scheda += "<a id=" + name.id + " onClick='caricaSlider()' href='#azienda_news' data-icon='calendar' data-rel='popup' data-position-to='window' data-transition='pop' class='azienda_news ui-btn ui-shadow ui-btn-inline ui-icon-calendar ui-btn-icon-left'>News</a>";
+                                scheda += "<a id=" + name.id + " onClick='caricaSliderPromo()' href='#azienda_promo' data-icon='heart' class='azienda_promo ui-btn ui-shadow ui-btn-inline ui-icon-heart ui-btn-icon-left' data-rel='popup' data-position-to='window' data-transition='pop'>Promo</a>";
+
+                            }
+                            scheda += "</div>"
+                        }
+
+                        //scheda += "<div data-role='collapsibleset' data-theme='a' data-content-theme='a' class='ui-collapsible-set ui-group-theme-a ui-corner-all descrizione'>";
+
+                        // DESCRIZIONE
+                        //scheda += "<div data-role='collapsible' data-collapsed='false' class='ui-collapsible ui-collapsible-inset ui-corner-all ui-collapsible-themed-content ui-first-child ui-collapsible-collapsed'><h3 class='ui-collapsible-heading ui-collapsible-heading-collapsed'><a href='#' class='ui-collapsible-heading-toggle ui-btn ui-btn-icon-left ui-btn-a ui-icon-plus'>Descrizione<span class='ui-collapsible-heading-status'>click to expand contents</span></a></h3><div class='ui-collapsible-content ui-body-a ui-collapsible-content-collapsed' aria-hidden='false'><p>" + name.descrizione + "</p></div></div>";
+
+                        // SERVIZI
+                        //scheda += "<div data-role='collapsible' class='ui-collapsible ui-collapsible-inset ui-corner-all ui-collapsible-themed-content ui-first-child ui-collapsible-collapsed'><h3 class='ui-collapsible-heading ui-collapsible-heading-collapsed'><a href='#' class='ui-collapsible-heading-toggle ui-btn ui-btn-icon-left ui-btn-a ui-icon-plus'>Servizi<span class='ui-collapsible-heading-status'>click to expand contents</span></a></h3><div class='ui-collapsible-content ui-body-a ui-collapsible-content-collapsed' aria-hidden='true'><p>" + name.servizi + "</p></div></div>";
+
+                        //scheda += "</div>";
+                        if (name.tipo_contratto != 'free') {
+                            scheda += "<div class='descrizione'><h3>Descrizione</h3>" + name.descrizione + "</div>"; // DESCRIZIONE
+                            scheda += "<div class='servizi'><h3>Servizi</h3>" + name.servizi + "</div><br/><br/>"; // SERVIZI
+                        }
+
+                        //<li class='ui-block-a' style="float:left;width:25%"><a href="#page_info" data-icon="info" data-iconpos="left" class="ui-state-persist"></a></li>
+                        //footer_dettaglio = "<li class='ui-block-a' style='float:left;width:25%'><a href='page_info' data-icon='info' data-role='button' class='ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-info ui-btn-icon-left'>Info</a></li>";
+
+                        if (name.tipo_contratto != 'base' && name.tipo_contratto != 'free') {
+                            footer_dettaglio += "<li class='ui-block-a' style='float:left;width:25%'><a href='http://" + name.web + "' target='_blank' data-icon='navigation' data-role='button' class='btn_web ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-navigation ui-btn-icon-left'>Web</a></li>";
+                            footer_dettaglio += "<li class='ui-block-b '><a href='mailto:" + name.mail + "' data-icon='mail' data-role='button' class='btn_mail ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-mail ui-btn-icon-left'>E-mail</a></li>";
+                            footer_dettaglio += "<li class='ui-block-c '><a href='tel:" + name.tel + "' data-icon='phone' data-role='button'  class='btn_tel ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-phone ui-btn-icon-left'>Tel.</a></li>";
+                            footer_dettaglio += "<li class='ui-block-d '><a href='http://maps.google.com/maps?&daddr=" + name.coordinate + "' data-role='button' class='btn_fax ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-btn-icon-left'>Raggiungici</a></li>"; // RIFERIMENTI
+
+                        }
+
+                    }
+                });
+                //append list to ul
+                var htmlObject = $(scheda);
+                $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data_newsPromo.asp?id_azienda=" + id_azienda + "&tipologia=news", function (info_news) {
+                
+                    $.each(info_news, function (i, name) {
+                        var news = {};
+                        news.id = name.id_newsPromo;
+                        news.titolo = name.titolo_newsPromo;
+                        news.data = name.data_newsPromo;
+                        news.icona = name.icona_newsPromo;
+                        news.descrizione = name.descrizione_newsPromo;
+                        elenco_news.push(news);
+                    });
+
+                    var blocco = "";
+                    if (elenco_news.length > 0) {
+                        for (var i = 0; i < elenco_news.length; i++) {                            
+                            blocco = blocco + "<div><h1>" + elenco_news[i].titolo + "</h1>"
+                            blocco = blocco + "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/" + elenco_news[i].icona + "' class='img_azienda'>";
+                            blocco = blocco + "<div class='descrizione_newsPromoPopup'>" + elenco_news[i].descrizione + "</div>"
+                            blocco = blocco + "<h5><br/><br/>Inserito il: " + elenco_news[i].data.split(" ")[0] + "</h5></div>"
+                        }
+                    }
+                    else {
+                        blocco = blocco + "<p> Non ci sono news da visualizzare</p>"
+                    }
+
+                    $(".slider_news").append(blocco);
+                });
+
+                $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data_newsPromo.asp?id_azienda=" + id_azienda + "&tipologia=promo", function (info_promo) {
+
+
+                   
+
+                    $.each(info_promo, function (i, name) {
+                        var promo = {};
+                        promo.id = name.id_newsPromo;
+                        promo.titolo = name.titolo_newsPromo;
+                        promo.data = name.data_newsPromo;
+                        promo.icona = name.icona_newsPromo;
+                        promo.descrizione = name.descrizione_newsPromo;
+                        elenco_promo.push(promo);
+                    });
+
+                   var blocco = "";
+                 
+                    if (elenco_promo.length > 0) {
+                            for (var i = 0; i < elenco_promo.length; i++) {                            
+                            blocco = blocco + "<div><h1>" + elenco_promo[i].titolo + "</h1>"
+                            blocco = blocco + "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/" + elenco_promo[i].icona + "' class='img_azienda'>";
+                            blocco = blocco + "<div class='descrizione_newsPromoPopup'>" + elenco_promo[i].descrizione + "</div>"
+                            blocco = blocco + "<h5><br/><br/>Inserito il: " + elenco_promo[i].data.split(" ")[0] + "</h5></div>"
+                            
+                        }
+                    }
+                    else {
+                        blocco = blocco + "<p> Non ci sono promo da visualizzare</p>"
+                    }
+
+                    $(".slider_promo").append(blocco);
+                });
+
+                $(".slider_gallery").append(scheda_gallery);
+                $("#footer_dettaglio").append(footer_dettaglio).promise().done(function () { });
+
+                $("#scheda_azienda").append(htmlObject).promise().done(function () { });
+
+
+                /*$("#lista_immagini").html(scheda_gallery).promise().done(function () { });*/
+
+                $("#lista_promo").append(scheda_promo).promise().done(function () { });
+                //$("#lista_news").append(scheda_news).promise().done(function () { });
+
+            });
+
+            /*$.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data_newsPromo.asp?id_azienda=" + id_azienda + "tipologia=news", function (info_news) {
+
+
+            var news = "";
+
+            $.each(info_news, function (i, name) {
+            var news;
+            news.id = name.id_newsPromo;
+            news.titolo = name.titolo_newsPromo;
+            news.data = name.data_newsPromo;
+            news.icona = name.icona_newsPromo;
+            news.descrizione = name.descrizione_newsPromo;
+            elenco_news.push(news);
+            });
+            var blocco = "";
+            blocco = blocco + "<h3>" + elenco_news[0].data + "</h3>"
+            blocco = blocco + "<h1>" + elenco_news[0].titolo + "</h1>"
+            blocco = blocco + "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/" + elenco_news[0].icona + "' class='img_azienda'>";
+            blocco = blocco + "<p>" + elenco_news[0].descrizione + "</p>"
+
+            $("#lista_news").append(blocco);
+            });
+
+            $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data_newsPromo.asp?id_azienda=" + id_azienda + "tipologia=promo", function (info_promo) {
+
+
+            var news = "";
+
+            $.each(info_promo, function (i, name) {
+            var promo;
+            news.id = name.id_newsPromo;
+            news.titolo = name.titolo_newsPromo;
+            news.data = name.data_newsPromo;
+            news.icona = name.icona_newsPromo;
+            news.descrizione = name.descrizione_newsPromo;
+            elenco_promo.push(promo);
+
+            });
+            });*/
+        });
+
+       
+    </script>
+</body>
+
+
+</html>
+

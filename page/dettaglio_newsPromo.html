@@ -1,0 +1,200 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link rel="stylesheet" href="../css/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" href="../css/default_theme.min.css">
+    <link rel="stylesheet" href="../css/jquery.mobile.icons.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/jquery-1.11.2.min.js"></script>
+    <script src="../js/jquery.mobile-1.4.5.min.js"></script>
+    <script src="../js/standard.js"></script>
+</head>
+<body>
+    <div class="txtwrapper">
+        <!-- dettaglio newsPromo -->
+        <div data-role="page" id="page_dettaglio_newsPromo">
+            <!-- pannello laterale -->
+            <div data-role="panel" id="myPanel" data-display="overlay" data-position="right">
+                <div class="ui-btn-right">
+                    <a href="#myPanel" class="ui-btn sideOption ui-btn-inline ui-btn-icon-left ui-icon-grid"
+                        data-role="button" data-icon="grid">&nbsp;</a>
+                </div>
+                <br>
+                <br>
+                <br>
+                <a href="../index.html" class="btn_search ui-btn sideOption ui-btn-inline ui-icon-home ui-btn-icon-left"
+                    data-role="button" data-icon="home" data-ajax="false">Home</a> <a href="ricerca.html"
+                        class="btn_search ui-btn sideOption ui-btn-inline ui-icon-search ui-btn-icon-left"
+                        data-role="button" data-icon="search" data-ajax="false">Cerca</a> <a href='#settings'
+                            data-icon='gear' data-rel='popup' data-position-to='window' data-transition='pop'
+                            class='btn_search ui-btn sideOption ui-btn-inline ui-icon-gear ui-btn-icon-left'>
+                            Impostazioni</a>
+                <!-- setting -->
+                <div id="settings" data-role="popup">
+                    <div data-role="header">
+                        <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all sideOption ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right"
+                            data-rel="back" data-icon="delete">&nbsp;</a>
+                        <h1>
+                            Impostazioni</h1>
+                    </div>
+                    <div data-role="content">
+                        <ul data-role="listview" style="margin: 0 !important">
+                            <li><a href="#" class="small">Testo piccolo</a></li>
+                            <li><a href="#" class="med">Testo medio</a></li>
+                            <li><a href="#" class="large">Testo grande</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <a href='#page_info' data-icon='info' data-rel='popup' data-position-to='window'
+                    data-transition='pop' class='btn_search ui-btn sideOption ui-btn-inline ui-icon-info ui-btn-icon-left'>
+                    Info</a>
+                <!-- info -->
+                <div data-role="popup" id="page_info">
+                    <div data-role="header">
+                        <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right"
+                            data-rel="back" data-icon="delete">&nbsp;</a>
+                        <h1>
+                            Info</h1>
+                    </div>
+                    <div data-role="main" class="ui-content">
+                        <b>Trovo per te: il portale creato apposta per te, per trovare in modo facile e veloce
+                            quello che ti serve nel tuo territorio.</b><br>
+                        <br>
+                        <b>Sei un privato?</b><br>
+                        Questa App troverà professionisti ed aziende in base alle tue necessità.
+                        <br>
+                        <i>Esempio:<br>
+                            Vuoi cercare un elettricista, acquistare un elettrodomestico o realizzare un sito
+                            web?<br>
+                            Scarica l'App e naviga sulle categorie, oppure clicca su Cerca.</i><br>
+                        <br>
+                        <b>Sei un'azienda?</b><br>
+                        Ideale per espandere la tua visibilità sui dispositivi mobili a basso costo e in
+                        assoluta autonomia.<br>
+                        Nessun costo di gestione, sarai tu a gestire i tuoi contenuti.<br>
+                        Richiedi come inserire la tua attività o la tua professione scrivendoci direttamente
+                        <a href="http://www.trovoperte.com/trovo_per_te_iscrizione.html" rel="external">qui</a>.
+                        <br>
+                        <br>
+                        <b>Caratteristiche: </b>
+                        <br>
+                        - Semplicità di ricerca<br>
+                        - Compatibile con tutti i dispositivi<br>
+                        - Lettura facilitata<br>
+                        - Aggiornamenti gestiti direttamente dall'azienda iscritta
+                        <br>
+                        <br>
+                        Per richiedere informazioni o registrare la propria attività <a href="http://www.trovoperte.com/trovo_per_te_iscrizione.html"
+                            rel="external">clicca qui</a></p>
+                    </div>
+                    <div data-role="footer" style="text-align: center">
+                        per info e assistenza scrivi a <a href="mailto:info@trovoperte.com">info@trovoperte.com</a>
+                    </div>
+                </div>
+            </div>
+            <!-- fine pannello laterale -->
+            <div data-role="header" data-position="fixed">
+                <a href="#" data-rel="back" data-icon="back" data-position="inline" class="ui-btn-left">
+                    &nbsp;</a> <a href="../index.html" data-role="none" class="link_index" data-ajax="false">
+                        <img src="../img/logo_trovoperte.png" class="logo_trovo"></a>
+                <div class="ui-btn-right">
+                    <a href="#myPanel" class="ui-btn ui-shadow ui-btn-inline ui-btn-icon-left ui-icon-grid"
+                        data-role="button" data-icon="grid">&nbsp;</a>
+                </div>
+            </div>
+            <div role="main" class="ui-content">
+                <div data-role="content" class="ui-content" role="main">
+                    <div id="scheda_newsPromo" data-divider-theme="a" data-inset="true">
+                        <span class="testo_finto">testo finto</span>
+                    </div>
+                </div>
+            </div>
+            <div data-role="footer" data-position="fixed">
+                <div data-role="navbar" class="ui-navbar">
+                    <ul id="footer_dettaglio" class="ui-grid-c">
+                        <li><span class="testo_finto">testo finto</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--page-->
+    </div>
+    <script>
+
+        $("#page_dettaglio_newsPromo").on("pageshow", function (event) {
+            var id_newsPromo = getParameterByName("id_newsPromo");
+            var tipologia_newsPromo = getParameterByName("tipologia");
+
+
+
+
+            var scheda = "";
+            var footer_dettaglio = "";
+            $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data_newsPromo.asp?id_newsPromo=" + id_newsPromo + "&tipologia=" + tipologia_newsPromo, function (info_dettaglio) {
+
+
+                $.each(info_dettaglio, function (i, name) {
+
+
+                    //add the <li> to "li" variable
+                    //note the use of += in the variable
+                    //meaning I'm adding to the existing data. not replacing it.
+                    //store index value in array as id of the <a> tag
+                    if (name.id_newsPromo == id_newsPromo) {
+
+                        //variabile di appoggio dove salvo da data perché il campo del DB è composto da data+ora, e in questo caso serve solo l'ora
+                        var data = name.data_newsPromo.split(" ")[0];
+
+                        scheda = scheda + "<div class='info_newsPromo'><h6>Inserito il: " + data + "</h6>";
+                        scheda = scheda + "<h1>" + name.titolo_newsPromo + "</h1>";
+                        if (name.icona_newsPromo != '') {
+                            scheda += "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/" + name.icona_newsPromo + "'>";
+                        }
+                        scheda = scheda + "<p id='descrizione_newsPromo'>" + name.descrizione_newsPromo + " Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p></div></div></div>"
+                        footer_dettaglio += "<div   class='info_azienda'><h2>" + name.ragione_sociale + "</h2>"; // RAGIONE SOCIALE
+                        footer_dettaglio += "<p><a id=navigatore href='http://maps.google.com/maps?&daddr=" + name.coordinate + "' data-icon='navigation' class=' btn-tel-dettagli ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-navigation ui-btn-icon-left'>" + name.indirizzo + " " + name.num + " " + name.cap + " " + name.paese + " " + name.provincia + "</a></p>"; // INDIRIZZO
+                        footer_dettaglio += "<p><a href='tel:" + name.tel + "' data-icon='phone' class=' btn-tel-dettagli ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-phone ui-btn-icon-left'>" + name.tel + "</a></p>"; // TELEFONO
+                        footer_dettaglio += "<p><a href='mailto:" + name.mail + "' data-icon='mail' class='btn-tel-dettagli ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-mail ui-btn-icon-left'>" + name.mail + "</a></p>"; // MAIL
+                        footer_dettaglio += "<p><a href='http://" + name.web + "' data-icon'=navigation' class='btn-tel-dettagli ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-navigation ui-btn-icon-left'>" + name.web + "</a></p>"; // WEB
+                        footer_dettaglio += "<p id='azienda_link'><a href='dettaglio.html?id_azienda=" + name.id_attivita + "' data-ajax='false' data-icon='arrow-r' class='btn-tel-dettagli ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-carat-r ui-btn-icon-right'>Accedi alla scheda azienda</a></p>"; // WEB
+
+
+                        //scheda += "<div data-role='collapsibleset' data-theme='a' data-content-theme='a' class='ui-collapsible-set ui-group-theme-a ui-corner-all descrizione'>";
+
+                        // DESCRIZIONE
+                        //scheda += "<div data-role='collapsible' data-collapsed='false' class='ui-collapsible ui-collapsible-inset ui-corner-all ui-collapsible-themed-content ui-first-child ui-collapsible-collapsed'><h3 class='ui-collapsible-heading ui-collapsible-heading-collapsed'><a href='#' class='ui-collapsible-heading-toggle ui-btn ui-btn-icon-left ui-btn-a ui-icon-plus'>Descrizione<span class='ui-collapsible-heading-status'>click to expand contents</span></a></h3><div class='ui-collapsible-content ui-body-a ui-collapsible-content-collapsed' aria-hidden='false'><p>" + name.descrizione + "</p></div></div>";
+
+                        // SERVIZI
+                        //scheda += "<div data-role='collapsible' class='ui-collapsible ui-collapsible-inset ui-corner-all ui-collapsible-themed-content ui-first-child ui-collapsible-collapsed'><h3 class='ui-collapsible-heading ui-collapsible-heading-collapsed'><a href='#' class='ui-collapsible-heading-toggle ui-btn ui-btn-icon-left ui-btn-a ui-icon-plus'>Servizi<span class='ui-collapsible-heading-status'>click to expand contents</span></a></h3><div class='ui-collapsible-content ui-body-a ui-collapsible-content-collapsed' aria-hidden='true'><p>" + name.servizi + "</p></div></div>";
+
+                        //scheda += "</div>";
+                        /*if (name.tipo_contratto != 'free') {
+                        scheda += "<div class='descrizione'><h3>Descrizione</h3>" + name.descrizione + "</div>"; // DESCRIZIONE
+                        scheda += "<div class='servizi'><h3>Servizi</h3>" + name.servizi + "</div><br/><br/>"; // SERVIZI
+                        }*/
+
+                        //<li class='ui-block-a' style="float:left;width:25%"><a href="#page_info" data-icon="info" data-iconpos="left" class="ui-state-persist"></a></li>
+                        //footer_dettaglio = "<li class='ui-block-a' style='float:left;width:25%'><a href='page_info' data-icon='info' data-role='button' class='ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-info ui-btn-icon-left'>Info</a></li>";
+
+                    }
+                });
+                //append list to ul
+                var htmlObject = $(scheda);
+
+                $("#footer_dettaglio").append(footer_dettaglio).promise().done(function () { });
+                $("#scheda_newsPromo").append(htmlObject).promise().done(function () { });
+
+
+
+
+            });
+        })   
+
+
+
+    </script>
+</body>
+</html>
