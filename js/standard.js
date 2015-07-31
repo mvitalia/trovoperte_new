@@ -120,8 +120,6 @@ $(document).ready(function () {
         }
     }
 
-	
-/
 
 // Cordova is ready
 document.addEventListener("deviceready", onDeviceReady, false);
