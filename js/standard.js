@@ -121,11 +121,10 @@ $(document).ready(function () {
     }
 
 	
-// Wait for Cordova to load
-    //document.addEventListener("deviceready", onDeviceReady, false);
+/
 
-    // Cordova is ready
-    //document.addEventListener("deviceready", onDeviceReady, false);
+// Cordova is ready
+document.addEventListener("deviceready", onDeviceReady, false);
 
 // Cordova is ready
 function onDeviceReady() {
