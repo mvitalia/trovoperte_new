@@ -23,6 +23,7 @@ $(document).ready(function () {
             $("#chkConferma_Richiesta").prop("checked", true);
         }
     });
+	
 
 
     $("#txtAcconsentoInfo").click(function () {
@@ -116,7 +117,7 @@ $(document).ready(function () {
     // Cordova is ready
     function onDeviceReady() {
       var db = window.sqlitePlugin.openDatabase({name: "DatabaseProva1.db"});
-
+	alert("Accesso al db")
       db.transaction(function(tx) {
         tx.executeSql('DROP TABLE IF EXISTS test_table');
         tx.executeSql('CREATE TABLE IF NOT EXISTS test_table (id integer primary key, data text, data_num integer)');
