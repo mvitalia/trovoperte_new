@@ -39,9 +39,9 @@ $(document).ready(function () {
     });
 
 
-    document.addEventListener("deviceready", function () {
+    /*document.addEventListener("deviceready", function () {
         alert("123");
-    }, false)
+    }, false)*/
 
     /* $("#form_richiestaInfo").validate();   
     $("#form-registrazioneAzienda").validate();*/
