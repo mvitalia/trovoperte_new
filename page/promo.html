@@ -1,6 +1,6 @@
 <html>
 <head>
-    <meta charset="UTF-8">
+    <meta charset="iso-8859-1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
@@ -51,28 +51,146 @@
                 <a href='#page_info' data-icon='info' data-rel='popup' data-position-to='window'
                     data-transition='pop' class='btn_search sideOption ui-btn sideOption ui-btn-inline ui-icon-info ui-btn-icon-left'>
                     Info</a>
+                <a href='#page_richiestaInfo' data-icon='info' data-rel='popup' data-position-to='window'
+                    data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-info ui-btn-icon-left'>
+                    Contattaci</a>
+                 <a href='#page_registrazione' data-icon='info' data-rel='popup' data-position-to='window'
+                    data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-info ui-btn-icon-left'>
+                    Richiesta iscrizione</a>
                 <!-- info -->
-                <form data-role="popup" method="get" id="page_info">
+                <!-- info -->
+                                <div data-role="popup" id="page_info">
+              <div data-role="header">
+              	 <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right" data-rel="back" data-icon="delete">&nbsp;</a>
+                <h1>Info generali</h1>
+              </div>
+            
+              <div data-role="main" class="ui-content">
+              	<b>Trovo per te: il portale creato apposta per te, per trovare in modo facile e veloce quello che ti serve nel tuo territorio.</b><br><br>
+
+<b>Sei un privato?</b><br>
+Questa App troverà professionisti ed aziende in base alle tue necessità.
+<br>
+<i>Esempio:<br>
+Vuoi cercare un elettricista, acquistare un elettrodomestico o realizzare un sito web?<br>
+Scarica l'App e naviga sulle categorie, oppure clicca su Cerca.</i><br>
+
+<br>
+<b>Sei un'azienda?</b><br>
+Ideale per espandere la tua visibilità sui dispositivi mobili a basso costo e in assoluta autonomia.<br>
+Nessun costo di gestione, sarai tu a gestire i tuoi contenuti.<br>
+Richiedi come inserire la tua attività o la tua professione scrivendoci direttamente <a href="http://www.trovoperte.com/trovo_per_te_iscrizione.html" rel="external" target="_blank">qui</a>.
+<br><br>
+
+<b>Caratteristiche: </b><br>
+- Semplicità di ricerca<br>
+- Compatibile con tutti i dispositivi<br>
+- Lettura facilitata<br>
+- Aggiornamenti gestiti direttamente dall'azienda iscritta <br><br>
+Per richiedere informazioni o registrare la propria attività <a href="http://www.trovoperte.com/trovo_per_te_iscrizione.html" rel="external" target="_blank">clicca qui</a></p>
+                
+              </div>
+                
+
+
+              <div data-role="footer" style="text-align:center">
+                per info e assistenza scrivi a <a href="mailto:info@trovoperte.com">info@trovoperte.com</a>
+              </div>
+            </div>
+                 <!-- richiesta informazioni -->
+                <div data-role="popup" id="page_richiestaInfo" style="width: 35%; margin: 0 auto;">
+                        
                 <div data-role="header">
                     <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right"
                         data-rel="back" data-icon="delete">&nbsp;</a>
                     <h1>
                         Info</h1>
                 </div>
-                Testo di prova per la richiesta di documenti
-                <input type="submit" value="Invia Richiesta" />
-                </form>
-                <!-- registrazione azienda -->
-                <form data-role="popup" method="get" id="page_registrazione">
-                <div data-role="header">
-                    <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right"
-                        data-rel="back" data-icon="delete">&nbsp;</a>
-                    <h1>
-                        Registrazione</h1>
+                <form  method="post"  action="formcdosys_generale.asp" id="form_richiestaInfo" name="form_richiestaInfo">
+                     <div class="form_left">
+                            <input  name="nome" id="txtNomeInfo" type="text" placeholder="Nome" class="required"/>
+                        </div >
+                        <div class="form_right">
+                            <input name="cognome" id="txtCognomeInfo" type="text" placeholder="Cognome" class="required"/>
+                        </div >
+                        <div class="emailInfo">
+                            <input id="txtMailInfo" name="email" type="text" placeholder="E-mail" class="required"/>
+                        </div>                    
+                        
+                    <div class="textAreaInfo">
+                        <textarea id="richiesta" placeholder="Richiesta" name="richiesta" rows="6" class="required"></textarea>
+                   </div>
+                    <p style="height: 75px; overflow: auto; clear:both; display:inline-block; margin-top:20px; margin-bottom:30px; padding:0 10px 0 10px">
+                        Acconsento al trattamento dei miei dati da parte di "MVItalia" ( per finalita'
+                        commerciali, promozionali e statistiche, nonche' per l'invio di omaggi e/o materiale
+                        informativo su nuovi prodotti e iniziative promozionali. I suoi dati potranno essere
+                        trattati da "MVItalia", direttamente o tramite societa' preposte. Prenderemo
+                        tutte le cautele necessarie affinche' i suoi dati siano trattati con la massima
+                        sicurezza e in conformita' a quanto previsto in materia di tutela dei dati personali.Dlgs
+                        196/2003INFORMATIVA AI SENSI DEL DLGS 196/2003 FINALITA' E MODALITA' DEL TRATTAMENTO
+                        DEI DATI PERSONALI</p>
+                    <br />
+                    
+                        
+                        <div style="padding: 0 10px 0 10px;"><input type="checkbox" class="required" name="conferma" id="chkConferma_info" />
+                        <label style="text-indent:35px;" id="txtAcconsentoInfo">
+                            Acconsento il trattamento dei dati personali</label></div>
+                            <div style="clear:both;" id="btnInvioInfo">
+                                 <input type="submit" id="Invia_Info" value="Invia Richiesta" name="invia" />
+                           </div>
+                        </form>
                 </div>
-                Testo di prova per la registrazione della azienda
-                <input type="submit" value="Registra azienda" />
-                </form>
+        
+                <!-- registrazione azienda -->
+                <div data-role="popup" id="page_registrazione" style="width: 35%; margin: 0 auto;">
+                	<div data-role="header">
+                        <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right"
+                            data-rel="back" data-icon="delete">&nbsp;</a>
+                        <h1>
+                            Richiesta registrazione</h1>
+                    </div>
+                   <form  method="post" onsubmit="return validateForm();" action="formcdosys_generale.asp" id="form_registrazioneAzienda" name="form_registrazioneAzienda" >
+                    
+                        <div class="form_left">
+                            <input  name="nome" id="txtNomeRegistrazione" type="text" placeholder="Nome" class="required"/>
+                        </div >
+                        <div class="form_right">
+                            <input name="cognome" id="txtCognomeRegistrazione" type="text" placeholder="Cognome" class="required"/>
+                        </div >
+                        <div class="form_left">
+                            <input id="txtMailRegistrazione" name="email" type="text" placeholder="E-mail" class="required"/>
+                        </div>
+                       <div class="form_right">
+                            <input id="txtTelRegistrazione" name="telefono" type="text" placeholder="Telefono" class="required"/>
+                        </div>
+                        <div class="form_left">
+                            <input id="txtRagioneSociale" type="text" name="r_soc" placeholder="Ragione sociale" class="required"/>
+                        </div>
+                            <div class="form_right"> <input id="txtPIVA" type="text" name="piva" placeholder="P.IVA" class="required"/></div>
+                        <div class="form_left"><input  name="cod_fisc" id="txtCodiceFiscale" type="text" placeholder="Codice fiscale" class="required"/></div>
+                            <div class="form_right"><input id="txtIndirizzo" type="text" name="indirizzo" placeholder="Indirizzo" class="required"/></div>
+                        <div class="form_left"><input id="txtCAP" type="text" name="cap" placeholder="CAP" class="required"/></div>
+                        <div class="form_right"><input id="txtCitta"  type="text" name="citta" placeholder="Città"class="required"/></div>
+                        <p style="height: 75px; overflow: auto; clear:both; display:inline-block; margin-top:20px; margin-bottom:30px; padding: 0 10px 0 10px;">
+                            Acconsento al trattamento dei miei dati da parte di "MVItalia" ( per finalita'
+                            commerciali, promozionali e statistiche, nonche' per l'invio di omaggi e/o materiale
+                            informativo su nuovi prodotti e iniziative promozionali. I suoi dati potranno essere
+                            trattati da "MVItalia", direttamente o tramite societa' preposte. Prenderemo
+                            tutte le cautele necessarie affinche' i suoi dati siano trattati con la massima
+                            sicurezza e in conformita' a quanto previsto in materia di tutela dei dati personali.Dlgs
+                            196/2003INFORMATIVA AI SENSI DEL DLGS 196/2003 FINALITA' E MODALITA' DEL TRATTAMENTO
+                            DEI DATI PERSONALI</p>
+                        <br />
+                        
+                        
+                       <div style="padding:0 10px 0 10px;"> <input type="checkbox"  name="conferma" class="required" id="chkConferma_Richiesta" />
+                        <label style="text-indent:35px;" id="txtAcconsento">
+                            Acconsento il trattamento dei dati personali</label></div>
+                            <div style="clear:both;" id="btnInvioRegistrazione">
+                                 <input type="submit" id="Invia_Registrazione" value="Invia Richiesta" name="invia" />
+                           </div>
+                    </form>
+                </div>
             </div>
             <!-- fine pannello laterale -->
             <div data-role="header" data-position="fixed">
@@ -92,11 +210,11 @@
                 </div>
             </div>
             <div data-role="footer" data-position="fixed">
-                <a href='#page_info' data-icon='info' data-rel='popup' data-position-to='window'
+                <a href='#page_richiestaInfo' data-icon='info' data-rel='popup' data-position-to='window'
                     data-transition='pop' class='ui-btn ui-shadow ui-btn-inline ui-icon-info ui-btn-icon-left'>
-                    Richiedi info</a> <a href='#page_registrazione' data-icon='info' data-rel='popup'
+                    Contattaci</a> <a href='#page_registrazione' data-icon='info' data-rel='popup'
                         data-position-to='window' data-transition='pop' class='ui-btn ui-shadow ui-btn-inline ui-icon-info ui-btn-icon-left'>
-                        Registra azienda</a> <a href='lista_circuiti.html' id="btnCircuitiConvenzionati"
+                        Richiesta iscrizione</a> <a href='lista_circuiti.html' id="btnCircuitiConvenzionati"
                             data-ajax="false">Convenzioni</a>
             </div>
         </div>

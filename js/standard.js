@@ -115,6 +115,45 @@ $(document).ready(function () {
         }
     }
 
+    function validateForm() {
+
+        var mail_reg_exp = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-]{2,})+\.)+([a-zA-Z0-9]{2,})+$/;
+
+        var moduloControllo = document.forms['form_richiestaInfo'];
+
+        if (moduloControllo.nome.value.length == 0) {
+            alert("Devi completare il campo: Nome");
+            return false;
+        }
+        else if (moduloControllo.cognome.value.length == 0) {
+            alert("Devi completare il campo: Cognome");
+            return false;
+        }
+       
+
+        else if (moduloControllo.email.value.length == 0) {
+            alert("Devi completare il campo: Mail");
+
+            return false;
+        }
+        else if (moduloControllo.email.value.length != 0) {
+            var corretto;
+            var re = new RegExp(mail_reg_exp);
+            corretto = re.test(moduloControllo.email.value);
+            if (corretto == false) {
+
+                return false;
+            }
+        }
+      else if(moduloControllo.richiesta.value.lenght == 0){
+        alert("Devi completare il campo richiesta")
+      }
+        else if (moduloControllo.conferma.prop("checked") == false) {
+            alert("Acconsentire trattamento dati");
+            return false;
+        }
+    }
+
 
 
 /** GET PARAMETER **/

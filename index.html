@@ -22,37 +22,35 @@
             }
         }
 
-        //prova scrittura file
-            window.resolveLocalFileSystemURI(cordova.file.dataDirectory,
-                function(dirEntry) {
-                    dir.getFile("yourfile.txt", {
-                        create: true,
-                        exclusive: false
-                    }, function(f) {
-                    f.createWriter(function(writer) {
-                        writer.onwriteend = function(evt) {
-                            alert("File successfully created!");
-                        };
-                        writer.write("Hello world!");
-                    },
-                    function(evt, where) {
-                        console.log("Error writing file "+ where + " :");
-                        console.log(JSON.stringify(evt));
-                    }
-                },
-                function(evt, where) {
-                    console.log("Error resolving data folder "+ where + " :");
-                    console.log(JSON.stringify(evt));
-                }
-            );
+        /*prova scrittura file
+        window.resolveLocalFileSystemURI(cordova.file.dataDirectory,
+    function (dirEntry) {
+        dir.getFile("yourfile.txt", {
+            create: true,
+            exclusive: false
+        }, function (f) {
+            f.createWriter(function (writer) {
+                writer.onwriteend = function (evt) {
+                    alert("File successfully created!");
+                };
+                writer.write("Hello world!");
+            }),
+				function (evt, where) {
+				    console.log("Error writing file " + where + " :");
+				    console.log(JSON.stringify(evt));
+				}
+        },
+			function (evt, where) {
+			    console.log("Error resolving data folder " + where + " :");
+			    console.log(JSON.stringify(evt));
+			});
+    }
+);
 
-        //fine prova scrittura file
+        //fine prova scrittura file*/
 
         // MACROCATEGORIE
         $(document).on("pageinit", "#page_index", function () {
-			
-			alert("sto chiamando la creazione del db");
-			//onDeviceReady();
 			
             $.mobile.page.prototype.options.domCache = true;
             $.mobile.ajaxEnabled = true;
@@ -151,7 +149,13 @@
                 </div>
                 <a href='#page_info' data-icon='info' data-rel='popup' data-position-to='window'
                     data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-info ui-btn-icon-left'>
-                    Info</a>
+                    Info generali</a>
+                <a href='#page_richiestaInfo' data-icon='info' data-rel='popup' data-position-to='window'
+                    data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-info ui-btn-icon-left'>
+                    Contattaci</a>
+                 <a href='#page_registrazione' data-icon='info' data-rel='popup' data-position-to='window'
+                    data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-info ui-btn-icon-left'>
+                    Richiesta iscrizione</a>
                 <!-- richiesta informazioni -->
                 <div data-role="popup" id="page_richiestaInfo" style="width: 35%; margin: 0 auto;">
                         
@@ -161,7 +165,7 @@
                     <h1>
                         Info</h1>
                 </div>
-                <form  method="post"  action="formcdosys_generale.asp" id="form_richiestaInfo" name="form_richiestaInfo">
+                <form  method="post"  onsubmit="return validateForm();" action="formcdosys_generale.asp" id="form_richiestaInfo" name="form_richiestaInfo">
                      <div class="form_left">
                             <input  name="nome" id="txtNomeInfo" type="text" placeholder="Nome" class="required"/>
                         </div >
@@ -250,7 +254,7 @@
                 <div data-role="popup" id="page_info">
               <div data-role="header">
               	 <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right" data-rel="back" data-icon="delete">&nbsp;</a>
-                <h1>Info</h1>
+                <h1>Info generali</h1>
               </div>
             
               <div data-role="main" class="ui-content">
@@ -326,9 +330,9 @@ Per richiedere informazioni o registrare la propria attività <a href="http://ww
             <div data-role="footer" data-position="fixed">
                 <a href='#page_richiestaInfo' data-icon='info' data-rel='popup' data-position-to='window'
                     data-transition='pop' class='ui-btn ui-shadow ui-btn-inline ui-icon-info ui-btn-icon-left'>
-                    Richiedi info</a> <a href='#page_registrazione' data-icon='info' data-rel='popup'
+                    Contattaci</a> <a href='#page_registrazione' data-icon='info' data-rel='popup'
                         data-position-to='window' data-transition='pop' class='ui-btn ui-shadow ui-btn-inline ui-icon-info ui-btn-icon-left'>
-                        Registra azienda</a> <a href='page/lista_circuiti.html' id="btnCircuitiConvenzionati"
+                        Richiesta iscrizione</a> <a href='page/lista_circuiti.html' id="btnCircuitiConvenzionati"
                             data-ajax="false">Convenzioni</a>
             </div>
         </div>
