@@ -28,19 +28,11 @@
 
        
 
-        try {
+        try {          
 
-
-
-            var deviceInfo = function () {
-                alert("prova");
-                alert(screen.width);
-
-            };
-
-            document.addEventListener("deviceready", deviceInfo, true);
+            document.addEventListener("deviceready", start, false);
           
-            /*function onInitFs(fs) {
+            function onInitFs(fs) {
 
                 fs.root.getFile('log.txt', { create: true }, function (fileEntry) {
 
@@ -93,7 +85,9 @@
                 alert('Error: ' + msg);
             }
 
-            window.requestFileSystem(window.PERSISTENT, 1024 * 1024, onInitFs, errorHandler);*/
+             function start(){
+               window.requestFileSystem(window.PERSISTENT, 1024 * 1024, onInitFs, errorHandler);
+             }
         }
 catch (err) {
     alert(err.message);
