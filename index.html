@@ -25,12 +25,21 @@
         //document.addEventListener("deviceready", onInitFs, true); 
 
         //prova scrittura file
-        try {
+
+        var deviceInfo = function () {
+
+            alert(screen.width);
+
+        };
+
+        document.addEventListener("deviceready", deviceInfo, true);
+
+       /* try {
             var deviceInfo = function () {
                
                alert(screen.width);
                
-            };
+            };*/
 
           
                 document.addEventListener("deviceready", deviceInfo, true);
