@@ -34,14 +34,14 @@ $(document).ready(function () {
             $("#chkConferma_info").prop("checked", true);
         }
 
-        document.addEventListener("deviceready", function () {
-            alert("123");
-        }, false)
+        
 
     });
 
 
-
+    document.addEventListener("deviceready", function () {
+        alert("123");
+    }, false)
 
     /* $("#form_richiestaInfo").validate();   
     $("#form-registrazioneAzienda").validate();*/
