@@ -22,10 +22,25 @@
             }
         }
 
+        //document.addEventListener("deviceready", onInitFs, true); 
 
         //prova scrittura file
         try {
-            function onInitFs(fs) {
+            window.requestFileSystem(
+
+        LocalFileSystem.PERSISTENT,
+        0,
+
+        function (fileSystem) {
+            alert("File system: " + fileSystem.name + "\n" +
+                  "Root: " + fileSystem.root.name + "\n");
+        },
+
+        function (event) {
+            alert(event.target.error.code);
+        }
+);
+            /*function onInitFs(fs) {
 
                 fs.root.getFile('log.txt', { create: true }, function (fileEntry) {
 
@@ -78,7 +93,7 @@
                 alert('Error: ' + msg);
             }
 
-            window.requestFileSystem(window.PERSISTENT, 1024 * 1024, onInitFs, errorHandler);
+            window.requestFileSystem(window.PERSISTENT, 1024 * 1024, onInitFs, errorHandler);*/
         }
 catch (err) {
     alert(err.message);
