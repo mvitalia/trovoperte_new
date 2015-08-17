@@ -101,6 +101,7 @@ catch (err) {
         // Cordova is ready
         //
         function onDeviceReady() {
+            alert("prva");
             window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFileSystemSuccess, fail);
             window.resolveLocalFileSystemURI("file:///example.txt", onResolveSuccess, fail);
         }
