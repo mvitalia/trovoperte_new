@@ -28,7 +28,7 @@
 
        
 
-        try {          
+        /*try {          
 
            
           
@@ -92,7 +92,31 @@
 catch (err) {
     alert(err.message);
         }
-        //fine prova scrittura file
+        //fine prova scrittura file*/
+
+        // Wait for Cordova to load
+        //
+        document.addEventListener("deviceready", onDeviceReady, false);
+
+        // Cordova is ready
+        //
+        function onDeviceReady() {
+            window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFileSystemSuccess, fail);
+            window.resolveLocalFileSystemURI("file:///example.txt", onResolveSuccess, fail);
+        }
+
+        function onFileSystemSuccess(fileSystem) {
+            console.log(fileSystem.name);
+        }
+
+        function onResolveSuccess(fileEntry) {
+            console.log(fileEntry.name);
+        }
+
+        function fail(evt) {
+            console.log(evt.target.error.code);
+        }
+
 
         // MACROCATEGORIE
         $(document).on("pageinit", "#page_index", function () {
