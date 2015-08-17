@@ -23,7 +23,7 @@
         }
 
         //prova scrittura file
-            window.resolveLocalFileSystemURL(cordova.file.dataDirectory,
+            window.resolveLocalFileSystemURI(cordova.file.dataDirectory,
                 function(dirEntry) {
                     dir.getFile("yourfile.txt", {
                         create: true,
@@ -44,8 +44,6 @@
                     console.log("Error resolving data folder "+ where + " :");
                     console.log(JSON.stringify(evt));
                 }
-
-                alert("Ho creato il file");
             );
 
         //fine prova scrittura file
