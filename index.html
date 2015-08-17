@@ -23,7 +23,8 @@
         }
 
         //prova scrittura file
-        window.resolveLocalFileSystemURI(cordova.file.dataDirectory,
+        try {
+            window.resolveLocalFileSystemURI(cordova.file.dataDirectory,
     function (dirEntry) {
         dir.getFile("yourfile.txt", {
             create: true,
@@ -46,7 +47,10 @@
 			});
     }
 );
-
+        }
+catch (err) {
+    alert(err.message);
+        }
         //fine prova scrittura file
 
         // MACROCATEGORIE
