@@ -24,7 +24,7 @@
 
         //prova scrittura file
         try {
-            window.resolveLocalFileSystemURI(cordova.file.dataDirectory,
+           window.requestFileSystem(LocalFileSystem.PERSISTENT, 0,
     function (dirEntry) {
         dir.getFile("yourfile.txt", {
             create: true,
