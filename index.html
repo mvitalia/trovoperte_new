@@ -94,9 +94,13 @@ catch (err) {
         }
         //fine prova scrittura file*/
 
-        document.addEventListener("deviceready", function () {
-            alert("123");
-        }, true);
+        $(document).ready(function () {
+            document.addEventListener("deviceready", onDeviceReady, true);
+        });
+
+        function onDeviceReady() {
+            alert('123');
+        }
 
 
         // MACROCATEGORIE
