@@ -30,7 +30,7 @@
 
         try {          
 
-            document.addEventListener("deviceready", start, false);
+           
           
             function onInitFs(fs) {
 
@@ -85,9 +85,9 @@
                 alert('Error: ' + msg);
             }
 
-             function start(){
+         
                window.requestFileSystem(window.PERSISTENT, 1024 * 1024, onInitFs, errorHandler);
-             }
+             
         }
 catch (err) {
     alert(err.message);
