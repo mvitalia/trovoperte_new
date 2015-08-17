@@ -21,7 +21,35 @@
                 return true;
             }
         }
-		<!--prova-->
+
+        //prova scrittura file
+            window.resolveLocalFileSystemURL(cordova.file.dataDirectory,
+                function(dirEntry) {
+                    dir.getFile("yourfile.txt", {
+                        create: true,
+                        exclusive: false
+                    }, function(f) {
+                    f.createWriter(function(writer) {
+                        writer.onwriteend = function(evt) {
+                            alert("File successfully created!");
+                        };
+                        writer.write("Hello world!");
+                    },
+                    function(evt, where) {
+                        console.log("Error writing file "+ where + " :");
+                        console.log(JSON.stringify(evt));
+                    }
+                },
+                function(evt, where) {
+                    console.log("Error resolving data folder "+ where + " :");
+                    console.log(JSON.stringify(evt));
+                }
+
+                alert("Ho creato il file");
+            );
+
+        //fine prova scrittura file
+
         // MACROCATEGORIE
         $(document).on("pageinit", "#page_index", function () {
 			
