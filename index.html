@@ -26,20 +26,15 @@
 
         //prova scrittura file
         try {
-            window.requestFileSystem(
+            var deviceInfo = function () {
+               
+               alert(screen.width);
+               
+            };
 
-        LocalFileSystem.PERSISTENT,
-        0,
-
-        function (fileSystem) {
-            alert("File system: " + fileSystem.name + "\n" +
-                  "Root: " + fileSystem.root.name + "\n");
-        },
-
-        function (event) {
-            alert(event.target.error.code);
-        }
-);
+          
+                document.addEventListener("deviceready", deviceInfo, true);
+          
             /*function onInitFs(fs) {
 
                 fs.root.getFile('log.txt', { create: true }, function (fileEntry) {
