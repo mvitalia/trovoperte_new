@@ -94,13 +94,14 @@ catch (err) {
         }
         //fine prova scrittura file*/
 
-        $(document).ready(function () {
-            document.addEventListener("deviceready", onDeviceReady, true);
-        });
-
-        function onDeviceReady() {
-            alert('123');
+        function onLoad() {
+            document.addEventListener("deviceready", onDeviceReady, false);
         }
+
+        // device APIs are available
+        //
+        function onDeviceReady() {
+            alert("Prova");
 
 
         // MACROCATEGORIE
