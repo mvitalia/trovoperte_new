@@ -72,7 +72,7 @@ $(document).ready(function () {
 });
 
 
-function caricaMappa(coordinate) {
+function caricaMappa(coordinate,nomeAzienda) {
     var lat = parseFloat(coordinate.split(",")[0]);
     var lon = parseFloat(coordinate.split(",")[1]);
         var defaultLatLng = new google.maps.LatLng(lat,lon);  // Default to Hollywood, CA when no geolocation support
@@ -90,7 +90,7 @@ function caricaMappa(coordinate) {
             var marker = new google.maps.Marker({
                 position: latlng,
                 map: map,
-                title: "Greetings!"
+                title: nomeAzienda
             });
         }
         $("#map-page-popup").addClass("ui-overlay-shadow");
