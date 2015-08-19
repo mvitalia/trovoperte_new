@@ -24,8 +24,6 @@ $(document).ready(function () {
         }
     });
 
-
-
     $("#txtAcconsentoInfo").click(function () {
         if ($("#chkConferma_info").prop("checked") == true) {
             $("#chkConferma_info").prop("checked", false);
@@ -34,25 +32,87 @@ $(document).ready(function () {
             $("#chkConferma_info").prop("checked", true);
         }
 
-        
+    });
 
+    $("#page_info").bind({
+        popupafterclose: function (event, ui) { if (page == "registrazione") { $("#page_registrazione").popup("open"); page = ""; } else if (page == "info") { $("#page_richiestaInfo").popup("open"); page = ""; } }
     });
 
 
-    /*document.addEventListener("deviceready", function () {
-        alert("123");
-    }, false)*/
+    //region codice per la mappa dettaglio   
+   /*function caricaMappa() {
+    alert("mappa")
+        var defaultLatLng = new google.maps.LatLng(window.coordinate);  // Default to Hollywood, CA when no geolocation support
 
-    /* $("#form_richiestaInfo").validate();   
-    $("#form-registrazioneAzienda").validate();*/
+            drawMap(defaultLatLng);  // No geolocation support, show default map
+
+            function drawMap(latlng) {
+                var myOptions = {
+                    zoom: 10,
+                    center: latlng,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+                var map = new google.maps.Map(document.getElementById("map-canvas"), myOptions);
+                // Add an overlay to the map of current lat/lng
+                var marker = new google.maps.Marker({
+                    position: latlng,
+                    map: map,
+                    title: "Greetings!"
+                });
+            }
+        }
+
+        $("#map-page-popup").addClass("ui-overlay-shadow");
+
+ 
+
+    //end region   */
 
 
 });
 
 
-	
+function caricaMappa(coordinate) {
+    var lat = parseFloat(coordinate.split(",")[0]);
+    var lon = parseFloat(coordinate.split(",")[1]);
+        var defaultLatLng = new google.maps.LatLng(lat,lon);  // Default to Hollywood, CA when no geolocation support
 
-    function validateForm() {
+        drawMap(defaultLatLng);  // No geolocation support, show default map
+
+        function drawMap(latlng) {
+            var myOptions = {
+                zoom: 10,
+                center: latlng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            var map = new google.maps.Map(document.getElementById("map-canvas"), myOptions);
+            // Add an overlay to the map of current lat/lng
+            var marker = new google.maps.Marker({
+                position: latlng,
+                map: map,
+                title: "Greetings!"
+            });
+        }
+        $("#map-page-popup").addClass("ui-overlay-shadow");
+    }
+
+    var page = "";
+
+    function apriRegistrazione() {
+        page = "registrazione"
+        $("#page_info").popup("close");
+    }
+
+    function apriInfo() {
+        page = "info"
+        $("#page_info").popup("close");
+    }
+
+
+
+   
+
+    function validateFormRegistrazione() {
 
         var mail_reg_exp = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-]{2,})+\.)+([a-zA-Z0-9]{2,})+$/;
 
@@ -85,41 +145,49 @@ $(document).ready(function () {
             var re = new RegExp(mail_reg_exp);
             corretto=re.test(moduloControllo.email.value);
             if (corretto == false) {
+                alert("Devi completare il campo: Mail");
+                return false;               
+            }
 
+            else if (moduloControllo.telefono.value.length == 0) {
+                alert("Devi completare il campo: Telefono");
+                return false;
+            }
+            else if (moduloControllo.cod_fisc.value.length == 0) {
+                alert("Devi completare il campo: Codice fiscale");
+                return false;
+            }
+            else if (moduloControllo.indirizzo.value.length == 0) {
+                alert("Devi completare il campo: Indirizzo");
+                return false;
+            }
+            else if (moduloControllo.cap.value.length == 0) {
+                alert("Devi completare il campo: CAP");
+                return false;
+            }
+            else if (moduloControllo.citta.value.length == 0) {
+                alert("Devi completare il campo: Città");
+                return false;
+            }
+            else if (moduloControllo.indirizzo.value.length == 0) {
+                alert("Devi completare il campo: Indirizzo");
+                return false;
+            }
+            else if ($("#chkConferma_Richiesta").prop("checked")==false) {
+                alert("Devi completare il campo: Acconsento il trattamento dei dati personali");
                 return false;
             }
         }
-        else if (moduloControllo.telefono.value.length == 0) {
-            alert("Devi completare il campo: Telefono");
-            return false;
-        }
-        else if (moduloControllo.cod_fisc.value.length == 0) {
-            alert("Devi completare il campo: Codice fiscale");
-            return false;
-        }
-        else if (moduloControllo.indirizzo.value.length == 0) {
-            alert("Devi completare il campo: Indirizzo");
-            return false;
-        }
-        else if (moduloControllo.cap.value.length == 0) {
-            alert("Devi completare il campo: CAP");
-            return false;
-        }
-        else if (moduloControllo.citta.value.length == 0) {
-            alert("Devi completare il campo: Città");
-            return false;
-        }
-        else if (moduloControllo.indirizzo.value.length == 0) {
-            alert("Devi completare il campo: Indirizzo");
-            return false;
-        }
-        else if (moduloControllo.conferma.prop("checked") == false) {
-            alert("Acconsentire trattamento dati");
-            return false;
-        }
+
+         alert("La sua richiesta di registrazione è stata inviata correttamente, le risponderemo non appena possibile. Grazie per la collaborazione.");
+        //$("#txtNomeRegistrazione, #txtCognomeRegistrazione, #txtMailRegistrazione, #txtTelRegistrazione, #txtRagioneSociale, #txtPIVA, #txtCodiceFiscale, #txtIndirizzo, #txtCAP, #txtCitta").val("");
+        //$("#chkConferma_Richiesta").prop("checked",false);
+        
     }
 
-    function validateForm() {
+
+
+    function validateFormInfo() {
 
         var mail_reg_exp = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-]{2,})+\.)+([a-zA-Z0-9]{2,})+$/;
 
@@ -145,17 +213,23 @@ $(document).ready(function () {
             var re = new RegExp(mail_reg_exp);
             corretto = re.test(moduloControllo.email.value);
             if (corretto == false) {
+                alert("Devi completare il campo: Mail");
+                return false;
 
+            }
+            else if (moduloControllo.richiesta.value == "") {
+                alert("Devi completare il campo: Richiesta")
+                return false;
+            }
+            else if ($("#chkConferma_info").prop("checked") == false) {
+                alert("Devi completare il campo: Acconsento il trattamento dei dati personali");
                 return false;
             }
         }
-      else if(moduloControllo.richiesta.value.lenght == 0){
-        alert("Devi completare il campo richiesta")
-      }
-        else if (moduloControllo.conferma.prop("checked") == false) {
-            alert("Acconsentire trattamento dati");
-            return false;
-        }
+        alert("La sua richiesta di informazioni è stata inviata correttamente, le risponderemo non appena possibile. Grazie per la collaborazione.");
+        //$("#txtNomeInfo, #txtCognomeInfo, #txtMailInfo, #richiesta").val("");
+        //$("#chkConferma_info").prop("checked",false);
+     
     }
 
 
@@ -172,3 +246,5 @@ function getParameterByName(name)
   else
     return results[1];
 }
+
+

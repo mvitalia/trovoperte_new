@@ -522,6 +522,56 @@ html, body {
    
         
 }
+
+/* Mappa per la pagina dettaglio */
+@media screen and (min-width: 850px)
+{    
+     #map-page
+    {
+        width: 500px;
+        padding:0 !important;
+         margin: 0 auto !important; 
+    }    
+    
+    #map-canvas
+    {
+        width: 500px;
+        height:457px;
+        padding:0 !important;
+    }    
+    
+    map-page-popup
+    {
+        padding-bottom:43px;   
+       
+    } 
+    
+}
+
+@media screen and (min-width: 850px)
+{    
+     #map-page
+    {
+        width: 500px;
+        height: 500px;
+        padding:0 !important;
+         margin: 0 auto !important; 
+    }    
+    
+    #map-canvas
+    {
+        width: 500px;
+        height:457px;
+        padding:0 !important;
+    }    
+    
+    map-page-popup
+    {
+        padding-bottom:43px;   
+       
+    } 
+    
+}
   
 /* Form di registrazione e di richiesta info */
 #btnInvioInfo div

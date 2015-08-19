@@ -50,7 +50,7 @@
                 </div>
                 <a href='#page_info' data-icon='info' data-rel='popup' data-position-to='window'
                     data-transition='pop' class='btn_search ui-btn sideOption ui-btn-inline ui-icon-info ui-btn-icon-left'>
-                    Info</a>
+                    Info generali</a>
                 <a href='#page_richiestaInfo' data-icon='info' data-rel='popup' data-position-to='window'
                     data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-info ui-btn-icon-left'>
                     Contattaci</a>
@@ -58,43 +58,43 @@
                     data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-info ui-btn-icon-left'>
                     Richiesta iscrizione</a>
                 <!-- info -->
-                                <div data-role="popup" id="page_info">
+                                     <div data-role="popup" id="page_info">
               <div data-role="header">
               	 <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right" data-rel="back" data-icon="delete">&nbsp;</a>
                 <h1>Info generali</h1>
               </div>
             
               <div data-role="main" class="ui-content">
-              	<b>Trovo per te: il portale creato apposta per te, per trovare in modo facile e veloce quello che ti serve nel tuo territorio.</b><br><br>
+              	Trovo per Te è il portale ed la App creati proprio per Te, per trovare in modo semplice e veloce quello che ti serve nel tuo territorio.<br><br>
 
-<b>Sei un privato?</b><br>
-Questa App troverà professionisti ed aziende in base alle tue necessità.
-<br>
-<i>Esempio:<br>
-Vuoi cercare un elettricista, acquistare un elettrodomestico o realizzare un sito web?<br>
-Scarica l'App e naviga sulle categorie, oppure clicca su Cerca.</i><br>
+<b>Sei un privato?</b><br><br>
 
-<br>
-<b>Sei un'azienda?</b><br>
-Ideale per espandere la tua visibilità sui dispositivi mobili a basso costo e in assoluta autonomia.<br>
-Nessun costo di gestione, sarai tu a gestire i tuoi contenuti.<br>
-Richiedi come inserire la tua attività o la tua professione scrivendoci direttamente <a href="http://www.trovoperte.com/trovo_per_te_iscrizione.html" rel="external" target="_blank">qui</a>.
-<br><br>
+Potrai scaricare in modo gratuito e senza pubblicità la App su tuo smarthphone o tablet, oppure consultare il portale dedicato sul web.<br><br />
 
-<b>Caratteristiche: </b><br>
-- Semplicità di ricerca<br>
-- Compatibile con tutti i dispositivi<br>
-- Lettura facilitata<br>
-- Aggiornamenti gestiti direttamente dall'azienda iscritta <br><br>
-Per richiedere informazioni o registrare la propria attività <a href="http://www.trovoperte.com/trovo_per_te_iscrizione.html" rel="external" target="_blank">clicca qui</a></p>
-                
+Avrai così la possibilità di trovare velocemente locali, aziende e professionisti in base alle tue necessità e approfittare di promo e offerte che verranno pubblicate. <br><br />
+
+Potrai contattarli direttamente, mandargli una mail o raggiungerli seguendo il navigatore.<br> <br><br>
+
+<b>Hai la partita IVA?</b><br><br>
+Ideale per estendere la tua visibilità sui dispositivi mobili a basso costo e in assoluta autonomia con la gestione dei contenuti. <br><br />
+Tramite un semplice pannello di controllo potrai gestire descrizioni, servizi, news, promo, offerte ogni volta che vorrai. <br><br />
+Tutti potranno interagire tramite i tasti funzionali della tua scheda azienda: telefono, mail, navigatore, social, ecc.. <br><br />
+Quattro fasce di prezzo annuali in base alle vostre necessità: 30€, 80€, 120€, 150€ iva escusa.<br /><br />
+<b>Richiedi l'iscrizione cliccando <a onclick="apriRegistrazione()" href='#page_registrazione' data-rel='popup'
+                        data-position-to='window' data-transition='pop'>qui</a></b><br/><br />
+Oppure <br /><br />
+
+<b>Contattaci per avere maggiori informazioni cliccando <a onclick="apriInfo()" href='#page_richiestaInfo' data-rel='popup'
+                        data-position-to='window' data-transition='pop'>
+                        qui</a></b>
+
+
+
               </div>
                 
 
 
-              <div data-role="footer" style="text-align:center">
-                per info e assistenza scrivi a <a href="mailto:info@trovoperte.com">info@trovoperte.com</a>
-              </div>
+              
             </div>
                  <!-- richiesta informazioni -->
                 <div data-role="popup" id="page_richiestaInfo" style="width: 35%; margin: 0 auto;">
@@ -103,9 +103,9 @@ Per richiedere informazioni o registrare la propria attività <a href="http://ww
                     <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right"
                         data-rel="back" data-icon="delete">&nbsp;</a>
                     <h1>
-                        Info</h1>
+                        Contattaci</h1>
                 </div>
-                <form  method="post"  action="formcdosys_generale.asp" id="form_richiestaInfo" name="form_richiestaInfo">
+                <form  method="post"  onsubmit="return validateFormInfo();" action="formcdosys_generale.asp" id="form_richiestaInfo" name="form_richiestaInfo">
                      <div class="form_left">
                             <input  name="nome" id="txtNomeInfo" type="text" placeholder="Nome" class="required"/>
                         </div >
@@ -146,9 +146,9 @@ Per richiedere informazioni o registrare la propria attività <a href="http://ww
                         <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right"
                             data-rel="back" data-icon="delete">&nbsp;</a>
                         <h1>
-                            Richiesta registrazione</h1>
+                            Richiesta iscrizione</h1>
                     </div>
-                   <form  method="post" onsubmit="return validateForm();" action="formcdosys_generale.asp" id="form_registrazioneAzienda" name="form_registrazioneAzienda" >
+                   <form  method="post"  onsubmit="return validateFormRegistrazione();" action="formcdosys_generale.asp" id="form_registrazioneAzienda" name="form_registrazioneAzienda" >
                     
                         <div class="form_left">
                             <input  name="nome" id="txtNomeRegistrazione" type="text" placeholder="Nome" class="required"/>

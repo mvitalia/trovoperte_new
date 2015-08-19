@@ -2,20 +2,17 @@
 <html>
 <head>
     <meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    
-	<script type='text/javascript' src='../js/jquery-1.11.2.min.js'></script>
-	<script type="text/javascript" src="../js/jquery.mobile-1.4.5.min.js"></script>
+    <script type='text/javascript' src='../js/jquery-1.11.2.min.js'></script>
+    <script type="text/javascript" src="../js/jquery.mobile-1.4.5.min.js"></script>
+     <script src='https://maps.googleapis.com/maps/api/js?v=3.exp'></script>
     <link rel="stylesheet" type="text/css" href="../css/jquery.mobile-1.4.5.min.css">
-     
     <link rel="stylesheet" href="../css/default_theme.min.css">
     <link rel="stylesheet" href="../css/jquery.mobile.icons.min.css">
-    
     <link rel="stylesheet" type="text/css" href="../css/style.css">
-
-	<script type="text/javascript" src="../js/swipe.js"></script>
+    <script type="text/javascript" src="../js/swipe.js"></script>
     <script type="text/javascript" src="../js/standard.js"></script>
     <script type='text/javascript'>//<![CDATA[ 
     $(window).load(function(){
@@ -30,257 +27,278 @@
           // callback: function(index, element) {},
           // transitionEnd: function(index, element) {}
         });
-    });//]]>  
+    });//]]> 
     
+     
     </script>
-
-
+       
 </head>
 <body>
-
- 
-		<!-- dettaglio -->
-        <div data-role="page" id="page_dettaglio">
-        	
-    
-            <!-- pannello laterale -->
-            <div data-role="panel" id="myPanel" data-display="overlay" data-position="right">
-                <div class="ui-btn-right">
-                    <a href="#myPanel" class="ui-btn ui-shadow ui-btn-inline ui-btn-icon-left ui-icon-grid"
-                        data-role="button" data-icon="grid">&nbsp;</a>
-                </div>
-                <br>
-                <br>
-                <br>
-                <a href="../index.html" class="btn_search ui-btn sideOption ui-btn-inline ui-icon-home ui-btn-icon-left"
-                    data-role="button" data-icon="home" data-ajax="false">Home</a> <a href="ricerca.html"
-                        class="btn_search ui-btn sideOption ui-btn-inline ui-icon-search ui-btn-icon-left"
-                        data-role="button" data-icon="search" data-ajax="false">Cerca</a> <a href='#settings'
-                            data-icon='gear' data-rel='popup' data-position-to='window' data-transition='pop'
-                            class='btn_search ui-btn sideOption ui-btn-inline ui-icon-gear ui-btn-icon-left'>
-                            Impostazioni</a>
-                <!-- setting -->
-                <div id="settings" data-role="popup">
-                    <div data-role="header">
-                        <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all sideOption ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right"
-                            data-rel="back" data-icon="delete">&nbsp;</a>
-                        <h1>
-                            Impostazioni</h1>
-                    </div>
-                    <div data-role="content">
-                        <ul data-role="listview" style="margin: 0 !important">
-                            <li><a href="#" class="small">Testo piccolo</a></li>
-                            <li><a href="#" class="med">Testo medio</a></li>
-                            <li><a href="#" class="large">Testo grande</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <a href='#page_info' data-icon='info' data-rel='popup' data-position-to='window'
-                    data-transition='pop' class='btn_search ui-btn sideOption ui-btn-inline ui-icon-info ui-btn-icon-left'>
-                    Info</a>
-                <a href='#page_richiestaInfo' data-icon='info' data-rel='popup' data-position-to='window'
-                    data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-info ui-btn-icon-left'>
-                    Contattaci</a>
-                 <a href='#page_registrazione' data-icon='info' data-rel='popup' data-position-to='window'
-                    data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-info ui-btn-icon-left'>
-                    Richiesta iscrizione</a>
-                <!-- info -->
-               
-                      <!-- info -->
-                                <div data-role="popup" id="page_info">
-              <div data-role="header">
-              	 <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right" data-rel="back" data-icon="delete">&nbsp;</a>
-                <h1>Info generali</h1>
-              </div>
-            
-              <div data-role="main" class="ui-content">
-              	<b>Trovo per te: il portale creato apposta per te, per trovare in modo facile e veloce quello che ti serve nel tuo territorio.</b><br><br>
-
-<b>Sei un privato?</b><br>
-Questa App troverà professionisti ed aziende in base alle tue necessità.
-<br>
-<i>Esempio:<br>
-Vuoi cercare un elettricista, acquistare un elettrodomestico o realizzare un sito web?<br>
-Scarica l'App e naviga sulle categorie, oppure clicca su Cerca.</i><br>
-
-<br>
-<b>Sei un'azienda?</b><br>
-Ideale per espandere la tua visibilità sui dispositivi mobili a basso costo e in assoluta autonomia.<br>
-Nessun costo di gestione, sarai tu a gestire i tuoi contenuti.<br>
-Richiedi come inserire la tua attività o la tua professione scrivendoci direttamente <a href="http://www.trovoperte.com/trovo_per_te_iscrizione.html" rel="external" target="_blank">qui</a>.
-<br><br>
-
-<b>Caratteristiche: </b><br>
-- Semplicità di ricerca<br>
-- Compatibile con tutti i dispositivi<br>
-- Lettura facilitata<br>
-- Aggiornamenti gestiti direttamente dall'azienda iscritta <br><br>
-Per richiedere informazioni o registrare la propria attività <a href="http://www.trovoperte.com/trovo_per_te_iscrizione.html" rel="external" target="_blank">clicca qui</a></p>
-                
-              </div>
-                
-
-
-              <div data-role="footer" style="text-align:center">
-                per info e assistenza scrivi a <a href="mailto:info@trovoperte.com">info@trovoperte.com</a>
-              </div>
+    <!-- dettaglio -->
+    <div data-role="page" id="page_dettaglio">
+        <!-- pannello laterale -->
+        <div data-role="panel" id="myPanel" data-display="overlay" data-position="right">
+            <div class="ui-btn-right">
+                <a href="#myPanel" class="ui-btn ui-shadow ui-btn-inline ui-btn-icon-left ui-icon-grid"
+                    data-role="button" data-icon="grid">&nbsp;</a>
             </div>
-                 <!-- richiesta informazioni -->
-                <div data-role="popup" id="page_richiestaInfo" style="width: 35%; margin: 0 auto;">
-                        
+            <br>
+            <br>
+            <br>
+            <a href="../index.html" class="btn_search ui-btn sideOption ui-btn-inline ui-icon-home ui-btn-icon-left"
+                data-role="button" data-icon="home" data-ajax="false">Home</a> <a href="ricerca.html"
+                    class="btn_search ui-btn sideOption ui-btn-inline ui-icon-search ui-btn-icon-left"
+                    data-role="button" data-icon="search" data-ajax="false">Cerca</a> <a href='#settings'
+                        data-icon='gear' data-rel='popup' data-position-to='window' data-transition='pop'
+                        class='btn_search ui-btn sideOption ui-btn-inline ui-icon-gear ui-btn-icon-left'>
+                        Impostazioni</a>
+            <!-- setting -->
+            <div id="settings" data-role="popup">
+                <div data-role="header">
+                    <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all sideOption ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right"
+                        data-rel="back" data-icon="delete">&nbsp;</a>
+                    <h1>
+                        Impostazioni</h1>
+                </div>
+                <div data-role="content">
+                    <ul data-role="listview" style="margin: 0 !important">
+                        <li><a href="#" class="small">Testo piccolo</a></li>
+                        <li><a href="#" class="med">Testo medio</a></li>
+                        <li><a href="#" class="large">Testo grande</a></li>
+                    </ul>
+                </div>
+            </div>
+            <a href='#page_info' data-icon='info' data-rel='popup' data-position-to='window'
+                data-transition='pop' class='btn_search ui-btn sideOption ui-btn-inline ui-icon-info ui-btn-icon-left'>
+                Info generali</a> <a href='#map-page' data-icon='info' data-rel='popup'
+                    data-position-to='window' data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-info ui-btn-icon-left'>
+                    Contattaci</a> <a href='#page_registrazione' data-icon='info' data-rel='popup' data-position-to='window'
+                        data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-info ui-btn-icon-left'>
+                        Richiesta iscrizione</a>
+            <!-- info -->
+           
+            <div data-role="popup" id="page_info">
                 <div data-role="header">
                     <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right"
                         data-rel="back" data-icon="delete">&nbsp;</a>
                     <h1>
-                        Info</h1>
+                        Info generali</h1>
                 </div>
-                <form  method="post"  action="formcdosys_generale.asp" id="form_richiestaInfo" name="form_richiestaInfo">
-                     <div class="form_left">
-                            <input  name="nome" id="txtNomeInfo" type="text" placeholder="Nome" class="required"/>
-                        </div >
-                        <div class="form_right">
-                            <input name="cognome" id="txtCognomeInfo" type="text" placeholder="Cognome" class="required"/>
-                        </div >
-                        <div class="emailInfo">
-                            <input id="txtMailInfo" name="email" type="text" placeholder="E-mail" class="required"/>
-                        </div>                    
-                        
-                    <div class="textAreaInfo">
-                        <textarea id="richiesta" placeholder="Richiesta" name="richiesta" rows="6" class="required"></textarea>
-                   </div>
-                    <p style="height: 75px; overflow: auto; clear:both; display:inline-block; margin-top:20px; margin-bottom:30px; padding:0 10px 0 10px">
-                        Acconsento al trattamento dei miei dati da parte di "MVItalia" ( per finalita'
-                        commerciali, promozionali e statistiche, nonche' per l'invio di omaggi e/o materiale
-                        informativo su nuovi prodotti e iniziative promozionali. I suoi dati potranno essere
-                        trattati da "MVItalia", direttamente o tramite societa' preposte. Prenderemo
-                        tutte le cautele necessarie affinche' i suoi dati siano trattati con la massima
-                        sicurezza e in conformita' a quanto previsto in materia di tutela dei dati personali.Dlgs
-                        196/2003INFORMATIVA AI SENSI DEL DLGS 196/2003 FINALITA' E MODALITA' DEL TRATTAMENTO
-                        DEI DATI PERSONALI</p>
+                <div data-role="main" class="ui-content">
+                    Trovo per Te è il portale ed la App creati proprio per Te, per trovare in modo semplice
+                    e veloce quello che ti serve nel tuo territorio.<br>
+                    <br>
+                    <b>Sei un privato?</b><br>
+                    <br>
+                    Potrai scaricare in modo gratuito e senza pubblicità la App su tuo smarthphone o
+                    tablet, oppure consultare il portale dedicato sul web.<br>
                     <br />
-                    
-                        
-                        <div style="padding: 0 10px 0 10px;"><input type="checkbox" class="required" name="conferma" id="chkConferma_info" />
-                        <label style="text-indent:35px;" id="txtAcconsentoInfo">
-                            Acconsento il trattamento dei dati personali</label></div>
-                            <div style="clear:both;" id="btnInvioInfo">
-                                 <input type="submit" id="Invia_Info" value="Invia Richiesta" name="invia" />
-                           </div>
-                        </form>
+                    Avrai così la possibilità di trovare velocemente locali, aziende e professionisti
+                    in base alle tue necessità e approfittare di promo e offerte che verranno pubblicate.
+                    <br>
+                    <br />
+                    Potrai contattarli direttamente, mandargli una mail o raggiungerli seguendo il navigatore.<br>
+                    <br>
+                    <br>
+                    <b>Hai la partita IVA?</b><br>
+                    <br>
+                    Ideale per estendere la tua visibilità sui dispositivi mobili a basso costo e in
+                    assoluta autonomia con la gestione dei contenuti.
+                    <br>
+                    <br />
+                    Tramite un semplice pannello di controllo potrai gestire descrizioni, servizi, news,
+                    promo, offerte ogni volta che vorrai.
+                    <br>
+                    <br />
+                    Tutti potranno interagire tramite i tasti funzionali della tua scheda azienda: telefono,
+                    mail, navigatore, social, ecc..
+                    <br>
+                    <br />
+                    Quattro fasce di prezzo annuali in base alle vostre necessità: 30€, 80€, 120€, 150€
+                    iva escusa.<br />
+                    <br />
+                    <b>Richiedi l'iscrizione cliccando <a onclick="apriRegistrazione()" href='#page_registrazione'
+                        data-rel='popup' data-position-to='window' data-transition='pop'>qui</a></b><br />
+                    <br />
+                    Oppure
+                    <br />
+                    <br />
+                    <b>Contattaci per avere maggiori informazioni cliccando <a onclick="apriInfo()" href='#page_richiestaInfo'
+                        data-rel='popup' data-position-to='window' data-transition='pop'>qui</a></b>
                 </div>
-        
-                <!-- registrazione azienda -->
-                <div data-role="popup" id="page_registrazione" style="width: 35%; margin: 0 auto;">
-                	<div data-role="header">
+            </div>
+            <!-- richiesta informazioni -->
+            <div data-role="popup" id="page_richiestaInfo" style="width: 35%; margin: 0 auto;">
+                <div data-role="header">
+                    <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right"
+                        data-rel="back" data-icon="delete">&nbsp;</a>
+                    <h1>
+                        Contattaci</h1>
+                </div>
+                <form method="post" onsubmit="return validateFormInfo();" action="formcdosys_generale.asp"
+                id="form_richiestaInfo" name="form_richiestaInfo">
+                <div class="form_left">
+                    <input name="nome" id="txtNomeInfo" type="text" placeholder="Nome" class="required" />
+                </div>
+                <div class="form_right">
+                    <input name="cognome" id="txtCognomeInfo" type="text" placeholder="Cognome" class="required" />
+                </div>
+                <div class="emailInfo">
+                    <input id="txtMailInfo" name="email" type="text" placeholder="E-mail" class="required" />
+                </div>
+                <div class="textAreaInfo">
+                    <textarea id="richiesta" placeholder="Richiesta" name="richiesta" rows="6" class="required"></textarea>
+                </div>
+                <p style="height: 75px; overflow: auto; clear: both; display: inline-block; margin-top: 20px;
+                    margin-bottom: 30px; padding: 0 10px 0 10px">
+                    Acconsento al trattamento dei miei dati da parte di "MVItalia" ( per finalita' commerciali,
+                    promozionali e statistiche, nonche' per l'invio di omaggi e/o materiale informativo
+                    su nuovi prodotti e iniziative promozionali. I suoi dati potranno essere trattati
+                    da "MVItalia", direttamente o tramite societa' preposte. Prenderemo tutte le cautele
+                    necessarie affinche' i suoi dati siano trattati con la massima sicurezza e in conformita'
+                    a quanto previsto in materia di tutela dei dati personali.Dlgs 196/2003INFORMATIVA
+                    AI SENSI DEL DLGS 196/2003 FINALITA' E MODALITA' DEL TRATTAMENTO DEI DATI PERSONALI</p>
+                <br />
+                <div style="padding: 0 10px 0 10px;">
+                    <input type="checkbox" class="required" name="conferma" id="chkConferma_info" />
+                    <label style="text-indent: 35px;" id="txtAcconsentoInfo">
+                        Acconsento il trattamento dei dati personali</label></div>
+                <div style="clear: both;" id="btnInvioInfo">
+                    <input type="submit" id="Invia_Info" value="Invia Richiesta" name="invia" />
+                </div>
+                </form>
+            </div>
+            <!-- registrazione azienda -->
+            <div data-role="popup" id="page_registrazione" style="width: 35%; margin: 0 auto;">
+                <div data-role="header">
+                    <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right"
+                        data-rel="back" data-icon="delete">&nbsp;</a>
+                    <h1>
+                        Richiesta iscrizione</h1>
+                </div>
+                <form method="post" onsubmit="return validateFormRegistrazione();" action="formcdosys_generale.asp"
+                id="form_registrazioneAzienda" name="form_registrazioneAzienda">
+                <div class="form_left">
+                    <input name="nome" id="txtNomeRegistrazione" type="text" placeholder="Nome" class="required" />
+                </div>
+                <div class="form_right">
+                    <input name="cognome" id="txtCognomeRegistrazione" type="text" placeholder="Cognome"
+                        class="required" />
+                </div>
+                <div class="form_left">
+                    <input id="txtMailRegistrazione" name="email" type="text" placeholder="E-mail" class="required" />
+                </div>
+                <div class="form_right">
+                    <input id="txtTelRegistrazione" name="telefono" type="text" placeholder="Telefono"
+                        class="required" />
+                </div>
+                <div class="form_left">
+                    <input id="txtRagioneSociale" type="text" name="r_soc" placeholder="Ragione sociale"
+                        class="required" />
+                </div>
+                <div class="form_right">
+                    <input id="txtPIVA" type="text" name="piva" placeholder="P.IVA" class="required" /></div>
+                <div class="form_left">
+                    <input name="cod_fisc" id="txtCodiceFiscale" type="text" placeholder="Codice fiscale"
+                        class="required" /></div>
+                <div class="form_right">
+                    <input id="txtIndirizzo" type="text" name="indirizzo" placeholder="Indirizzo" class="required" /></div>
+                <div class="form_left">
+                    <input id="txtCAP" type="text" name="cap" placeholder="CAP" class="required" /></div>
+                <div class="form_right">
+                    <input id="txtCitta" type="text" name="citta" placeholder="Città" class="required" /></div>
+                <p style="height: 75px; overflow: auto; clear: both; margin-bottom: 30px; padding: 20px 10px 0 10px;">
+                    Acconsento al trattamento dei miei dati da parte di "MVItalia" ( per finalita' commerciali,
+                    promozionali e statistiche, nonche' per l'invio di omaggi e/o materiale informativo
+                    su nuovi prodotti e iniziative promozionali. I suoi dati potranno essere trattati
+                    da "MVItalia", direttamente o tramite societa' preposte. Prenderemo tutte le cautele
+                    necessarie affinche' i suoi dati siano trattati con la massima sicurezza e in conformita'
+                    a quanto previsto in materia di tutela dei dati personali.Dlgs 196/2003INFORMATIVA
+                    AI SENSI DEL DLGS 196/2003 FINALITA' E MODALITA' DEL TRATTAMENTO DEI DATI PERSONALI</p>
+                <br />
+                <div style="padding: 0 10px 0 10px;">
+                    <input type="checkbox" name="conferma" class="required" id="chkConferma_Richiesta" />
+                    <label style="text-indent: 35px;" id="txtAcconsento">
+                        Acconsento il trattamento dei dati personali</label></div>
+                <div style="clear: both;" id="btnInvioRegistrazione">
+                    <input type="submit" id="Invia_Registrazione" value="Invia Richiesta" name="invia" />
+                </div>
+                </form>
+            </div>
+            <!-- mappa con posizione ditta -->        
+         
+         <div data-role="popup" id="map-page" data-url="map-page" >
+              <div data-role="header">
+                    <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right"
+                        data-rel="back" data-icon="delete">&nbsp;</a>
+                    <h1>
+                        Collocamento geografico</h1>
+                </div>
+             <div role="main" class="ui-content" id="map-canvas">          
+            </div>
+              <div data-role="footer" style="text-align: center">
+                       <a id="btnNavigazione">Avvia navigazione</a>
+                    </div>
+        </div>
+ 
+        </div>
+        <!-- fine pannello laterale -->
+        <div data-role="header" data-position="fixed">
+            <a href="#" data-rel="back" data-icon="back" data-position="inline" class="ui-btn-left">
+                &nbsp;</a> <a href="../index.html" data-role="none" class="link_index" data-ajax="false">
+                    <img src="../img/logo_trovoperte.png" class="logo_trovo"></a>
+            <div class="ui-btn-right">
+                <a href="#myPanel" class="ui-btn ui-shadow ui-btn-inline ui-btn-icon-left ui-icon-grid"
+                    data-role="button" data-icon="grid">&nbsp;</a>
+            </div>
+        </div>
+        <div role="main" id="" class="ui-content">
+            <div data-role="content">
+                <div id="scheda_azienda" data-divider-theme="a" data-inset="true">
+                    <span class="testo_finto">testo finto</span>
+                </div>
+                <!-- gallery -->
+                <div data-role="popup" id="azienda_gallery">
+                    <div data-role="header">
                         <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right"
                             data-rel="back" data-icon="delete">&nbsp;</a>
                         <h1>
-                            Richiesta registrazione</h1>
+                            Gallery</h1>
                     </div>
-                   <form  method="post" onsubmit="return validateForm();" action="formcdosys_generale.asp" id="form_registrazioneAzienda" name="form_registrazioneAzienda" >
-                    
-                        <div class="form_left">
-                            <input  name="nome" id="txtNomeRegistrazione" type="text" placeholder="Nome" class="required"/>
-                        </div >
-                        <div class="form_right">
-                            <input name="cognome" id="txtCognomeRegistrazione" type="text" placeholder="Cognome" class="required"/>
-                        </div >
-                        <div class="form_left">
-                            <input id="txtMailRegistrazione" name="email" type="text" placeholder="E-mail" class="required"/>
-                        </div>
-                       <div class="form_right">
-                            <input id="txtTelRegistrazione" name="telefono" type="text" placeholder="Telefono" class="required"/>
-                        </div>
-                        <div class="form_left">
-                            <input id="txtRagioneSociale" type="text" name="r_soc" placeholder="Ragione sociale" class="required"/>
-                        </div>
-                            <div class="form_right"> <input id="txtPIVA" type="text" name="piva" placeholder="P.IVA" class="required"/></div>
-                        <div class="form_left"><input  name="cod_fisc" id="txtCodiceFiscale" type="text" placeholder="Codice fiscale" class="required"/></div>
-                            <div class="form_right"><input id="txtIndirizzo" type="text" name="indirizzo" placeholder="Indirizzo" class="required"/></div>
-                        <div class="form_left"><input id="txtCAP" type="text" name="cap" placeholder="CAP" class="required"/></div>
-                        <div class="form_right"><input id="txtCitta"  type="text" name="citta" placeholder="Città"class="required"/></div>
-                        <p style="height: 75px; overflow: auto; clear:both;   margin-bottom:30px; padding: 20px 10px 0 10px;">
-                            Acconsento al trattamento dei miei dati da parte di "MVItalia" ( per finalita'
-                            commerciali, promozionali e statistiche, nonche' per l'invio di omaggi e/o materiale
-                            informativo su nuovi prodotti e iniziative promozionali. I suoi dati potranno essere
-                            trattati da "MVItalia", direttamente o tramite societa' preposte. Prenderemo
-                            tutte le cautele necessarie affinche' i suoi dati siano trattati con la massima
-                            sicurezza e in conformita' a quanto previsto in materia di tutela dei dati personali.Dlgs
-                            196/2003INFORMATIVA AI SENSI DEL DLGS 196/2003 FINALITA' E MODALITA' DEL TRATTAMENTO
-                            DEI DATI PERSONALI</p>
-                        <br />
-                        
-                        
-                       <div style="padding:0 10px 0 10px;"> <input type="checkbox"  name="conferma" class="required" id="chkConferma_Richiesta" />
-                        <label style="text-indent:35px;" id="txtAcconsento">
-                            Acconsento il trattamento dei dati personali</label></div>
-                            <div style="clear:both;" id="btnInvioRegistrazione">
-                                 <input type="submit" id="Invia_Registrazione" value="Invia Richiesta" name="invia" />
-                           </div>
-                    </form>
-                </div>
-            </div>
-            <!-- fine pannello laterale -->
-            <div data-role="header" data-position="fixed">
-                <a href="#" data-rel="back" data-icon="back" data-position="inline" class="ui-btn-left">
-                    &nbsp;</a> <a href="../index.html" data-role="none" class="link_index" data-ajax="false">
-                        <img src="../img/logo_trovoperte.png" class="logo_trovo"></a>
-                <div class="ui-btn-right">
-                    <a href="#myPanel" class="ui-btn ui-shadow ui-btn-inline ui-btn-icon-left ui-icon-grid"
-                        data-role="button" data-icon="grid">&nbsp;</a>
-                </div>
-            </div>
-            <div role="main" id="" class="ui-content">
-                <div data-role="content">
-                    <div id="scheda_azienda" data-divider-theme="a" data-inset="true">
-                        <span class="testo_finto">testo finto</span>
-                    </div>
-                    <!-- gallery -->
-                    <div data-role="popup" id="azienda_gallery">
-                        <div data-role="header">
-                            <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right"
-                                data-rel="back" data-icon="delete">&nbsp;</a>
-                            <h1>
-                                Gallery</h1>
-                        </div>
-                      <div data-role="main" class="ui-content">
+                    <div data-role="main" class="ui-content">
                         <!-- Swiper -->
                         <div id="scheda_gallery" data-divider-theme="a" data-inset="true">
                             <div id="lista_immagini" class="liste_foto">
                                 <div data-role="content" id="contentSlider">
-                                   
-                                        <a href="#" onclick='mySwipe.prev()' class="slider_prev ui-btn ui-icon-carat-l ui-btn-icon-left"></a>
-                                   
-                                    
-                                        <a href="#" onclick='mySwipe.next()' class=" slider_next ui-btn ui-icon-carat-r ui-btn-icon-left"></a>
-                                    
+                                    <a href="#" onclick='mySwipe.prev()' class="slider_prev ui-btn ui-icon-carat-l ui-btn-icon-left">
+                                    </a><a href="#" onclick='mySwipe.next()' class=" slider_next ui-btn ui-icon-carat-r ui-btn-icon-left">
+                                    </a>
                                     <div id='mySwipeGallery' style='margin: 0 auto' class='swipe'>
                                         <div class='swipe-wrap slider_gallery'>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            </div>
-                        </div>
-                        <div data-role="footer" data-position="fixed">
                         </div>
                     </div>
-                    <!-- news -->
-                    <div data-role="popup" id="azienda_news">
-                        <div data-role="header">
-                            <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right"
-                                data-rel="back" data-icon="delete">&nbsp;</a>
-                            <h1>
-                                News</h1>
-                        </div>
-                      <div data-role="main" class="ui-content">
+                    <div data-role="footer" data-position="fixed">
+                    </div>
+                </div>
+                <!-- news -->
+                <div data-role="popup" id="azienda_news">
+                    <div data-role="header">
+                        <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right"
+                            data-rel="back" data-icon="delete">&nbsp;</a>
+                        <h1>
+                            News</h1>
+                    </div>
+                    <div data-role="main" class="ui-content">
                         <div id="scheda_news" data-divider-theme="a" data-inset="true">
                             <div id="lista_news" class="liste_foto">
                                 <div data-role="content" id="contentSlider">
-                                      <a href="#" onclick='mySwipe.prev()' class="slider_prev ui-btn ui-icon-carat-l ui-btn-icon-left"></a>
-                                   
-                                    
-                                        <a href="#" onclick='mySwipe.next()' class=" slider_next ui-btn ui-icon-carat-r ui-btn-icon-left"></a>
+                                    <a href="#" onclick='mySwipe.prev()' class="slider_prev ui-btn ui-icon-carat-l ui-btn-icon-left">
+                                    </a><a href="#" onclick='mySwipe.next()' class=" slider_next ui-btn ui-icon-carat-r ui-btn-icon-left">
+                                    </a>
                                     <div id='mySwipe' style='margin: 0 auto' class='swipe'>
                                         <div class='swipe-wrap slider_news'>
                                         </div>
@@ -289,25 +307,24 @@ Per richiedere informazioni o registrare la propria attività <a href="http://ww
                             </div>
                         </div>
                     </div>
-                        <div data-role="footer" data-position="fixed">
-                        </div>
+                    <div data-role="footer" data-position="fixed">
                     </div>
-                    <!-- promo -->
-                    <div data-role="popup" id="azienda_promo">
-                        <div data-role="header">
-                            <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right"
-                                data-rel="back" data-icon="delete">&nbsp;</a>
-                            <h1>
-                                Promo</h1>
-                        </div>
-                       <div data-role="main" class="ui-content">
+                </div>
+                <!-- promo -->
+                <div data-role="popup" id="azienda_promo">
+                    <div data-role="header">
+                        <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right"
+                            data-rel="back" data-icon="delete">&nbsp;</a>
+                        <h1>
+                            Promo</h1>
+                    </div>
+                    <div data-role="main" class="ui-content">
                         <div id="scheda_promo" data-divider-theme="a" data-inset="true">
                             <div id="lista_promo" class="liste_foto">
                                 <div data-role="content" id="contentSlider">
-                                      <a href="#" onclick='mySwipe.prev()' class="slider_prev ui-btn ui-icon-carat-l ui-btn-icon-left"></a>
-                                   
-                                    
-                                        <a href="#" onclick='mySwipe.next()' class=" slider_next ui-btn ui-icon-carat-r ui-btn-icon-left"></a>
+                                    <a href="#" onclick='mySwipe.prev()' class="slider_prev ui-btn ui-icon-carat-l ui-btn-icon-left">
+                                    </a><a href="#" onclick='mySwipe.next()' class=" slider_next ui-btn ui-icon-carat-r ui-btn-icon-left">
+                                    </a>
                                     <div id='mySwipePromo' style='margin: 0 auto' class='swipe'>
                                         <div class='swipe-wrap slider_promo'>
                                         </div>
@@ -316,20 +333,20 @@ Per richiedere informazioni o registrare la propria attività <a href="http://ww
                             </div>
                         </div>
                     </div>
-                        <div data-role="footer" data-position="fixed">
-                        </div>
+                    <div data-role="footer" data-position="fixed">
                     </div>
                 </div>
             </div>
-            <div data-role="footer" data-position="fixed">
-                <div data-role="navbar" class="ui-navbar">
-                    <ul id="footer_dettaglio" class="ui-grid-c">
-                        <li><span class="testo_finto">testo finto</span></li>
-                    </ul>
-                </div>
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar" class="ui-navbar">
+                <ul id="footer_dettaglio" class="ui-grid-c">
+                    <li><span class="testo_finto">testo finto</span></li>
+                </ul>
             </div>
         </div>
-        <!--page-->
+    </div>
+    <!--page-->
     </div>
     <script>
 
@@ -575,8 +592,15 @@ Per richiedere informazioni o registrare la propria attività <a href="http://ww
                             footer_dettaglio += "<li class='ui-block-a' style='float:left;width:25%'><a href='http://" + name.web + "' target='_blank' data-icon='navigation' data-role='button' class='btn_web ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-navigation ui-btn-icon-left'>Web</a></li>";
                             footer_dettaglio += "<li class='ui-block-b '><a href='mailto:" + name.mail + "' data-icon='mail' data-role='button' class='btn_mail ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-mail ui-btn-icon-left'>E-mail</a></li>";
                             footer_dettaglio += "<li class='ui-block-c '><a href='tel:" + name.tel + "' data-icon='phone' data-role='button'  class='btn_tel ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-phone ui-btn-icon-left'>Tel.</a></li>";
-                            footer_dettaglio += "<li class='ui-block-d '><a href='http://maps.google.com/maps?&daddr=" + name.coordinate + "' data-role='button' class='btn_fax ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-btn-icon-left'>Raggiungici</a></li>"; // RIFERIMENTI
-
+                            footer_dettaglio += "<li class='ui-block-d '><a href='#map-page' data-icon='info' data-rel='popup'data-position-to='window' data-transition='pop' class='btn_fax ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-btn-icon-left'>Raggiungici</a>";
+                            if(name.coordinate != ""){
+                                caricaMappa(name.coordinate);
+                                $("#btnNavigazione").attr("href","http://maps.google.com/maps?&daddr=" + name.coordinate);
+                            }
+                            else{
+                                $("#map-canvas").text("Per questa attività non è disponibile la visualizzazione della mappa");
+                                
+                            }
                         }
 
                     }
@@ -701,7 +725,4 @@ Per richiedere informazioni o registrare la propria attività <a href="http://ww
        
     </script>
 </body>
-
-
 </html>
-
