@@ -9,10 +9,10 @@
         //
         function onLoad() {
         alert("mi preparo")
-        $(document).deviceready(function () {
-            onDeviceReady();
-        })
+             document.addEventListener("deviceready", onDeviceReady, false);
+            
         }
+        
 
         // device APIs are available
         //
