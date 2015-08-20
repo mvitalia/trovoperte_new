@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <script src="../js/jquery-1.11.2.min.js"></script>
     <script src="../js/jquery.mobile-1.4.5.min.js"></script>
+    <script src='https://maps.googleapis.com/maps/api/js?v=3.exp'></script>
     <script src="../js/standard.js"></script>
 </head>
 <body>
@@ -28,8 +29,11 @@
                 <a href="../index.html" class="btn_search ui-btn sideOption ui-btn-inline ui-icon-home ui-btn-icon-left"
                     data-role="button" data-icon="home" data-ajax="false">Home</a> <a href="ricerca.html"
                         class="btn_search ui-btn sideOption ui-btn-inline ui-icon-search ui-btn-icon-left"
-                        data-role="button" data-icon="search" data-ajax="false">Cerca</a> <a href='#settings'
-                            data-icon='gear' data-rel='popup' data-position-to='window' data-transition='pop'
+                        data-role="button" data-icon="search" data-ajax="false">Cerca</a> 
+                         <a href='#allIndustry_mapPage' data-icon='info' data-rel='popup'
+                    data-position-to='window' data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-info ui-btn-icon-left'>
+                    Mappa aziende</a>
+                        <a href='#settings' data-icon='gear' data-rel='popup' data-position-to='window' data-transition='pop'
                             class='btn_search ui-btn sideOption ui-btn-inline ui-icon-gear ui-btn-icon-left'>
                             Impostazioni</a>
                 <!-- setting -->
@@ -190,6 +194,19 @@ Oppure <br /><br />
                            </div>
                     </form>
                 </div>
+                 <!-- mappa con tutte  le ditte -->  
+        <div data-role="popup" id="allIndustry_mapPage" data-url="map-page" >
+              <div data-role="header">
+                    <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right"
+                        data-rel="back" data-icon="delete">&nbsp;</a>
+                    <h1>
+                        Mappa aziende</h1>
+                </div>
+             <div role="main" class="ui-content" id="allIndustry_mapCanvas">          
+            </div>
+              
+        </div>
+
             </div>
             <!-- fine pannello laterale -->
             <div data-role="header" data-position="fixed">
@@ -223,8 +240,22 @@ Oppure <br /><br />
         $("#page_dettaglio_newsPromo").on("pageshow", function (event) {
             var id_newsPromo = getParameterByName("id_newsPromo");
             var tipologia_newsPromo = getParameterByName("tipologia");
+            var elencoMarker = new Array();
 
+            $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp", function (info_allIndustry) {
 
+                $.each(info_allIndustry, function (i, name) {
+                    if (name.coordinate != "") {
+                        var azienda = {};
+                        azienda.nome = name.ragione_sociale;
+                        azienda.lat = parseFloat(name.coordinate.split(",")[0]);
+                        azienda.lon = parseFloat(name.coordinate.split(",")[1]);
+                        elencoMarker.push(azienda);
+                    }
+                });
+                caricaAllIndustry(elencoMarker);
+
+            });
 
 
             var scheda = "";

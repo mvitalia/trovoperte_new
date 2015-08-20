@@ -71,6 +71,33 @@ $(document).ready(function () {
 
 });
 
+function caricaAllIndustry(elencoMarker) {
+    var defaultCenter = new google.maps.LatLng(44.7392354, 7.928849);
+    drawMap(defaultCenter);
+
+    function drawMap(latlng) {
+            var myOptions = {
+                zoom: 8,
+                center: latlng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };           
+                var map = new google.maps.Map(document.getElementById("allIndustry_mapCanvas"), myOptions);
+                // Add an overlay to the map of current lat/lng
+                for (var i = 0; i < elencoMarker.length; i++) {
+                var coorAzienda = new google.maps.LatLng(elencoMarker[i].lat, elencoMarker[i].lon)
+                var marker = new google.maps.Marker({
+                    position: coorAzienda,
+                    map: map,
+                    title: elencoMarker[i].nome,
+                    url: "http://maps.google.com/maps?&daddr=" + elencoMarker[i].lat + "," + elencoMarker[i].lon
+                });
+                google.maps.event.addListener(marker, 'click', function () {
+                    window.location.href = this.url;
+                });
+            }
+        }
+}
+
 
 function caricaMappa(coordinate,nomeAzienda) {
     var lat = parseFloat(coordinate.split(",")[0]);

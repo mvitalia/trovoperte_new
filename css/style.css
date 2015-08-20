@@ -523,6 +523,12 @@ html, body {
         
 }
 
+#btnNavigazione
+{
+    background-color:#57BA46 !important;  
+    color:White;    
+}
+
 /* Mappa per la pagina dettaglio */
 @media screen and (min-width: 850px)
 {    
@@ -566,6 +572,56 @@ html, body {
     }    
     
     map-page-popup
+    {
+        padding-bottom:43px;   
+       
+    } 
+    
+}
+
+/* Mappa per tutte le ditte */
+
+@media screen and (min-width: 850px)
+{    
+     #allIndustry_mapPage
+    {
+        width: 500px;
+        padding:0 !important;
+         margin: 0 auto !important; 
+    }    
+    
+    #allIndustry_mapCanvas
+    {
+        width: 500px;
+        height:457px;
+        padding:0 !important;
+    }    
+    
+    allIndustry_mapPage-popup
+    {
+        padding-bottom:43px;   
+       
+    } 
+    
+}
+
+@media screen and (max-width: 700px)
+{    
+     #allIndustry_mapPage
+    {
+        width: 500px;
+        padding:0 !important;
+         margin: 0 auto !important; 
+    }    
+    
+    #allIndustry_mapCanvas
+    {
+        width: 500px;
+        height:457px;
+        padding:0 !important;
+    }    
+    
+    allIndustry_mapPage-popup
     {
         padding-bottom:43px;   
        

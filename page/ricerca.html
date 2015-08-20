@@ -13,6 +13,7 @@
 
 <script src="../js/jquery-1.11.2.min.js"></script>
 <script src="../js/jquery.mobile-1.4.5.min.js"></script>
+ <script src='https://maps.googleapis.com/maps/api/js?v=3.exp'></script>
 <script src="../js/standard.js"></script>
 
 
@@ -31,6 +32,9 @@
             
             <a href="../index.html" class="btn_search ui-btn sideOption ui-btn-inline ui-icon-home ui-btn-icon-left" data-role="button" data-icon="home" data-ajax="false" >Home</a>
             <a href="ricerca.html" class="btn_search ui-btn sideOption ui-btn-inline ui-icon-search ui-btn-icon-left" data-role="button" data-icon="search"  data-ajax="false" >Cerca</a>
+              <a href='#allIndustry_mapPage' data-icon='info' data-rel='popup'
+                    data-position-to='window' data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-info ui-btn-icon-left'>
+                    Mappa aziende</a>
 
 
 			<a href='#settings' data-icon='gear' data-rel='popup' data-position-to='window' data-transition='pop' class='btn_search ui-btn sideOption ui-btn-inline ui-icon-gear ui-btn-icon-left'>Impostazioni</a>
@@ -50,11 +54,57 @@
                     </ul>
                 </div>
             </div>
+              <a href='#page_info' data-icon='info' data-rel='popup' data-position-to='window'
+                    data-transition='pop' class='btn_search sideOption ui-btn sideOption ui-btn-inline ui-icon-info ui-btn-icon-left'>
+                    Info generali</a>
+                <a href='#page_richiestaInfo' data-icon='info' data-rel='popup' data-position-to='window'
+                    data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-info ui-btn-icon-left'>
+                    Contattaci</a>
+                 <a href='#page_registrazione' data-icon='info' data-rel='popup' data-position-to='window'
+                    data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-info ui-btn-icon-left'>
+                    Richiesta iscrizione</a>
             
-            
-            
-			<a href='#page_info' data-icon='info' data-rel='popup' data-position-to='window' data-transition='pop' class='btn_search ui-btn sideOption ui-btn-inline ui-icon-info ui-btn-icon-left'>Info</a>
+             <!-- info -->
               
+                                           <div data-role="popup" id="page_info">
+              <div data-role="header">
+              	 <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right" data-rel="back" data-icon="delete">&nbsp;</a>
+                <h1>Info generali</h1>
+              </div>
+            
+              <div data-role="main" class="ui-content">
+              	Trovo per Te è il portale ed la App creati proprio per Te, per trovare in modo semplice e veloce quello che ti serve nel tuo territorio.<br><br>
+
+<b>Sei un privato?</b><br><br>
+
+Potrai scaricare in modo gratuito e senza pubblicità la App su tuo smarthphone o tablet, oppure consultare il portale dedicato sul web.<br><br />
+
+Avrai così la possibilità di trovare velocemente locali, aziende e professionisti in base alle tue necessità e approfittare di promo e offerte che verranno pubblicate. <br><br />
+
+Potrai contattarli direttamente, mandargli una mail o raggiungerli seguendo il navigatore.<br> <br><br>
+
+<b>Hai la partita IVA?</b><br><br>
+Ideale per estendere la tua visibilità sui dispositivi mobili a basso costo e in assoluta autonomia con la gestione dei contenuti. <br><br />
+Tramite un semplice pannello di controllo potrai gestire descrizioni, servizi, news, promo, offerte ogni volta che vorrai. <br><br />
+Tutti potranno interagire tramite i tasti funzionali della tua scheda azienda: telefono, mail, navigatore, social, ecc.. <br><br />
+Quattro fasce di prezzo annuali in base alle vostre necessità: 30€, 80€, 120€, 150€ iva escusa.<br /><br />
+<b>Richiedi l'iscrizione cliccando <a onclick="apriRegistrazione()" href='#page_registrazione' data-rel='popup'
+                        data-position-to='window' data-transition='pop'>qui</a></b><br/><br />
+Oppure <br /><br />
+
+<b>Contattaci per avere maggiori informazioni cliccando <a onclick="apriInfo()" href='#page_richiestaInfo' data-rel='popup'
+                        data-position-to='window' data-transition='pop'>
+                        qui</a></b>
+
+
+
+              </div>
+                
+
+
+              
+            </div>
+		
          
                  <!-- richiesta informazioni -->
                 <div data-role="popup" id="page_richiestaInfo" style="width: 35%; margin: 0 auto;">
@@ -151,6 +201,18 @@
                     </form>
                 </div>
             
+                 <!-- mappa con tutte  le ditte -->  
+                <div data-role="popup" id="allIndustry_mapPage" data-url="map-page" >
+              <div data-role="header">
+                    <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right"
+                        data-rel="back" data-icon="delete">&nbsp;</a>
+                    <h1>
+                        Mappa aziende</h1>
+                </div>
+             <div role="main" class="ui-content" id="allIndustry_mapCanvas">          
+            </div>
+              
+        </div>
         </div> 
     	<!-- fine pannello laterale -->
         
@@ -200,52 +262,33 @@
     </div>
     
     
-    <!-- info -->
-                  <div data-role="popup" id="page_info">
-              <div data-role="header">
-              	 <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right" data-rel="back" data-icon="delete">&nbsp;</a>
-                <h1>Info generali</h1>
-              </div>
-            
-              <div data-role="main" class="ui-content">
-              	Trovo per Te è il portale ed la App creati proprio per Te, per trovare in modo semplice e veloce quello che ti serve nel tuo territorio.<br><br>
-
-<b>Sei un privato?</b><br><br>
-
-Potrai scaricare in modo gratuito e senza pubblicità la App su tuo smarthphone o tablet, oppure consultare il portale dedicato sul web.<br><br />
-
-Avrai così la possibilità di trovare velocemente locali, aziende e professionisti in base alle tue necessità e approfittare di promo e offerte che verranno pubblicate. <br><br />
-
-Potrai contattarli direttamente, mandargli una mail o raggiungerli seguendo il navigatore.<br> <br><br>
-
-<b>Hai la partita IVA?</b><br><br>
-Ideale per estendere la tua visibilità sui dispositivi mobili a basso costo e in assoluta autonomia con la gestione dei contenuti. <br><br />
-Tramite un semplice pannello di controllo potrai gestire descrizioni, servizi, news, promo, offerte ogni volta che vorrai. <br><br />
-Tutti potranno interagire tramite i tasti funzionali della tua scheda azienda: telefono, mail, navigatore, social, ecc.. <br><br />
-Quattro fasce di prezzo annuali in base alle vostre necessità: 30€, 80€, 120€, 150€ iva escusa.<br /><br />
-<b>Richiedi l'iscrizione cliccando <a onclick="apriRegistrazione()" href='#page_registrazione' data-rel='popup'
-                        data-position-to='window' data-transition='pop'>qui</a></b><br/><br />
-Oppure <br /><br />
-
-<b>Contattaci per avere maggiori informazioni cliccando <a onclick="apriInfo()" href='#page_richiestaInfo' data-rel='popup'
-                        data-position-to='window' data-transition='pop'>
-                        qui</a></b>
-
-
-
-              </div>
-                
-
-
-              
-            </div>
+   
     
 </div>
 
 
 <script>
 
-$("#page_ricerca").on("pageshow", function(event){
+    $("#page_ricerca").on("pageshow", function (event) {
+
+        var elencoMarker = new Array();
+
+
+        $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp", function (info_allIndustry) {
+
+            $.each(info_allIndustry, function (i, name) {
+                if (name.coordinate != "") {
+                    var azienda = {};
+                    azienda.nome = name.ragione_sociale;
+                    azienda.lat = parseFloat(name.coordinate.split(",")[0]);
+                    azienda.lon = parseFloat(name.coordinate.split(",")[1]);
+                    elencoMarker.push(azienda);
+                }
+            });
+            caricaAllIndustry(elencoMarker);
+
+        });
+
     //append list to ul
 	$('#search').keyup(function(){
 		var searchField = $('#search').val();

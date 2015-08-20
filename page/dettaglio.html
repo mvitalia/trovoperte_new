@@ -48,8 +48,11 @@
             <a href="../index.html" class="btn_search ui-btn sideOption ui-btn-inline ui-icon-home ui-btn-icon-left"
                 data-role="button" data-icon="home" data-ajax="false">Home</a> <a href="ricerca.html"
                     class="btn_search ui-btn sideOption ui-btn-inline ui-icon-search ui-btn-icon-left"
-                    data-role="button" data-icon="search" data-ajax="false">Cerca</a> <a href='#settings'
-                        data-icon='gear' data-rel='popup' data-position-to='window' data-transition='pop'
+                    data-role="button" data-icon="search" data-ajax="false">Cerca</a>
+                    <a href='#allIndustry_mapPage' data-icon='info' data-rel='popup'
+                    data-position-to='window' data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-info ui-btn-icon-left'>
+                    Mappa aziende</a>
+                     <a href='#settings' data-icon='gear' data-rel='popup' data-position-to='window' data-transition='pop'
                         class='btn_search ui-btn sideOption ui-btn-inline ui-icon-gear ui-btn-icon-left'>
                         Impostazioni</a>
             <!-- setting -->
@@ -70,11 +73,12 @@
             </div>
             <a href='#page_info' data-icon='info' data-rel='popup' data-position-to='window'
                 data-transition='pop' class='btn_search ui-btn sideOption ui-btn-inline ui-icon-info ui-btn-icon-left'>
-                Info generali</a> <a href='#map-page' data-icon='info' data-rel='popup'
+                Info generali</a> <a href='#page_richiestaInfo' data-icon='info' data-rel='popup'
                     data-position-to='window' data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-info ui-btn-icon-left'>
                     Contattaci</a> <a href='#page_registrazione' data-icon='info' data-rel='popup' data-position-to='window'
                         data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-info ui-btn-icon-left'>
                         Richiesta iscrizione</a>
+                        
             <!-- info -->
            
             <div data-role="popup" id="page_info">
@@ -232,13 +236,26 @@
                     <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right"
                         data-rel="back" data-icon="delete">&nbsp;</a>
                     <h1>
-                        Collocamento geografico</h1>
+                        Posizione geografica</h1>
                 </div>
              <div role="main" class="ui-content" id="map-canvas">          
             </div>
               <div data-role="footer" style="text-align: center">
                        <a id="btnNavigazione">Avvia navigazione</a>
                     </div>
+        </div>
+
+         <!-- mappa con tutte  le ditte -->  
+        <div data-role="popup" id="allIndustry_mapPage" data-url="map-page" >
+              <div data-role="header">
+                    <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right"
+                        data-rel="back" data-icon="delete">&nbsp;</a>
+                    <h1>
+                        Mappa aziende</h1>
+                </div>
+             <div role="main" class="ui-content" id="allIndustry_mapCanvas">          
+            </div>
+              
         </div>
  
         </div>
@@ -480,9 +497,25 @@
 
         var elenco_news = new Array();
         var elenco_promo = new Array();
+        var elencoMarker = new Array();
 
         $("#page_dettaglio").on("pageshow", function (event) {
             var id_azienda = getParameterByName("id_azienda");
+
+            $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp", function(info_allIndustry){                
+
+                $.each(info_allIndustry,function(i, name){
+                    if(name.coordinate != ""){
+                          var azienda = {};
+                          azienda.nome = name.ragione_sociale;
+                          azienda.lat = parseFloat(name.coordinate.split(",")[0]);
+                          azienda.lon = parseFloat(name.coordinate.split(",")[1]);
+                          elencoMarker.push(azienda);
+                    }
+                });
+                caricaAllIndustry(elencoMarker);       
+
+            });
 
             $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp?id_azienda=" + id_azienda, function (info_dettaglio) {
 
@@ -595,8 +628,8 @@
                             footer_dettaglio += "<li class='ui-block-d '><a href='#map-page' data-icon='info' data-rel='popup'data-position-to='window' data-transition='pop' class='btn_fax ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-btn-icon-left'>Raggiungici</a>";
                             if(name.coordinate != ""){
                                 caricaMappa(name.coordinate, name.ragione_sociale);
-                               //"navigator.app.loadUrl('https://google.com/', { openExternal:true });">Link</a>
-                                $("#btnNavigazione").attr("href","navigator.app.loadURL('http://maps.google.com/maps?&daddr=" + name.coordinate + " ')");
+
+                                $("#btnNavigazione").attr("href","http://maps.google.com/maps?&daddr=" + name.coordinate);
                             }
                             else{
                                 $("#map-canvas").text("Per questa attività non è disponibile la visualizzazione della mappa");

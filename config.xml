@@ -73,6 +73,7 @@
 	<!--Plugins-->
 	<gap:plugin name="org.apache.cordova.inappbrowser" version="0.5.2" />
 	<gap:plugin name="org.apache.cordova.file" version="1.3.1" />
+    <gap:plugin name="nl.x-services.plugins.socialsharing" version="4.3.16" />
 	
 	<access origin="*" />
 
