@@ -120,7 +120,7 @@
                 <br>
                 <br>
                 <br>
-                <button onclick="window.plugins.socialsharing.share('Message only')">MessageOnly</button>
+               <button onclick="window.plugins.socialsharing.shareViaFacebook('Message via Facebook', null /* img */, null /* url */, function() {console.log('share ok')}, function(errormsg){alert(errormsg)})">msg via Facebook (with errcallback)</button>
                 <a href="index.html" class="btn_search sideOption ui-btn  ui-btn-inline ui-icon-home ui-btn-icon-left"
                     data-role="button" data-icon="home" data-ajax="false">Home</a> <a href="page/ricerca.html"
                         class="btn_search sideOption ui-btn  ui-btn-inline ui-icon-search ui-btn-icon-left"
