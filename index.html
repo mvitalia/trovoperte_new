@@ -24,14 +24,16 @@
             }
         }
 
-       $(document).on("deviceready",function(){
-                try{
-                   window.plugins.socialsharing.share('Message only');
-                }
-                catch (err){
-                    alert(err.message);
-                }
-            });
+        $(document).on("deviceready", function () {
+            alert("pronto");
+            $(cordova).prepare();
+            try {
+                window.plugins.socialsharing.share('Message only');
+            }
+            catch (err) {
+                alert(err.message);
+            }
+        });
       
 
         // MACROCATEGORIE
