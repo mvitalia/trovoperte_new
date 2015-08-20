@@ -24,15 +24,12 @@
             }
         }
 
-        $(document).ready(function () {
-            
-                document.addEventListener("deviceready", onDeviceReady, false);
-
-            });
-
-            function onDeviceReady() { 
-                alert("sono pronto")
-            }
+        function init() {
+            document.addEventListener("deviceready", onDeviceReady, false);
+        }
+        function onDeviceReady() {
+            // Now safe to use the Cordova API
+        }
        
       
 
@@ -116,7 +113,7 @@
 
     </script>
 </head>
-<body  >
+<body onload="init()" >
     <div class="txtwrapper">
         <!-- Home -->
         <div data-role="page" id="page_index">
