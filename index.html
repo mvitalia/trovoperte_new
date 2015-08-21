@@ -26,8 +26,11 @@
 
         function init() {
             alert("Mi preparo");
-
-            document.addEventListener("deviceready", pippo, true);
+            try {
+                document.addEventListener("deviceready", pippo, true);
+            } catch (err) {
+            alert(err.message);
+            }
         }
 
         function pippo() {
