@@ -25,11 +25,13 @@
         }
 
         function init() {
-            alert("Mi preparo")
-            document.addEventListener("menubutton", onDeviceReady, false);
+            alert("Mi preparo");
+
+            document.addEventListener("deviceready", pippo, true);
         }
-        function onDeviceReady() {
-            alert("im ready");
+
+        function pippo() {
+            alert("pronto");
         }
 
 
@@ -114,7 +116,7 @@
 
     </script>
 </head>
-<body onload="init()" >
+<body onload="init()">
     <div class="txtwrapper">
         <!-- Home -->
         <div data-role="page" id="page_index">

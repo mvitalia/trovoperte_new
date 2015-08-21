@@ -275,3 +275,40 @@ function getParameterByName(name)
 }
 
 
+function caricaCitta(all) {
+    var citta = new Array()
+    for (var i = 0; i < all.length; i++) {
+        if (all[i].paese != "") {
+            if (all[i].paese.indexOf(",") != -1) {
+                var aus = all[i].paese.split(",");
+                for (var k = 0; k < aus.length; k++) {
+                    citta.push(aus[k].trim());
+                }
+            }
+            else {
+                citta.push(all[i].paese.trim());
+            }
+        }
+    }
+
+    var cittaDefinitive = new Array();
+
+    cittaDefinitive.push(citta[0]);
+
+    for (var p = 1; p < citta.length; p++) {
+        var trovato = false;
+        for (var m = 0; m < cittaDefinitive.length; m++) {
+            if (citta[p] == cittaDefinitive[m]) {
+                trovato = true;
+            }
+        }
+        if (!trovato) {
+            cittaDefinitive.push(citta[p]);
+        }
+    }
+
+    for (var k = 0; k < cittaDefinitive.length; k++) {
+        $("#lstCitta").append("<option>" + cittaDefinitive[k] + "</option>");
+    }
+
+}

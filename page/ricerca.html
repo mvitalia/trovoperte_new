@@ -222,7 +222,7 @@ Oppure <br /><br />
             
             <div class="ui-btn-right">
                 <a href="#myPanel" class="ui-btn ui-shadow ui-btn-inline ui-btn-icon-left ui-icon-grid" data-role="button" data-icon="grid" >&nbsp;</a>
-                
+               
             </div>
             
             <h1>Ricerca</h1>
@@ -230,7 +230,13 @@ Oppure <br /><br />
             <form role="form" class="box_search">
                 <div class="form-group">
                   <input type="search" name="search" class="form-control input-lg" data-mini="true" id="search" placeholder="Cerca..."  />
+                   
+                    <select id="lstCitta">
+                        <option>Tutti i paesi</option>
+                    </select>
+             
                 </div>
+               
             </form>
             
         </div>
@@ -276,6 +282,8 @@ Oppure <br /><br />
 
         $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp", function (info_allIndustry) {
 
+            caricaCitta(info_allIndustry);
+
             $.each(info_allIndustry, function (i, name) {
                 if (name.coordinate != "") {
                     var azienda = {};
@@ -284,44 +292,63 @@ Oppure <br /><br />
                     azienda.lon = parseFloat(name.coordinate.split(",")[1]);
                     elencoMarker.push(azienda);
                 }
+
             });
             caricaAllIndustry(elencoMarker);
-
         });
 
-    //append list to ul
-	$('#search').keyup(function(){
-		var searchField = $('#search').val();
-		var regex = new RegExp(searchField, "i");
-		var output = '';
-		var count = 1;
-		$.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp", function (info) {
-			$.each(info, function (key, val) {
-				if ((val.ragione_sociale.search(regex) != -1) || (val.servizi.search(regex) != -1) || (val.macrocategoria.search(regex) != -1) || (val.categoria.search(regex) != -1) || (val.paese.search(regex) != -1)) {
-				 
-				  output += '<li class="ui-li-has-thumb ui-last-child"><a href="dettaglio.html?id_azienda=' + val.id + '" id="' + val.id + '" class="azienda-go ui-btn ui-btn-icon-right ui-icon-carat-r" data-ajax="false">';
-	
-				  if (name.foto_principale != "" && name.foto_princinpale != "undefined" ){
-					output += '<img src="http://www.trovoperte.com/public/upload_gallery/immagini/' + val.foto_principale + '" class="ui-li-thumb"/>';
-				  }
-				  output += '<h3 class="ui-li-heading">' + val.ragione_sociale + '</h3><p class="ui-li-desc">' + val.paese + '</p></a></li>';
-				  
-				  
-				
-				  count++;
-				}
-			  });
-			  //$('#results').html(output);
-			  $("#results").html(output).promise().done(function () {
-			
-			 });
-			  
-			  $(this).listview("refresh");
-	   	  });
-		  
-		  
-	   }); 
-})   
+        //append list to ul
+        $('#search').keyup(function () {
+            caricaListeFiltrate();
+        });
+
+        $("#lstCitta").change(function () {
+            caricaListeFiltrate();
+        });
+    })
+
+    function caricaListeFiltrate() {
+        var searchField = $('#search').val();
+        var regex = new RegExp(searchField, "i");
+        var output = '';
+        var count = 1;
+
+        var citta = $("#lstCitta").val();
+
+
+        $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp", function (info) {
+            $.each(info, function (key, val) {
+                if ((val.ragione_sociale.search(regex) != -1) || (val.servizi.search(regex) != -1) || (val.macrocategoria.search(regex) != -1) || (val.categoria.search(regex) != -1) || (val.paese.search(regex) != -1)) {
+                    if (citta != "Tutti i paesi" && val.paese.indexOf(""+citta) != -1 ) {
+                        output += '<li class="ui-li-has-thumb ui-last-child"><a href="dettaglio.html?id_azienda=' + val.id + '" id="' + val.id + '" class="azienda-go ui-btn ui-btn-icon-right ui-icon-carat-r" data-ajax="false">';
+
+                        if (name.foto_principale != "" && name.foto_princinpale != "undefined") {
+                            output += '<img src="http://www.trovoperte.com/public/upload_gallery/immagini/' + val.foto_principale + '" class="ui-li-thumb"/>';
+                        }
+                        output += '<h3 class="ui-li-heading">' + val.ragione_sociale + '</h3><p class="ui-li-desc">' + val.paese + '</p></a></li>';
+                        count++;
+                    }
+                    else if (citta == "Tutti i paesi") {
+                        output += '<li class="ui-li-has-thumb ui-last-child"><a href="dettaglio.html?id_azienda=' + val.id + '" id="' + val.id + '" class="azienda-go ui-btn ui-btn-icon-right ui-icon-carat-r" data-ajax="false">';
+
+                        if (name.foto_principale != "" && name.foto_princinpale != "undefined") {
+                            output += '<img src="http://www.trovoperte.com/public/upload_gallery/immagini/' + val.foto_principale + '" class="ui-li-thumb"/>';
+                        }
+                        output += '<h3 class="ui-li-heading">' + val.ragione_sociale + '</h3><p class="ui-li-desc">' + val.paese + '</p></a></li>';
+                        count++;
+                    }
+                }
+            });
+            //$('#results').html(output);
+            $("#results").html(output).promise().done(function () {
+
+            });
+
+            $(this).listview("refresh");
+        });
+
+
+    }  
 
 
 

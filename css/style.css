@@ -60,6 +60,60 @@ html, body
     font-size:1em !important;
 }
 
+@media screen and (max-width:350px){
+.ui-input-search 
+{
+      float:left;
+      width: 60%;
+      padding: 0 !important;
+}
+
+.ui-select
+{
+    width:35%;
+       margin: 0 auto;
+        margin-right:35px;
+       margin-top:7px;
+    display: inline-block;
+    
+}
+
+#lstCitta-button
+{
+    width:55%;
+    height: 36px;
+        line-height: 36px;
+    margin: 0 auto;
+}
+}
+
+@media screen and (min-width:350px){
+.ui-input-search 
+{
+     width: 60%;
+      float:left;
+      padding: 0 !important;
+}
+
+.ui-select
+{
+       margin: 0 auto;
+       margin-right:35px;
+       margin-top:7px;
+    display: inline-block;
+    width: 25%;
+    
+}
+
+#lstCitta-button
+{
+    width:100%;
+    height: 36px;
+        line-height: 36px;
+    margin: 0 auto;
+}
+}
+
 
 .testo_finto
 {
