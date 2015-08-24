@@ -23,12 +23,12 @@
         // MACROCATEGORIE
         $(document).on("pageinit", "#page_index", function () {
 
-            //var elencoMarker = new Array();
+            var elencoMarker = new Array();
 
             $.mobile.page.prototype.options.domCache = true;
             $.mobile.ajaxEnabled = true;
 
-            /*$.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp", function (info_allIndustry) {
+            $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp", function (info_allIndustry) {
 
                 $.each(info_allIndustry, function (i, name) {
                     if (name.coordinate != "") {
@@ -42,7 +42,7 @@
                 });
                 caricaAllIndustry(elencoMarker);
 
-            });*/
+            });
 
 
             if (checkInternet) {
