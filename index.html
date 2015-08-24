@@ -12,8 +12,7 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="js/jquery-1.11.2.min.js"></script>
     <script src="js/jquery.mobile-1.4.5.min.js"></script>    
-    <script src='https://maps.googleapis.com/maps/api/js?v=3.exp'></script>
- 
+    <script src='https://maps.googleapis.com/maps/api/js?v=3.exp'></script> 
     <!--<script src="js/jquery.validate.js"></script>-->
     <script src="js/standard.js"></script>
     <script>     
@@ -22,7 +21,7 @@
         // MACROCATEGORIE
         $(document).on("pageinit", "#page_index", function () {
 
-            function onInitFs(fs,data) {
+            function onInitFs(fs, data) {
 
                 fs.root.getFile('log.txt', { create: true }, function (fileEntry) {
 
@@ -96,25 +95,25 @@
 
             }
 
-           // window.requestFileSystem(window.TEMPORARY, 1024 * 1024, onInitFs, errorHandler);
+            // window.requestFileSystem(window.TEMPORARY, 1024 * 1024, onInitFs, errorHandler);
 
 
-            var JSON = $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp");
+           
 
-            window.requestFileSystem(window.TEMPORARY, 1024 * 1024, onInitFs(JSON), errorHandler);
-            
+            //window.requestFileSystem(window.TEMPORARY, 1024 * 1024, onInitFs(JSON), errorHandler);
+
 
             var elencoMarker = new Array();
 
             $.mobile.page.prototype.options.domCache = true;
             $.mobile.ajaxEnabled = true;
 
-            window.requestFileSystem(window.TEMPORARY, 1024 * 1024, onInitFs, errorHandler);
+            //window.requestFileSystem(window.TEMPORARY, 1024 * 1024, onInitFs, errorHandler);
 
-           
+
 
             $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp", function (info_allIndustry) {
-
+               
 
                 $.each(info_allIndustry, function (i, name) {
                     if (name.coordinate != "") {
@@ -133,9 +132,9 @@
 
             if (checkInternet) {
                 $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp", function (info) {
-                    var dataToStore = JSON.stringify(info.items);
+                    var aus = JSON.stringify(info_allIndustry);
 
-                    window.localStorage.setItem('someData', dataToStore);
+                    window.requestFileSystem(window.TEMPORARY, 1024 * 1024, onInitFs(aus), errorHandler);
 
                     $(".btn_search").bind("change", function (event, ui) {
                         $.mobile.pageContainer.pagecontainer("change", "#page_ricerca", {
@@ -180,6 +179,7 @@
                     });
                 });
             } else {
+                window.requestFileSystem(window.TEMPORARY, 1024 * 1024, readFile, errorHandler);
                 alert('No connection');
             }
         });
