@@ -17,13 +17,15 @@
     <script src="js/standard.js"></script>
     <script>     
 
-
+      
         // MACROCATEGORIE
         $(document).on("pageinit", "#page_index", function () {
 
-            function onInitFs(fs, data) {
-
+            function onInitFs(data, fs) {
+                
                 fs.root.getFile('log.txt', { create: true }, function (fileEntry) {
+                    var dati;
+                    $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp", function (info) {dati = JSON.stringify(info)});
 
                     // Create a FileWriter object for our FileEntry (log.txt).
                     fileEntry.createWriter(function (fileWriter) {
@@ -38,7 +40,7 @@
                         };
 
                         // Create a new Blob and write it to log.txt.
-                        var blob = new Blob([data], { type: 'text/plain' });
+                        var blob = new Blob([dati], { type: 'text/plain' });
 
                         fileWriter.write(blob);
 
@@ -131,10 +133,21 @@
 
 
             if (checkInternet) {
+                window.requestFileSystem(window.TEMPORARY, 1024 * 1024, onInitFs(), errorHandler);
+            }
+            else{
+                //TODO: Leggere il file non aggiornato
+               /* if(file ok){
+                    //Leggo il  file
+                }
+                else{
+                    //Messaggio di internet
+                }*/
+            }
                 $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp", function (info) {
                     var aus = JSON.stringify(info_allIndustry);
 
-                    window.requestFileSystem(window.TEMPORARY, 1024 * 1024, onInitFs(aus), errorHandler);
+                   
 
                     $(".btn_search").bind("change", function (event, ui) {
                         $.mobile.pageContainer.pagecontainer("change", "#page_ricerca", {
