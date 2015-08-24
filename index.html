@@ -87,7 +87,7 @@
                         var reader = new FileReader();
 
                         reader.onloadend = function (e) {
-                            alert(this.result)
+                            alert("Risultato lettura: " + this.result)
                         };
 
                         reader.readAsText(file);
@@ -146,9 +146,7 @@
             }
             if(checkInternet){
                 $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp", function (info) {
-                    var aus = JSON.stringify(info_allIndustry);
-
-                   
+                                
 
                     $(".btn_search").bind("change", function (event, ui) {
                         $.mobile.pageContainer.pagecontainer("change", "#page_ricerca", {
