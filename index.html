@@ -144,6 +144,7 @@
                     //Messaggio di internet
                 }*/
             }
+            if(checkInternet){
                 $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp", function (info) {
                     var aus = JSON.stringify(info_allIndustry);
 
