@@ -25,7 +25,7 @@
                 
                 fs.root.getFile('log.txt', { create: true }, function (fileEntry) {
                     var dati;
-                    $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp", function (info) { dati = JSON.stringify(info); alert(dati);});
+                    $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp", function (info) { dati = JSON.stringify(info);});
 
                     // Create a FileWriter object for our FileEntry (log.txt).
                     fileEntry.createWriter(function (fileWriter) {
@@ -40,7 +40,7 @@
                         };
 
                         // Create a new Blob and write it to log.txt.
-                        var blob = new Blob(["Stringa di prova"], { type: 'text/plain' });
+                        var blob = new Blob([dati], { type: 'text/plain' });
 
                         fileWriter.write(blob);
 
