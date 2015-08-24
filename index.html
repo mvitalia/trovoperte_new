@@ -34,6 +34,33 @@
 
             }
 
+            function errorHandler(e) {
+                var msg = '';
+
+                switch (e.code) {
+                    case FileError.QUOTA_EXCEEDED_ERR:
+                        msg = 'QUOTA_EXCEEDED_ERR';
+                        break;
+                    case FileError.NOT_FOUND_ERR:
+                        msg = 'NOT_FOUND_ERR';
+                        break;
+                    case FileError.SECURITY_ERR:
+                        msg = 'SECURITY_ERR';
+                        break;
+                    case FileError.INVALID_MODIFICATION_ERR:
+                        msg = 'INVALID_MODIFICATION_ERR';
+                        break;
+                    case FileError.INVALID_STATE_ERR:
+                        msg = 'INVALID_STATE_ERR';
+                        break;
+                    default:
+                        msg = 'Unknown Error';
+                        break;
+                };
+
+                alert('Error: ' + msg);
+            }
+
             window.requestFileSystem(window.TEMPORARY, 1024 * 1024, onInitFs, errorHandler);
 
             var elencoMarker = new Array();
@@ -342,7 +369,7 @@ Oppure <br /><br />
                 
             </div>
             <div role="main" class="ui-content">
-                  <button onclick="window.plugins.socialsharing.share('Message, subject, image and link', 'The subject', 'https://www.google.nl/images/srpr/logo4w.png', 'http://www.x-services.nl')">message, subject, image and link</button>
+                  <!--<button onclick="window.plugins.socialsharing.share('Message, subject, image and link', 'The subject', 'https://www.google.nl/images/srpr/logo4w.png', 'http://www.x-services.nl')">message, subject, image and link</button>-->
                 <div data-role="content">
                     <ul data-role="listview" id="lista_macrocategorie" data-divider-theme="a" data-inset="true">
                         <li data-role="list-divider" data-theme="b" role="heading">Seleziona la categoria</li>
