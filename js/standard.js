@@ -228,6 +228,14 @@ function caricaMappa(coordinate,nomeAzienda) {
      
     }
 
+    function checkInternet() {
+        var online = window.navigator.onLine;
+        if (!online) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 
 
 /** GET PARAMETER **/
