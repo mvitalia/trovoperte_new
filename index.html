@@ -24,15 +24,31 @@
 
             function onInitFs(fs) {
 
-                fs.root.getFile('log.txt', { create: true, exclusive: true }, function (fileEntry) {
+                fs.root.getFile('log.txt', { create: true }, function (fileEntry) {
 
-                    // fileEntry.isFile === true
-                    // fileEntry.name == 'log.txt'
-                    // fileEntry.fullPath == '/log.txt'
+                    // Create a FileWriter object for our FileEntry (log.txt).
+                    fileEntry.createWriter(function (fileWriter) {
+
+                        fileWriter.onwriteend = function (e) {
+                            console.log('Write completed.');
+                        };
+
+                        fileWriter.onerror = function (e) {
+                           console.log('Write failed: ' + e.toString());
+                        };
+
+                        // Create a new Blob and write it to log.txt.
+                        var blob = new Blob(['Lorem Ipsum'], { type: 'text/plain' });
+
+                        fileWriter.write(blob);
+
+                    }, errorHandler);
 
                 }, errorHandler);
 
             }
+
+            
 
             function errorHandler(e) {
                 var msg = '';
