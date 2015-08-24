@@ -16,15 +16,25 @@
  
     <!--<script src="js/jquery.validate.js"></script>-->
     <script src="js/standard.js"></script>
-    <script>
-       
-
-         
-
+    <script>     
 
 
         // MACROCATEGORIE
         $(document).on("pageinit", "#page_index", function () {
+
+            function onInitFs(fs) {
+
+                fs.root.getFile('log.txt', { create: true, exclusive: true }, function (fileEntry) {
+
+                    // fileEntry.isFile === true
+                    // fileEntry.name == 'log.txt'
+                    // fileEntry.fullPath == '/log.txt'
+
+                }, errorHandler);
+
+            }
+
+            window.requestFileSystem(window.TEMPORARY, 1024 * 1024, onInitFs, errorHandler);
 
             var elencoMarker = new Array();
 
