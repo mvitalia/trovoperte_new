@@ -21,7 +21,7 @@
         // MACROCATEGORIE
         $(document).on("pageinit", "#page_index", function () {
 
-            function onInitFs(data, fs) {
+            function onInitFs(fs) {
                 
                 fs.root.getFile('log.txt', { create: true }, function (fileEntry) {
                     var dati;
