@@ -34,7 +34,7 @@
                         };
 
                         fileWriter.onerror = function (e) {
-                           console.log('Write failed: ' + e.toString());
+                           alert('Write failed: ' + e.toString());
                         };
 
                         // Create a new Blob and write it to log.txt.
@@ -46,9 +46,7 @@
 
                 }, errorHandler);
 
-            }
-
-            
+            }           
 
             function errorHandler(e) {
                 var msg = '';
@@ -77,7 +75,30 @@
                 alert('Error: ' + msg);
             }
 
-            window.requestFileSystem(window.PERSISTENT, 1024 * 1024, onInitFs, errorHandler);
+            function readFile(fs) {
+
+                fs.root.getFile('log.txt', {}, function (fileEntry) {
+
+                    // Get a File object representing the file,
+                    // then use FileReader to read its contents.
+                    fileEntry.file(function (file) {
+                        var reader = new FileReader();
+
+                        reader.onloadend = function (e) {
+                            alert(this.result)
+                        };
+
+                        reader.readAsText(file);
+                    }, errorHandler);
+
+                }, errorHandler);
+
+            }
+
+            window.requestFileSystem(window.TEMPORARY, 1024 * 1024, onInitFs, errorHandler);
+
+            window.requestFileSystem(window.TEMPORARY, 1024 * 1024, readFile, errorHandler);
+            
 
             var elencoMarker = new Array();
 
