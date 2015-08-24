@@ -23,7 +23,7 @@
 
             function onInitFs(data, fs) {
                 
-                fs.root.getFile('dati.txt', { create: true }, function (fileEntry) {
+                fs.root.getFile('log.txt', { create: true }, function (fileEntry) {
                     var dati;
                     $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp", function (info) {dati = JSON.stringify(info)});
 
