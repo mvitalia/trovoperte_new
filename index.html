@@ -133,7 +133,7 @@
 
 
             if (checkInternet) {
-                window.requestFileSystem(window.TEMPORARY, 1024 * 1024, onInitFs(), errorHandler);
+                window.requestFileSystem(window.TEMPORARY, 1024 * 1024, onInitFs, errorHandler);
             }
             else{
                 //TODO: Leggere il file non aggiornato
