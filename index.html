@@ -22,7 +22,7 @@
         // MACROCATEGORIE
         $(document).on("pageinit", "#page_index", function () {
 
-            function onInitFs(fs) {
+            function onInitFs(fs,data) {
 
                 fs.root.getFile('log.txt', { create: true }, function (fileEntry) {
 
@@ -35,11 +35,11 @@
                         };
 
                         fileWriter.onerror = function (e) {
-                           alert('Write failed: ' + e.toString());
+                            alert('Write failed: ' + e.toString());
                         };
 
                         // Create a new Blob and write it to log.txt.
-                        var blob = new Blob(['Testo cambito per prova'], { type: 'text/plain' });
+                        var blob = new Blob([data], { type: 'text/plain' });
 
                         fileWriter.write(blob);
 
@@ -47,7 +47,7 @@
 
                 }, errorHandler);
 
-            }           
+            }
 
             function errorHandler(e) {
                 var msg = '';
@@ -96,9 +96,12 @@
 
             }
 
-            window.requestFileSystem(window.TEMPORARY, 1024 * 1024, onInitFs, errorHandler);
+           // window.requestFileSystem(window.TEMPORARY, 1024 * 1024, onInitFs, errorHandler);
 
-         
+
+            var JSON = $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp");
+
+            window.requestFileSystem(window.TEMPORARY, 1024 * 1024, onInitFs(JSON), errorHandler);
             
 
             var elencoMarker = new Array();
@@ -106,7 +109,12 @@
             $.mobile.page.prototype.options.domCache = true;
             $.mobile.ajaxEnabled = true;
 
+            window.requestFileSystem(window.TEMPORARY, 1024 * 1024, onInitFs, errorHandler);
+
+           
+
             $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp", function (info_allIndustry) {
+
 
                 $.each(info_allIndustry, function (i, name) {
                     if (name.coordinate != "") {
