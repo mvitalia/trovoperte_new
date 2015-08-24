@@ -31,6 +31,7 @@
 
                         fileWriter.onwriteend = function (e) {
                             console.log('Write completed.');
+                            window.requestFileSystem(window.TEMPORARY, 1024 * 1024, readFile, errorHandler);
                         };
 
                         fileWriter.onerror = function (e) {
@@ -97,7 +98,7 @@
 
             window.requestFileSystem(window.TEMPORARY, 1024 * 1024, onInitFs, errorHandler);
 
-            window.requestFileSystem(window.TEMPORARY, 1024 * 1024, readFile, errorHandler);
+         
             
 
             var elencoMarker = new Array();
