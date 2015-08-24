@@ -8,9 +8,6 @@
 <link rel="stylesheet" href="../css/default_theme.min.css">
 <link rel="stylesheet" href="../css/jquery.mobile.icons.min.css">
 <link rel="stylesheet" href="../css/style.css">
-
-
-
 <script src="../js/jquery-1.11.2.min.js"></script>
 <script src="../js/jquery.mobile-1.4.5.min.js"></script>
  <script src='https://maps.googleapis.com/maps/api/js?v=3.exp'></script>
@@ -287,6 +284,7 @@ Oppure <br /><br />
             $.each(info_allIndustry, function (i, name) {
                 if (name.coordinate != "") {
                     var azienda = {};
+                    azienda.id = name.id;
                     azienda.nome = name.ragione_sociale;
                     azienda.lat = parseFloat(name.coordinate.split(",")[0]);
                     azienda.lon = parseFloat(name.coordinate.split(",")[1]);

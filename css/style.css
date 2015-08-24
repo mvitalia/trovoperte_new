@@ -663,15 +663,16 @@ html, body {
 {    
      #allIndustry_mapPage
     {
-        width: 500px;
+        width: 250px;
+        height: 250px;
         padding:0 !important;
          margin: 0 auto !important; 
     }    
     
     #allIndustry_mapCanvas
     {
-        width: 500px;
-        height:457px;
+        width: 250px;
+        height:250px;
         padding:0 !important;
     }    
     

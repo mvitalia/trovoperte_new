@@ -280,6 +280,7 @@ Oppure <br /><br />
                 $.each(info_allIndustry, function (i, name) {
                     if (name.coordinate != "") {
                         var azienda = {};
+                        azienda.id = name.id;
                         azienda.nome = name.ragione_sociale;
                         azienda.lat = parseFloat(name.coordinate.split(",")[0]);
                         azienda.lon = parseFloat(name.coordinate.split(",")[1]);
@@ -308,7 +309,7 @@ Oppure <br /><br />
                             li += '<img class="news_imgCentrata" src="http://www.trovoperte.com/public/upload_gallery/immagini/' + name.icona_newsPromo + '" class="ui-li-thumb"/>';
                         }
                         else {
-                        //TODO: inserire l'immagine vuota
+                            //TODO: inserire l'immagine vuota
                         }
                         li += '<h3 class="ui-li-heading">' + name.titolo_newsPromo + '</h3><h6 class="sottotitolo_news ui-li-heading">' + name.ragione_sociale + '<h6/></a></li>';
 

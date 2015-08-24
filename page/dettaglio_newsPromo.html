@@ -247,6 +247,7 @@ Oppure <br /><br />
                 $.each(info_allIndustry, function (i, name) {
                     if (name.coordinate != "") {
                         var azienda = {};
+                        azienda.id = name.id;
                         azienda.nome = name.ragione_sociale;
                         azienda.lat = parseFloat(name.coordinate.split(",")[0]);
                         azienda.lon = parseFloat(name.coordinate.split(",")[1]);

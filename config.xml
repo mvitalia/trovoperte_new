@@ -65,14 +65,11 @@
 	
 	<!-- Retina iPad -->
 	<gap:splash src="splash/ios/Default-Portrait@2x.png" gap:platform="ios" width="1536" height="2048" />
-	<gap:splash src="splash/ios/Default-Landscape@2x.png" gap:platform="ios" width="2048" height="1536" />
-
-	
-	
+	<gap:splash src="splash/ios/Default-Landscape@2x.png" gap:platform="ios" width="2048" height="1536" />	
 	
 	<!--Plugins-->
-    <!--<gap:plugin name="org.apache.cordova.inappbrowser" version="0.5.2" />
-    <gap:plugin name="nl.x-services.plugins.socialsharing" source="plugins.cordova.io" />-->
+    <gap:plugin name="org.apache.cordova.inappbrowser" version="0.5.2" />
+    <gap:plugin name="nl.x-services.plugins.socialsharing" source="plugins.cordova.io" />
 	
 	<access origin="*" />
 
