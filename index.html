@@ -16,10 +16,12 @@
     <!--<script src="js/jquery.validate.js"></script>-->
     <script src="js/standard.js"></script>
     <script>
+
         function caricaIndex(dati) {
+
             alert("dati" + dati);
             var datiDecompressi = JSON.parse(dati);
-            //$.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp", function (info_allIndustry) {
+           
             var elencoMarker = new Array();
 
             $.each(datiDecompressi, function (i, name) {
@@ -32,11 +34,7 @@
                     elencoMarker.push(azienda);
                 }
             });
-            caricaAllIndustry(elencoMarker);
-
-            //});
-
-            // $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp", function (info) {
+            caricaAllIndustry(elencoMarker);         
 
 
             $(".btn_search").bind("change", function (event, ui) {
@@ -80,7 +78,7 @@
                 //refresh list to enhance its styling.
                 $(this).listview("refresh");
             });
-            //});
+         
         }
       
         // MACROCATEGORIE
@@ -96,14 +94,13 @@
                         var dati = "";
                         $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp", function (info) {
                             dati = JSON.stringify(info);
-                            alert("Stringify: " + dati);
                             // Create a new Blob and write it to log.txt.
                             var blob = new Blob([dati], { type: 'text/plain' });
 
                             fileWriter.write(blob);
 
                             fileWriter.onwriteend = function (e) {
-                                console.log('Write completed.');
+                                alert('Write completed.');
                                 window.requestFileSystem(window.TEMPORARY, 1024 * 1024, readFile, errorHandler);
                             };
 
@@ -154,7 +151,7 @@
                     fileEntry.file(function (file) {
                         var reader = new FileReader();
 
-                        reader.onloadend = function (e) {
+                        reader.onloadend = function(e) {
                             alert("Risultato lettura: " + this.result);
                             caricaIndex(this.result);
                         };
