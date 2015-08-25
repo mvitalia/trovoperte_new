@@ -90,8 +90,8 @@
                         var reader = new FileReader();
 
                         reader.onloadend = function (e) {
-                            caricaIndex(this.result);
                             alert("Risultato lettura: " + this.result)
+                            caricaIndex(this.result);
                         };
 
                         reader.readAsText(file);
@@ -144,11 +144,12 @@
 
 
         function caricaIndex(dati) {
+            alert("dati" + dati);
             var datiDecompressi = JSON.parse(dati);
             //$.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp", function (info_allIndustry) {
             var elencoMarker = new Array();
 
-                $.each(datiDecompressi, function (i, name) {
+            $.each(datiDecompressi, function (i, name) {
                     if (name.coordinate != "") {
                         var azienda = {};
                         azienda.id = name.id;
