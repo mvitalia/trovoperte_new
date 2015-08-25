@@ -82,8 +82,28 @@
         }
 
         function onInitFs(fs) {
-
             fs.root.getFile('log.txt', { create: true }, function (fileEntry) {
+
+                // Create a FileWriter object for our FileEntry (log.txt).
+                fileEntry.createWriter(function (fileWriter) {
+
+                    fileWriter.onwriteend = function (e) {
+                        console.log('Write completed.');
+                    };
+
+                    fileWriter.onerror = function (e) {
+                        console.log('Write failed: ' + e.toString());
+                    };
+
+                    // Create a new Blob and write it to log.txt.
+                    var blob = new Blob(['Lorem Ipsum'], { type: 'text/plain' });
+
+                    fileWriter.write(blob);
+
+                }, errorHandler);
+
+            }, errorHandler);
+           /* fs.root.getFile('log.txt', { create: true }, function (fileEntry) {
 
 
                 // Create a FileWriter object for our FileEntry (log.txt).
@@ -98,7 +118,7 @@
 
                         fileWriter.onwriteend = function (e) {
                             alert('Write completed.');
-                            window.requestFileSystem(window.PERSISTENT, 1024 * 1024 * 5, readFile, errorHandler);
+                            window.requestFileSystem(window.PERSISTENT, 1024 * 1024, readFile, errorHandler);
                         };
 
                         fileWriter.onerror = function (e) {
@@ -107,7 +127,7 @@
                     });
                 }, errorHandler);
 
-            }, errorHandler);
+            }, errorHandler);*/
 
         }
 
@@ -197,7 +217,7 @@
 
             if (checkInternet) {
               
-                    window.requestFileSystem(window.PERSISTENT, 1024 * 1024 * 5, onInitFs, errorHandler);
+                    window.requestFileSystem(window.PERSISTENT, 1024 * 1024, onInitFs, errorHandler);
                
                     alert(err.message);
               
