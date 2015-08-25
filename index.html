@@ -105,7 +105,7 @@
             //window.requestFileSystem(window.TEMPORARY, 1024 * 1024, onInitFs(JSON), errorHandler);
 
 
-            var elencoMarker = new Array();
+           // var elencoMarker = new Array();
 
             $.mobile.page.prototype.options.domCache = true;
             $.mobile.ajaxEnabled = true;
@@ -114,7 +114,7 @@
 
        
 
-            $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp", function (info_allIndustry) {
+            /*$.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp", function (info_allIndustry) {
 
 
                 $.each(info_allIndustry, function (i, name) {
@@ -129,7 +129,7 @@
                 });
                 caricaAllIndustry(elencoMarker);
 
-            });
+            });*/
 
             
 
@@ -146,9 +146,9 @@
         function caricaIndex(dati) {
             var datiDecompressi = JSON.parse(dati);
             //$.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp", function (info_allIndustry) {
+            var elencoMarker = new Array();
 
-
-            $.each(datiDecompressi, function (i, name) {
+                $.each(datiDecompressi, function (i, name) {
                     if (name.coordinate != "") {
                         var azienda = {};
                         azienda.id = name.id;
@@ -184,7 +184,7 @@
                 var li = "";
                 var id_val = "";
                 //container for $li to be added
-                $.each(datiDecompressi, function (i, name) {
+                $.each(info, function (i, name) {
                     if (name.id_macrocategoria != id_val) {
                         //add the <li> to "li" variable
                         //note the use of += in the variable
