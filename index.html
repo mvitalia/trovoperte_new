@@ -15,8 +15,73 @@
     <script src='https://maps.googleapis.com/maps/api/js?v=3.exp'></script> 
     <!--<script src="js/jquery.validate.js"></script>-->
     <script src="js/standard.js"></script>
-    <script>     
+    <script>
+        function caricaIndex(dati) {
+            alert("dati" + dati);
+            var datiDecompressi = JSON.parse(dati);
+            //$.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp", function (info_allIndustry) {
+            var elencoMarker = new Array();
 
+            $.each(datiDecompressi, function (i, name) {
+                if (name.coordinate != "") {
+                    var azienda = {};
+                    azienda.id = name.id;
+                    azienda.nome = name.ragione_sociale;
+                    azienda.lat = parseFloat(name.coordinate.split(",")[0]);
+                    azienda.lon = parseFloat(name.coordinate.split(",")[1]);
+                    elencoMarker.push(azienda);
+                }
+            });
+            caricaAllIndustry(elencoMarker);
+
+            //});
+
+            // $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp", function (info) {
+
+
+            $(".btn_search").bind("change", function (event, ui) {
+                $.mobile.pageContainer.pagecontainer("change", "#page_ricerca", {
+                    stuff: this.id,
+                    transition: "fade"
+                });
+
+
+            });
+            /*
+            if($("#lista_macrocategorie").has("li").length > 1){
+            $('#lista_macrocategorie li').remove();
+            var li_first = "<li class='ui-li-divider ui-bar-b ui-first-child' role='heading' data-theme='b' data-role='list-divider'>Seleziona la categoria</li>";
+            $("#lista_macrocategorie").append(li_first);
+            }*/
+
+            //set up string for adding <li/>
+            var li = "";
+            var id_val = "";
+            //container for $li to be added
+            $.each(info, function (i, name) {
+                if (name.id_macrocategoria != id_val) {
+                    //add the <li> to "li" variable
+                    //note the use of += in the variable
+                    //meaning I'm adding to the existing data. not replacing it.
+                    //store index value in array as id of the <a> tag
+                    li += '<li><a href="page/categorie.html?id_macrocategoria=' + name.id_macrocategoria + '"  id="' + name.id_macrocategoria + '" class="macro-go" data-ajax="false">';
+                    if (name.icona_macrocategoria != "") {
+                        li += '<img src="http://www.trovoperte.com/public/upload_gallery/immagini/' + name.icona_macrocategoria + '" class="ui-li-thumb"/>';
+                    }
+                    li += '<h3 class="ui-li-heading">' + name.macrocategoria + '</h3></a></li>';
+                    id_val = name.id_macrocategoria;
+                }
+            });
+
+            //append list to ul
+            $("#lista_macrocategorie").append(li).promise().done(function () {
+
+
+                //refresh list to enhance its styling.
+                $(this).listview("refresh");
+            });
+            //});
+        }
       
         // MACROCATEGORIE
         $(document).on("pageinit", "#page_index", function () {
@@ -90,7 +155,7 @@
                         var reader = new FileReader();
 
                         reader.onloadend = function (e) {
-                            alert("Risultato lettura: " + this.result)
+                            alert("Risultato lettura: " + this.result);
                             caricaIndex(this.result);
                         };
 
@@ -105,33 +170,33 @@
             //window.requestFileSystem(window.TEMPORARY, 1024 * 1024, onInitFs(JSON), errorHandler);
 
 
-           // var elencoMarker = new Array();
+            // var elencoMarker = new Array();
 
             $.mobile.page.prototype.options.domCache = true;
             $.mobile.ajaxEnabled = true;
 
             //window.requestFileSystem(window.TEMPORARY, 1024 * 1024, onInitFs, errorHandler);
 
-       
+
 
             /*$.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp", function (info_allIndustry) {
 
 
-                $.each(info_allIndustry, function (i, name) {
-                    if (name.coordinate != "") {
-                        var azienda = {};
-                        azienda.id = name.id;
-                        azienda.nome = name.ragione_sociale;
-                        azienda.lat = parseFloat(name.coordinate.split(",")[0]);
-                        azienda.lon = parseFloat(name.coordinate.split(",")[1]);
-                        elencoMarker.push(azienda);
-                    }
-                });
-                caricaAllIndustry(elencoMarker);
+            $.each(info_allIndustry, function (i, name) {
+            if (name.coordinate != "") {
+            var azienda = {};
+            azienda.id = name.id;
+            azienda.nome = name.ragione_sociale;
+            azienda.lat = parseFloat(name.coordinate.split(",")[0]);
+            azienda.lon = parseFloat(name.coordinate.split(",")[1]);
+            elencoMarker.push(azienda);
+            }
+            });
+            caricaAllIndustry(elencoMarker);
 
             });*/
 
-            
+
 
             if (checkInternet) {
                 window.requestFileSystem(window.TEMPORARY, 1024 * 1024, onInitFs, errorHandler);
@@ -143,72 +208,7 @@
         });
 
 
-        function caricaIndex(dati) {
-            alert("dati" + dati);
-            var datiDecompressi = JSON.parse(dati);
-            //$.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp", function (info_allIndustry) {
-            var elencoMarker = new Array();
-
-            $.each(datiDecompressi, function (i, name) {
-                    if (name.coordinate != "") {
-                        var azienda = {};
-                        azienda.id = name.id;
-                        azienda.nome = name.ragione_sociale;
-                        azienda.lat = parseFloat(name.coordinate.split(",")[0]);
-                        azienda.lon = parseFloat(name.coordinate.split(",")[1]);
-                        elencoMarker.push(azienda);
-                    }
-                });
-                caricaAllIndustry(elencoMarker);
-
-            //});
-
-           // $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp", function (info) {
-
-
-                $(".btn_search").bind("change", function (event, ui) {
-                    $.mobile.pageContainer.pagecontainer("change", "#page_ricerca", {
-                        stuff: this.id,
-                        transition: "fade"
-                    });
-
-
-                });
-                /*
-                if($("#lista_macrocategorie").has("li").length > 1){
-                $('#lista_macrocategorie li').remove();
-                var li_first = "<li class='ui-li-divider ui-bar-b ui-first-child' role='heading' data-theme='b' data-role='list-divider'>Seleziona la categoria</li>";
-                $("#lista_macrocategorie").append(li_first);
-                }*/
-
-                //set up string for adding <li/>
-                var li = "";
-                var id_val = "";
-                //container for $li to be added
-                $.each(info, function (i, name) {
-                    if (name.id_macrocategoria != id_val) {
-                        //add the <li> to "li" variable
-                        //note the use of += in the variable
-                        //meaning I'm adding to the existing data. not replacing it.
-                        //store index value in array as id of the <a> tag
-                        li += '<li><a href="page/categorie.html?id_macrocategoria=' + name.id_macrocategoria + '"  id="' + name.id_macrocategoria + '" class="macro-go" data-ajax="false">';
-                        if (name.icona_macrocategoria != "") {
-                            li += '<img src="http://www.trovoperte.com/public/upload_gallery/immagini/' + name.icona_macrocategoria + '" class="ui-li-thumb"/>';
-                        }
-                        li += '<h3 class="ui-li-heading">' + name.macrocategoria + '</h3></a></li>';
-                        id_val = name.id_macrocategoria;
-                    }
-                });
-
-                //append list to ul
-                $("#lista_macrocategorie").append(li).promise().done(function () {
-
-
-                    //refresh list to enhance its styling.
-                    $(this).listview("refresh");
-                });
-            //});
-        }
+        
 
     </script>
 </head>
