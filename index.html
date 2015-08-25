@@ -116,8 +116,10 @@
             
           function onInitFs(fs) {
 			   fs.root.getFile('log.txt', { create: true }, function (fileEntry) {
+				alert("prima writer");
 					// Create a FileWriter object for our FileEntry (log.txt).
 					fileEntry.createWriter(function (fileWriter) {
+					alert("dentro writer");
 						var dati = "";
 						$.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp", function (info) {
 							dati = JSON.stringify(info);
