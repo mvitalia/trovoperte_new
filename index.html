@@ -165,21 +165,23 @@
            function onInitFs(fs) {
 				fs.root.getFile('log.txt', { create: true }, function (fileEntry) {
 
+
 					// Create a FileWriter object for our FileEntry (log.txt).
-					fileEntry.createWriter(function (fileWriter) {
+					fileEntry.createWriter(win, fail);
 
-						fileWriter.onwriteend = function (e) {
-							alert('Write completed.');
+						function win(writer) {
+							writer.onwrite = function(evt) {
+							console.log("write success");
+						};
+						writer.seek(writer.length);
+							writer.write("appended text");
 						};
 
-						fileWriter.onerror = function (e) {
-							alert('Write failed: ' + e.toString());
+						var fail = function(evt) {
+							console.log(error.code);
 						};
 
-						// Create a new Blob and write it to log.txt.
-						var blob = new Blob(['Lorem Ipsum'], { type: 'text/plain' });
-
-						fileWriter.write(blob);
+						
 
 					}, errorHandler);
 
