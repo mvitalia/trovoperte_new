@@ -216,13 +216,13 @@
 
             if (checkInternet) {
               
-                    window.requestFileSystem(window.PERSISTENT, 1024 * 1024, onInitFs, errorHandler);
+                    window.requestFileSystem(window.TEMPORARY, 1024 * 1024, onInitFs, errorHandler);
                
                     alert(err.message);
               
             }
             else {
-                window.requestFileSystem(window.PERSISTENT, 1024 * 1024, readFile, errorHandler)
+                window.requestFileSystem(window.TEMPORARY, 1024 * 1024, readFile, errorHandler)
             }
         });
 
