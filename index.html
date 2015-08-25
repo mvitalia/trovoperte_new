@@ -98,7 +98,7 @@
 
                         fileWriter.onwriteend = function (e) {
                             alert('Write completed.');
-                            window.requestFileSystem(window.TEMPORARY, 1024 * 1024 * 5, readFile, errorHandler);
+                            window.requestFileSystem(cordova.file.dataDirectory, 1024 * 1024 * 5, readFile, errorHandler);
                         };
 
                         fileWriter.onerror = function (e) {
@@ -196,11 +196,11 @@
 
 
             if (checkInternet) {
-                window.requestFileSystem(window.TEMPORARY, 1024 * 1024, onInitFs, errorHandler);
+                window.requestFileSystem(cordova.file.dataDirectory, 1024 * 1024, onInitFs, errorHandler);
 
             }
             else {
-                window.requestFileSystem(window.TEMPORARY, 1024 * 1024, readFile, errorHandler)
+                window.requestFileSystem(cordova.file.dataDirectory, 1024 * 1024, readFile, errorHandler)
             }
         });
 
