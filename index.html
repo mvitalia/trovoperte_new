@@ -98,7 +98,7 @@
 
                         fileWriter.onwriteend = function (e) {
                             alert('Write completed.');
-                            window.requestFileSystem(cordova.file.dataDirectory, 1024 * 1024 * 5, readFile, errorHandler);
+                            window.requestFileSystem(window.resolveLocalFileSystemURL(cordova.file.dataDirectory), 1024 * 1024 * 5, readFile, errorHandler);
                         };
 
                         fileWriter.onerror = function (e) {
@@ -196,7 +196,7 @@
 
 
             if (checkInternet) {
-                window.requestFileSystem(cordova.file.dataDirectory, 1024 * 1024, onInitFs, errorHandler);
+                window.requestFileSystem(window.resolveLocalFileSystemURL(cordova.file.dataDirectory), 1024 * 1024, onInitFs, errorHandler);
 
             }
             else {
