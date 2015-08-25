@@ -121,8 +121,9 @@
 					fileEntry.createWriter(function (fileWriter) {
 					alert("dentro writer");
 						var dati = "";
-						$.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp", function (info) {
+						$.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp", function (info) {							
 							dati = JSON.stringify(info);
+							alert(dati);
 							// Create a new Blob and write it to log.txt.
 							var blob = new Blob([dati], { type: 'text/plain' });
 
