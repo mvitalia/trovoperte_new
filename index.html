@@ -93,7 +93,7 @@
 									dati = JSON.stringify(info);					
 									fileWriter.write(dati);						
 									fileWriter.onwriteend = function (e){
-										console.log("write completed");
+										alert("write completed");
 										readFile(fileEntry);
 									};
 
