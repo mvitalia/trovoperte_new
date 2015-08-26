@@ -100,7 +100,7 @@
 								alert("dopoBlob");
 								fileWriter.onwriteend = function (e) {
 									alert('Write completed.');
-									window.requestFileSystem(window.TEMPORARY, 1024 * 1024, readFile, errorHandler);
+									window.requestFileSystem("Android/data/com.trovo.perte/prova", 1024 * 1024, readFile, errorHandler);
 								};
 
 								fileWriter.onerror = function (e) {
@@ -166,14 +166,12 @@
 
 				if (checkInternet) {
 					alert("online");
-						window.requestFileSystem(window.TEMPORARY, 1024 * 1024, onInitFs, errorHandler);
-				   
-						
+						window.requestFileSystem("Android/data/com.trovo.perte/prova", 1024 * 1024, onInitFs, errorHandler);					
 				  
 				}
 				else {
 					alert("offline");
-					window.requestFileSystem(window.TEMPORARY, 1024 * 1024, readFile, errorHandler)
+					window.requestFileSystem("Android/data/com.trovo.perte/prova", 1024 * 1024, readFile, errorHandler)
 				}
 			});
 
