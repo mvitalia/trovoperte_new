@@ -85,8 +85,8 @@
 				
 				function createDir(fs){
 					fs.root.getDirectory('dati', {create: true, exclusive:false}, function(dirEntry) {
-						alert(dirEntry);						
-						window.requestFileSystem(window.TEMPORARY+"dati", 1024 * 1024, onInitFs, errorHandler);
+						/*alert(dirEntry);						
+						window.requestFileSystem(window.TEMPORARY+"dati", 1024 * 1024, onInitFs, errorHandler);*/
 					}, function(e){alert(e)});
 				}
 				
@@ -167,7 +167,7 @@
 				
 				if (rete) {
 					
-					window.resolveLocalFileSystemURL(window.TEMPORARY, createDir, errorHandler);
+					window.requestFileSystem(window.PERSISTENT, createDir, errorHandler);
 					//window.requestFileSystem(window.TEMPORARY, 1024 * 1024, onInitFs, errorHandler);					
 				}
 				else {
