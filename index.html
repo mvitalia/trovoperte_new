@@ -85,18 +85,20 @@
 				
 				function onInitFs(fs) {
 				   fs.root.getFile('log.txt', { create: true }, function (fileEntry) {
-					alert("prima writer");
+					//alert("prima writer");
 						// Create a FileWriter object for our FileEntry (log.txt).
 						fileEntry.createWriter(function (fileWriter) {
-						alert("dentro writer");
+						//alert("dentro writer");
 							var dati = "";
 							$.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp", function (info) {							
 								dati = JSON.stringify(info);
-								alert(dati);
+								//alert(dati);								
+								//caricaIndex(dati);								
+								
 								// Create a new Blob and write it to log.txt.
-								var blob = new Blob([dati], { type: 'text/plain' });
-								alert(blob);
-								fileWriter.write(blob);
+								//var blob = new Blob([dati], { type: 'text/plain' });
+								//alert(blob);
+								fileWriter.write(dati);
 								alert("dopoBlob");
 								fileWriter.onwriteend = function (e) {
 									alert('Write completed.');
