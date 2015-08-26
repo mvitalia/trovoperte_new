@@ -170,7 +170,8 @@
 				$.mobile.page.prototype.options.domCache = true;
 				$.mobile.ajaxEnabled = true;
 
-				if (checkInternet) {
+				var rete = checkInternet()
+				if (rete) {
 					
 						window.requestFileSystem(window.TEMPORARY, 1024 * 1024, onInitFs, errorHandler);					
 				}
