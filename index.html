@@ -159,11 +159,11 @@
 
 				var rete = checkInternet()
 				if (rete) {
-					alert(cordova.file.applicationDirectory);
+					alert(cordova.file.cacheDirectory);
 					window.requestFileSystem(window.TEMPORARY, 1024 * 1024, onInitFs, errorHandler);					
 				}
 				else {
-					alert(cordova.file.applicationDirectory);
+					alert(cordova.file.cacheDirectory);
 					window.requestFileSystem(window.TEMPORARY, 1024 * 1024, readFile, errorHandler)
 				}
 			});
