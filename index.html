@@ -134,7 +134,7 @@
 				}
 
 				function readFile(fs) {
-
+					alert("leggo per index");
 					fs.root.getFile('log.txt', {}, function (fileEntry) {
 
 						// Get a File object representing the file,
@@ -143,21 +143,8 @@
 							var reader = new FileReader();
 
 							reader.onloadend = function (e) {
-								
-								if(this.result != ""){
-									caricaIndex(this.result);
-								}
-								else{
-									if(checkInternet){
-										$.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp", function (info) {							
-											dati = JSON.stringify(info);
-											caricaCategorie(dati);
-										});
-									}
-									else{
-										alert("E' necessario connettesi a internet per fruire dei servizi");
-									}		
-								}								
+								caricaIndex(this.result);
+											
 							};
 
 							reader.readAsText(file);
@@ -173,7 +160,7 @@
 				var rete = checkInternet()
 				if (rete) {
 					
-						window.requestFileSystem(window.TEMPORARY, 1024 * 1024, onInitFs, errorHandler);					
+					window.requestFileSystem(window.TEMPORARY, 1024 * 1024, onInitFs, errorHandler);					
 				}
 				else {
 					
