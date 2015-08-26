@@ -84,6 +84,7 @@
 			$(document).on("pageinit", "#page_index", function () {
 				
 				function createDir(fs){
+					alert("Dentro");
 					fs.root.getDirectory('dati', {create: true}, function(dirEntry) {
 						alert(dirEntry);
 						//var url = cordova.file.dataDirectory + "dati";
