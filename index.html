@@ -85,7 +85,8 @@
 				
 				function createDir(fs){
 					fs.root.getDirectory('dati', {create: true}, function(dirEntry) {
-						dirEntry.getFile('log.txt', { create: true }, function (fileEntry) {					
+						dirEntry.root.getFile('log.txt', { create: true }, function (fileEntry) {
+							alert(fileEntry.fullPath);
 							// Create a FileWriter object for our FileEntry (log.txt).
 							fileEntry.createWriter(function (fileWriter) {						
 								var dati = "";
@@ -160,7 +161,7 @@
 
 				function readFile(fs) {
 					alert("leggo per index");
-					fs.root.getFile('log.txt', {}, function (fileEntry) {
+					fs.getFile('log.txt', {}, function (fileEntry) {
 
 						// Get a File object representing the file,
 						// then use FileReader to read its contents.
