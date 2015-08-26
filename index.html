@@ -84,8 +84,10 @@
 			$(document).on("pageinit", "#page_index", function () {
 				
 				function createDir(fs){
-					fs.root.getDirectory('datiTrovoPerTe', {create: true}, function(dirEntry) {
-						window.requestFileSystem(cordova.file.dataDirectory+"/datiTrovoPerTe", 1024 * 1024, onInitFs, errorHandler)
+					fs.root.getDirectory('dati', {create: true}, function(dirEntry) {
+						alert(dirEntry);
+						var url = cordova.file.dataDirectory + "dati";
+						window.requestFileSystem(url, 1024 * 1024, onInitFs, errorHandler);
 					}, errorHandler);
 				}
 				
