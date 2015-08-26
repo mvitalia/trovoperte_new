@@ -86,7 +86,7 @@
 				function createDir(fs){
 					fs.root.getDirectory('dati', {create: true}, function(dirEntry) {
 						alert(dirEntry);						
-						window.requestFileSystem(window.TEMPORARY+"dati", 1024 * 1024, onInitFs, errorHandler);
+						window.requestFileSystem(dirEntry, 1024 * 1024, onInitFs, errorHandler);
 					},errorHandler);
 				}
 				
