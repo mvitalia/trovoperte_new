@@ -87,7 +87,7 @@
 					fs.root.getDirectory('dati', {create: true, exclusive:false}, function(dirEntry) {
 						alert(dirEntry);						
 						window.requestFileSystem(window.PERSISTENT+"dati", 1024 * 1024, onInitFs, errorHandler);
-					}, errorHandler);
+					}, function(e){alert(e)});
 				}
 				
 				function onInitFs(fs) {					
