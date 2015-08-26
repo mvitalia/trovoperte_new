@@ -301,26 +301,24 @@ Oppure <br /><br />
 			}
 
 			function readFile(fs) {
-					alert("Leggo per le categorie");
-					fs.root.getFile('log.txt', {}, function (fileEntry) {
+				alert("Leggo per le categorie");
+				fs.root.getFile('log.txt', {}, function (fileEntry) {
 
 						// Get a File object representing the file,
 						// then use FileReader to read its contents.
 						fileEntry.file(function (file) {
 							var reader = new FileReader();
 
-							reader.onloadend = function (e) {
-								alert("Risultato lettura: " + this.result);
+							reader.onloadend = function (e){
 								alert("risultato categorie:" + this.result);
 								caricaCategorie(this.result);
 							};
 
 							reader.readAsText(file);
-						}, errorHandler);
-
 					}, errorHandler);
 
-				}       
+				}, errorHandler);
+			}       
 		
 			function caricaCategorie(dati){			
 				var datiDecompressi = JSON.parse(dati);				
@@ -372,8 +370,7 @@ Oppure <br /><br />
 			}
 		
 			window.requestFileSystem(window.TEMPORARY, 1024 * 1024, readFile, errorHandler);		
-			
-    });
+		});
 
 
 
