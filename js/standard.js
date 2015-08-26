@@ -229,12 +229,32 @@ function caricaMappa(coordinate,nomeAzienda) {
     }
 
     function checkInternet() {
-        var online = window.navigator.onLine;
+        /*var online = window.navigator.onLine;
         if (!online) {
             return false;
         } else {
             return true;
-        }
+        }*/
+		
+			var networkState = navigator.connection.type;
+
+			var states = {};
+			states[Connection.UNKNOWN]  = false;
+			states[Connection.ETHERNET] = true;
+			states[Connection.WIFI]     = true;
+			states[Connection.CELL_2G]  = true;
+			states[Connection.CELL_3G]  = true;
+			states[Connection.CELL_4G]  = true;
+			states[Connection.CELL]     = true;
+			states[Connection.NONE]     = false;
+			
+			alert(networkState);
+			if (states[networkState]) {
+				return true;
+			} else {
+				return false;
+			}
+		
     }
 
 

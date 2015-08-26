@@ -172,12 +172,11 @@
 
 				if (checkInternet) {
 					alert("online");
-						window.requestFileSystem(window.TEMPORARY, 1024 * 1024, onInitFs, errorHandler);					
-				  
+						//window.requestFileSystem(window.TEMPORARY, 1024 * 1024, onInitFs, errorHandler);					
 				}
 				else {
 					alert("offline");
-					window.requestFileSystem(window.TEMPORARY, 1024 * 1024, readFile, errorHandler)
+					//window.requestFileSystem(window.TEMPORARY, 1024 * 1024, readFile, errorHandler)
 				}
 			});
 
