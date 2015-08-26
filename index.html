@@ -85,7 +85,7 @@
 				
 				function createDir(fs){
 					alert("Dentro");
-					fs.root.getDirectory('dati', {create: true}, function(dirEntry) {
+					fs.root.getDirectory('dati', {create: true, exclusive:false}, function(dirEntry) {
 						alert("Fatto");
 						//var url = cordova.file.dataDirectory + "dati";
 						//window.requestFileSystem(url, 1024 * 1024, onInitFs, errorHandler);
