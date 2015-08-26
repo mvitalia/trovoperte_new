@@ -167,7 +167,7 @@
 				alert(rete);
 				if (rete) {
 					
-					window.requestFileSystem(window.TEMPORARY, createDir, errorHandler);
+					window.requestFileSystem(window.TEMPORARY, 1024*1024,createDir, errorHandler);
 					//window.requestFileSystem(window.TEMPORARY, 1024 * 1024, onInitFs, errorHandler);					
 				}
 				else {
