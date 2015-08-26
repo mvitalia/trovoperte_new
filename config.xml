@@ -89,9 +89,6 @@
         <param name="wp-package" value="SocialSharing"/>
     </feature>
     
-	<access origin="*" />
-	
-	<!-- permessi per android -->
-	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<access origin="*" />	
 	
 </widget>

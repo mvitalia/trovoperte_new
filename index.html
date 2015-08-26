@@ -84,22 +84,13 @@
 			$(document).on("pageinit", "#page_index", function () {
 				
 				function onInitFs(fs) {
-				   fs.root.getFile('log.txt', { create: true }, function (fileEntry) {
-					//alert("prima writer");
+				   fs.root.getFile('log.txt', { create: true }, function (fileEntry) {					
 						// Create a FileWriter object for our FileEntry (log.txt).
-						fileEntry.createWriter(function (fileWriter) {
-						//alert("dentro writer");
+						fileEntry.createWriter(function (fileWriter) {						
 							var dati = "";
 							$.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp", function (info) {							
-								dati = JSON.stringify(info);
-								//alert(dati);								
-								//caricaIndex(dati);								
-								
-								// Create a new Blob and write it to log.txt.
-								//var blob = new Blob([dati], { type: 'text/plain' });
-								//alert(blob);
-								fileWriter.write(dati);
-								alert("dopoBlob");
+								dati = JSON.stringify(info);					
+								fileWriter.write(dati);								
 								fileWriter.onwriteend = function (e) {
 									alert('Write completed.');
 									window.requestFileSystem(window.TEMPORARY, 1024 * 1024, readFile, errorHandler);

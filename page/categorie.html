@@ -301,7 +301,7 @@ Oppure <br /><br />
 			}
 
 			function readFile(fs) {
-
+					alert("Leggo per le categorie");
 					fs.root.getFile('log.txt', {}, function (fileEntry) {
 
 						// Get a File object representing the file,
@@ -311,20 +311,8 @@ Oppure <br /><br />
 
 							reader.onloadend = function (e) {
 								alert("Risultato lettura: " + this.result);
-								if(this.result != ""){
-									caricaCategorie(this.result);
-								}
-								else{
-									if(checkInternet){
-										$.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp", function (info) {							
-											dati = JSON.stringify(info);
-											caricaCategorie(dati);
-										});
-									}
-									else{
-										alert("E' necessario connettesi a internet per fruire dei servizi");
-									}									
-								}								
+								alert("risultato categorie:" + this.result);
+								caricaCategorie(this.result);
 							};
 
 							reader.readAsText(file);
