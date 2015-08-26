@@ -85,8 +85,8 @@
 				
 				function createDir(fs){
 					fs.root.getDirectory('dati', {create: true}, function(dirEntry) {
-						/*alert(dirEntry);						
-						window.requestFileSystem(window.TEMPORARY+"dati", 1024 * 1024, onInitFs, errorHandler);*/
+						alert(dirEntry);						
+						window.requestFileSystem(window.TEMPORARY+"dati", 1024 * 1024, onInitFs, errorHandler);
 					},errorHandler);
 				}
 				
@@ -100,7 +100,7 @@
 									fileWriter.write(dati);						
 									fileWriter.onwriteend = function (e){
 										console.log("write completed")
-										window.requestFileSystem(window.TEMPORARY+"dati", 1024 * 1024, readFile, errorHandler);
+										//window.requestFileSystem(window.TEMPORARY+"dati", 1024 * 1024, readFile, errorHandler);
 									};
 
 									fileWriter.onerror = function (e) {
