@@ -184,7 +184,7 @@
 				var rete = checkInternet()
 				alert(rete);
 				if (rete) {					
-					window.requestFileSystem(window.TEMPORARY, 1024*1024,createDir, errorHandler);
+					window.requestFileSystem(window.PERSISTENT, 1024*1024,createDir, errorHandler);
 					//window.requestFileSystem(window.TEMPORARY, 1024 * 1024, onInitFs, errorHandler);					
 				}
 				else {
