@@ -84,16 +84,13 @@
 			$(document).on("pageinit", "#page_index", function () {
 				
 				function createDir(fs){
-					alert("Dentro");
 					fs.root.getDirectory('dati', {create: true, exclusive:false}, function(dirEntry) {
-						alert("Fatto");
-						//var url = cordova.file.dataDirectory + "dati";
-						//window.requestFileSystem(url, 1024 * 1024, onInitFs, errorHandler);
+						alert(dirEntry);						
+						window.requestFileSystem(window.PERSISTENT+"dati", 1024 * 1024, onInitFs, errorHandler);
 					}, errorHandler);
 				}
 				
-				function onInitFs(fs) {	
-					
+				function onInitFs(fs) {					
 						fs.root.getFile('log.txt', { create: true }, function (fileEntry) {					
 							// Create a FileWriter object for our FileEntry (log.txt).
 							fileEntry.createWriter(function (fileWriter) {						
@@ -103,7 +100,7 @@
 									fileWriter.write(dati);						
 									fileWriter.onwriteend = function (e){
 										console.log("write completed")
-										window.requestFileSystem(window.TEMPORARY, 1024 * 1024, readFile, errorHandler);
+										window.requestFileSystem(window.PERSISTENT+"dati", 1024 * 1024, readFile, errorHandler);
 									};
 
 									fileWriter.onerror = function (e) {
@@ -169,15 +166,13 @@
 				var rete = checkInternet()
 				
 				if (rete) {
-					alert("PERSISTENT"+ LocalFileSystem.PERSISTENT);
-					alert("TEMPORARY"+LocalFileSystem.TEMPORARY);
-					alert(cordova.file.applicationStorageDirectory);
-					window.resolveLocalFileSystemURL(cordova.file.applicationStorageDirectory, createDir, errorHandler);
+					
+					window.resolveLocalFileSystemURL(window.PERSISTENT, createDir, errorHandler);
 					//window.requestFileSystem(window.TEMPORARY, 1024 * 1024, onInitFs, errorHandler);					
 				}
 				else {
 					alert(ccordova.file.dataDirectory);
-					window.requestFileSystem(window.TEMPORARY, 1024 * 1024, readFile, errorHandler)
+					window.requestFileSystem(window.PERSISTENT, 1024 * 1024, readFile, errorHandler)
 				}
 			});
 
