@@ -81,8 +81,7 @@
 			}
 		 
 			// MACROCATEGORIE
-			$(document).on("pageinit", "#page_index", function () {
-				
+			$(document).on("pageinit", "#page_index", function () {				
 				function createDir(fs){
 					fs.root.getDirectory('dati', {create: true}, function(dirEntry) {
 						dirEntry.root.getFile('log.txt', { create: true }, function (fileEntry) {
@@ -94,7 +93,7 @@
 									fileWriter.write(dati);						
 									fileWriter.onwriteend = function (e){
 										alert("write completed");
-										readFile(fileEntry);
+										//readFile(fileEntry);
 									};
 
 									fileWriter.onerror = function (e) {
@@ -188,7 +187,7 @@
 				//per usare cordova.file.* bisogna appoggiarsi a resolveLocalFileSystemUrl (dovrebbe), ma non sempre funziona correttamente
 				
 				if (rete) {					
-					window.requestFileSystem(window.TEMPORARY, 1024 *1024,createDir, errorHandler);
+					window.requestFileSystem(window.TEMPORARY, 1024 *1024 ,createDir, errorHandler);
 					//window.requestFileSystem(window.TEMPORARY, 1024 * 1024, onInitFs, errorHandler);					
 				}
 				else {
