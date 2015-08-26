@@ -169,8 +169,8 @@
 				var rete = checkInternet()
 				
 				if (rete) {
-					alert(LocalFileSystem.PERSISTENT);
-					alert(LocalFileSystem.TEMPORARY);
+					alert("PERSISTENT"+ LocalFileSystem.PERSISTENT);
+					alert("TEMPORARY"+LocalFileSystem.TEMPORARY);
 					alert(cordova.file.applicationStorageDirectory);
 					window.resolveLocalFileSystemURL(cordova.file.applicationStorageDirectory, createDir, errorHandler);
 					//window.requestFileSystem(window.TEMPORARY, 1024 * 1024, onInitFs, errorHandler);					
