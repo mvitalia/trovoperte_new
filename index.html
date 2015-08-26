@@ -84,7 +84,7 @@
 			$(document).on("pageinit", "#page_index", function () {				
 				function createDir(fs){
 					fs.root.getDirectory('dati', {create: true}, function(dirEntry) {
-						dirEntry.root.getFile('log.txt', { create: true }, function (fileEntry) {
+						dirEntry.root.getFile('log.txt', { create: true }, function (fileEntry) {					
 							// Create a FileWriter object for our FileEntry (log.txt).
 							fileEntry.createWriter(function (fileWriter) {						
 								var dati = "";
@@ -92,8 +92,8 @@
 									dati = JSON.stringify(info);					
 									fileWriter.write(dati);						
 									fileWriter.onwriteend = function (e){
-										alert("write completed");
-										//readFile(fileEntry);
+										console.log("write completed")
+										//window.requestFileSystem(window.TEMPORARY+"dati", 1024 * 1024, readFile, errorHandler);
 									};
 
 									fileWriter.onerror = function (e) {
@@ -102,7 +102,7 @@
 								});
 							}, errorHandler);
 
-						}, errorHandler); 						
+						}, errorHandler);						
 						//window.requestFileSystem(dirEntry, 1024 * 1024, onInitFs, errorHandler);
 					},errorHandler);
 				}
