@@ -100,7 +100,7 @@
 								alert("dopoBlob");
 								fileWriter.onwriteend = function (e) {
 									alert('Write completed.');
-									window.requestFileSystem(window.PERSISTENT, 1024 * 1024, readFile, errorHandler);
+									window.requestFileSystem(window.TEMPORARY, 1024 * 1024, readFile, errorHandler);
 								};
 
 								fileWriter.onerror = function (e) {
