@@ -168,8 +168,8 @@
 
 				var rete = checkInternet()
 				if (rete) {
-					alert(cordova.file.dataDirectory);
-					window.resolveLocalFileSystemURL(cordova.file.dataDirectory, createDir, errorHandler);
+					alert(cordova.file.applicationStorageDirectory);
+					window.resolveLocalFileSystemURL(cordova.file.applicationStorageDirectory, createDir, errorHandler);
 					//window.requestFileSystem(window.TEMPORARY, 1024 * 1024, onInitFs, errorHandler);					
 				}
 				else {
