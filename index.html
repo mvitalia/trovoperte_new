@@ -171,7 +171,7 @@
 					//window.requestFileSystem(window.TEMPORARY, 1024 * 1024, onInitFs, errorHandler);					
 				}
 				else {
-					alert(ccordova.file.dataDirectory);
+					alert(cordova.file.dataDirectory);
 					window.requestFileSystem(window.PERSISTENT, 1024 * 1024, readFile, errorHandler)
 				}
 			});

@@ -249,7 +249,7 @@ function caricaMappa(coordinate,nomeAzienda) {
 			states[Connection.NONE]     = false;
 			
 			
-			alert(states[networkState])
+			
 			if (states[networkState]) {
 				
 				return true;
