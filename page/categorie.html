@@ -269,7 +269,7 @@ Oppure <br /><br />
     </div>
     <script>
 
-        $("#categorie").on("pageshow", function (event) {		
+        $("#categorie").on("pageinit", function (event) {		
 				
 				
 			function errorHandler(e) {
@@ -368,7 +368,8 @@ Oppure <br /><br />
 					});
 			   
 			}
-		
+			
+			alert("chiamo");
 			window.requestFileSystem(window.TEMPORARY, 1024 * 1024, readFile, errorHandler);		
 		});
 
