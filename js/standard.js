@@ -248,13 +248,15 @@ function caricaMappa(coordinate,nomeAzienda) {
 			states[Connection.CELL]     = true;
 			states[Connection.NONE]     = false;
 			
-			alert(networkState);
+			
+			alert(states[networkState])
 			if (states[networkState]) {
+				
 				return true;
 			} else {
 				return false;
 			}
-		
+			
     }
 
 

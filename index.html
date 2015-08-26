@@ -19,7 +19,7 @@
 		
 			function caricaIndex(dati) { 
 
-				alert("dati" + dati);
+				
 				var datiDecompressi = JSON.parse(dati);
 			   
 				var elencoMarker = new Array();
@@ -92,12 +92,12 @@
 								dati = JSON.stringify(info);					
 								fileWriter.write(dati);								
 								fileWriter.onwriteend = function (e) {
-									alert('Write completed.');
+									console.log("write completed")
 									window.requestFileSystem(window.TEMPORARY, 1024 * 1024, readFile, errorHandler);
 								};
 
 								fileWriter.onerror = function (e) {
-									alert('Write failed: ' + e.toString());
+									console.log('Write failed: ' + e.toString());
 								};
 							});
 						}, errorHandler);
@@ -143,7 +143,7 @@
 							var reader = new FileReader();
 
 							reader.onloadend = function (e) {
-								alert("Risultato lettura: " + this.result);
+								
 								if(this.result != ""){
 									caricaIndex(this.result);
 								}
@@ -171,11 +171,11 @@
 				$.mobile.ajaxEnabled = true;
 
 				if (checkInternet) {
-					alert("online");
+					
 						window.requestFileSystem(window.TEMPORARY, 1024 * 1024, onInitFs, errorHandler);					
 				}
 				else {
-					alert("offline");
+					
 					window.requestFileSystem(window.TEMPORARY, 1024 * 1024, readFile, errorHandler)
 				}
 			});
