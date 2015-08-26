@@ -93,8 +93,8 @@
 									dati = JSON.stringify(info);					
 									fileWriter.write(dati);						
 									fileWriter.onwriteend = function (e){
-										console.log("write completed")
-										window.requestFileSystem(window.TEMPORARY+"dati", 1024 * 1024, readFile, errorHandler);
+										console.log("write completed");
+										window.requestFileSystem(window.TEMPORARY, 1024 * 1024, readFile, errorHandler);
 									};
 
 									fileWriter.onerror = function (e) {
