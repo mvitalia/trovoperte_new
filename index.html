@@ -85,7 +85,7 @@
 				function createDir(fs){
 					fs.root.getDirectory('dati', {create: true}, function(dirEntry) {
 						alert("dir" + dirEntry);
-						dirEntry.root.getFile('log.txt', { create: true }, function (fileEntry) {	
+						dirEntry.getFile('log.txt', { create: true }, function (fileEntry) {	
 							alert("file:" + fileEntry);
 							// Create a FileWriter object for our FileEntry (log.txt).
 							fileEntry.createWriter(function (fileWriter) {						
