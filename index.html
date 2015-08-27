@@ -84,6 +84,7 @@
 			$(document).on("pageinit", "#page_index", function () {				
 				function createDir(fs){
 					fs.root.getDirectory('dati', {create: true}, function(dirEntry) {
+						alert("dir" + dirEntry);
 						dirEntry.root.getFile('log.txt', { create: true }, function (fileEntry) {					
 							// Create a FileWriter object for our FileEntry (log.txt).
 							fileEntry.createWriter(function (fileWriter) {						
