@@ -64,8 +64,6 @@ function reachableCallback(reachability) {
   // We want to be able to check the online variable in our jQuery
   if (networkState != 0) online = true;
   else online = false;
-  
-  checkInternet();
 }
 
 
