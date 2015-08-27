@@ -94,6 +94,7 @@
 									fileWriter.write(dati);						
 									fileWriter.onwriteend = function (e){
 										alert("write completed");
+										alert("entry per passaggio" + dirEntry);
 										readFile(dirEntry);
 									};
 
