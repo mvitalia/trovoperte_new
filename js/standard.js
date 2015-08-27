@@ -236,7 +236,7 @@ function caricaMappa(coordinate,nomeAzienda) {
             return true;
         }
     }
-    }
+    
 
 
 /** GET PARAMETER **/
