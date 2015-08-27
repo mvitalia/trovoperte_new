@@ -229,19 +229,13 @@ function caricaMappa(coordinate,nomeAzienda) {
     }
 
     function checkInternet() {
-		var rete;
-		alert(navigator.connection.type);
-        if(navigator.connection.type != Connection.NONE){
-                alert("yescon");
-				rete = true;
-				return rete;
-            }else{
-				 alert("nocon");
-				rete = false;
-				return rete;
-               
-            }
-			
+		  var online = window.navigator.onLine;
+        if (!online) {
+            return false;
+        } else {
+            return true;
+        }
+    }
     }
 
 
