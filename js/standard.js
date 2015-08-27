@@ -235,6 +235,7 @@ function caricaMappa(coordinate,nomeAzienda) {
 		},function(){
 			alert("sono offline");			
 		});
+		return true;
 		
         /*if(navigator.connection.type == Connection.NONE || navigator.connection.type == Connection.UNKNOWN){
             if(rete == false)
