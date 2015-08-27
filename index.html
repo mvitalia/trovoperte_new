@@ -161,7 +161,7 @@
 
 				function readFile(fs) {
 					alert("leggo per index");
-					fs.root.getFile('log.txt', {}, function (fileEntry) {
+					fs.getFile('log.txt', {}, function (fileEntry) {
 						alert("file read:" + fileEntry)
 						// Get a File object representing the file,
 						// then use FileReader to read its contents.
