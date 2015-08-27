@@ -234,7 +234,7 @@ function caricaMappa(coordinate,nomeAzienda) {
 		
 		var wifi;
 		cordova.plugins.diagnostic.isWifiEnabled(function(enabled){
-			if(enable){
+			if(enabled){
 				wifi = true;
 			}
 			else{
