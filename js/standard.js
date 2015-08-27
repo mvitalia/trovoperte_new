@@ -47,12 +47,7 @@ $(document).ready(function () {
 	//checkInternet();
 });
 
-if(online){
-	alert("Sono connesso");
-}
-else{
-	alert("Sono disconnesso");
-}
+
 
 function onDeviceReady() {
   navigator.network.isReachable("google.com", reachableCallback, {});
@@ -68,6 +63,9 @@ function reachableCallback(reachability) {
   
   // We want to be able to check the online variable in our jQuery
   if (networkState != 0) online = true;
+  else online = false;
+  
+  checkInternet();
 }
 
 
@@ -257,13 +255,16 @@ function caricaMappa(coordinate,nomeAzienda) {
     }
 
     function checkInternet() {
-		var rete;
-		navigator.network.isReachable("trovoperte.com",corretto, errato); 
 		
-	
-		
-        /*if(navigator.connection.type == Connection.NONE || navigator.connection.type == Connection.UNKNOWN){
-            if(rete == false)
+		if(online){
+			alert("Sono connesso");
+			return true;
+		}
+		else{
+			alert("Sono disconnesso");
+			return false;		
+		}        
+		/*if(navigator.connection.type == Connection.NONE || navigator.connection.type == Connection.UNKNOWN){           if(rete == false)
 			{				
 				rete = false;
 				return rete;
