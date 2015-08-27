@@ -230,7 +230,7 @@ function caricaMappa(coordinate,nomeAzienda) {
 
     function checkInternet() {
 		var rete;
-		/*alert(navigator.connection.type);
+		alert(navigator.connection.type);
         if(navigator.connection.type == Connection.NONE){
                 alert("nocon");
 				rete = false;
@@ -239,9 +239,9 @@ function caricaMappa(coordinate,nomeAzienda) {
                 alert("yescon");
 				rete = true;
 				return rete;
-            }*/
+            }
 			
-		var networkState;
+		/*var networkState;
 		networkState = navigator.connection.type;
 		var states = {};
 		states[Connection.UNKNOWN] = 'Unknown connection';
@@ -261,7 +261,7 @@ function caricaMappa(coordinate,nomeAzienda) {
 			alert("false");
 			 rete = false;
 		   return rete;
-		}
+		}*/
 			
     }
 

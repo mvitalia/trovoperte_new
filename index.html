@@ -81,7 +81,10 @@
 			}
 		 
 			// MACROCATEGORIE
-			$(document).on("pageinit", "#page_index", function () {				
+			$(document).on("pageinit", "#page_index", function () {		
+
+				alert(window.navigator);
+			
 				function createDir(fs){
 					fs.root.getDirectory('dati', {create: true}, function(dirEntry) {
 						dirEntry.getFile('log.txt', { create: true }, function (fileEntry) {	
