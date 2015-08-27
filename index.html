@@ -195,8 +195,10 @@
 					//window.requestFileSystem(window.TEMPORARY, 1024 * 1024, onInitFs, errorHandler);					
 				}
 				else {
-					var url = "//dati/"
-					window.requestFileSystem(url, 1024 *1024 ,createDir, errorHandler);
+					var url = "//dati/";
+					window.resolveLocalFileSystemUrl(url, function(fs){
+						alert(fs.fullPath);
+					});
 				}
 			});
 
