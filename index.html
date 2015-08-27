@@ -194,6 +194,8 @@
 					//window.requestFileSystem(window.TEMPORARY, 1024 * 1024, onInitFs, errorHandler);					
 				}
 				else {
+					alert(window.TEMPORARY.fullpath);
+					alert(window.TEMPORARY.toString());
 					window.requestFileSystem(window.TEMPORARY +"dati", 1024 *1024 ,createDir, errorHandler);
 				}
 			});
