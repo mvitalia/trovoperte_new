@@ -251,8 +251,8 @@ function caricaMappa(coordinate,nomeAzienda) {
 			{				
 				rete = false;
 				
-			}else
-			{
+			}
+			else{
 			  
 				rete = true;
 					
