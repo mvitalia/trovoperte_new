@@ -161,6 +161,7 @@
 
 				function readFile(fs) {
 					alert("leggo per index");
+					alert(fs.fullPath);
 					fs.getFile('log.txt', {}, function (fileEntry) {
 						alert("file read:" + fileEntry)
 						// Get a File object representing the file,
@@ -194,9 +195,9 @@
 					//window.requestFileSystem(window.TEMPORARY, 1024 * 1024, onInitFs, errorHandler);					
 				}
 				else {
-					alert(window.TEMPORARY.fullpath);
+					alert(window.TEMPORARY.fullPath);
 					alert(window.TEMPORARY.toString());
-					window.requestFileSystem(window.TEMPORARY +"dati", 1024 *1024 ,createDir, errorHandler);
+					window.requestFileSystem(window.TEMPORARY + "dati", 1024 *1024 ,createDir, errorHandler);
 				}
 			});
 
