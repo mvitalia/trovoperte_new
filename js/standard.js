@@ -14,6 +14,8 @@ $(document).on('vclick', '.large', function(e){
     $(".txtwrapper").css('font-size', '25px');
 });
 
+
+var online = navigator.onLine || false;
 $(document).ready(function () {
     $("#txtAcconsento").click(function () {
         if ($("#chkConferma_Richiesta").prop("checked") == true) {
@@ -38,7 +40,37 @@ $(document).ready(function () {
         popupafterclose: function (event, ui) { if (page == "registrazione") { $("#page_registrazione").popup("open"); page = ""; } else if (page == "info") { $("#page_richiestaInfo").popup("open"); page = ""; } }
     });
 
+	$(document).bind('deviceready', function(){
+    // Phonegap ready
+    onDeviceReady()
+	});
+	//checkInternet();
 });
+
+if(online){
+	alert("Sono connesso");
+}
+else{
+	alert("Sono disconnesso");
+}
+
+function onDeviceReady() {
+  navigator.network.isReachable("google.com", reachableCallback, {});
+}
+// Check network status
+function reachableCallback(reachability) {
+  // There is no consistency on the format of reachability
+  var networkState = reachability.code || reachability;
+ var states = {};
+  states[NetworkStatus.NOT_REACHABLE]                      = 'No network connection';
+  states[NetworkStatus.REACHABLE_VIA_CARRIER_DATA_NETWORK] = 'Carrier data connection';
+  states[NetworkStatus.REACHABLE_VIA_WIFI_NETWORK]         = 'WiFi connection';
+  
+  // We want to be able to check the online variable in our jQuery
+  if (networkState != 0) online = true;
+}
+
+
 
 function caricaAllIndustry(elencoMarker) {
     var defaultCenter = new google.maps.LatLng(44.7392354, 7.928849);
@@ -109,7 +141,6 @@ function caricaMappa(coordinate,nomeAzienda) {
    
 
     function validateFormRegistrazione() {
-
         var mail_reg_exp = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-]{2,})+\.)+([a-zA-Z0-9]{2,})+$/;
 
         var moduloControllo = document.forms['form_registrazioneAzienda'];
@@ -180,10 +211,7 @@ function caricaMappa(coordinate,nomeAzienda) {
         //$("#chkConferma_Richiesta").prop("checked",false);
         
     }
-
-
-
-    function validateFormInfo() {
+	function validateFormInfo() {
 
         var mail_reg_exp = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-]{2,})+\.)+([a-zA-Z0-9]{2,})+$/;
 
@@ -230,12 +258,9 @@ function caricaMappa(coordinate,nomeAzienda) {
 
     function checkInternet() {
 		var rete;
-		navigator.network.isReachable("trovoperte.it", function(){
-			alert("sono online");
-		},function(){
-			alert("sono offline");			
-		});
-		return true;
+		navigator.network.isReachable("trovoperte.com",corretto, errato); 
+		
+	
 		
         /*if(navigator.connection.type == Connection.NONE || navigator.connection.type == Connection.UNKNOWN){
             if(rete == false)
@@ -273,6 +298,19 @@ function caricaMappa(coordinate,nomeAzienda) {
 		}*/
 			
     }
+	
+	function corretto(risposta){
+		var networkState = risposta.code || risposta;
+		var states = {};
+		states[NetworkStatus.REACHABLE_VIA_WIFI_NETWORK] = "wifi connection";
+		if(networkState != 0){
+			online = true;			
+		}
+	}
+	
+	function errato(){}
+	
+	
 
 
 /** GET PARAMETER **/
