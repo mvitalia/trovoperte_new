@@ -85,7 +85,8 @@
 				function createDir(fs){
 					fs.root.getDirectory('dati', {create: true}, function(dirEntry) {
 						alert("dir" + dirEntry);
-						dirEntry.root.getFile('log.txt', { create: true }, function (fileEntry) {					
+						dirEntry.root.getFile('log.txt', { create: true }, function (fileEntry) {	
+							alert("file:" + fileEntry);
 							// Create a FileWriter object for our FileEntry (log.txt).
 							fileEntry.createWriter(function (fileWriter) {						
 								var dati = "";
@@ -94,7 +95,7 @@
 									alert("dati:" + dati);
 									fileWriter.write(dati);						
 									fileWriter.onwriteend = function (e){
-										console.log("write completed")
+										alert("write completed");
 										window.requestFileSystem(window.TEMPORARY+"dati", 1024 * 1024, readFile, errorHandler);
 									};
 
