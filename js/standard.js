@@ -230,11 +230,12 @@ function caricaMappa(coordinate,nomeAzienda) {
 
     function checkInternet() {
 		var rete;
-		alert("navigation onLine:" + navigation.onLine);
-		
+		alert("navigation onLine:" + navigation.onLine);		
 		var wifi;
-		cordova.plugins.diagnostic.isWifiEnabled(function(enabled){
-			if(enabled){
+		
+		cordova.plugins.diagnostic.isWifiEnabled(function(checkEnable){
+			alert(checkEnable);
+			if(checkEnable == "enabled"){
 				wifi = true;
 			}
 			else{
@@ -244,7 +245,7 @@ function caricaMappa(coordinate,nomeAzienda) {
 			console.error("The following error occurred: "+error);
 			});
 		
-		alert("wifi:" + wifi);
+		
         if(navigator.connection.type == Connection.NONE || navigator.connection.type == Connection.UNKNOWN){
             if(rete == false)
 			{				
