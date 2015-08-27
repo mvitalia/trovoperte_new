@@ -250,7 +250,7 @@ function caricaMappa(coordinate,nomeAzienda) {
     states[Connection.CELL_3G] = 'Cell 3G connection';
     states[Connection.CELL_4G] = 'Cell 4G connection';
     states[Connection.NONE] = 'No network connection';
-    if (states[networkState] === Connection.UNKNOWN || states[networkState] === Connection.NONE) {
+    if (states[networkState] == Connection.UNKNOWN || states[networkState] == Connection.NONE) {
        rete = false;
 	   return rete;
     } else {
