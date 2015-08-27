@@ -90,7 +90,7 @@
 								var dati = "";
 								$.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp", function (info) {							
 									dati = JSON.stringify(info);	
-									alert("dati:" dati);
+									alert("dati:" + dati);
 									fileWriter.write(dati);						
 									fileWriter.onwriteend = function (e){
 										console.log("write completed")
