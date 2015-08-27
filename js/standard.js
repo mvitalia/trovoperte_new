@@ -230,9 +230,13 @@ function caricaMappa(coordinate,nomeAzienda) {
 
     function checkInternet() {
 		var rete;
-		alert("navigation onLine:" + navigation.onLine);				
+		navigator.network.isReachable("trovoperte.it", function(){
+			alert("sono online");
+		},function(){
+			alert("sono offline");			
+		});
 		
-        if(navigator.connection.type == Connection.NONE || navigator.connection.type == Connection.UNKNOWN){
+        /*if(navigator.connection.type == Connection.NONE || navigator.connection.type == Connection.UNKNOWN){
             if(rete == false)
 			{				
 				rete = false;
@@ -243,7 +247,7 @@ function caricaMappa(coordinate,nomeAzienda) {
 				rete = true;
 				return rete;
 			}				
-		}  
+		}  */
 		
 		/*var networkState;
 		networkState = navigator.connection.type;
