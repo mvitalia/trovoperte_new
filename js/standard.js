@@ -240,9 +240,10 @@ function caricaMappa(coordinate,nomeAzienda) {
 				rete = true;
 				return rete;
             }*/
+			
 		var networkState;
-		networkState = navigator.network.connection.type;
-		/*var states = {};
+		networkState = navigator.connection.type;
+		var states = {};
 		states[Connection.UNKNOWN] = 'Unknown connection';
 		states[Connection.ETHERNET] = 'Ethernet connection';
 		states[Connection.WIFI] = 'WiFi connection';
