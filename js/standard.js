@@ -232,7 +232,7 @@ function caricaMappa(coordinate,nomeAzienda) {
 		var rete;
 		alert("navigation onLine:" + navigation.onLine);
 		
-		var wifi
+		var wifi;
 		cordova.plugins.diagnostic.isWifiEnabled(function(enabled){
 			if(enable){
 				wifi = true;
@@ -244,6 +244,7 @@ function caricaMappa(coordinate,nomeAzienda) {
 			console.error("The following error occurred: "+error);
 			});
 		
+		alert("wifi:" + wifi);
         if(navigator.connection.type == Connection.NONE || navigator.connection.type == Connection.UNKNOWN){
             if(rete == false)
 			{				
@@ -256,7 +257,7 @@ function caricaMappa(coordinate,nomeAzienda) {
 					
 			}				
 		}  
-				
+		alert("rete:" + rete);		
 		if(rete == true || wifi == true){
 			return true;			
 		}
