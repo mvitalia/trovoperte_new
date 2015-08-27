@@ -230,7 +230,7 @@ function caricaMappa(coordinate,nomeAzienda) {
 
     function checkInternet() {
 		var rete;
-        if(navigator.network.connection.type == Connection.NONE){
+        if(navigator.connection.type == Connection.NONE){
                 alert("nocon");
 				rete = false;
 				return rete;
