@@ -229,14 +229,36 @@ function caricaMappa(coordinate,nomeAzienda) {
     }
 
     function checkInternet() {
-		  var online = window.navigator.onLine;
-        if (!online) {
-            return false;
-        } else {
-            return true;
-        }
+		var rete;
+		/*alert(navigator.connection.type);
+        if(navigator.connection.type == Connection.NONE){
+                alert("nocon");
+				rete = false;
+				return rete;
+            }else{
+                alert("yescon");
+				rete = true;
+				return rete;
+            }*/
+		 var networkState;
+    networkState = navigator.network.connection.type;
+    var states = {};
+    states[Connection.UNKNOWN] = 'Unknown connection';
+    states[Connection.ETHERNET] = 'Ethernet connection';
+    states[Connection.WIFI] = 'WiFi connection';
+    states[Connection.CELL_2G] = 'Cell 2G connection';
+    states[Connection.CELL_3G] = 'Cell 3G connection';
+    states[Connection.CELL_4G] = 'Cell 4G connection';
+    states[Connection.NONE] = 'No network connection';
+    if (states[networkState] === Connection.UNKNOWN || states[networkState] === Connection.NONE) {
+       rete = false;
+	   return rete;
+    } else {
+         rete = true;
+	   return rete;
     }
-    
+			
+    }
 
 
 /** GET PARAMETER **/
