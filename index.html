@@ -89,12 +89,9 @@
 							fileEntry.createWriter(function (fileWriter) {						
 								var dati = "";
 								$.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp", function (info) {							
-									dati = JSON.stringify(info);	
-									alert("dati:" + dati);
+									dati = JSON.stringify(info);										
 									fileWriter.write(dati);						
-									fileWriter.onwriteend = function (e){
-										alert("write completed");
-										alert("entry per passaggio" + dirEntry);
+									fileWriter.onwriteend = function (e){									
 										readFile(dirEntry);
 									};
 
@@ -105,6 +102,30 @@
 							}, errorHandler);
 
 						}, errorHandler);						
+						//window.requestFileSystem(dirEntry, 1024 * 1024, onInitFs, errorHandler);
+					},errorHandler);
+				}
+				
+				function searchDir(fs){
+					fs.root.getDirectory('dati', {create: false}, function(dirEntry) {
+					alert("lettura offline entry: " + dirEntry);
+						dirEntry.getFile('log.txt', {}, function (fileEntry) {
+						alert("file read:" + fileEntry)
+						// Get a File object representing the file,
+						// then use FileReader to read its contents.
+						fileEntry.file(function (file) {
+							var reader = new FileReader();
+
+							reader.onloadend = function (e) {
+								alert(this.result);
+								caricaIndex(this.result);
+											
+							};
+
+							reader.readAsText(file);
+						}, errorHandler);
+
+					}, errorHandler);			
 						//window.requestFileSystem(dirEntry, 1024 * 1024, onInitFs, errorHandler);
 					},errorHandler);
 				}
@@ -160,21 +181,15 @@
 				}
 
 				function readFile(fs) {
-					alert("leggo per index");
-					alert(fs.fullPath);
 					fs.getFile('log.txt', {}, function (fileEntry) {
-						alert("file read:" + fileEntry)
 						// Get a File object representing the file,
 						// then use FileReader to read its contents.
 						fileEntry.file(function (file) {
 							var reader = new FileReader();
 
 							reader.onloadend = function (e) {
-								alert(this.result);
-								caricaIndex(this.result);
-											
+								caricaIndex(this.result);											
 							};
-
 							reader.readAsText(file);
 						}, errorHandler);
 
@@ -195,7 +210,7 @@
 					//window.requestFileSystem(window.TEMPORARY, 1024 * 1024, onInitFs, errorHandler);					
 				}
 				else {
-					window.requestFileSystem("//dati/", 1024 * 1024, readFile, errorHandler);
+					window.requestFileSystem(window.TEMPORARY, 1024 * 1024, searchDir, errorHandler);
 				}
 			});
 
