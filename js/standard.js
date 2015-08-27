@@ -230,41 +230,21 @@ function caricaMappa(coordinate,nomeAzienda) {
 
     function checkInternet() {
 		var rete;
-		alert("navigation onLine:" + navigation.onLine);		
-		var wifi;
-		
-		cordova.plugins.diagnostic.isWifiEnabled(function(checkEnable){
-			alert(checkEnable);
-			if(checkEnable == "enabled"){
-				wifi = true;
-			}
-			else{
-				wifi = false;				
-			}
-		}, function(error){
-			console.error("The following error occurred: "+error);
-			});
-		
+		alert("navigation onLine:" + navigation.onLine);				
 		
         if(navigator.connection.type == Connection.NONE || navigator.connection.type == Connection.UNKNOWN){
             if(rete == false)
 			{				
 				rete = false;
-				
+				return rete;
 			}
 			else{
 			  
 				rete = true;
-					
+				return rete;
 			}				
 		}  
-		alert("rete:" + rete);		
-		if(rete == true || wifi == true){
-			return true;			
-		}
-		else{
-			return false;			
-		}
+		
 		/*var networkState;
 		networkState = navigator.connection.type;
 		var states = {};
