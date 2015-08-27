@@ -231,16 +231,38 @@ function caricaMappa(coordinate,nomeAzienda) {
     function checkInternet() {
 		var rete;
 		alert("navigation onLine:" + navigation.onLine);
+		
+		var wifi
+		cordova.plugins.diagnostic.isWifiEnabled(function(enabled){
+			if(enable){
+				wifi = true;
+			}
+			else{
+				wifi = false;				
+			}
+		}, function(error){
+			console.error("The following error occurred: "+error);
+			});
+		
         if(navigator.connection.type == Connection.NONE || navigator.connection.type == Connection.UNKNOWN){
-              
+            if(rete == false)
+			{				
 				rete = false;
-				return rete;
-            }else{
-          
+				
+			}else
+			{
+			  
 				rete = true;
-				return rete;
-            }
-			
+					
+			}				
+		}  
+				
+		if(rete == true || wifi == true){
+			return true;			
+		}
+		else{
+			return false;			
+		}
 		/*var networkState;
 		networkState = navigator.connection.type;
 		var states = {};
