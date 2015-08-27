@@ -230,13 +230,13 @@ function caricaMappa(coordinate,nomeAzienda) {
 
     function checkInternet() {
 		var rete;
-		alert("navigator.connection.type:" + navigator.connection.type);
+		
         if(navigator.connection.type == Connection.NONE || navigator.connection.type == Connection.UNKNOWN){
-                alert("nocon");
+              
 				rete = false;
 				return rete;
             }else{
-                alert("yescon");
+          
 				rete = true;
 				return rete;
             }

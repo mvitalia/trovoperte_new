@@ -111,16 +111,16 @@
 				
 				function searchDir(fs){
 					fs.root.getDirectory('dati', {create: false}, function(dirEntry) {
-					alert("lettura offline entry: " + dirEntry);
+					
 						dirEntry.getFile('log.txt', {}, function (fileEntry) {
-						alert("file read:" + fileEntry)
+						
 						// Get a File object representing the file,
 						// then use FileReader to read its contents.
 						fileEntry.file(function (file) {
 							var reader = new FileReader();
 
 							reader.onloadend = function (e) {
-								alert(this.result);
+								
 								caricaIndex(this.result);
 											
 							};
@@ -203,7 +203,7 @@
 				$.mobile.ajaxEnabled = true;
 
 				var rete = checkInternet()
-				alert("checkInternet:" + rete);
+				
 				//window.TEMPORALY mette in cache con possibilità che venga cancellato dal SO o cancellando la cache dalla gestoine dellle applicazioni
 				//window.PERSISTENT mette insieme a tutte le altre cartelle ma può essere cancellato
 				//per usare cordova.file.* bisogna appoggiarsi a resolveLocalFileSystemUrl (dovrebbe), ma non sempre funziona correttamente
