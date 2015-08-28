@@ -294,7 +294,7 @@ function checkInternetAndroid(){
 		return rete;
 	}	*/
 	if(typeof cordova != "undefined"){      
-       
+       alert("inside");
                 /*
        si tratta di un dispositivo vero e proprio o di un simulatore, quindi
        utilizziamo il plugin "Connection" messo a disposizione da Phonegap
