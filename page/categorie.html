@@ -271,7 +271,6 @@ Oppure <br /><br />
 
         $("#categorie").on("pageshow", function (event) {		
 				
-				
 			function errorHandler(e) {
 				var msg = '';
 
@@ -300,25 +299,30 @@ Oppure <br /><br />
 				alert('Error: ' + msg);
 			}
 
-			function readFile(fs) {
-				alert("Leggo per le categorie");
-				fs.root.getFile('log.txt', {}, function (fileEntry) {
+			function searchDir(fs){
+			fs.root.getDirectory('dati', {create: false}, function(dirEntry) {
+				alert("dirEntri: " + dirEntry)
+				dirEntry.getFile('log.txt', {}, function (fileEntry) {
+					alert("fileEntry: " +fileEntry);
+					// Get a File object representing the file,
+					// then use FileReader to read its contents.
+					fileEntry.file(function (file) {
+						alert("file:" + file);
+						var reader = new FileReader();
 
-						// Get a File object representing the file,
-						// then use FileReader to read its contents.
-						fileEntry.file(function (file) {
-							var reader = new FileReader();
+						reader.onloadend = function (e) {
+							alert(this.result);
+							caricaCategorie(this.result);
+										
+						};
 
-							reader.onloadend = function (e){
-								alert("risultato categorie:" + this.result);
-								caricaCategorie(this.result);
-							};
-
-							reader.readAsText(file);
+						reader.readAsText(file);
 					}, errorHandler);
 
-				}, errorHandler);
-			}       
+				}, errorHandler);			
+				//window.requestFileSystem(dirEntry, 1024 * 1024, onInitFs, errorHandler);
+			},errorHandler);
+		}
 		
 			function caricaCategorie(dati){			
 				var datiDecompressi = JSON.parse(dati);				
@@ -334,7 +338,7 @@ Oppure <br /><br />
 							elencoMarker.push(azienda);
 						}
 					});
-					caricaAllIndustry(elencoMarker);
+					//caricaAllIndustry(elencoMarker);
 
 				var id_macrocategoria = getParameterByName("id_macrocategoria");
 			   
@@ -353,7 +357,7 @@ Oppure <br /><br />
 							if (name.id_categoria != id_val) {
 								li += '<li><a href="lista_aziende.html?id_categoria=' + name.id_categoria + '" id="' + name.id_categoria + '" class="categ-go" data-ajax="false">';
 								if (name.icona_categoria != "") {
-									li += '<img src="http://www.trovoperte.com/public/upload_gallery/immagini/' + name.icona_categoria + '" class="ui-li-thumb"/>';
+									//li += '<img src="http://www.trovoperte.com/public/upload_gallery/immagini/' + name.icona_categoria + '" class="ui-li-thumb"/>';
 								}
 								li += '<h3 class="ui-li-heading">' + name.categoria + '</h3></a></li>';
 								id_val = name.id_categoria;
@@ -369,8 +373,7 @@ Oppure <br /><br />
 			   
 			}
 			
-			alert("chiamo");
-			window.requestFileSystem(window.TEMPORARY, 1024 * 1024, readFile, errorHandler);		
+			window.requestFileSystem(window.TEMPORARY, 1024 * 1024, searchDir, errorHandler);		
 		});
 
 

@@ -15,9 +15,7 @@
 		<script src='https://maps.googleapis.com/maps/api/js?v=3.exp'></script> 
 		<!--<script src="js/jquery.validate.js"></script>-->
 		<script src="js/standard.js"></script>
-		
-		<!-- INIZIO DELLA PROVA -->
-		
+				
 		<script type="text/javascript" charset="utf-8">
 		var rete;
 		// Wait for device API libraries to load
@@ -146,50 +144,23 @@
 				}
 				
 		function searchDir(fs){
-			fs.root.getDirectory('dati', {create: false}, function(dirEntry) {
-				alert("dirEntri: " + dirEntry)
+			fs.root.getDirectory('dati', {create: false}, function(dirEntry) {				
 				dirEntry.getFile('log.txt', {}, function (fileEntry) {
 					alert("fileEntry: " +fileEntry);
 					// Get a File object representing the file,
 					// then use FileReader to read its contents.
-					fileEntry.file(function (file) {
-						alert("file:" + file);
+					fileEntry.file(function (file) {						
 						var reader = new FileReader();
-
-						reader.onloadend = function (e) {
-							alert(this.result);
+						reader.onloadend = function (e) {							
 							caricaIndex(this.result);
 										
 						};
-
 						reader.readAsText(file);
 					}, errorHandler);
 
 				}, errorHandler);			
 				//window.requestFileSystem(dirEntry, 1024 * 1024, onInitFs, errorHandler);
 			},errorHandler);
-		}
-		
-		function onInitFs(fs) {					
-				fs.getFile('log.txt', { create: true }, function (fileEntry) {					
-					// Create a FileWriter object for our FileEntry (log.txt).
-					fileEntry.createWriter(function (fileWriter) {						
-						var dati = "";
-						$.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp", function (info) {							
-							dati = JSON.stringify(info);					
-							fileWriter.write(dati);						
-							fileWriter.onwriteend = function (e){
-								console.log("write completed")
-								window.requestFileSystem(window.TEMPORARY+"dati", 1024 * 1024, readFile, errorHandler);
-							};
-
-							fileWriter.onerror = function (e) {
-								console.log('Write failed: ' + e.toString());
-							};
-						});
-					}, errorHandler);
-
-				}, errorHandler);           
 		}
 		
 		function errorHandler(e) {
