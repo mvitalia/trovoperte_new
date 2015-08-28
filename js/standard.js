@@ -16,6 +16,7 @@ $(document).on('vclick', '.large', function(e){
 
 
 var online = navigator.onLine || false;
+
 $(document).ready(function () {
     $("#txtAcconsento").click(function () {
         if ($("#chkConferma_Richiesta").prop("checked") == true) {
@@ -40,10 +41,18 @@ $(document).ready(function () {
         popupafterclose: function (event, ui) { if (page == "registrazione") { $("#page_registrazione").popup("open"); page = ""; } else if (page == "info") { $("#page_richiestaInfo").popup("open"); page = ""; } }
     });
 
-	$(document).bind('deviceready', function(){
-    // Phonegap ready
+	if((navigator.userAgent.indexOf('iPad') != -1) || (navigator.userAgent.indexOf('iPhone') != -1) || (navigator.userAgent.indexOf('iPod') != -1)){
+		$(document).bind('deviceready', function(){
+		// Phonegap ready
 		onDeviceReady()
-	});
+		});
+		alert("ios");
+	}
+	else{
+		rete = checkInternetAndroid();					
+		alert('android');
+	}
+	
 });
 
 
