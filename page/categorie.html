@@ -300,6 +300,7 @@ Oppure <br /><br />
 			}
 
 			function searchDir(fs){
+			alert("leggo per categorie");
 			fs.root.getDirectory('dati', {create: false}, function(dirEntry) {
 				alert("dirEntri: " + dirEntry)
 				dirEntry.getFile('log.txt', {}, function (fileEntry) {
@@ -320,7 +321,6 @@ Oppure <br /><br />
 					}, errorHandler);
 
 				}, errorHandler);			
-				//window.requestFileSystem(dirEntry, 1024 * 1024, onInitFs, errorHandler);
 			},errorHandler);
 		}
 		
