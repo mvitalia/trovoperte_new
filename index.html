@@ -217,10 +217,10 @@
 					}
 				}
 				else{
-					rete = checkInternetAndroid();					
+						
 					alert('android');
-					if(rete){
-					window.requestFileSystem(window.TEMPORARY, 1024 *1024 ,createDir, errorHandler);
+					if(window.rete==true){
+						window.requestFileSystem(window.TEMPORARY, 1024 *1024 ,createDir, errorHandler);
 					}
 					else{
 						window.requestFileSystem(window.TEMPORARY, 1024 * 1024, searchDir, errorHandler);

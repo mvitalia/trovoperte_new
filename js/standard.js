@@ -14,7 +14,7 @@ $(document).on('vclick', '.large', function(e){
     $(".txtwrapper").css('font-size', '25px');
 });
 
-
+window.rete;
 var online = navigator.onLine || false;
 $(document).ready(function () {
     $("#txtAcconsento").click(function () {
@@ -44,6 +44,8 @@ $(document).ready(function () {
     // Phonegap ready
 		onDeviceReady()
 	});
+	
+	window.rete = checkInternetAndroid();
 });
 
 
