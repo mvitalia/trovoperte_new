@@ -283,15 +283,43 @@ function checkInternet() {
 	
 /* Android */
 function checkInternetAndroid(){
+	var rete;
 	alert(navigator.connection.type);
-	if(navigator.connection.type == Connection.WIFI || navigator.connection.type == Connection.CELL_2G || navigator.connection.type == Connection.CELL_3G || navigator.connection.type == Connection.CELL_4G ){						
+	/*if(navigator.connection.type == Connection.WIFI || navigator.connection.type == Connection.CELL_2G || navigator.connection.type == Connection.CELL_3G || navigator.connection.type == Connection.CELL_4G ){						
 		rete = true;
 		return rete;
 	}
 	else{	  
 		rete = false;
 		return rete;
-	}	
+	}	*/
+	if(typeof cordova != "undefined"){      
+       
+                /*
+       si tratta di un dispositivo vero e proprio o di un simulatore, quindi
+       utilizziamo il plugin "Connection" messo a disposizione da Phonegap
+       */
+       var networkState = navigator.connection.type;  
+       var states = {};
+       states[Connection.UNKNOWN]  = 'Unknown';
+       states[Connection.ETHERNET] = 'Ethernet';
+       states[Connection.WIFI]     = 'WiFi';
+       states[Connection.CELL_2G]  = 'Cell_2G';
+       states[Connection.CELL_3G]  = 'Cell_3G';
+       states[Connection.CELL_4G]  = 'Cell_4G';
+       states[Connection.CELL]     = 'Cell_generic';
+       states[Connection.NONE]     = 'None';
+    
+       //determino il tipo di connessione in base all'oggetto "states" appena definito grazie al plugin Phonegap
+       var connType = states[networkState]; 
+    
+       if(connType=='None'){
+         rete = false;
+		}
+      else{
+         rete = true; 
+	  }     
+   }
 }	
 
 /** GET PARAMETER **/
