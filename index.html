@@ -49,11 +49,11 @@
 			states[Connection.NONE]     = 'No network connection';
 
 			if(states[networkState] == "No network connection" || states[networkState] == "Unknown connection"){
-				window.requestFileSystem(window.TEMPORARY, 1024 *1024 ,createDir, errorHandler);
+				window.requestFileSystem(window.TEMPORARY, 1024 *1024 ,searchDir, errorHandler);
 				alert(states[networkState])
 			}
 			else{
-				window.requestFileSystem(window.TEMPORARY, 1024 * 1024, searchDir, errorHandler);
+				window.requestFileSystem(window.TEMPORARY, 1024 * 1024, createDir, errorHandler);
 				alert(states[networkState])
 			}
 		}
