@@ -15,230 +15,40 @@
 		<script src='https://maps.googleapis.com/maps/api/js?v=3.exp'></script> 
 		<!--<script src="js/jquery.validate.js"></script>-->
 		<script src="js/standard.js"></script>
-		<script>
 		
-			function caricaIndex(dati) { 
+		<!-- INIZIO DELLA PROVA -->
+		
+		<script type="text/javascript" charset="utf-8">
 
-				
-				var datiDecompressi = JSON.parse(dati);
-			   
-				var elencoMarker = new Array();
+		// Wait for device API libraries to load
+		//
+		document.addEventListener("deviceready", onDeviceReady, false);
 
-				$.each(datiDecompressi, function (i, name) {
-					if (name.coordinate != "") {
-						var azienda = {};
-						azienda.id = name.id;
-						azienda.nome = name.ragione_sociale;
-						azienda.lat = parseFloat(name.coordinate.split(",")[0]);
-						azienda.lon = parseFloat(name.coordinate.split(",")[1]);
-						elencoMarker.push(azienda);
-					}
-				});
-				//caricaAllIndustry(elencoMarker);         
+		// device APIs are available
+		//
+		function onDeviceReady() {
+			checkConnection();
+		}
 
+			function checkConnection() {
+				var networkState = navigator.connection.type;
 
-				$(".btn_search").bind("change", function (event, ui) {
-					$.mobile.pageContainer.pagecontainer("change", "#page_ricerca", {
-						stuff: this.id,
-						transition: "fade"
-					});
+				var states = {};
+				states[Connection.UNKNOWN]  = 'Unknown connection';
+				states[Connection.ETHERNET] = 'Ethernet connection';
+				states[Connection.WIFI]     = 'WiFi connection';
+				states[Connection.CELL_2G]  = 'Cell 2G connection';
+				states[Connection.CELL_3G]  = 'Cell 3G connection';
+				states[Connection.CELL_4G]  = 'Cell 4G connection';
+				states[Connection.CELL]     = 'Cell generic connection';
+				states[Connection.NONE]     = 'No network connection';
 
-
-				});
-				/*
-				if($("#lista_macrocategorie").has("li").length > 1){
-				$('#lista_macrocategorie li').remove();
-				var li_first = "<li class='ui-li-divider ui-bar-b ui-first-child' role='heading' data-theme='b' data-role='list-divider'>Seleziona la categoria</li>";
-				$("#lista_macrocategorie").append(li_first);
-				}*/
-
-				//set up string for adding <li/>
-				var li = "";
-				var id_val = "";
-				//container for $li to be added
-				$.each(datiDecompressi, function (i, name) {
-					if (name.id_macrocategoria != id_val) {
-						//add the <li> to "li" variable
-						//note the use of += in the variable
-						//meaning I'm adding to the existing data. not replacing it.
-						//store index value in array as id of the <a> tag
-						li += '<li><a href="page/categorie.html?id_macrocategoria=' + name.id_macrocategoria + '"  id="' + name.id_macrocategoria + '" class="macro-go" data-ajax="false">';
-						if (name.icona_macrocategoria != "") {
-							//li += '<img src="http://www.trovoperte.com/public/upload_gallery/immagini/' + name.icona_macrocategoria + '" class="ui-li-thumb"/>';
-						}
-						li += '<h3 class="ui-li-heading">' + name.macrocategoria + '</h3></a></li>';
-						id_val = name.id_macrocategoria;
-					}
-				});
-
-				//append list to ul
-				$("#lista_macrocategorie").append(li).promise().done(function () {
-
-
-					//refresh list to enhance its styling.
-					$(this).listview("refresh");
-				});         
+				alert('Connection type: ' + states[networkState]);
 			}
-		 
-			// MACROCATEGORIE
-			$(document).on("pageinit", "#page_index", function () {						
-				
-				function createDir(fs){
-					fs.root.getDirectory('dati', {create: true}, function(dirEntry) {
-						dirEntry.getFile('log.txt', { create: true }, function (fileEntry) {	
-							// Create a FileWriter object for our FileEntry (log.txt).
-							fileEntry.createWriter(function (fileWriter) {						
-								var dati = "";
-								$.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp", function (info) {							
-									dati = JSON.stringify(info);										
-									fileWriter.write(dati);						
-									fileWriter.onwriteend = function (e){									
-										readFile(dirEntry);
-									};
-
-									fileWriter.onerror = function (e) {
-										console.log('Write failed: ' + e.toString());
-									};
-								});
-							}, errorHandler);
-
-						}, errorHandler);						
-						//window.requestFileSystem(dirEntry, 1024 * 1024, onInitFs, errorHandler);
-					},errorHandler);
-				}
-				
-				function searchDir(fs){
-					fs.root.getDirectory('dati', {create: false}, function(dirEntry) {
-					
-						dirEntry.getFile('log.txt', {}, function (fileEntry) {
-						
-						// Get a File object representing the file,
-						// then use FileReader to read its contents.
-						fileEntry.file(function (file) {
-							var reader = new FileReader();
-
-							reader.onloadend = function (e) {
-								
-								caricaIndex(this.result);
-											
-							};
-
-							reader.readAsText(file);
-						}, errorHandler);
-
-					}, errorHandler);			
-						//window.requestFileSystem(dirEntry, 1024 * 1024, onInitFs, errorHandler);
-					},errorHandler);
-				}
-				
-				function onInitFs(fs) {					
-						fs.getFile('log.txt', { create: true }, function (fileEntry) {					
-							// Create a FileWriter object for our FileEntry (log.txt).
-							fileEntry.createWriter(function (fileWriter) {						
-								var dati = "";
-								$.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp", function (info) {							
-									dati = JSON.stringify(info);					
-									fileWriter.write(dati);						
-									fileWriter.onwriteend = function (e){
-										console.log("write completed")
-										window.requestFileSystem(window.TEMPORARY+"dati", 1024 * 1024, readFile, errorHandler);
-									};
-
-									fileWriter.onerror = function (e) {
-										console.log('Write failed: ' + e.toString());
-									};
-								});
-							}, errorHandler);
-
-						}, errorHandler);           
-				}
-				
-				function errorHandler(e) {
-					var msg = '';
-
-					switch (e.code) {
-						case FileError.QUOTA_EXCEEDED_ERR:
-							msg = 'QUOTA_EXCEEDED_ERR';
-							break;
-						case FileError.NOT_FOUND_ERR:
-							msg = 'NOT_FOUND_ERR';
-							msg = msg + " Non è presente un file in locale, collegarsi a internet per fruire dei servizi";
-							break;
-						case FileError.SECURITY_ERR:
-							msg = 'SECURITY_ERR';
-							break;
-						case FileError.INVALID_MODIFICATION_ERR:
-							msg = 'INVALID_MODIFICATION_ERR';
-							break;
-						case FileError.INVALID_STATE_ERR:
-							msg = 'INVALID_STATE_ERR';
-							break;
-						default:
-							msg = 'Unknown Error';
-							break;
-					};
-
-					alert('Error: ' + msg);
-				}
-
-				function readFile(fs) {
-					fs.getFile('log.txt', {}, function (fileEntry) {
-						// Get a File object representing the file,
-						// then use FileReader to read its contents.
-						fileEntry.file(function (file) {
-							var reader = new FileReader();
-
-							reader.onloadend = function (e) {
-								caricaIndex(this.result);											
-							};
-							reader.readAsText(file);
-						}, errorHandler);
-
-					}, errorHandler);
-				}       
-
-				$.mobile.page.prototype.options.domCache = true;
-				$.mobile.ajaxEnabled = true;
-
-				var rete; 
-				
-				//window.TEMPORALY mette in cache con possibilità che venga cancellato dal SO o cancellando la cache dalla gestoine dellle applicazioni
-				//window.PERSISTENT mette insieme a tutte le altre cartelle ma può essere cancellato
-				//per usare cordova.file.* bisogna appoggiarsi a resolveLocalFileSystemUrl (dovrebbe), ma non sempre funziona correttamente
-				
-				if((navigator.userAgent.indexOf('iPad') != -1) || (navigator.userAgent.indexOf('iPhone') != -1) || (navigator.userAgent.indexOf('iPod') != -1)){
-					rete = checkInternet()
-					alert("ios");
-					if(rete){
-						window.requestFileSystem(window.TEMPORARY, 1024 *1024 ,createDir, errorHandler);
-					}
-					else{
-						window.requestFileSystem(window.TEMPORARY, 1024 * 1024, searchDir, errorHandler);
-					}
-				}
-				else{
-					
-						rete = checkInternetAndroid();
-						alert("android" + rete);
-							if(rete){
-						window.requestFileSystem(window.TEMPORARY, 1024 *1024 ,createDir, errorHandler);
-						}
-						else{
-							window.requestFileSystem(window.TEMPORARY, 1024 * 1024, searchDir, errorHandler);
-						}
-									
-				}
-				
-				
-				
-			});
-
-
-			
 
 		</script>
 	</head>
-<body>
+	<body>
     <div class="txtwrapper">
         <!-- Home -->
         <div data-role="page" id="page_index">
