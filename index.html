@@ -200,13 +200,20 @@
 				$.mobile.page.prototype.options.domCache = true;
 				$.mobile.ajaxEnabled = true;
 
-				var rete 
+				var rete; 
 				
 				//window.TEMPORALY mette in cache con possibilità che venga cancellato dal SO o cancellando la cache dalla gestoine dellle applicazioni
 				//window.PERSISTENT mette insieme a tutte le altre cartelle ma può essere cancellato
 				//per usare cordova.file.* bisogna appoggiarsi a resolveLocalFileSystemUrl (dovrebbe), ma non sempre funziona correttamente
 				
-				
+				if((navigator.userAgent.indexOf('iPad') != -1) || (navigator.userAgent.indexOf('iPhone') != -1) || (navigator.userAgent.indexOf('iPod') != -1)){
+					rete = checkInternet()
+					alert("ios");
+				}
+				else{
+					rete = checkInternetAndroid();					
+					alert('android')
+				}
 				
 				if(rete){
 					window.requestFileSystem(window.TEMPORARY, 1024 *1024 ,createDir, errorHandler);
