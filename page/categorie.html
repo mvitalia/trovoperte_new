@@ -303,33 +303,27 @@ Oppure <br /><br />
 			}
 
 			function searchDir(fs){
-			alert("leggo per categorie");
-			fs.root.getDirectory('dati', {create: false}, function(dirEntry) {
-				alert("dirEntri: " + dirEntry)
-				dirEntry.getFile('log.txt', {}, function (fileEntry) {
-					alert("fileEntry: " +fileEntry);
-					// Get a File object representing the file,
-					// then use FileReader to read its contents.
-					fileEntry.file(function (file) {
-						alert("file:" + file);
-						var reader = new FileReader();
-						reader.onloadend = function (e) {
-							alert(this.result);
-							caricaCategorie(this.result);
-										
-						};
+				alert("leggo per categorie");
+				fs.root.getDirectory('dati', {create: false}, function(dirEntry) {				
+					dirEntry.getFile('log.txt', {}, function (fileEntry) {
+						alert("fileEntry: " +fileEntry);
+						// Get a File object representing the file,
+						// then use FileReader to read its contents.
+						fileEntry.file(function (file) {						
+							var reader = new FileReader();
+							reader.onloadend = function (e) {							
+								caricaCategorie(this.result);
+											
+							};
+							reader.readAsText(file);
+						}, errorHandler);
 
-						reader.readAsText(file);
-					}, errorHandler);
-
-				}, errorHandler);			
-			},errorHandler);
-		}
+					}, errorHandler);			
+					//window.requestFileSystem(dirEntry, 1024 * 1024, onInitFs, errorHandler);
+				},errorHandler);
+			}
 			
-			  /*$.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp", function(all){
-				var aus = JSON.stringify(all)
-				caricaCategorie(aus);
-			  });*/
+			  
 		
 		
 			function caricaCategorie(dati){			
