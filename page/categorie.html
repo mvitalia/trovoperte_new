@@ -268,8 +268,9 @@ Oppure <br /><br />
         </div>-->
     </div>
     <script>
+		document.addEventListener("deviceready", onDeviceReady, false);
 
-        $(document).on("pageinit", "#categorie" ,function (event) {		
+        $("#categorie").on("pageshow", function (event) {		
 			alert("categorie: show");
 			
 			window.requestFileSystem(window.TEMPORARY, 1024 *1024 ,searchDir, errorHandler);	
