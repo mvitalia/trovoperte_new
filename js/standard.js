@@ -42,9 +42,8 @@ $(document).ready(function () {
 
 	$(document).bind('deviceready', function(){
     // Phonegap ready
-    onDeviceReady()
+		onDeviceReady()
 	});
-	//checkInternet();
 });
 
 
@@ -52,22 +51,23 @@ $(document).ready(function () {
 function onDeviceReady() {
   navigator.network.isReachable("google.com", reachableCallback, {});
 }
-// Check network status
+
+/** CHECK INTERNET STATUS **/
+/* SOLO IOS*/
 function reachableCallback(reachability) {
   // There is no consistency on the format of reachability
-  var networkState = reachability.code || reachability;
- var states = {};
-  states[NetworkStatus.NOT_REACHABLE]                      = 'No network connection';
-  states[NetworkStatus.REACHABLE_VIA_CARRIER_DATA_NETWORK] = 'Carrier data connection';
-  states[NetworkStatus.REACHABLE_VIA_WIFI_NETWORK]         = 'WiFi connection';
+	var networkState = reachability.code || reachability;
+	var states = {};
+	states[NetworkStatus.NOT_REACHABLE]                      = 'No network connection';
+	states[NetworkStatus.REACHABLE_VIA_CARRIER_DATA_NETWORK] = 'Carrier data connection';
+	states[NetworkStatus.REACHABLE_VIA_WIFI_NETWORK]         = 'WiFi connection';
   
   // We want to be able to check the online variable in our jQuery
-  if (networkState != 0) online = true;
-  else online = false;
+	if (networkState != 0) online = true;
+	else online = false;
 }
 
-
-
+/** CARICA LA MAPPA CON TUTTE LE AZIENDA REGISTRATE **/
 function caricaAllIndustry(elencoMarker) {
     var defaultCenter = new google.maps.LatLng(44.7392354, 7.928849);
     drawMap(defaultCenter);
@@ -95,7 +95,7 @@ function caricaAllIndustry(elencoMarker) {
         }
 }
 
-
+/** CARICA LA MAPPA DELLA SINGOLA AZIENDA **/
 function caricaMappa(coordinate,nomeAzienda) {
     var lat = parseFloat(coordinate.split(",")[0]);
     var lon = parseFloat(coordinate.split(",")[1]);
@@ -120,23 +120,19 @@ function caricaMappa(coordinate,nomeAzienda) {
         $("#map-page-popup").addClass("ui-overlay-shadow");
     }
 
-    var page = "";
-
-    function apriRegistrazione() {
+/** APERTURA DELLE FORM DALLA PAGINA DELLE INFO **/	
+var page = "";	
+function apriRegistrazione() {
         page = "registrazione"
         $("#page_info").popup("close");
-    }
-
-    function apriInfo() {
+}
+function apriInfo() {
         page = "info"
         $("#page_info").popup("close");
     }
-
-
-
-   
-
-    function validateFormRegistrazione() {
+  
+/** CONVALIDA DEI DATI INSERITI NELLE FORM **/
+function validateFormRegistrazione() {
         var mail_reg_exp = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-]{2,})+\.)+([a-zA-Z0-9]{2,})+$/;
 
         var moduloControllo = document.forms['form_registrazioneAzienda'];
@@ -207,7 +203,7 @@ function caricaMappa(coordinate,nomeAzienda) {
         //$("#chkConferma_Richiesta").prop("checked",false);
         
     }
-	function validateFormInfo() {
+function validateFormInfo() {
 
         var mail_reg_exp = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-]{2,})+\.)+([a-zA-Z0-9]{2,})+$/;
 
@@ -252,7 +248,8 @@ function caricaMappa(coordinate,nomeAzienda) {
      
     }
 
-    function checkInternet() {
+/* IOS*/	
+function checkInternet() {
 		
 		if(online){
 			alert("Sono connesso");
@@ -261,21 +258,8 @@ function caricaMappa(coordinate,nomeAzienda) {
 		else{
 			alert("Sono disconnesso");
 			return false;		
-		}        
-		/*if(navigator.connection.type == Connection.NONE || navigator.connection.type == Connection.UNKNOWN){           if(rete == false)
-			{				
-				rete = false;
-				return rete;
-			}
-			else{
-			  
-				rete = true;
-				return rete;
-			}				
-		}  */
-		
-		/*var networkState;
-		networkState = navigator.connection.type;
+		}   		
+		/*var networkState;		networkState = navigator.connection.type;
 		var states = {};
 		states[Connection.UNKNOWN] = 'Unknown connection';
 		states[Connection.ETHERNET] = 'Ethernet connection';
@@ -294,23 +278,21 @@ function caricaMappa(coordinate,nomeAzienda) {
 			alert("false");
 			 rete = false;
 		   return rete;
-		}*/
-			
+		}*/		
     }
 	
-	function corretto(risposta){
-		var networkState = risposta.code || risposta;
-		var states = {};
-		states[NetworkStatus.REACHABLE_VIA_WIFI_NETWORK] = "wifi connection";
-		if(networkState != 0){
-			online = true;			
-		}
-	}
-	
-	function errato(){}
-	
-	
+/* Android */
+function checkInternetAndroid(){
 
+	if(navigator.connection.type == Connection.NONE || navigator.connection.type == Connection.UNKNOWN){						rete = false;
+		return rete;
+	}
+	else{
+	  
+		rete = true;
+		return rete;
+	}	
+}	
 
 /** GET PARAMETER **/
 function getParameterByName(name)
@@ -325,7 +307,7 @@ function getParameterByName(name)
     return results[1];
 }
 
-
+/** CARICAMENTO DELLE CITTA' NEL VETTORE**/
 function caricaCitta(all) {
     var citta = new Array()
     for (var i = 0; i < all.length; i++) {
