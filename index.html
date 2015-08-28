@@ -207,10 +207,12 @@
 				//per usare cordova.file.* bisogna appoggiarsi a resolveLocalFileSystemUrl (dovrebbe), ma non sempre funziona correttamente
 				
 				if((navigator.userAgent.indexOf('iPad') != -1) || (navigator.userAgent.indexOf('iPhone') != -1) || (navigator.userAgent.indexOf('iPod') != -1)){
-					rete = checkInternet()					
+					rete = checkInternet()
+					alert("ios");
 				}
 				else{
 					rete = checkInternetAndroid();					
+					alert('android');
 				}
 				
 				if(rete){
