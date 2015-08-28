@@ -315,10 +315,16 @@ function checkInternetAndroid(){
 		alert(connType);
        if(connType=='None'){
          rete = false;
+		 return rete;
 		}
       else{
          rete = true; 
+		 return rete;
 	  }     
+   }
+   else{
+		rete = false;   
+		return rete;
    }
 }	
 
