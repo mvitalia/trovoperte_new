@@ -285,13 +285,12 @@ function checkInternet() {
 	
 /* Android */
 function checkInternetAndroid(){
-	online = navigator.onLine;
-	if(online){
-		return true;
-	}
-	else{
-		return false;	
-	}
+	 var internet = window.navigator.onLine;
+        if (!internet) {
+            return false;
+        } else {
+            return true;
+        }
 }
 
 /** GET PARAMETER **/
