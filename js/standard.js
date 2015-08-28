@@ -283,8 +283,8 @@ function checkInternet() {
 	
 /* Android */
 function checkInternetAndroid(){
-	alert(navigator.connection.type);
-	if(navigator.connection.type == Connection.WIFI || navigator.connection.type == Connection.CELL_2G || navigator.connection.type == Connection.CELL_3G || navigator.connection.type == Connection.CELL_4G ){						
+	alert(navigator.network.connection.type);
+	if(navigator.network.connection.type == Connection.WIFI || navigator.network.connection.type == Connection.CELL_2G || navigator.network.connection.type == Connection.CELL_3G || navigator.network.connection.type == Connection.CELL_4G ){						
 		rete = true;
 		return rete;
 	}
