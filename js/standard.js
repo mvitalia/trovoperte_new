@@ -284,13 +284,13 @@ function checkInternet() {
 /* Android */
 function checkInternetAndroid(){
 	alert(navigator.connection.type);
-	if(navigator.connection.type == Connection.NONE || navigator.connection.type == Connection.UNKNOWN || navigator.connection.type == '0'){						
-		rete = false;
+	if(navigator.connection.type == Connection.WIFI || navigator.connection.type == Connection.CELL_2G || navigator.connection.type == Connection.CELL_3G || navigator.connection.type == Connection.CELL_4G ){						
+		rete = true;
 		return rete;
 	}
 	else{
 	  
-		rete = true;
+		rete = false;
 		return rete;
 	}	
 }	
