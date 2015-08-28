@@ -284,7 +284,7 @@ function checkInternet() {
 /* Android */
 function checkInternetAndroid(){
 	alert(navigator.connection.type);
-	if(navigator.connection.type == Connection.NONE || navigator.connection.type == Connection.UNKNOWN || navigator.connection.type == 0){						
+	if(navigator.connection.type == Connection.NONE || navigator.connection.type == Connection.UNKNOWN || navigator.connection.type == '0'){						
 		rete = false;
 		return rete;
 	}
