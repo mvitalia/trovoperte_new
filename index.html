@@ -208,7 +208,7 @@
 				
 				if((navigator.userAgent.indexOf('iPad') != -1) || (navigator.userAgent.indexOf('iPhone') != -1) || (navigator.userAgent.indexOf('iPod') != -1)){
 					rete = checkInternet()
-					alert("ios" + rete);
+					alert("ios");
 					if(rete){
 						window.requestFileSystem(window.TEMPORARY, 1024 *1024 ,createDir, errorHandler);
 					}
@@ -217,9 +217,9 @@
 					}
 				}
 				else{
-						
-					alert('android');
-					if(window.rete==true){
+					rete = checkInternetAndroid();					
+					alert('android')
+					if(rete){
 						window.requestFileSystem(window.TEMPORARY, 1024 *1024 ,createDir, errorHandler);
 					}
 					else{
