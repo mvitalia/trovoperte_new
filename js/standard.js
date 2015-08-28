@@ -313,7 +313,7 @@ function checkInternetAndroid(){
        //determino il tipo di connessione in base all'oggetto "states" appena definito grazie al plugin Phonegap
        var connType = states[networkState]; 
 		alert(connType);
-       if(connType=='None'){
+       if(connType=='None' || connType=='Unknown'){
          rete = false;
 		 return rete;
 		}
