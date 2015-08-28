@@ -323,9 +323,26 @@ function checkInternetAndroid(){
 	  }     
    }
    else{
-		rete = false;   
-   }
-}	
+		online = navigator.onLine;
+        
+       if(online){
+         var conn = navigator.connection || {'bandwidth':'0'};
+         //utilizziamo il metodo "bandwidth" per determinare la velocità di connessione, il quale restituisce un valore numerico che indica la larghezza di banda della connessione corrente       
+         if(conn.bandwidth>2)
+            speed="fast";
+        else
+         speed="slow";
+          
+       }
+	   else{
+			rete = false;
+			return rete;
+	   }
+         
+   }  
+   
+ 
+}
 
 /** GET PARAMETER **/
 function getParameterByName(name)
