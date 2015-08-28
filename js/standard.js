@@ -48,6 +48,8 @@ $(document).ready(function () {
 
 
 
+
+
 function onDeviceReady() {
   navigator.network.isReachable("google.com", reachableCallback, {});
 }
