@@ -15,7 +15,7 @@ $(document).on('vclick', '.large', function(e){
 });
 
 
-var online = navigator.onLine || false;
+v
 $(document).ready(function () {
     $("#txtAcconsento").click(function () {
         if ($("#chkConferma_Richiesta").prop("checked") == true) {
@@ -40,34 +40,9 @@ $(document).ready(function () {
         popupafterclose: function (event, ui) { if (page == "registrazione") { $("#page_registrazione").popup("open"); page = ""; } else if (page == "info") { $("#page_richiestaInfo").popup("open"); page = ""; } }
     });
 	
-	$(document).bind('deviceready', function(){
-    // Phonegap ready
-		onDeviceReady()
-	});
 });
 
 
-
-
-
-function onDeviceReady() {
-  navigator.network.isReachable("google.com", reachableCallback, {});
-}
-
-/** CHECK INTERNET STATUS **/
-/* SOLO IOS*/
-function reachableCallback(reachability) {
-  // There is no consistency on the format of reachability
-	var networkState = reachability.code || reachability;
-	var states = {};
-	states[NetworkStatus.NOT_REACHABLE]                      = 'No network connection';
-	states[NetworkStatus.REACHABLE_VIA_CARRIER_DATA_NETWORK] = 'Carrier data connection';
-	states[NetworkStatus.REACHABLE_VIA_WIFI_NETWORK]         = 'WiFi connection';
-  
-  // We want to be able to check the online variable in our jQuery
-	if (networkState != 0) online = true;
-	else online = false;
-}
 
 /** CARICA LA MAPPA CON TUTTE LE AZIENDA REGISTRATE **/
 function caricaAllIndustry(elencoMarker) {
@@ -249,49 +224,6 @@ function validateFormInfo() {
         //$("#chkConferma_info").prop("checked",false);
      
     }
-
-/* IOS*/	
-function checkInternet() {
-		
-		if(online){
-			alert("Sono connesso");
-			return true;
-		}
-		else{
-			alert("Sono disconnesso");
-			return false;		
-		}   		
-		/*var networkState;		networkState = navigator.connection.type;
-		var states = {};
-		states[Connection.UNKNOWN] = 'Unknown connection';
-		states[Connection.ETHERNET] = 'Ethernet connection';
-		states[Connection.WIFI] = 'WiFi connection';
-		states[Connection.CELL_2G] = 'Cell 2G connection';
-		states[Connection.CELL_3G] = 'Cell 3G connection';
-		states[Connection.CELL_4G] = 'Cell 4G connection';
-		states[Connection.NONE] = 'No network connection';
-		
-		alert("Connection:" + state[networkState]);
-		if (states[networkState] != Connection.UNKNOWN && states[networkState] != Connection.NONE) {
-			alert("true");
-		   rete = true;
-		   return rete;
-		} else {
-			alert("false");
-			 rete = false;
-		   return rete;
-		}*/		
-    }
-	
-/* Android */
-function checkInternetAndroid(){
-	 var internet = window.navigator.onLine;
-        if (!internet) {
-            return false;
-        } else {
-            return true;
-        }
-}
 
 /** GET PARAMETER **/
 function getParameterByName(name)
