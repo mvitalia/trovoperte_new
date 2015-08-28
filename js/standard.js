@@ -284,7 +284,7 @@ function checkInternet() {
 /* Android */
 function checkInternetAndroid(){
 	var rete;
-	alert(navigator.connection.type);
+	
 	/*if(navigator.connection.type == Connection.WIFI || navigator.connection.type == Connection.CELL_2G || navigator.connection.type == Connection.CELL_3G || navigator.connection.type == Connection.CELL_4G ){						
 		rete = true;
 		return rete;
@@ -312,7 +312,7 @@ function checkInternetAndroid(){
     
        //determino il tipo di connessione in base all'oggetto "states" appena definito grazie al plugin Phonegap
        var connType = states[networkState]; 
-    
+		alert(connType);
        if(connType=='None'){
          rete = false;
 		}
