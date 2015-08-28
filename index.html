@@ -217,7 +217,7 @@
 					}
 				}
 				else{
-					navigator.connection.addEventlistener("change", function(){
+					navigator.connection.addEventListener("change", function(){
 						rete = checkInternetAndroid();
 							if(rete){
 						window.requestFileSystem(window.TEMPORARY, 1024 *1024 ,createDir, errorHandler);
