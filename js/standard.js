@@ -283,8 +283,9 @@ function checkInternet() {
 	
 /* Android */
 function checkInternetAndroid(){
-
+	alert(navigator.connection.type);
 	if(navigator.connection.type == Connection.NONE || navigator.connection.type == Connection.UNKNOWN){						rete = false;
+		rete = false;
 		return rete;
 	}
 	else{
