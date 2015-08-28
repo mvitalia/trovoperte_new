@@ -288,8 +288,7 @@ function checkInternetAndroid(){
 		rete = true;
 		return rete;
 	}
-	else{
-	  
+	else{	  
 		rete = false;
 		return rete;
 	}	
