@@ -217,7 +217,7 @@
 					}
 				}
 				else{
-					navigator.connection.addEventListener("change", function(){
+					
 						rete = checkInternetAndroid();
 							if(rete){
 						window.requestFileSystem(window.TEMPORARY, 1024 *1024 ,createDir, errorHandler);
@@ -225,9 +225,7 @@
 						else{
 							window.requestFileSystem(window.TEMPORARY, 1024 * 1024, searchDir, errorHandler);
 						}
-					},false);
-					
-				
+									
 				}
 				
 				
