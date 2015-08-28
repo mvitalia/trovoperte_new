@@ -1,6 +1,5 @@
 <html>
 <head>
-	<script type="text/javascript" src="cordova.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -273,6 +272,8 @@ Oppure <br /><br />
         $("#categorie").on("pageshow", function (event) {		
 			alert("categorie: show");
 			
+			window.requestFileSystem(window.TEMPORARY, 1024 *1024 ,searchDir, errorHandler);	
+			
 			function errorHandler(e) {
 				var msg = '';
 
@@ -324,6 +325,12 @@ Oppure <br /><br />
 				}, errorHandler);			
 			},errorHandler);
 		}
+			
+			  /*$.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp", function(all){
+				var aus = JSON.stringify(all)
+				caricaCategorie(aus);
+			  });*/
+		
 		
 			function caricaCategorie(dati){			
 				var datiDecompressi = JSON.parse(dati);				
@@ -374,7 +381,7 @@ Oppure <br /><br />
 			   
 			}
 			
-			window.requestFileSystem(window.TEMPORARY, 1024 *1024 ,searchDir, errorHandler);		
+			
 		});
 
 
