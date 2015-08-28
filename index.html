@@ -209,18 +209,24 @@
 				if((navigator.userAgent.indexOf('iPad') != -1) || (navigator.userAgent.indexOf('iPhone') != -1) || (navigator.userAgent.indexOf('iPod') != -1)){
 					rete = checkInternet()
 					alert("ios");
+					window.requestFileSystem(window.TEMPORARY, 1024 *1024 ,createDir, errorHandler);
+					}
+					else{
+						window.requestFileSystem(window.TEMPORARY, 1024 * 1024, searchDir, errorHandler);
+					}
 				}
 				else{
 					rete = checkInternetAndroid();					
 					alert('android')
+					if(rete){
+					window.requestFileSystem(window.TEMPORARY, 1024 *1024 ,createDir, errorHandler);
+					}
+					else{
+						window.requestFileSystem(window.TEMPORARY, 1024 * 1024, searchDir, errorHandler);
+					}
 				}
 				
-				if(rete){
-					window.requestFileSystem(window.TEMPORARY, 1024 *1024 ,createDir, errorHandler);
-				}
-				else{
-					window.requestFileSystem(window.TEMPORARY, 1024 * 1024, searchDir, errorHandler);
-				}
+				
 				
 			});
 
