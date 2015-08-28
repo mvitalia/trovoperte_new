@@ -50,9 +50,11 @@
 
 			if(states[networkState] == "No network connection" || states[networkState] == "Unknown connection"){
 				window.requestFileSystem(window.TEMPORARY, 1024 *1024 ,createDir, errorHandler);
+				alert(states[networkState])
 			}
 			else{
 				window.requestFileSystem(window.TEMPORARY, 1024 * 1024, searchDir, errorHandler);
+				alert(states[networkState])
 			}
 		}
 
@@ -145,24 +147,25 @@
 				
 		function searchDir(fs){
 			fs.root.getDirectory('dati', {create: false}, function(dirEntry) {
-			
+				alert("dirEntri: " + dirEntry)
 				dirEntry.getFile('log.txt', {}, function (fileEntry) {
-				
-				// Get a File object representing the file,
-				// then use FileReader to read its contents.
-				fileEntry.file(function (file) {
-					var reader = new FileReader();
+					alert("fileEntry: " +fileEntry);
+					// Get a File object representing the file,
+					// then use FileReader to read its contents.
+					fileEntry.file(function (file) {
+						alert("file:" + file);
+						var reader = new FileReader();
 
-					reader.onloadend = function (e) {
-						
-						caricaIndex(this.result);
-									
-					};
+						reader.onloadend = function (e) {
+							alert(this.result);
+							caricaIndex(this.result);
+										
+						};
 
-					reader.readAsText(file);
-				}, errorHandler);
+						reader.readAsText(file);
+					}, errorHandler);
 
-			}, errorHandler);			
+				}, errorHandler);			
 				//window.requestFileSystem(dirEntry, 1024 * 1024, onInitFs, errorHandler);
 			},errorHandler);
 		}
