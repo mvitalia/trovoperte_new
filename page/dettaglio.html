@@ -397,7 +397,7 @@
                 //append list to ul
                 var htmlObject = $(scheda);
 				
-				function caricaNews(newsDecompresse){
+				
                 
                     $.each(newsDecompresse, function (i, name) {                        
 						if(news.id_attivita == id_azienda){
@@ -425,10 +425,10 @@
                     }
 
                     $(".slider_news").append(blocco);
-                }
+                
 
                 
-				function caricaPromo(promoDecompresse){
+				
                     $.each(promoDecompresse, function (i, name) {
 						if(promo.id_attivita == id_azienda){
 							var promo = {};
@@ -457,7 +457,7 @@
                     }
 
                     $(".slider_promo").append(blocco);
-                }
+                
 
                 $(".slider_gallery").append(scheda_gallery);
                 $("#footer_dettaglio").append(footer_dettaglio).promise().done(function () { });
