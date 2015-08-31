@@ -494,17 +494,18 @@
         });
 
         /*-------------------------------------------------------*/
+		function caricaDettaglio(dati, news, promo){
+			var datiDecompressi = JSON.parse(dati);
+			var newsDecompresse = JSON.parse(news);
+			var promoDecompresse = JSON.parse(promo);
+		
+			var elenco_news = new Array();
+			var elenco_promo = new Array();
+			var elencoMarker = new Array();
+       
+            var id_azienda = getParameterByName("id_azienda");                            
 
-        var elenco_news = new Array();
-        var elenco_promo = new Array();
-        var elencoMarker = new Array();
-
-        $("#page_dettaglio").on("pageshow", function (event) {
-            var id_azienda = getParameterByName("id_azienda");
-
-            $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp", function(info_allIndustry){                
-
-                $.each(info_allIndustry,function(i, name){
+                $.each(datiDecompressi,function(i, name){
                     if(name.coordinate != ""){
                           var azienda = {};
                           azienda.id = name.id;
@@ -514,10 +515,10 @@
                           elencoMarker.push(azienda);
                     }
                 });
-                caricaAllIndustry(elencoMarker);    
-            });
+                //caricaAllIndustry(elencoMarker);    
+            
 
-            $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp?id_azienda=" + id_azienda, function (info_dettaglio) {
+            
 
                 var scheda = "";
                 var footer_dettaglio = "";
@@ -529,7 +530,7 @@
                 var count_promo = 0;
                 var count_news = 0;
                 //container for $li to be added
-                $.each(info_dettaglio, function (i, name) {
+                $.each(datiDecompressi, function (i, name) {
                     //add the <li> to "li" variable
                     //note the use of += in the variable
                     //meaning I'm adding to the existing data. not replacing it.
@@ -590,7 +591,7 @@
                         scheda += "<div class='info_azienda'><h1>" + name.ragione_sociale + "</h1>"; // RAGIONE SOCIALE
                         scheda += "<p>" + name.indirizzo + " " + name.num + "</p><p>" + name.cap + " " + name.paese + " " + name.provincia + "</p>";
                         if (name.circuito != "" && name.circuito != undefined) {
-                            scheda += "<p class='info_circuito'><a href='lista_aziende.html?id_circuito=" + name.id_circuito + "' data-ajax='false'><img id='img_circuito' src='http://www.trovoperte.com/public/upload_gallery/immagini/" + name.icona_circuito + "' class='ui-li-thumb'/></p>";
+                            scheda += "<p class='info_circuito'><a href='lista_aziende.html?id_circuito=" + name.id_circuito + "' data-ajax='false'><img id='img_circuito' src='http://www.trovoperte.com/public/upload_gallery/immagini/" + name.icona_circuito + "' class='ui-li-thumb'/></a></p>";
                         }
                         scheda += "</div>"
                         if (name.tipo_contratto != 'base' && name.tipo_contratto != 'free') {
@@ -622,7 +623,7 @@
                         //footer_dettaglio = "<li class='ui-block-a' style='float:left;width:25%'><a href='page_info' data-icon='info' data-role='button' class='ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-info ui-btn-icon-left'>Info</a></li>";
 
                         //if(name.tipo_contratto != 'base' && name.tipo_contratto != 'free') {
-                            footer_dettaglio += "<li class='ui-block-a' style='float:left;width:25%'><a href='http://" + name.web + "' target='_blank' data-icon='navigation' data-role='button' class='btn_web ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-navigation ui-btn-icon-left'>Web</a></li>";
+                            footer_dettaglio += "<li class='ui-block-a' style='float:left;width:25%'><a href='http://" + name.web + "' target='_blank' data-icon='heart' data-role='button' class='btn_web ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-heart ui-btn-icon-left'>Web</a></li>";
                             footer_dettaglio += "<li class='ui-block-b '><a href='mailto:" + name.mail + "' data-icon='mail' data-role='button' class='btn_mail ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-mail ui-btn-icon-left'>E-mail</a></li>";
                             footer_dettaglio += "<li class='ui-block-c '><a href='tel:" + name.tel + "' data-icon='phone' data-role='button'  class='btn_tel ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-phone ui-btn-icon-left'>Tel.</a></li>";
                             footer_dettaglio += "<li class='ui-block-d '><a href='#map-page' data-icon='info' data-rel='popup'data-position-to='window' data-transition='pop' data-icon='navigation' class='btn_fax ui-btn ui-state-persist ui-btn-up-a ui-btn-icon-navigation ui-btn-inline ui-btn-icon-left'>Raggiungici</a>";
@@ -643,19 +644,21 @@
                 var htmlObject = $(scheda);
                 $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data_newsPromo.asp?id_azienda=" + id_azienda + "&tipologia=news", function (info_news) {
                 
-                    $.each(info_news, function (i, name) {
-                        var news = {};
-                        news.id = name.id_newsPromo;
-                        news.titolo = name.titolo_newsPromo;
-                        news.data = name.data_newsPromo;
-                        news.icona = name.icona_newsPromo;
-                        news.descrizione = name.descrizione_newsPromo;
-                        elenco_news.push(news);
+                    $.each(info_news, function (i, name) {                        
+						if(news.id_attivita == id_azienda){
+							var news = {};
+							news.id = name.id_newsPromo;
+							news.titolo = name.titolo_newsPromo;
+							news.data = name.data_newsPromo;
+							news.icona = name.icona_newsPromo;
+							news.descrizione = name.descrizione_newsPromo;
+							elenco_news.push(news);
+						}
                     });
 
                     var blocco = "";
                     if (elenco_news.length > 0) {
-                        for (var i = 0; i < elenco_news.length; i++) {                            
+                        for (var i = 0; i < elenco_news.length; i++) { 						
                             blocco = blocco + "<div><h1>" + elenco_news[i].titolo + "</h1>"
                             blocco = blocco + "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/" + elenco_news[i].icona + "' class='img_azienda'>";
                             blocco = blocco + "<div class='descrizione_newsPromoPopup'>" + elenco_news[i].descrizione + "</div>"
@@ -672,13 +675,15 @@
                 $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data_newsPromo.asp?id_azienda=" + id_azienda + "&tipologia=promo", function (info_promo) {
 
                     $.each(info_promo, function (i, name) {
-                        var promo = {};
-                        promo.id = name.id_newsPromo;
-                        promo.titolo = name.titolo_newsPromo;
-                        promo.data = name.data_newsPromo;
-                        promo.icona = name.icona_newsPromo;
-                        promo.descrizione = name.descrizione_newsPromo;
-                        elenco_promo.push(promo);
+						if(promo.id_attivita == id_azienda){
+							var promo = {};
+							promo.id = name.id_newsPromo;
+							promo.titolo = name.titolo_newsPromo;
+							promo.data = name.data_newsPromo;
+							promo.icona = name.icona_newsPromo;
+							promo.descrizione = name.descrizione_newsPromo;
+							elenco_promo.push(promo);
+						}
                     });
 
                    var blocco = "";
@@ -751,8 +756,8 @@
 
             });
             });*/
-        });
-
+        
+		}
        
     </script>
 </body>
