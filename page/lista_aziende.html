@@ -152,18 +152,26 @@
 					$(this).listview("refresh");
 				});
             }
-            if (elenco_recenti && elenco_recenti != "") {		   
+            if (elenco_recenti && elenco_recenti != "") {
+				
+				var dataToday = new Date();
+				dataLimite = new Date(dataToday.getTime()-30*86400000);
+				
 				//string to put HTML in
 				//set up string for adding <li/>
 				var li = "";
 				//container for $li to be added
 				$.each(datiDecompressi, function (i, name) {
-
+					var day = parseInt(name.data_inizio.split("/")[0]);
+					var month = parseInt(name.data_inizio.split("/")[1])-1;
+					var year = parseInt(name.data_inizio.split("/")[2]);
+					var dataRegistrazione = new Date (year,month,day);
+					alert (dataRegistrazione);
 					//add the <li> to "li" variable
 					//note the use of += in the variable
 					//meaning I'm adding to the existing data. not replacing it.
 					//store index value in array as id of the <a> tag
-
+					if(dataRegistrazione>dataLimite)
 					li += '<li><a href="dettaglio.html?id_azienda=' + name.id + '" id="' + name.id + '" class="azienda-go" data-ajax="false">';
 
 					if (name.foto_principale != "") {
