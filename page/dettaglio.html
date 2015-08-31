@@ -210,6 +210,7 @@
 						var reader = new FileReader();
 						reader.onloadend = function (e) {							
 							dati=this.result;
+							alert(dati);
 						};
 						reader.readAsText(file);
 					}, errorHandler);
@@ -222,7 +223,8 @@
 					fileEntry.file(function (file) {						
 						var reader = new FileReader();
 						reader.onloadend = function (e) {							
-							news=this.result;										
+							news=this.result;	
+							alert(news);
 						};
 						reader.readAsText(file);
 					}, errorHandler);
@@ -235,7 +237,8 @@
 					fileEntry.file(function (file) {						
 						var reader = new FileReader();
 						reader.onloadend = function (e) {							
-							promo=this.result;										
+							promo=this.result;	
+							alert(promo);
 						};
 						reader.readAsText(file);
 					}, errorHandler);
