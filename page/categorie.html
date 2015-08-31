@@ -15,11 +15,11 @@
 	<script>
 		//document.addEventListener("deviceready", onDeviceReady, false);
 
-        $("#categorie").on("pageshow", function (event) {		
-			alert("categorie: show");
-			
+        $(document).on("pageinit", "#categorie" , function (event) {		
+			alert("categorie: show");			
 			window.requestFileSystem(window.TEMPORARY, 1024 *1024 ,searchDir, errorHandler);	
-			
+		});
+		
 			function errorHandler(e) {
 				var msg = '';
 
@@ -118,8 +118,6 @@
 			   
 			}
 			
-			
-		});
 
 
 
