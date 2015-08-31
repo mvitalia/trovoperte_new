@@ -197,6 +197,9 @@
 		}
 
 		function searchDir(fs){
+			var dati;
+			var news;
+			var promo;
 			alert("leggo per categorie");
 			fs.root.getDirectory('dati', {create: false}, function(dirEntry){				
 				dirEntry.getFile('log.txt', {}, function (fileEntry) {
@@ -206,23 +209,49 @@
 					fileEntry.file(function (file) {						
 						var reader = new FileReader();
 						reader.onloadend = function (e) {							
-							caricaDettaglio(this.result);
-										
+							dati=this.result;
 						};
 						reader.readAsText(file);
 					}, errorHandler);
 
-				}, errorHandler);			
+				}, errorHandler);
+				dirEntry.getFile('news.txt', {}, function (fileEntry) {
+					alert("fileEntry: " +fileEntry);
+					// Get a File object representing the file,
+					// then use FileReader to read its contents.
+					fileEntry.file(function (file) {						
+						var reader = new FileReader();
+						reader.onloadend = function (e) {							
+							news=this.result;										
+						};
+						reader.readAsText(file);
+					}, errorHandler);
+
+				}, errorHandler);		
+				dirEntry.getFile('promo.txt', {}, function (fileEntry) {
+					alert("fileEntry: " +fileEntry);
+					// Get a File object representing the file,
+					// then use FileReader to read its contents.
+					fileEntry.file(function (file) {						
+						var reader = new FileReader();
+						reader.onloadend = function (e) {							
+							promo=this.result;										
+						};
+						reader.readAsText(file);
+					}, errorHandler);
+
+				}, errorHandler);
+				caricaDettaglio(dati,news,promo);
 				//window.requestFileSystem(dirEntry, 1024 * 1024, onInitFs, errorHandler);
 			},errorHandler);
 		}
 				
 		
 		
-		function caricaDettaglio(dati){
+		function caricaDettaglio(dati, news, promo){
 			var datiDecompressi = JSON.parse(dati);
-			//var newsDecompresse = JSON.parse(news);
-			//var promoDecompresse = JSON.parse(promo);
+			var newsDecompresse = JSON.parse(news);
+			var promoDecompresse = JSON.parse(promo);
 		
 			var elenco_news = new Array();
 			var elenco_promo = new Array();
@@ -367,9 +396,10 @@
                 });
                 //append list to ul
                 var htmlObject = $(scheda);
-                $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data_newsPromo.asp?id_azienda=" + id_azienda + "&tipologia=news", function (info_news) {
+				
+				function caricaNews(newsDecompresse){
                 
-                    $.each(info_news, function (i, name) {                        
+                    $.each(newsDecompresse, function (i, name) {                        
 						if(news.id_attivita == id_azienda){
 							var news = {};
 							news.id = name.id_newsPromo;
@@ -395,11 +425,11 @@
                     }
 
                     $(".slider_news").append(blocco);
-                });
+                }
 
-                $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data_newsPromo.asp?id_azienda=" + id_azienda + "&tipologia=promo", function (info_promo) {
-
-                    $.each(info_promo, function (i, name) {
+                
+				function caricaPromo(promoDecompresse){
+                    $.each(promoDecompresse, function (i, name) {
 						if(promo.id_attivita == id_azienda){
 							var promo = {};
 							promo.id = name.id_newsPromo;
@@ -427,7 +457,7 @@
                     }
 
                     $(".slider_promo").append(blocco);
-                });
+                }
 
                 $(".slider_gallery").append(scheda_gallery);
                 $("#footer_dettaglio").append(footer_dettaglio).promise().done(function () { });
