@@ -255,8 +255,8 @@
 			var datiDecompressi = JSON.parse(dati);			
 			var elencoMarker = new Array();
        
-            var id_azienda = getParameterByName("id_azienda");                            
-
+                                        
+var id_azienda = getParameterByName("id_azienda");
                 $.each(datiDecompressi,function(i, name){
                     if(name.coordinate != ""){
                           var azienda = {};
@@ -419,7 +419,7 @@
         }
 
 		function caricaPromo(promo){
-		alert("test:" + promo);
+		var id_azienda = getParameterByName("id_azienda");
 			var promoDecompresse = JSON.parse(promo);
 			var elenco_promo = new Array();
 			$.each(promoDecompresse, function (i, name) {
@@ -453,6 +453,7 @@
 		}
             
 		function caricaNews(news){
+		var id_azienda = getParameterByName("id_azienda");
 			var newsDecompresse = JSON.parse(news);
 			var elenco_news = new Array();
 			$.each(newsDecompresse, function (i, name) {                        
