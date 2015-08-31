@@ -197,9 +197,9 @@
 		}
 
 		function searchDir(fs){
-			var dati;
-			var news;
-			var promo;
+			var dati ="";
+			var news = "";
+			var promo = "";
 			alert("leggo per categorie");
 			fs.root.getDirectory('dati', {create: false}, function(dirEntry){				
 				dirEntry.getFile('log.txt', {}, function (fileEntry) {
@@ -210,46 +210,15 @@
 						var reader = new FileReader();
 						reader.onloadend = function (e) {							
 							dati=this.result;
-							alert(dati);
+							alert("dati: " +dati);
 						};
 						reader.readAsText(file);
 					}, errorHandler);
 
-				}, errorHandler);
-				dirEntry.getFile('news.txt', {}, function (fileEntry) {
-					alert("fileEntry: " +fileEntry);
-					// Get a File object representing the file,
-					// then use FileReader to read its contents.
-					fileEntry.file(function (file) {						
-						var reader = new FileReader();
-						reader.onloadend = function (e) {							
-							news=this.result;	
-							alert(news);
-						};
-						reader.readAsText(file);
-					}, errorHandler);
-
-				}, errorHandler);		
-				dirEntry.getFile('promo.txt', {}, function (fileEntry) {
-					alert("fileEntry: " +fileEntry);
-					// Get a File object representing the file,
-					// then use FileReader to read its contents.
-					fileEntry.file(function (file) {						
-						var reader = new FileReader();
-						reader.onloadend = function (e) {							
-							promo=this.result;	
-							alert(promo);
-						};
-						reader.readAsText(file);
-					}, errorHandler);
-
-				}, errorHandler);
+				}, errorHandler);				
 				//window.requestFileSystem(dirEntry, 1024 * 1024, onInitFs, errorHandler);
 			},errorHandler);
-			alert(dati);
-			alert(news);
-			alert(promo);
-			caricaDettaglio(dati,news,promo);
+			//caricaDettaglio(dati,news,promo);
 		}
 				
 		
