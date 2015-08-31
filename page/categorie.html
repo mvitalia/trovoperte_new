@@ -17,7 +17,9 @@
 		//document.addEventListener("deviceready", onDeviceReady, false);
 
         $(document).on("pageinit", "#categorie" , function () {		
-			alert("categorie: show");			
+			alert("categorie: show");		
+			$.mobile.page.prototype.options.domCache = true;
+			$.mobile.ajaxEnabled = true;
 			window.requestFileSystem(window.TEMPORARY, 1024 * 1024 ,searchDir, errorHandler);	
 		});
 		
