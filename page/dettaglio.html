@@ -210,7 +210,7 @@
 						var reader = new FileReader();
 						reader.onloadend = function (e) {							
 							dati=this.result;
-							alert("dati: " +dati);
+							caricaDettaglio(dati);
 						};
 						reader.readAsText(file);
 					}, errorHandler);
@@ -224,7 +224,7 @@
 						var reader = new FileReader();
 						reader.onloadend = function (e) {							
 							news=this.result;	
-							alert("news: "+news);
+							caricaNews(news);
 						};
 						reader.readAsText(file);
 					}, errorHandler);
@@ -238,30 +238,21 @@
 						var reader = new FileReader();
 						reader.onloadend = function (e) {							
 							promo=this.result;	
-							alert("promo: "+promo);
+							caricaPromo(promo);
 						};
 						reader.readAsText(file);
 					}, errorHandler);
 
 				}, errorHandler);				
 				//window.requestFileSystem(dirEntry, 1024 * 1024, onInitFs, errorHandler);
-			},errorHandler);
-			alert(dati)
-			alert(news)
-			alert(promo)
-			
+			},errorHandler);			
 			caricaDettaglio(dati,news,promo);
 		}
 				
 		
 		
 		function caricaDettaglio(dati, news, promo){
-			var datiDecompressi = JSON.parse(dati);
-			var newsDecompresse = JSON.parse(news);
-			var promoDecompresse = JSON.parse(promo);
-		
-			var elenco_news = new Array();
-			var elenco_promo = new Array();
+			var datiDecompressi = JSON.parse(dati);			
 			var elencoMarker = new Array();
        
             var id_azienda = getParameterByName("id_azienda");                            
@@ -406,37 +397,31 @@
 				
 				
                 
-                    $.each(newsDecompresse, function (i, name) {                        
-						if(news.id_attivita == id_azienda){
-							var news = {};
-							news.id = name.id_newsPromo;
-							news.titolo = name.titolo_newsPromo;
-							news.data = name.data_newsPromo;
-							news.icona = name.icona_newsPromo;
-							news.descrizione = name.descrizione_newsPromo;
-							elenco_news.push(news);
-						}
-                    });
-
-                    var blocco = "";
-                    if (elenco_news.length > 0) {
-                        for (var i = 0; i < elenco_news.length; i++) { 						
-                            blocco = blocco + "<div><h1>" + elenco_news[i].titolo + "</h1>"
-                            blocco = blocco + "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/" + elenco_news[i].icona + "' class='img_azienda'>";
-                            blocco = blocco + "<div class='descrizione_newsPromoPopup'>" + elenco_news[i].descrizione + "</div>"
-                            blocco = blocco + "<h5><br/><br/>Inserito il: " + elenco_news[i].data.split(" ")[0] + "</h5></div>"
-                        }
-                    }
-                    else {
-                        blocco = blocco + "<p> Non ci sono news da visualizzare</p>"
-                    }
-
-                    $(".slider_news").append(blocco);
+                    
                 
 
                 
 				
-                    $.each(promoDecompresse, function (i, name) {
+                    
+                
+
+                $(".slider_gallery").append(scheda_gallery);
+                $("#footer_dettaglio").append(footer_dettaglio).promise().done(function () { });
+
+                $("#scheda_azienda").append(htmlObject).promise().done(function () { });
+
+
+                /*$("#lista_immagini").html(scheda_gallery).promise().done(function () { });*/
+
+                $("#lista_promo").append(scheda_promo).promise().done(function () { });
+                //$("#lista_news").append(scheda_news).promise().done(function () { });
+
+        }
+
+		function caricaPromo(promo){
+			var promoDecompresse = JSON.parse(promo);
+			var elenco_promo = new Array();
+			$.each(promoDecompresse, function (i, name) {
 						if(promo.id_attivita == id_azienda){
 							var promo = {};
 							promo.id = name.id_newsPromo;
@@ -464,60 +449,78 @@
                     }
 
                     $(".slider_promo").append(blocco);
-                
+		}
+            
+		function caricaNews(news){
+			var newsDecompresse = JSON.parse(news);
+			var elenco_news = new Array();
+			$.each(newsDecompresse, function (i, name) {                        
+						if(news.id_attivita == id_azienda){
+							var news = {};
+							news.id = name.id_newsPromo;
+							news.titolo = name.titolo_newsPromo;
+							news.data = name.data_newsPromo;
+							news.icona = name.icona_newsPromo;
+							news.descrizione = name.descrizione_newsPromo;
+							elenco_news.push(news);
+						}
+                    });
 
-                $(".slider_gallery").append(scheda_gallery);
-                $("#footer_dettaglio").append(footer_dettaglio).promise().done(function () { });
+                    var blocco = "";
+                    if (elenco_news.length > 0) {
+                        for (var i = 0; i < elenco_news.length; i++) { 						
+                            blocco = blocco + "<div><h1>" + elenco_news[i].titolo + "</h1>"
+                            blocco = blocco + "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/" + elenco_news[i].icona + "' class='img_azienda'>";
+                            blocco = blocco + "<div class='descrizione_newsPromoPopup'>" + elenco_news[i].descrizione + "</div>"
+                            blocco = blocco + "<h5><br/><br/>Inserito il: " + elenco_news[i].data.split(" ")[0] + "</h5></div>"
+                        }
+                    }
+                    else {
+                        blocco = blocco + "<p> Non ci sono news da visualizzare</p>"
+                    }
 
-                $("#scheda_azienda").append(htmlObject).promise().done(function () { });
-
-
-                /*$("#lista_immagini").html(scheda_gallery).promise().done(function () { });*/
-
-                $("#lista_promo").append(scheda_promo).promise().done(function () { });
-                //$("#lista_news").append(scheda_news).promise().done(function () { });
-
-        }
-
-            /*$.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data_newsPromo.asp?id_azienda=" + id_azienda + "tipologia=news", function (info_news) {
-
-
-            var news = "";
-
-            $.each(info_news, function (i, name) {
-            var news;
-            news.id = name.id_newsPromo;
-            news.titolo = name.titolo_newsPromo;
-            news.data = name.data_newsPromo;
-            news.icona = name.icona_newsPromo;
-            news.descrizione = name.descrizione_newsPromo;
-            elenco_news.push(news);
-            });
-            var blocco = "";
-            blocco = blocco + "<h3>" + elenco_news[0].data + "</h3>"
-            blocco = blocco + "<h1>" + elenco_news[0].titolo + "</h1>"
-            blocco = blocco + "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/" + elenco_news[0].icona + "' class='img_azienda'>";
-            blocco = blocco + "<p>" + elenco_news[0].descrizione + "</p>"
-
-            $("#lista_news").append(blocco);
-            });
-
-            $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data_newsPromo.asp?id_azienda=" + id_azienda + "tipologia=promo", function (info_promo) {
+                    $(".slider_news").append(blocco);
+		}
+			
+		/*$.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data_newsPromo.asp?id_azienda=" + id_azienda + "tipologia=news", function (info_news) {
 
 
-            var news = "";
+		var news = "";
 
-            $.each(info_promo, function (i, name) {
-            var promo;
-            news.id = name.id_newsPromo;
-            news.titolo = name.titolo_newsPromo;
-            news.data = name.data_newsPromo;
-            news.icona = name.icona_newsPromo;
-            news.descrizione = name.descrizione_newsPromo;
-            elenco_promo.push(promo);
+		$.each(info_news, function (i, name) {
+		var news;
+		news.id = name.id_newsPromo;
+		news.titolo = name.titolo_newsPromo;
+		news.data = name.data_newsPromo;
+		news.icona = name.icona_newsPromo;
+		news.descrizione = name.descrizione_newsPromo;
+		elenco_news.push(news);
+		});
+		var blocco = "";
+		blocco = blocco + "<h3>" + elenco_news[0].data + "</h3>"
+		blocco = blocco + "<h1>" + elenco_news[0].titolo + "</h1>"
+		blocco = blocco + "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/" + elenco_news[0].icona + "' class='img_azienda'>";
+		blocco = blocco + "<p>" + elenco_news[0].descrizione + "</p>"
 
-            });
-            });*/
+		$("#lista_news").append(blocco);
+		});
+
+		$.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data_newsPromo.asp?id_azienda=" + id_azienda + "tipologia=promo", function (info_promo) {
+
+
+		var news = "";
+
+		$.each(info_promo, function (i, name) {
+		var promo;
+		news.id = name.id_newsPromo;
+		news.titolo = name.titolo_newsPromo;
+		news.data = name.data_newsPromo;
+		news.icona = name.icona_newsPromo;
+		news.descrizione = name.descrizione_newsPromo;
+		elenco_promo.push(promo);
+
+		});
+		});*/
         
 		
        
