@@ -12,6 +12,118 @@
     <script src="../js/jquery.mobile-1.4.5.min.js"></script>
     <script src='https://maps.googleapis.com/maps/api/js?v=3.exp'></script>
     <script src="../js/standard.js"></script>
+	<script>
+		document.addEventListener("deviceready", onDeviceReady, false);
+
+        $("#categorie").on("pageshow", function (event) {		
+			alert("categorie: show");
+			
+			window.requestFileSystem(window.TEMPORARY, 1024 *1024 ,searchDir, errorHandler);	
+			
+			function errorHandler(e) {
+				var msg = '';
+
+				switch (e.code) {
+					case FileError.QUOTA_EXCEEDED_ERR:
+						msg = 'QUOTA_EXCEEDED_ERR';
+						break;
+					case FileError.NOT_FOUND_ERR:
+						msg = 'NOT_FOUND_ERR';
+						msg = msg + "Non è presente un file in locale, collegarsi a internet per fruire dei servizi";
+						break;
+					case FileError.SECURITY_ERR:
+						msg = 'SECURITY_ERR';
+						break;
+					case FileError.INVALID_MODIFICATION_ERR:
+						msg = 'INVALID_MODIFICATION_ERR';
+						break;
+					case FileError.INVALID_STATE_ERR:
+						msg = 'INVALID_STATE_ERR';
+						break;
+					default:
+						msg = 'Unknown Error';
+						break;
+				};
+
+				alert('Error: ' + msg);
+			}
+
+			function searchDir(fs){
+				alert("leggo per categorie");
+				fs.root.getDirectory('dati', {create: false}, function(dirEntry){				
+					dirEntry.getFile('log.txt', {}, function (fileEntry) {
+						alert("fileEntry: " +fileEntry);
+						// Get a File object representing the file,
+						// then use FileReader to read its contents.
+						fileEntry.file(function (file) {						
+							var reader = new FileReader();
+							reader.onloadend = function (e) {							
+								caricaCategorie(this.result);
+											
+							};
+							reader.readAsText(file);
+						}, errorHandler);
+
+					}, errorHandler);			
+					//window.requestFileSystem(dirEntry, 1024 * 1024, onInitFs, errorHandler);
+				},errorHandler);
+			}
+				
+			function caricaCategorie(dati){			
+				var datiDecompressi = JSON.parse(dati);				
+				var elencoMarker = new Array();				
+
+					$.each(datiDecompressi, function (i, name) {
+						if (name.coordinate != "") {
+							var azienda = {};
+							azienda.id = name.id;
+							azienda.nome = name.ragione_sociale;
+							azienda.lat = parseFloat(name.coordinate.split(",")[0]);
+							azienda.lon = parseFloat(name.coordinate.split(",")[1]);
+							elencoMarker.push(azienda);
+						}
+					});
+					//caricaAllIndustry(elencoMarker);
+
+				var id_macrocategoria = getParameterByName("id_macrocategoria");
+			   
+
+					//string to put HTML in
+					//set up string for adding <li/>
+					var li = "";
+					var id_val = "";
+					//container for $li to be added
+					$.each(datiDecompressi, function (i, name) {
+						//add the <li> to "li" variable
+						//note the use of += in the variable
+						//meaning I'm adding to the existing data. not replacing it.
+						//store index value in array as id of the <a> tag
+						if ((name.id_macrocategoria == id_macrocategoria)) {
+							if (name.id_categoria != id_val) {
+								li += '<li><a href="lista_aziende.html?id_categoria=' + name.id_categoria + '" id="' + name.id_categoria + '" class="categ-go" data-ajax="false">';
+								if (name.icona_categoria != "") {
+									//li += '<img src="http://www.trovoperte.com/public/upload_gallery/immagini/' + name.icona_categoria + '" class="ui-li-thumb"/>';
+								}
+								li += '<h3 class="ui-li-heading">' + name.categoria + '</h3></a></li>';
+								id_val = name.id_categoria;
+							}
+						}
+					});
+					//append list to ul
+					$("#lista_categorie").append(li).promise().done(function () {
+
+						//refresh list to enhance its styling.
+						$(this).listview("refresh");
+					});
+			   
+			}
+			
+			
+		});
+
+
+
+    </script>
 </head>
 <body>
     <div class="txtwrapper">
@@ -267,120 +379,6 @@ Oppure <br /><br />
             </h1>
         </div>-->
     </div>
-    <script>
-		document.addEventListener("deviceready", onDeviceReady, false);
-
-        $("#categorie").on("pageshow", function (event) {		
-			alert("categorie: show");
-			
-			window.requestFileSystem(window.TEMPORARY, 1024 *1024 ,searchDir, errorHandler);	
-			
-			function errorHandler(e) {
-				var msg = '';
-
-				switch (e.code) {
-					case FileError.QUOTA_EXCEEDED_ERR:
-						msg = 'QUOTA_EXCEEDED_ERR';
-						break;
-					case FileError.NOT_FOUND_ERR:
-						msg = 'NOT_FOUND_ERR';
-						msg = msg + "Non è presente un file in locale, collegarsi a internet per fruire dei servizi";
-						break;
-					case FileError.SECURITY_ERR:
-						msg = 'SECURITY_ERR';
-						break;
-					case FileError.INVALID_MODIFICATION_ERR:
-						msg = 'INVALID_MODIFICATION_ERR';
-						break;
-					case FileError.INVALID_STATE_ERR:
-						msg = 'INVALID_STATE_ERR';
-						break;
-					default:
-						msg = 'Unknown Error';
-						break;
-				};
-
-				alert('Error: ' + msg);
-			}
-
-			function searchDir(fs){
-				alert("leggo per categorie");
-				fs.root.getDirectory('dati', {create: false}, function(dirEntry){				
-					dirEntry.getFile('log.txt', {}, function (fileEntry) {
-						alert("fileEntry: " +fileEntry);
-						// Get a File object representing the file,
-						// then use FileReader to read its contents.
-						fileEntry.file(function (file) {						
-							var reader = new FileReader();
-							reader.onloadend = function (e) {							
-								caricaCategorie(this.result);
-											
-							};
-							reader.readAsText(file);
-						}, errorHandler);
-
-					}, errorHandler);			
-					//window.requestFileSystem(dirEntry, 1024 * 1024, onInitFs, errorHandler);
-				},errorHandler);
-			}
-			
-			  
-		
-		
-			function caricaCategorie(dati){			
-				var datiDecompressi = JSON.parse(dati);				
-				var elencoMarker = new Array();				
-
-					$.each(datiDecompressi, function (i, name) {
-						if (name.coordinate != "") {
-							var azienda = {};
-							azienda.id = name.id;
-							azienda.nome = name.ragione_sociale;
-							azienda.lat = parseFloat(name.coordinate.split(",")[0]);
-							azienda.lon = parseFloat(name.coordinate.split(",")[1]);
-							elencoMarker.push(azienda);
-						}
-					});
-					//caricaAllIndustry(elencoMarker);
-
-				var id_macrocategoria = getParameterByName("id_macrocategoria");
-			   
-
-					//string to put HTML in
-					//set up string for adding <li/>
-					var li = "";
-					var id_val = "";
-					//container for $li to be added
-					$.each(datiDecompressi, function (i, name) {
-						//add the <li> to "li" variable
-						//note the use of += in the variable
-						//meaning I'm adding to the existing data. not replacing it.
-						//store index value in array as id of the <a> tag
-						if ((name.id_macrocategoria == id_macrocategoria)) {
-							if (name.id_categoria != id_val) {
-								li += '<li><a href="lista_aziende.html?id_categoria=' + name.id_categoria + '" id="' + name.id_categoria + '" class="categ-go" data-ajax="false">';
-								if (name.icona_categoria != "") {
-									//li += '<img src="http://www.trovoperte.com/public/upload_gallery/immagini/' + name.icona_categoria + '" class="ui-li-thumb"/>';
-								}
-								li += '<h3 class="ui-li-heading">' + name.categoria + '</h3></a></li>';
-								id_val = name.id_categoria;
-							}
-						}
-					});
-					//append list to ul
-					$("#lista_categorie").append(li).promise().done(function () {
-
-						//refresh list to enhance its styling.
-						$(this).listview("refresh");
-					});
-			   
-			}
-			
-			
-		});
-
-
-
-    </script>
+   
 </body>
 </html>
