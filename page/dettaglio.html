@@ -203,7 +203,7 @@
 			alert("leggo per categorie");
 			fs.root.getDirectory('dati', {create: false}, function(dirEntry){				
 				dirEntry.getFile('log.txt', {}, function (fileEntry) {
-					alert("fileEntry: " +fileEntry);
+					//alert("fileEntry: " +fileEntry);
 					// Get a File object representing the file,
 					// then use FileReader to read its contents.
 					fileEntry.file(function (file) {						
@@ -211,6 +211,34 @@
 						reader.onloadend = function (e) {							
 							dati=this.result;
 							alert("dati: " +dati);
+						};
+						reader.readAsText(file);
+					}, errorHandler);
+
+				}, errorHandler);	
+				dirEntry.getFile('news.txt', {}, function (fileEntry) {
+					//alert("fileEntry: " +fileEntry);
+					// Get a File object representing the file,
+					// then use FileReader to read its contents.
+					fileEntry.file(function (file) {						
+						var reader = new FileReader();
+						reader.onloadend = function (e) {							
+							news=this.result;	
+							alert("news: "+news);
+						};
+						reader.readAsText(file);
+					}, errorHandler);
+
+				}, errorHandler);		
+				dirEntry.getFile('promo.txt', {}, function (fileEntry) {
+					//alert("fileEntry: " +fileEntry);
+					// Get a File object representing the file,
+					// then use FileReader to read its contents.
+					fileEntry.file(function (file) {						
+						var reader = new FileReader();
+						reader.onloadend = function (e) {							
+							promo=this.result;	
+							alert("promo: "+promo);
 						};
 						reader.readAsText(file);
 					}, errorHandler);
