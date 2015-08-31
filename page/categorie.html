@@ -17,8 +17,11 @@
 
         $(document).on("pageinit", "#categorie" , function () {		
 			alert("categorie: show");			
-			window.requestFileSystem(window.TEMPORARY, 1024 *1024 ,searchDir, errorHandler);	
+			window.requestFileSystem(window.TEMPORARY, 1024 *1024 ,searchDir, problem);	
 		});
+			function problem(e){
+				alert(e.code);
+			}
 		
 			function errorHandler(e) {
 				var msg = '';
@@ -50,7 +53,7 @@
 
 			function searchDir(fs){
 				alert("leggo per categorie");
-				/*fs.root.getDirectory('dati', {create: false}, function(dirEntry){				
+				fs.root.getDirectory('dati', {create: false}, function(dirEntry){				
 					dirEntry.getFile('log.txt', {}, function (fileEntry) {
 						alert("fileEntry: " +fileEntry);
 						// Get a File object representing the file,
@@ -66,7 +69,7 @@
 
 					}, errorHandler);			
 					//window.requestFileSystem(dirEntry, 1024 * 1024, onInitFs, errorHandler);
-				},errorHandler);*/
+				},errorHandler);
 			}
 				
 			function caricaCategorie(dati){			
