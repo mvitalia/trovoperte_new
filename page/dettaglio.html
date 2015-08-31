@@ -31,7 +31,459 @@
     
      
     </script>
+    <script>
+
+        function caricaSlider() {
+             var elem = document.getElementById('mySwipe');
+        window.mySwipe = Swipe(elem, {
+           startSlide: 0,
+           auto: 3000,
+           continuous: true,
+          // disableScroll: true,
+          // stopPropagation: true,
+          // callback: function(index, element) {},
+          // transitionEnd: function(index, element) {}
+        });
+        }
+
+        function caricaSliderPromo() {
+             var elem = document.getElementById('mySwipePromo');
+        window.mySwipe = Swipe(elem, {
+           startSlide: 0,
+           auto: 3000,
+           continuous: true,
+          // disableScroll: true,
+          // stopPropagation: true,
+          // callback: function(index, element) {},
+          // transitionEnd: function(index, element) {}
+        });
+        }
+
+        function caricaSliderGallery() {
+             var elem = document.getElementById('mySwipeGallery');
+        window.mySwipe = Swipe(elem, {
+           startSlide: 0,
+           auto: 3000,
+           continuous: true,
+          // disableScroll: true,
+          // stopPropagation: true,
+          // callback: function(index, element) {},
+          // transitionEnd: function(index, element) {}
+        });
+        }
+
+        $(document).one("pagecreate", ".demo-page", function () {
+
+            
+
+            // Initialize the external persistent header and footer
+            $("#header").toolbar({ theme: "b" });
+            $("#footer").toolbar({ theme: "b" });
+            // Handler for navigating to the next page
+            function navnext(next) {
+                $(":mobile-pagecontainer").pagecontainer("change", next + ".html", {
+                    transition: "slide"
+                });
+            }
+            // Handler for navigating to the previous page
+            function navprev(prev) {
+                $(":mobile-pagecontainer").pagecontainer("change", prev + ".html", {
+                    transition: "slide",
+                    reverse: true
+                });
+            }
+            // Navigate to the next page on swipeleft
+            $(document).on("swipeleft", ".ui-page", function (event) {
+                // Get the filename of the next page. We stored that in the data-next
+                // attribute in the original markup.
+                var next = $(this).jqmData("next");
+                // Check if there is a next page and
+                // swipes may also happen when the user highlights text, so ignore those.
+                // We're only interested in swipes on the page.
+                if (next && (event.target === $(this)[0])) {
+                    navnext(next);
+                }
+            });
+            // Navigate to the next page when the "next" button in the footer is clicked
+            $(document).on("click", ".next", function () {
+                var next = $(".ui-page-active").jqmData("next");
+                // Check if there is a next page
+                if (next) {
+                    navnext(next);
+                }
+            });
+            // The same for the navigating to the previous page
+            $(document).on("swiperight", ".ui-page", function (event) {
+                var prev = $(this).jqmData("prev");
+                if (prev && (event.target === $(this)[0])) {
+                    navprev(prev);
+                }
+            });
+            $(document).on("click", ".prev", function () {
+                var prev = $(".ui-page-active").jqmData("prev");
+                if (prev) {
+                    navprev(prev);
+                }
+            });
+        });
+        $(document).on("pageshow", ".demo-page", function () {
+
+
+
+
+            var thePage = $(this),
+        title = thePage.jqmData("title"),
+        next = thePage.jqmData("next"),
+        prev = thePage.jqmData("prev");
+            // Point the "Trivia" button to the popup for the current page.
+            $("#trivia-button").attr("href", "#" + thePage.find(".trivia").attr("id"));
+            // We use the same header on each page
+            // so we have to update the title
+            $("#header h1").text(title);
+            // Prefetch the next page
+            // We added data-dom-cache="true" to the page so it won't be deleted
+            // so there is no need to prefetch it
+            if (next) {
+                $(":mobile-pagecontainer").pagecontainer("load", next + ".html");
+            }
+            // We disable the next or previous buttons in the footer
+            // if there is no next or previous page
+            // We use the same footer on each page
+            // so first we remove the disabled class if it is there
+            $(".next.ui-state-disabled, .prev.ui-state-disabled").removeClass("ui-state-disabled");
+            if (!next) {
+                $(".next").addClass("ui-state-disabled");
+            }
+            if (!prev) {
+                $(".prev").addClass("ui-state-disabled");
+            }
+        });
+
+        document.addEventListener("deviceready", onDeviceReady, false);
+		
+		function onDeviceReady(){		
+			alert("categorie: show");					
+			window.requestFileSystem(window.TEMPORARY, 1024 * 1024 ,searchDir, errorHandler);	
+		};
+		
+		function errorHandler(e) {
+			var msg = '';
+
+			switch (e.code) {
+				case FileError.QUOTA_EXCEEDED_ERR:
+					msg = 'QUOTA_EXCEEDED_ERR';
+					break;
+				case FileError.NOT_FOUND_ERR:
+					msg = 'NOT_FOUND_ERR';
+					msg = msg + "Non è presente un file in locale, collegarsi a internet per fruire dei servizi";
+					break;
+				case FileError.SECURITY_ERR:
+					msg = 'SECURITY_ERR';
+					break;
+				case FileError.INVALID_MODIFICATION_ERR:
+					msg = 'INVALID_MODIFICATION_ERR';
+					break;
+				case FileError.INVALID_STATE_ERR:
+					msg = 'INVALID_STATE_ERR';
+					break;
+				default:
+					msg = 'Unknown Error';
+					break;
+			};
+
+			alert('Error: ' + msg);
+		}
+
+		function searchDir(fs){
+			alert("leggo per categorie");
+			fs.root.getDirectory('dati', {create: false}, function(dirEntry){				
+				dirEntry.getFile('log.txt', {}, function (fileEntry) {
+					alert("fileEntry: " +fileEntry);
+					// Get a File object representing the file,
+					// then use FileReader to read its contents.
+					fileEntry.file(function (file) {						
+						var reader = new FileReader();
+						reader.onloadend = function (e) {							
+							caricaDettaglio(this.result);
+										
+						};
+						reader.readAsText(file);
+					}, errorHandler);
+
+				}, errorHandler);			
+				//window.requestFileSystem(dirEntry, 1024 * 1024, onInitFs, errorHandler);
+			},errorHandler);
+		}
+				
+		
+		
+		function caricaDettaglio(dati, news, promo){
+			var datiDecompressi = JSON.parse(dati);
+			var newsDecompresse = JSON.parse(news);
+			var promoDecompresse = JSON.parse(promo);
+		
+			var elenco_news = new Array();
+			var elenco_promo = new Array();
+			var elencoMarker = new Array();
        
+            var id_azienda = getParameterByName("id_azienda");                            
+
+                $.each(datiDecompressi,function(i, name){
+                    if(name.coordinate != ""){
+                          var azienda = {};
+                          azienda.id = name.id;
+                          azienda.nome = name.ragione_sociale;
+                          azienda.lat = parseFloat(name.coordinate.split(",")[0]);
+                          azienda.lon = parseFloat(name.coordinate.split(",")[1]);
+                          elencoMarker.push(azienda);
+                    }
+                });
+                //caricaAllIndustry(elencoMarker);    
+            
+
+            
+
+                var scheda = "";
+                var footer_dettaglio = "";
+
+                var scheda_gallery = "";
+                var scheda_promo = "";
+                var scheda_news = "";
+                var count_gallery = 0;
+                var count_promo = 0;
+                var count_news = 0;
+                //container for $li to be added
+                $.each(datiDecompressi, function (i, name) {
+                    //add the <li> to "li" variable
+                    //note the use of += in the variable
+                    //meaning I'm adding to the existing data. not replacing it.
+                    //store index value in array as id of the <a> tag
+                    if (name.id == id_azienda) {
+
+                        if (name.foto_principale != '') {
+                            scheda += "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/" + name.foto_principale + "' class='logo_azienda' >";
+                        } else {
+                            scheda += "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/ico_vuoto.jpg' class='logo_azienda' >";
+                        }
+
+                        // IMMAGINE PRINCIPALE
+                        $.each(name.foto, function (i, foto) {
+
+
+                            // GALLERY
+                            if (foto.tipologia == 'gallery') {
+                                scheda_gallery += "<div><img src='http://www.trovoperte.com/public/upload_gallery/immagini/" + foto.immagine + "' class='img_azienda'/></div>";
+
+                                //<div data-role='popup' id='myPopup_" + count_gallery + "'><img src='http://www.trovoperte.com%5Cpublic%5Cupload_gallery%5Cimmagini%5C" + foto.immagine + "' style='width:800px;height:400px;'></div>
+                                count_gallery += 1;
+                            }
+
+
+
+                            /*if (name.tipo_contratto != 'intermedio') {
+
+                            // NEWS
+                            if (foto.tipologia == 'news') {
+                            scheda_news += "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/" + foto.immagine + "' class='img_azienda'>";
+                            count_news += 1;
+                            }
+
+
+                            // PROMO
+                            if (foto.tipologia == 'promo') {
+                            scheda_promo += "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/" + foto.immagine + "' class='img_azienda'>";
+                            count_promo += 1;
+                            }
+
+
+                            }*/
+
+                        });
+
+
+                        if (count_gallery == 0) {
+                            scheda_gallery += "<p>Nessuna immagine da visualizzare</p>";
+                        }
+                        /* if (count_news == 0) {
+                        scheda_news += "Nessuna immagine da visualizzare";
+                        }
+                        if (count_promo == 0) {
+                        scheda_promo += "Nessuna immagine da visualizzare";
+                        }*/
+
+                        scheda += "<div class='info_azienda'><h1>" + name.ragione_sociale + "</h1>"; // RAGIONE SOCIALE
+                        scheda += "<p>" + name.indirizzo + " " + name.num + "</p><p>" + name.cap + " " + name.paese + " " + name.provincia + "</p>";
+                        if (name.circuito != "" && name.circuito != undefined) {
+                            scheda += "<p class='info_circuito'><a href='lista_aziende.html?id_circuito=" + name.id_circuito + "' data-ajax='false'><img id='img_circuito' src='http://www.trovoperte.com/public/upload_gallery/immagini/" + name.icona_circuito + "' class='ui-li-thumb'/></a></p>";
+                        }
+                        scheda += "</div>"
+                        if (name.tipo_contratto != 'base' && name.tipo_contratto != 'free') {
+                            scheda += "<div class='box_extra'><a id=" + name.id + " onClick='caricaSliderGallery()' href='#azienda_gallery' data-icon='camera' data-rel='popup' data-position-to='window' data-transition='pop' class='azienda_gallery ui-btn ui-shadow ui-btn-inline ui-icon-camera ui-btn-icon-left' >Gallery</a>";
+
+                            if (name.tipo_contratto == 'avanzato') {
+                                scheda += "<a id=" + name.id + " onClick='caricaSlider()' href='#azienda_news' data-icon='calendar' data-rel='popup' data-position-to='window' data-transition='pop' class='azienda_news ui-btn ui-shadow ui-btn-inline ui-icon-calendar ui-btn-icon-left'>News</a>";
+                                scheda += "<a id=" + name.id + " onClick='caricaSliderPromo()' href='#azienda_promo' data-icon='heart' class='azienda_promo ui-btn ui-shadow ui-btn-inline ui-icon-heart ui-btn-icon-left' data-rel='popup' data-position-to='window' data-transition='pop'>Promo</a>";
+
+                            }
+                            scheda += "</div>"
+                        }
+
+                        //scheda += "<div data-role='collapsibleset' data-theme='a' data-content-theme='a' class='ui-collapsible-set ui-group-theme-a ui-corner-all descrizione'>";
+
+                        // DESCRIZIONE
+                        //scheda += "<div data-role='collapsible' data-collapsed='false' class='ui-collapsible ui-collapsible-inset ui-corner-all ui-collapsible-themed-content ui-first-child ui-collapsible-collapsed'><h3 class='ui-collapsible-heading ui-collapsible-heading-collapsed'><a href='#' class='ui-collapsible-heading-toggle ui-btn ui-btn-icon-left ui-btn-a ui-icon-plus'>Descrizione<span class='ui-collapsible-heading-status'>click to expand contents</span></a></h3><div class='ui-collapsible-content ui-body-a ui-collapsible-content-collapsed' aria-hidden='false'><p>" + name.descrizione + "</p></div></div>";
+
+                        // SERVIZI
+                        //scheda += "<div data-role='collapsible' class='ui-collapsible ui-collapsible-inset ui-corner-all ui-collapsible-themed-content ui-first-child ui-collapsible-collapsed'><h3 class='ui-collapsible-heading ui-collapsible-heading-collapsed'><a href='#' class='ui-collapsible-heading-toggle ui-btn ui-btn-icon-left ui-btn-a ui-icon-plus'>Servizi<span class='ui-collapsible-heading-status'>click to expand contents</span></a></h3><div class='ui-collapsible-content ui-body-a ui-collapsible-content-collapsed' aria-hidden='true'><p>" + name.servizi + "</p></div></div>";
+
+                        //scheda += "</div>";
+                        if (name.tipo_contratto != 'free') {
+                            scheda += "<div class='descrizione'><h3>Descrizione</h3>" + name.descrizione + "</div>"; // DESCRIZIONE
+                            scheda += "<div class='servizi'><h3>Servizi</h3>" + name.servizi + "</div><br/><br/>"; // SERVIZI
+                        }
+
+                        //<li class='ui-block-a' style="float:left;width:25%"><a href="#page_info" data-icon="info" data-iconpos="left" class="ui-state-persist"></a></li>
+                        //footer_dettaglio = "<li class='ui-block-a' style='float:left;width:25%'><a href='page_info' data-icon='info' data-role='button' class='ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-info ui-btn-icon-left'>Info</a></li>";
+
+                        //if(name.tipo_contratto != 'base' && name.tipo_contratto != 'free') {
+                            footer_dettaglio += "<li class='ui-block-a' style='float:left;width:25%'><a href='http://" + name.web + "' target='_blank' data-icon='heart' data-role='button' class='btn_web ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-heart ui-btn-icon-left'>Web</a></li>";
+                            footer_dettaglio += "<li class='ui-block-b '><a href='mailto:" + name.mail + "' data-icon='mail' data-role='button' class='btn_mail ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-mail ui-btn-icon-left'>E-mail</a></li>";
+                            footer_dettaglio += "<li class='ui-block-c '><a href='tel:" + name.tel + "' data-icon='phone' data-role='button'  class='btn_tel ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-phone ui-btn-icon-left'>Tel.</a></li>";
+                            footer_dettaglio += "<li class='ui-block-d '><a href='#map-page' data-icon='info' data-rel='popup'data-position-to='window' data-transition='pop' data-icon='navigation' class='btn_fax ui-btn ui-state-persist ui-btn-up-a ui-btn-icon-navigation ui-btn-inline ui-btn-icon-left'>Raggiungici</a>";
+                            if(name.coordinate != ""){
+                                caricaMappa(name.coordinate, name.ragione_sociale);
+
+                                $("#btnNavigazione").attr("href","http://maps.google.com/maps?&daddr=" + name.coordinate);
+                            }
+                            else{
+                                $("#map-canvas").text("Per questa attività non è disponibile la visualizzazione della mappa");
+                                
+                            }
+                        //}
+
+                    }
+                });
+                //append list to ul
+                var htmlObject = $(scheda);
+                $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data_newsPromo.asp?id_azienda=" + id_azienda + "&tipologia=news", function (info_news) {
+                
+                    $.each(info_news, function (i, name) {                        
+						if(news.id_attivita == id_azienda){
+							var news = {};
+							news.id = name.id_newsPromo;
+							news.titolo = name.titolo_newsPromo;
+							news.data = name.data_newsPromo;
+							news.icona = name.icona_newsPromo;
+							news.descrizione = name.descrizione_newsPromo;
+							elenco_news.push(news);
+						}
+                    });
+
+                    var blocco = "";
+                    if (elenco_news.length > 0) {
+                        for (var i = 0; i < elenco_news.length; i++) { 						
+                            blocco = blocco + "<div><h1>" + elenco_news[i].titolo + "</h1>"
+                            blocco = blocco + "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/" + elenco_news[i].icona + "' class='img_azienda'>";
+                            blocco = blocco + "<div class='descrizione_newsPromoPopup'>" + elenco_news[i].descrizione + "</div>"
+                            blocco = blocco + "<h5><br/><br/>Inserito il: " + elenco_news[i].data.split(" ")[0] + "</h5></div>"
+                        }
+                    }
+                    else {
+                        blocco = blocco + "<p> Non ci sono news da visualizzare</p>"
+                    }
+
+                    $(".slider_news").append(blocco);
+                });
+
+                $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data_newsPromo.asp?id_azienda=" + id_azienda + "&tipologia=promo", function (info_promo) {
+
+                    $.each(info_promo, function (i, name) {
+						if(promo.id_attivita == id_azienda){
+							var promo = {};
+							promo.id = name.id_newsPromo;
+							promo.titolo = name.titolo_newsPromo;
+							promo.data = name.data_newsPromo;
+							promo.icona = name.icona_newsPromo;
+							promo.descrizione = name.descrizione_newsPromo;
+							elenco_promo.push(promo);
+						}
+                    });
+
+                   var blocco = "";
+                 
+                    if (elenco_promo.length > 0) {
+                            for (var i = 0; i < elenco_promo.length; i++) {                            
+                            blocco = blocco + "<div><h1>" + elenco_promo[i].titolo + "</h1>"
+                            blocco = blocco + "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/" + elenco_promo[i].icona + "' class='img_azienda'>";
+                            blocco = blocco + "<div class='descrizione_newsPromoPopup'>" + elenco_promo[i].descrizione + "</div>"
+                            blocco = blocco + "<h5><br/><br/>Inserito il: " + elenco_promo[i].data.split(" ")[0] + "</h5></div>"
+                            
+                        }
+                    }
+                    else {
+                        blocco = blocco + "<p> Non ci sono promo da visualizzare</p>"
+                    }
+
+                    $(".slider_promo").append(blocco);
+                });
+
+                $(".slider_gallery").append(scheda_gallery);
+                $("#footer_dettaglio").append(footer_dettaglio).promise().done(function () { });
+
+                $("#scheda_azienda").append(htmlObject).promise().done(function () { });
+
+
+                /*$("#lista_immagini").html(scheda_gallery).promise().done(function () { });*/
+
+                $("#lista_promo").append(scheda_promo).promise().done(function () { });
+                //$("#lista_news").append(scheda_news).promise().done(function () { });
+
+            });
+
+            /*$.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data_newsPromo.asp?id_azienda=" + id_azienda + "tipologia=news", function (info_news) {
+
+
+            var news = "";
+
+            $.each(info_news, function (i, name) {
+            var news;
+            news.id = name.id_newsPromo;
+            news.titolo = name.titolo_newsPromo;
+            news.data = name.data_newsPromo;
+            news.icona = name.icona_newsPromo;
+            news.descrizione = name.descrizione_newsPromo;
+            elenco_news.push(news);
+            });
+            var blocco = "";
+            blocco = blocco + "<h3>" + elenco_news[0].data + "</h3>"
+            blocco = blocco + "<h1>" + elenco_news[0].titolo + "</h1>"
+            blocco = blocco + "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/" + elenco_news[0].icona + "' class='img_azienda'>";
+            blocco = blocco + "<p>" + elenco_news[0].descrizione + "</p>"
+
+            $("#lista_news").append(blocco);
+            });
+
+            $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data_newsPromo.asp?id_azienda=" + id_azienda + "tipologia=promo", function (info_promo) {
+
+
+            var news = "";
+
+            $.each(info_promo, function (i, name) {
+            var promo;
+            news.id = name.id_newsPromo;
+            news.titolo = name.titolo_newsPromo;
+            news.data = name.data_newsPromo;
+            news.icona = name.icona_newsPromo;
+            news.descrizione = name.descrizione_newsPromo;
+            elenco_promo.push(promo);
+
+            });
+            });*/
+        
+		}
+       
+    </script>
+ 
 </head>
 <body>
     <!-- dettaglio -->
@@ -365,400 +817,5 @@
     </div>
     <!--page-->
     </div>
-    <script>
-
-        function caricaSlider() {
-             var elem = document.getElementById('mySwipe');
-        window.mySwipe = Swipe(elem, {
-           startSlide: 0,
-           auto: 3000,
-           continuous: true,
-          // disableScroll: true,
-          // stopPropagation: true,
-          // callback: function(index, element) {},
-          // transitionEnd: function(index, element) {}
-        });
-        }
-
-        function caricaSliderPromo() {
-             var elem = document.getElementById('mySwipePromo');
-        window.mySwipe = Swipe(elem, {
-           startSlide: 0,
-           auto: 3000,
-           continuous: true,
-          // disableScroll: true,
-          // stopPropagation: true,
-          // callback: function(index, element) {},
-          // transitionEnd: function(index, element) {}
-        });
-        }
-
-        function caricaSliderGallery() {
-             var elem = document.getElementById('mySwipeGallery');
-        window.mySwipe = Swipe(elem, {
-           startSlide: 0,
-           auto: 3000,
-           continuous: true,
-          // disableScroll: true,
-          // stopPropagation: true,
-          // callback: function(index, element) {},
-          // transitionEnd: function(index, element) {}
-        });
-        }
-
-        $(document).one("pagecreate", ".demo-page", function () {
-
-            
-
-            // Initialize the external persistent header and footer
-            $("#header").toolbar({ theme: "b" });
-            $("#footer").toolbar({ theme: "b" });
-            // Handler for navigating to the next page
-            function navnext(next) {
-                $(":mobile-pagecontainer").pagecontainer("change", next + ".html", {
-                    transition: "slide"
-                });
-            }
-            // Handler for navigating to the previous page
-            function navprev(prev) {
-                $(":mobile-pagecontainer").pagecontainer("change", prev + ".html", {
-                    transition: "slide",
-                    reverse: true
-                });
-            }
-            // Navigate to the next page on swipeleft
-            $(document).on("swipeleft", ".ui-page", function (event) {
-                // Get the filename of the next page. We stored that in the data-next
-                // attribute in the original markup.
-                var next = $(this).jqmData("next");
-                // Check if there is a next page and
-                // swipes may also happen when the user highlights text, so ignore those.
-                // We're only interested in swipes on the page.
-                if (next && (event.target === $(this)[0])) {
-                    navnext(next);
-                }
-            });
-            // Navigate to the next page when the "next" button in the footer is clicked
-            $(document).on("click", ".next", function () {
-                var next = $(".ui-page-active").jqmData("next");
-                // Check if there is a next page
-                if (next) {
-                    navnext(next);
-                }
-            });
-            // The same for the navigating to the previous page
-            $(document).on("swiperight", ".ui-page", function (event) {
-                var prev = $(this).jqmData("prev");
-                if (prev && (event.target === $(this)[0])) {
-                    navprev(prev);
-                }
-            });
-            $(document).on("click", ".prev", function () {
-                var prev = $(".ui-page-active").jqmData("prev");
-                if (prev) {
-                    navprev(prev);
-                }
-            });
-        });
-        $(document).on("pageshow", ".demo-page", function () {
-
-
-
-
-            var thePage = $(this),
-        title = thePage.jqmData("title"),
-        next = thePage.jqmData("next"),
-        prev = thePage.jqmData("prev");
-            // Point the "Trivia" button to the popup for the current page.
-            $("#trivia-button").attr("href", "#" + thePage.find(".trivia").attr("id"));
-            // We use the same header on each page
-            // so we have to update the title
-            $("#header h1").text(title);
-            // Prefetch the next page
-            // We added data-dom-cache="true" to the page so it won't be deleted
-            // so there is no need to prefetch it
-            if (next) {
-                $(":mobile-pagecontainer").pagecontainer("load", next + ".html");
-            }
-            // We disable the next or previous buttons in the footer
-            // if there is no next or previous page
-            // We use the same footer on each page
-            // so first we remove the disabled class if it is there
-            $(".next.ui-state-disabled, .prev.ui-state-disabled").removeClass("ui-state-disabled");
-            if (!next) {
-                $(".next").addClass("ui-state-disabled");
-            }
-            if (!prev) {
-                $(".prev").addClass("ui-state-disabled");
-            }
-        });
-
-        /*-------------------------------------------------------*/
-		function caricaDettaglio(dati, news, promo){
-			var datiDecompressi = JSON.parse(dati);
-			var newsDecompresse = JSON.parse(news);
-			var promoDecompresse = JSON.parse(promo);
-		
-			var elenco_news = new Array();
-			var elenco_promo = new Array();
-			var elencoMarker = new Array();
-       
-            var id_azienda = getParameterByName("id_azienda");                            
-
-                $.each(datiDecompressi,function(i, name){
-                    if(name.coordinate != ""){
-                          var azienda = {};
-                          azienda.id = name.id;
-                          azienda.nome = name.ragione_sociale;
-                          azienda.lat = parseFloat(name.coordinate.split(",")[0]);
-                          azienda.lon = parseFloat(name.coordinate.split(",")[1]);
-                          elencoMarker.push(azienda);
-                    }
-                });
-                //caricaAllIndustry(elencoMarker);    
-            
-
-            
-
-                var scheda = "";
-                var footer_dettaglio = "";
-
-                var scheda_gallery = "";
-                var scheda_promo = "";
-                var scheda_news = "";
-                var count_gallery = 0;
-                var count_promo = 0;
-                var count_news = 0;
-                //container for $li to be added
-                $.each(datiDecompressi, function (i, name) {
-                    //add the <li> to "li" variable
-                    //note the use of += in the variable
-                    //meaning I'm adding to the existing data. not replacing it.
-                    //store index value in array as id of the <a> tag
-                    if (name.id == id_azienda) {
-
-                        if (name.foto_principale != '') {
-                            scheda += "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/" + name.foto_principale + "' class='logo_azienda' >";
-                        } else {
-                            scheda += "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/ico_vuoto.jpg' class='logo_azienda' >";
-                        }
-
-                        // IMMAGINE PRINCIPALE
-                        $.each(name.foto, function (i, foto) {
-
-
-                            // GALLERY
-                            if (foto.tipologia == 'gallery') {
-                                scheda_gallery += "<div><img src='http://www.trovoperte.com/public/upload_gallery/immagini/" + foto.immagine + "' class='img_azienda'/></div>";
-
-                                //<div data-role='popup' id='myPopup_" + count_gallery + "'><img src='http://www.trovoperte.com%5Cpublic%5Cupload_gallery%5Cimmagini%5C" + foto.immagine + "' style='width:800px;height:400px;'></div>
-                                count_gallery += 1;
-                            }
-
-
-
-                            /*if (name.tipo_contratto != 'intermedio') {
-
-                            // NEWS
-                            if (foto.tipologia == 'news') {
-                            scheda_news += "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/" + foto.immagine + "' class='img_azienda'>";
-                            count_news += 1;
-                            }
-
-
-                            // PROMO
-                            if (foto.tipologia == 'promo') {
-                            scheda_promo += "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/" + foto.immagine + "' class='img_azienda'>";
-                            count_promo += 1;
-                            }
-
-
-                            }*/
-
-                        });
-
-
-                        if (count_gallery == 0) {
-                            scheda_gallery += "<p>Nessuna immagine da visualizzare</p>";
-                        }
-                        /* if (count_news == 0) {
-                        scheda_news += "Nessuna immagine da visualizzare";
-                        }
-                        if (count_promo == 0) {
-                        scheda_promo += "Nessuna immagine da visualizzare";
-                        }*/
-
-                        scheda += "<div class='info_azienda'><h1>" + name.ragione_sociale + "</h1>"; // RAGIONE SOCIALE
-                        scheda += "<p>" + name.indirizzo + " " + name.num + "</p><p>" + name.cap + " " + name.paese + " " + name.provincia + "</p>";
-                        if (name.circuito != "" && name.circuito != undefined) {
-                            scheda += "<p class='info_circuito'><a href='lista_aziende.html?id_circuito=" + name.id_circuito + "' data-ajax='false'><img id='img_circuito' src='http://www.trovoperte.com/public/upload_gallery/immagini/" + name.icona_circuito + "' class='ui-li-thumb'/></a></p>";
-                        }
-                        scheda += "</div>"
-                        if (name.tipo_contratto != 'base' && name.tipo_contratto != 'free') {
-                            scheda += "<div class='box_extra'><a id=" + name.id + " onClick='caricaSliderGallery()' href='#azienda_gallery' data-icon='camera' data-rel='popup' data-position-to='window' data-transition='pop' class='azienda_gallery ui-btn ui-shadow ui-btn-inline ui-icon-camera ui-btn-icon-left' >Gallery</a>";
-
-                            if (name.tipo_contratto == 'avanzato') {
-                                scheda += "<a id=" + name.id + " onClick='caricaSlider()' href='#azienda_news' data-icon='calendar' data-rel='popup' data-position-to='window' data-transition='pop' class='azienda_news ui-btn ui-shadow ui-btn-inline ui-icon-calendar ui-btn-icon-left'>News</a>";
-                                scheda += "<a id=" + name.id + " onClick='caricaSliderPromo()' href='#azienda_promo' data-icon='heart' class='azienda_promo ui-btn ui-shadow ui-btn-inline ui-icon-heart ui-btn-icon-left' data-rel='popup' data-position-to='window' data-transition='pop'>Promo</a>";
-
-                            }
-                            scheda += "</div>"
-                        }
-
-                        //scheda += "<div data-role='collapsibleset' data-theme='a' data-content-theme='a' class='ui-collapsible-set ui-group-theme-a ui-corner-all descrizione'>";
-
-                        // DESCRIZIONE
-                        //scheda += "<div data-role='collapsible' data-collapsed='false' class='ui-collapsible ui-collapsible-inset ui-corner-all ui-collapsible-themed-content ui-first-child ui-collapsible-collapsed'><h3 class='ui-collapsible-heading ui-collapsible-heading-collapsed'><a href='#' class='ui-collapsible-heading-toggle ui-btn ui-btn-icon-left ui-btn-a ui-icon-plus'>Descrizione<span class='ui-collapsible-heading-status'>click to expand contents</span></a></h3><div class='ui-collapsible-content ui-body-a ui-collapsible-content-collapsed' aria-hidden='false'><p>" + name.descrizione + "</p></div></div>";
-
-                        // SERVIZI
-                        //scheda += "<div data-role='collapsible' class='ui-collapsible ui-collapsible-inset ui-corner-all ui-collapsible-themed-content ui-first-child ui-collapsible-collapsed'><h3 class='ui-collapsible-heading ui-collapsible-heading-collapsed'><a href='#' class='ui-collapsible-heading-toggle ui-btn ui-btn-icon-left ui-btn-a ui-icon-plus'>Servizi<span class='ui-collapsible-heading-status'>click to expand contents</span></a></h3><div class='ui-collapsible-content ui-body-a ui-collapsible-content-collapsed' aria-hidden='true'><p>" + name.servizi + "</p></div></div>";
-
-                        //scheda += "</div>";
-                        if (name.tipo_contratto != 'free') {
-                            scheda += "<div class='descrizione'><h3>Descrizione</h3>" + name.descrizione + "</div>"; // DESCRIZIONE
-                            scheda += "<div class='servizi'><h3>Servizi</h3>" + name.servizi + "</div><br/><br/>"; // SERVIZI
-                        }
-
-                        //<li class='ui-block-a' style="float:left;width:25%"><a href="#page_info" data-icon="info" data-iconpos="left" class="ui-state-persist"></a></li>
-                        //footer_dettaglio = "<li class='ui-block-a' style='float:left;width:25%'><a href='page_info' data-icon='info' data-role='button' class='ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-info ui-btn-icon-left'>Info</a></li>";
-
-                        //if(name.tipo_contratto != 'base' && name.tipo_contratto != 'free') {
-                            footer_dettaglio += "<li class='ui-block-a' style='float:left;width:25%'><a href='http://" + name.web + "' target='_blank' data-icon='heart' data-role='button' class='btn_web ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-heart ui-btn-icon-left'>Web</a></li>";
-                            footer_dettaglio += "<li class='ui-block-b '><a href='mailto:" + name.mail + "' data-icon='mail' data-role='button' class='btn_mail ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-mail ui-btn-icon-left'>E-mail</a></li>";
-                            footer_dettaglio += "<li class='ui-block-c '><a href='tel:" + name.tel + "' data-icon='phone' data-role='button'  class='btn_tel ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-phone ui-btn-icon-left'>Tel.</a></li>";
-                            footer_dettaglio += "<li class='ui-block-d '><a href='#map-page' data-icon='info' data-rel='popup'data-position-to='window' data-transition='pop' data-icon='navigation' class='btn_fax ui-btn ui-state-persist ui-btn-up-a ui-btn-icon-navigation ui-btn-inline ui-btn-icon-left'>Raggiungici</a>";
-                            if(name.coordinate != ""){
-                                caricaMappa(name.coordinate, name.ragione_sociale);
-
-                                $("#btnNavigazione").attr("href","http://maps.google.com/maps?&daddr=" + name.coordinate);
-                            }
-                            else{
-                                $("#map-canvas").text("Per questa attività non è disponibile la visualizzazione della mappa");
-                                
-                            }
-                        //}
-
-                    }
-                });
-                //append list to ul
-                var htmlObject = $(scheda);
-                $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data_newsPromo.asp?id_azienda=" + id_azienda + "&tipologia=news", function (info_news) {
-                
-                    $.each(info_news, function (i, name) {                        
-						if(news.id_attivita == id_azienda){
-							var news = {};
-							news.id = name.id_newsPromo;
-							news.titolo = name.titolo_newsPromo;
-							news.data = name.data_newsPromo;
-							news.icona = name.icona_newsPromo;
-							news.descrizione = name.descrizione_newsPromo;
-							elenco_news.push(news);
-						}
-                    });
-
-                    var blocco = "";
-                    if (elenco_news.length > 0) {
-                        for (var i = 0; i < elenco_news.length; i++) { 						
-                            blocco = blocco + "<div><h1>" + elenco_news[i].titolo + "</h1>"
-                            blocco = blocco + "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/" + elenco_news[i].icona + "' class='img_azienda'>";
-                            blocco = blocco + "<div class='descrizione_newsPromoPopup'>" + elenco_news[i].descrizione + "</div>"
-                            blocco = blocco + "<h5><br/><br/>Inserito il: " + elenco_news[i].data.split(" ")[0] + "</h5></div>"
-                        }
-                    }
-                    else {
-                        blocco = blocco + "<p> Non ci sono news da visualizzare</p>"
-                    }
-
-                    $(".slider_news").append(blocco);
-                });
-
-                $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data_newsPromo.asp?id_azienda=" + id_azienda + "&tipologia=promo", function (info_promo) {
-
-                    $.each(info_promo, function (i, name) {
-						if(promo.id_attivita == id_azienda){
-							var promo = {};
-							promo.id = name.id_newsPromo;
-							promo.titolo = name.titolo_newsPromo;
-							promo.data = name.data_newsPromo;
-							promo.icona = name.icona_newsPromo;
-							promo.descrizione = name.descrizione_newsPromo;
-							elenco_promo.push(promo);
-						}
-                    });
-
-                   var blocco = "";
-                 
-                    if (elenco_promo.length > 0) {
-                            for (var i = 0; i < elenco_promo.length; i++) {                            
-                            blocco = blocco + "<div><h1>" + elenco_promo[i].titolo + "</h1>"
-                            blocco = blocco + "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/" + elenco_promo[i].icona + "' class='img_azienda'>";
-                            blocco = blocco + "<div class='descrizione_newsPromoPopup'>" + elenco_promo[i].descrizione + "</div>"
-                            blocco = blocco + "<h5><br/><br/>Inserito il: " + elenco_promo[i].data.split(" ")[0] + "</h5></div>"
-                            
-                        }
-                    }
-                    else {
-                        blocco = blocco + "<p> Non ci sono promo da visualizzare</p>"
-                    }
-
-                    $(".slider_promo").append(blocco);
-                });
-
-                $(".slider_gallery").append(scheda_gallery);
-                $("#footer_dettaglio").append(footer_dettaglio).promise().done(function () { });
-
-                $("#scheda_azienda").append(htmlObject).promise().done(function () { });
-
-
-                /*$("#lista_immagini").html(scheda_gallery).promise().done(function () { });*/
-
-                $("#lista_promo").append(scheda_promo).promise().done(function () { });
-                //$("#lista_news").append(scheda_news).promise().done(function () { });
-
-            });
-
-            /*$.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data_newsPromo.asp?id_azienda=" + id_azienda + "tipologia=news", function (info_news) {
-
-
-            var news = "";
-
-            $.each(info_news, function (i, name) {
-            var news;
-            news.id = name.id_newsPromo;
-            news.titolo = name.titolo_newsPromo;
-            news.data = name.data_newsPromo;
-            news.icona = name.icona_newsPromo;
-            news.descrizione = name.descrizione_newsPromo;
-            elenco_news.push(news);
-            });
-            var blocco = "";
-            blocco = blocco + "<h3>" + elenco_news[0].data + "</h3>"
-            blocco = blocco + "<h1>" + elenco_news[0].titolo + "</h1>"
-            blocco = blocco + "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/" + elenco_news[0].icona + "' class='img_azienda'>";
-            blocco = blocco + "<p>" + elenco_news[0].descrizione + "</p>"
-
-            $("#lista_news").append(blocco);
-            });
-
-            $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data_newsPromo.asp?id_azienda=" + id_azienda + "tipologia=promo", function (info_promo) {
-
-
-            var news = "";
-
-            $.each(info_promo, function (i, name) {
-            var promo;
-            news.id = name.id_newsPromo;
-            news.titolo = name.titolo_newsPromo;
-            news.data = name.data_newsPromo;
-            news.icona = name.icona_newsPromo;
-            news.descrizione = name.descrizione_newsPromo;
-            elenco_promo.push(promo);
-
-            });
-            });*/
-        
-		}
-       
-    </script>
-</body>
+   </body>
 </html>
