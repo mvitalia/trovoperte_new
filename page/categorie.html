@@ -1,5 +1,6 @@
 <html>
 <head>
+	<script type="text/javascript" src="cordova.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -17,11 +18,8 @@
 
         $(document).on("pageinit", "#categorie" , function () {		
 			alert("categorie: show");			
-			window.requestFileSystem(window.TEMPORARY, 1024 *1024 ,searchDir, problem);	
+			window.requestFileSystem(window.TEMPORARY, 1024 * 1024 ,searchDir, errorHandler);	
 		});
-			function problem(e){
-				alert(e.code);
-			}
 		
 			function errorHandler(e) {
 				var msg = '';
