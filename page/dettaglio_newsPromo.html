@@ -253,7 +253,7 @@ Oppure <br /><br />
             var tipologia_newsPromo = getParameterByName("tipologia");
             var elencoMarker = new Array();
 
-            $.getJSON("http://www.trovoperte.com/admin/get_json_data.asp", function (info_allIndustry) {
+            /*$.getJSON("http://www.trovoperte.com/admin/get_json_data.asp", function (info_allIndustry) {
 
                 $.each(info_allIndustry, function (i, name) {
                     if (name.coordinate != "") {
@@ -267,16 +267,17 @@ Oppure <br /><br />
                 });
                 caricaAllIndustry(elencoMarker);
 
-            });
+            });*/
 
 
             var scheda = "";
             var footer_dettaglio = "";
-            $.getJSON("http://www.trovoperte.com/admin/get_json_data_newsPromo.asp?id_newsPromo=" + id_newsPromo + "&tipologia=" + tipologia_newsPromo, function (info_dettaglio) {
+            $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data_newsPromo.asp?id_newsPromo=" + id_newsPromo + "&tipologia=" + tipologia_newsPromo, function (info_dettaglio) {
 
 
                 $.each(info_dettaglio, function (i, name) {
 					var meta = "<meta property='og:title' content='"+ name.titolo_newsPromo +"'>";
+					if(name.descrizione_newsPromo != "")
 					meta += "<meta property='og:description' content='"+ name.descrizione_newsPromo +"'>";
 					meta += "<meta property='og:url' content='www.trovoperte.com/app/page/dettaglio_newsPromo.html?tipologia="+ tipologia_newsPromo + "&id_newsPromo="+id_newsPromo +"'>";
 					meta += "<meta property='og:img' content='http://www.trovoperte.com/public/upload_gallery/immagini/"+ name.icona_newsPromo + "'>";
