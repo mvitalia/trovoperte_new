@@ -34,12 +34,12 @@
     </script>
     <script>
 		
-		/*$(document).on("pageshow", "#page_dettaglio" , function(){
+		$(document).on("pageshow", "#page_dettaglio" , function(){
 			$.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data_newsPromo.asp?tipologia=promo", function (info_allIndustry) {
 			var dati = JSON.stringify(info_allIndustry);
 			caricaPromo(dati);
 			});
-		});*/
+		});
 		
         function caricaSlider() {
              var elem = document.getElementById('mySwipe');
@@ -428,22 +428,20 @@ var id_azienda = getParameterByName("id_azienda");
 		function caricaPromo(promo){
 		var id_azienda = getParameterByName("id_azienda");
 			var promoDecompresse = JSON.parse(promo);
-			alert(promo);
 			var elenco_promo = new Array();
-			$.each(promoDecompresse, function (i, name) {
-				if(promoDecompresse.id_attivita == id_azienda){
+			for(var i=0;i<promoDecompresse.length;i++){
+				if(promoDecompresse[i].id_attivita == id_azienda){
 					var promo = {};
-					promo.id = name.id_newsPromo;
-					promo.titolo = name.titolo_newsPromo;
-					promo.data = name.data_newsPromo;
-					promo.icona = name.icona_newsPromo;
-					promo.descrizione = name.descrizione_newsPromo;
+					promo.id = promoDecompresse[i].id_newsPromo;
+					promo.titolo = promoDecompresse[i].titolo_newsPromo;
+					promo.data = promoDecompresse[i].data_newsPromo;
+					promo.icona = promoDecompresse[i].icona_newsPromo;
+					promo.descrizione = promoDecompresse[i].descrizione_newsPromo;
 					elenco_promo.push(promo);
 				}
-			});
+			}
 
 		   var blocco = "";
-			alert("elencoPromo: " + elenco_promo.length);
 			if (elenco_promo.length > 0) {
 					for (var i = 0; i < elenco_promo.length; i++) {                            
 					blocco = blocco + "<div><h1>" + elenco_promo[i].titolo + "</h1>"
@@ -464,17 +462,17 @@ var id_azienda = getParameterByName("id_azienda");
 			var id_azienda = getParameterByName("id_azienda");
 			var newsDecompresse = JSON.parse(news);
 			var elenco_news = new Array();
-			$.each(newsDecompresse, function (i, name) {                        
-				if(newsDecompresse.id_attivita == id_azienda){
+			for(var i=0;i<newsDecompresse.length;i++){                    
+				if(newsDecompresse[i].id_attivita == id_azienda){
 					var news = {};
-					news.id = name.id_newsPromo;
-					news.titolo = name.titolo_newsPromo;
-					news.data = name.data_newsPromo;
-					news.icona = name.icona_newsPromo;
-					news.descrizione = name.descrizione_newsPromo;
+					news.id = newsDecompresse[i].id_newsPromo;
+					news.titolo = newsDecompresse[i].titolo_newsPromo;
+					news.data = newsDecompresse[i].data_newsPromo;
+					news.icona = newsDecompresse[i].icona_newsPromo;
+					news.descrizione = newsDecompresse[i].descrizione_newsPromo;
 					elenco_news.push(news);
 				}
-			});
+			}
 
 			var blocco = "";
 			if (elenco_news.length > 0) {
