@@ -276,8 +276,11 @@ Oppure <br /><br />
 
 
                 $.each(info_dettaglio, function (i, name) {
-
-
+					var meta = "<meta property='og:title' content='"+ name.titolo_newsPromo +"'>";
+					var meta += "<meta property='og:description' content='"+ name.descrizione_newsPromo +"'>";
+					var meta += "<meta property='og:url' content='www.trovoperte.com/app/page/dettaglio_newsPromo.html?tipologia="+ tipologia_newsPromo + "&id_newsPromo="+id_newsPromo +"'>";
+					var meta += "<meta property='og:img' content='http://www.trovoperte.com/public/upload_gallery/immagini/"+ name.icona_newsPromo + "'>";
+					$("head").append(meta)
                     //add the <li> to "li" variable
                     //note the use of += in the variable
                     //meaning I'm adding to the existing data. not replacing it.
@@ -312,6 +315,7 @@ Oppure <br /><br />
                 //append list to ul
                 var htmlObject = $(scheda);
 
+				
                 $("#footer_dettaglio").append(footer_dettaglio).promise().done(function () { });
                 $("#scheda_newsPromo").append(htmlObject).promise().done(function () { });
 
