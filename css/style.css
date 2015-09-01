@@ -19,7 +19,6 @@ html, body
     padding-top: 8px;
     min-height: 29px;
     padding-bottom: 8px;
-	
 }
 .ui-header
 {
@@ -38,10 +37,10 @@ html, body
     width: 100%;
     clear: both;
 }
-
+.ui-header-fixed {padding-top:10px !important}
 #search
 {
-    line-height:45px;    
+ 	height:4em
 }
 
 .btn_settings
@@ -61,60 +60,24 @@ html, body
     font-size:1em !important;
 }
 
-@media screen and (max-width:350px){
-.ui-input-search 
-{
-      float:left;
-      width: 60%;
-      padding: 0 !important;
-}
-
-.ui-select
-{
-    width:35%;
-       margin: 0 auto;
-       
-       margin-top:7px;
-    display: inline-block;
-    
-}
-
+.form-group {width:100%; float:left; clear:both}
+.form-group .ui-mini {padding-right:0 !important}
+.ui-input-search{width:60%; float:left; margin-left:0 !important}
+.ui-select{width:22%;float:right; margin-right:54px;}
+.ui-select select {width:100%;}
 #lstCitta-button
 {
-    width:55%;
+    width:85%;
     height: 36px;
         line-height: 36px;
     margin: 0 auto;
-}
-}
-
-@media screen and (min-width:350px){
-.ui-input-search 
-{
-     width: 60%;
-      float:left;
-      padding: 0 !important;
+	position:relative
 }
 
-.ui-select
-{
-       margin: 0 auto;
-       margin-right:35px;
-       margin-top:7px;
-    display: inline-block;
-    width: 25%;
-    
+@media screen and (max-width:600px){
+	.ui-input-search {width:49% !important}
+	.ui-select {width:30% !important}
 }
-
-#lstCitta-button
-{
-    width:100%;
-    height: 36px;
-        line-height: 36px;
-    margin: 0 auto;
-}
-}
-
 
 .testo_finto
 {
@@ -301,15 +264,12 @@ html, body
 }
 
 /* header */
-#btnApriLaterale
+.ui-header-fixed .ui-btn-left, .ui-header-fixed .ui-btn-right, #myPanel .ui-btn-right
 {
-    margin-top: 35%;
+    margin-top: 13px !important;
 }
 
-#btnChiudiLaterale
-{
-    margin-top: 35%;
-}
+
 
 /* immagini delle ultime novità */
 
@@ -402,6 +362,8 @@ html, body
 {
     margin-top:0 !important;
     margin-bottom:0 !important;
+	font-weight:normal;
+	line-height:22px
 }
 
 #page_dettaglio_newsPromo #footer_dettaglio .info_azienda h1
@@ -427,8 +389,8 @@ html, body
     width: 100%;
     margin-left: -50px;
     text-align:center;
-	color:#FFF;
-	text-shadow:none;
+	color:#fff;
+	text-shadow:none
 }
 
 #descrizione_newsPromo
@@ -583,7 +545,8 @@ html, body {
 #btnNavigazione
 {
     background-color:#57BA46 !important;  
-    color:White;    
+    color:#fff;    
+	text-shadow:none
 }
 
 /* Mappa per la pagina dettaglio */
@@ -691,14 +654,16 @@ html, body {
 #btnInvioInfo div
 {
     background-color:#57BA46 !important;   
-    color:White; 
+    color:#fff; 
+	text-shadow:none
 }
 
 
 #btnInvioRegistrazione div
 {
     background-color:#57BA46 !important;  
-    color:White;  
+    color:#fff;  
+	text-shadow:none
 }
 
 .emailInfo
