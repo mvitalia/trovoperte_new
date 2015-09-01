@@ -1,5 +1,6 @@
 <html>
 <head>
+	<script type="text/javascript" src="../cordova.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -12,6 +13,10 @@
     <script src="../js/jquery.mobile-1.4.5.min.js"></script>
     <script src='https://maps.googleapis.com/maps/api/js?v=3.exp'></script>
     <script src="../js/standard.js"></script>
+    
+    <script type="text/javascript">var switchTo5x=true;</script>
+	<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+	<script type="text/javascript">stLight.options({publisher: "2412a263-b8ee-4297-9739-f1bd0d2207b6", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
 </head>
 <body>
     <div class="txtwrapper">
@@ -84,11 +89,11 @@ Ideale per estendere la tua visibilità sui dispositivi mobili a basso costo e i
 Tramite un semplice pannello di controllo potrai gestire descrizioni, servizi, news, promo, offerte ogni volta che vorrai. <br><br />
 Tutti potranno interagire tramite i tasti funzionali della tua scheda azienda: telefono, mail, navigatore, social, ecc.. <br><br />
 Quattro fasce di prezzo annuali in base alle vostre necessità: 30€, 80€, 120€, 150€ iva escusa.<br /><br />
-<b>Richiedi l'iscrizione cliccando <a onclick="apriRegistrazione()" href='#page_registrazione' data-rel='popup'
+<b>Richiedi l'iscrizione cliccando <a onClick="apriRegistrazione()" href='#page_registrazione' data-rel='popup'
                         data-position-to='window' data-transition='pop'>qui</a></b><br/><br />
 Oppure <br /><br />
 
-<b>Contattaci per avere maggiori informazioni cliccando <a onclick="apriInfo()" href='#page_richiestaInfo' data-rel='popup'
+<b>Contattaci per avere maggiori informazioni cliccando <a onClick="apriInfo()" href='#page_richiestaInfo' data-rel='popup'
                         data-position-to='window' data-transition='pop'>
                         qui</a></b>
 
@@ -109,9 +114,8 @@ Oppure <br /><br />
                     <h1>
                         Contattaci</h1>
                 </div>
-                <form  method="post"  onsubmit="return validateFormInfo();" action="formcdosys_generale.asp" id="form_richiestaInfo" name="form_richiestaInfo">
-						<input type="hidden" value="Richiesta informazioni"/>
-					 <div class="form_left">
+                <form  method="post"  onsubmit="return validateFormInfo();" action="../formcdosys_generale.asp" id="form_richiestaInfo" name="form_richiestaInfo"><input type="hidden" name="tipologia" value="Richiesta informazioni">
+                     <div class="form_left">
                             <input  name="nome" id="txtNomeInfo" type="text" placeholder="Nome" class="required"/>
                         </div >
                         <div class="form_right">
@@ -153,8 +157,8 @@ Oppure <br /><br />
                         <h1>
                             Richiesta iscrizione</h1>
                     </div>
-                   <form  method="post"  onsubmit="return validateFormRegistrazione();" action="formcdosys_generale.asp" id="form_registrazioneAzienda" name="form_registrazioneAzienda" >
-						<input type="hidden" value="Richiesta iscrizione"/>
+                   <form  method="post"  onsubmit="return validateFormRegistrazione();" action="../formcdosys_generale.asp" id="form_registrazioneAzienda" name="form_registrazioneAzienda" ><input type="hidden" name="tipologia" value="Richiesta registrazione">
+                    
                         <div class="form_left">
                             <input  name="nome" id="txtNomeRegistrazione" type="text" placeholder="Nome" class="required"/>
                         </div >
@@ -243,7 +247,7 @@ Oppure <br /><br />
             var tipologia_newsPromo = getParameterByName("tipologia");
             var elencoMarker = new Array();
 
-            $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp", function (info_allIndustry) {
+            $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data_newsPromo.asp", function (info_allIndustry) {
 
                 $.each(info_allIndustry, function (i, name) {
                     if (name.coordinate != "") {
@@ -262,7 +266,7 @@ Oppure <br /><br />
 
             var scheda = "";
             var footer_dettaglio = "";
-            $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data_newsPromo.asp?id_newsPromo=" + id_newsPromo + "&tipologia=" + tipologia_newsPromo, function (info_dettaglio) {
+            $.getJSON("http://www.trovoperte.com/admin/get_json_data_newsPromo.asp?id_newsPromo=" + id_newsPromo + "&tipologia=" + tipologia_newsPromo, function (info_dettaglio) {
 
 
                 $.each(info_dettaglio, function (i, name) {
@@ -277,36 +281,26 @@ Oppure <br /><br />
                         //variabile di appoggio dove salvo da data perché il campo del DB è composto da data+ora, e in questo caso serve solo l'ora
                         var data = name.data_newsPromo.split(" ")[0];
 
-                        scheda = scheda + "<div class='info_newsPromo'><h6>Inserito il: " + data + "</h6>";
+                        scheda = scheda + "<div class='info_newsPromo'>";
                         scheda = scheda + "<h1>" + name.titolo_newsPromo + "</h1>";
                         if (name.icona_newsPromo != '') {
                             scheda += "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/" + name.icona_newsPromo + "'>";
                         }
-                        scheda = scheda + "<p id='descrizione_newsPromo'>" + name.descrizione_newsPromo + " Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p></div></div></div>"
-                        footer_dettaglio += "<div   class='info_azienda'><h2>" + name.ragione_sociale + "</h2>"; // RAGIONE SOCIALE
-                        footer_dettaglio += "<p><a id=navigatore href='http://maps.google.com/maps?&daddr=" + name.coordinate + "' data-icon='navigation' class=' btn-tel-dettagli ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-navigation ui-btn-icon-left'>" + name.indirizzo + " " + name.num + " " + name.cap + " " + name.paese + " " + name.provincia + "</a></p>"; // INDIRIZZO
+                        scheda = scheda + "<p id='descrizione_newsPromo'>" + name.descrizione_newsPromo + "</p></div></div></div>"
+						
+						
+                        footer_dettaglio += "<div   class='info_azienda'><div class='ui-content'><p>Pubblicato da " + name.ragione_sociale + "</p><p>Inserito il: " + data + "</p>"; // RAGIONE SOCIALE
+                        /*footer_dettaglio += "<p><a id=navigatore href='http://maps.google.com/maps?&daddr=" + name.coordinate + "' data-icon='navigation' class=' btn-tel-dettagli ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-navigation ui-btn-icon-left'>" + name.indirizzo + " " + name.num + " " + name.cap + " " + name.paese + " " + name.provincia + "</a></p>"; // INDIRIZZO
                         footer_dettaglio += "<p><a href='tel:" + name.tel + "' data-icon='phone' class=' btn-tel-dettagli ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-phone ui-btn-icon-left'>" + name.tel + "</a></p>"; // TELEFONO
                         footer_dettaglio += "<p><a href='mailto:" + name.mail + "' data-icon='mail' class='btn-tel-dettagli ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-mail ui-btn-icon-left'>" + name.mail + "</a></p>"; // MAIL
-                        footer_dettaglio += "<p><a href='http://" + name.web + "' data-icon'=heart' class='btn-tel-dettagli ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-heart ui-btn-icon-left'>" + name.web + "</a></p>"; // WEB
-                        footer_dettaglio += "<p id='azienda_link'><a href='dettaglio.html?id_azienda=" + name.id_attivita + "' data-ajax='false' data-icon='arrow-r' class='btn-tel-dettagli ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-carat-r ui-btn-icon-right'>Accedi alla scheda azienda</a></p>"; // WEB
-
-
-                        //scheda += "<div data-role='collapsibleset' data-theme='a' data-content-theme='a' class='ui-collapsible-set ui-group-theme-a ui-corner-all descrizione'>";
-
-                        // DESCRIZIONE
-                        //scheda += "<div data-role='collapsible' data-collapsed='false' class='ui-collapsible ui-collapsible-inset ui-corner-all ui-collapsible-themed-content ui-first-child ui-collapsible-collapsed'><h3 class='ui-collapsible-heading ui-collapsible-heading-collapsed'><a href='#' class='ui-collapsible-heading-toggle ui-btn ui-btn-icon-left ui-btn-a ui-icon-plus'>Descrizione<span class='ui-collapsible-heading-status'>click to expand contents</span></a></h3><div class='ui-collapsible-content ui-body-a ui-collapsible-content-collapsed' aria-hidden='false'><p>" + name.descrizione + "</p></div></div>";
-
-                        // SERVIZI
-                        //scheda += "<div data-role='collapsible' class='ui-collapsible ui-collapsible-inset ui-corner-all ui-collapsible-themed-content ui-first-child ui-collapsible-collapsed'><h3 class='ui-collapsible-heading ui-collapsible-heading-collapsed'><a href='#' class='ui-collapsible-heading-toggle ui-btn ui-btn-icon-left ui-btn-a ui-icon-plus'>Servizi<span class='ui-collapsible-heading-status'>click to expand contents</span></a></h3><div class='ui-collapsible-content ui-body-a ui-collapsible-content-collapsed' aria-hidden='true'><p>" + name.servizi + "</p></div></div>";
-
-                        //scheda += "</div>";
-                        /*if (name.tipo_contratto != 'free') {
-                        scheda += "<div class='descrizione'><h3>Descrizione</h3>" + name.descrizione + "</div>"; // DESCRIZIONE
-                        scheda += "<div class='servizi'><h3>Servizi</h3>" + name.servizi + "</div><br/><br/>"; // SERVIZI
-                        }*/
-
-                        //<li class='ui-block-a' style="float:left;width:25%"><a href="#page_info" data-icon="info" data-iconpos="left" class="ui-state-persist"></a></li>
-                        //footer_dettaglio = "<li class='ui-block-a' style='float:left;width:25%'><a href='page_info' data-icon='info' data-role='button' class='ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-info ui-btn-icon-left'>Info</a></li>";
+                        footer_dettaglio += "<p><a href='http://" + name.web + "' data-icon'=heart' class='btn-tel-dettagli ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-heart ui-btn-icon-left'>" + name.web + "</a></p></div>"; // WEB
+                        
+						*/
+						
+						footer_dettaglio += "<div style='text-align:center'>" ;//<span class='st_sharethis_large' displayText='ShareThis'></span><span class='st_facebook_large' displayText='Facebook'></span><span class='st_twitter_large' displayText='Tweet'></span><span class='st_linkedin_large' displayText='LinkedIn'></span><span class='st_googleplus_large' displayText='Google +'></span><span class='st__large' displayText=''></span></div><br>";
+						footer_dettaglio += "<button onclick='window.plugins.socialsharing.share('Message, subject, image and link', 'The subject', 'https://www.google.nl/images/srpr/logo4w.png', 'http://www.x-services.nl')'>message, subject, image and link</button>"
+						footer_dettaglio += "</div><br>";
+						footer_dettaglio += "<p id='azienda_link'><a href='dettaglio.html?id_azienda=" + name.id_attivita + "' data-ajax='false' data-icon='arrow-r' class='btn-tel-dettagli ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-carat-r ui-btn-icon-right'>Accedi alla scheda azienda</a></p>"; // WEB
 
                     }
                 });
