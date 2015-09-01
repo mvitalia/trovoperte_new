@@ -18,13 +18,10 @@
     <!--<script type="text/javascript">var switchTo5x=true;</script>
 	<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
 	<script type="text/javascript">stLight.options({publisher: "2412a263-b8ee-4297-9739-f1bd0d2207b6", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>-->
-	<script> 
-		$(document).ready(function(){
-			$("#btnShare").click(function(){
-				alert("click");
-				//window.plugins.socialsharing.share('Message, subject, image and link', 'The subject', 'https://www.google.nl/images/srpr/logo4w.png', 'http://www.x-services.nl')
-			});
-		})
+	<script>
+		function condividi(){
+			alert("ciao");
+		}
 	</script>
 </head>
 <body>
@@ -306,7 +303,7 @@ Oppure <br /><br />
                         
 						*/
 						
-						footer_dettaglio += "<div><button id='btnShare'>message, subject, image and link</button></div><br>";
+						footer_dettaglio += "<div><button onclick='condividi()'}>message, subject, image and link</button></div><br>";
 						
 						footer_dettaglio += "<p id='azienda_link'><a href='dettaglio.html?id_azienda=" + name.id_attivita + "' data-ajax='false' data-icon='arrow-r' class='btn-tel-dettagli ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-carat-r ui-btn-icon-right'>Accedi alla scheda azienda</a></p>"; // WEB
 
