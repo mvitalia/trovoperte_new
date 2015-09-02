@@ -32,6 +32,198 @@
 			});
 		});*/
 	</script>
+	 <script>
+		
+		
+		document.addEventListener("deviceready", onDeviceReady, false);
+		
+		function onDeviceReady(){
+			window.requestFileSystem(window.TEMPORARY, 1024 * 1024 ,searchDir, errorHandler);
+		}
+		
+		
+		function errorHandler(e) {
+				var msg = '';
+
+				switch (e.code) {
+					case FileError.QUOTA_EXCEEDED_ERR:
+						msg = 'QUOTA_EXCEEDED_ERR';
+						break;
+					case FileError.NOT_FOUND_ERR:
+						msg = 'NOT_FOUND_ERR';
+						msg = msg + "Non è presente un file in locale, collegarsi a internet per fruire dei servizi";
+						break;
+					case FileError.SECURITY_ERR:
+						msg = 'SECURITY_ERR';
+						break;
+					case FileError.INVALID_MODIFICATION_ERR:
+						msg = 'INVALID_MODIFICATION_ERR';
+						break;
+					case FileError.INVALID_STATE_ERR:
+						msg = 'INVALID_STATE_ERR';
+						break;
+					default:
+						msg = 'Unknown Error';
+						break;
+				};
+
+				alert('Error: ' + msg);
+			}
+
+		function searchDir(fs){
+			var dati ="";
+			var newsPromo = "";
+			var tipologia_newsPromo = getParameterByName("tipologia");
+			
+			fs.root.getDirectory('dati', {create: false}, function(dirEntry){	
+				alert(dirEntry);
+				dirEntry.getFile('log.txt', {}, function (fileEntry) {
+					//alert("fileEntry: " +fileEntry);
+					// Get a File object representing the file,
+					// then use FileReader to read its contents.
+					fileEntry.file(function (file) {						
+						var reader = new FileReader();
+						reader.onloadend = function (e) {							
+							dati=this.result;
+							caricaMappa(dati);
+						};
+						reader.readAsText(file);
+					}, errorHandler);
+
+				}, errorHandler);
+				dirEntry.getFile('news.txt', {}, function (fileEntry) {
+					//alert("fileEntry: " +fileEntry);
+					// Get a File object representing the file,
+					// then use FileReader to read its contents.
+					fileEntry.file(function (file) {						
+						var reader = new FileReader();
+						reader.onloadend = function (e) {							
+							news=this.result;
+							if(tipologia_newsPromo == "news")
+							caricaDettaglioNewsPromo(news);
+						};
+						reader.readAsText(file);
+					}, errorHandler);
+
+				}, errorHandler);		
+				dirEntry.getFile('promo.txt', {}, function (fileEntry) {
+					//alert("fileEntry: " +fileEntry);
+					// Get a File object representing the file,
+					// then use FileReader to read its contents.
+					fileEntry.file(function (file) {						
+						var reader = new FileReader();
+						reader.onloadend = function (e) {							
+							promo=this.result;	
+							if(tipologia_newsPromo == "promo")
+							caricaDettaglioNewsPromo(promo);
+						};
+						reader.readAsText(file);
+					}, errorHandler);
+
+				}, errorHandler);				
+				//window.requestFileSystem(dirEntry, 1024 * 1024, onInitFs, errorHandler);
+			},errorHandler);			
+		}
+
+		function caricaMappa(dati){
+
+		var datiDecompressi = JSON.parse(dati);
+		var elencoMarker = new Array();           
+
+			$.each(datiDecompressi, function (i, name) {
+				if (name.coordinate != "") {
+					var azienda = {};
+					azienda.id = name.id;
+					azienda.nome = name.ragione_sociale;
+					azienda.lat = parseFloat(name.coordinate.split(",")[0]);
+					azienda.lon = parseFloat(name.coordinate.split(",")[1]);
+					elencoMarker.push(azienda);
+				}
+			});
+			//caricaAllIndustry(elencoMarker);
+        
+		}
+		
+	
+        function caricaDettaglioNewsPromo(newsPromo){
+			var newsPromoDecompressi = JSON.parse(newsPromo);
+			
+            var id_newsPromo = getParameterByName("id_newsPromo");
+            var tipologia_newsPromo = getParameterByName("tipologia");
+            
+
+
+            var scheda = "";
+            var footer_dettaglio = "";
+           
+
+
+                $.each(newsPromoDecompressi, function (i, name) {
+				/*var tag = '<meta property="og:title" content="Consulenza web gratis" />';
+				tag += '<meta property="og:type" content="article" />'
+				tag += '<meta property="og:locale" content="it_IT" />';
+				tag += '<meta property="og:site_name" content="Trovo per te" />    '
+				tag += '<meta property="og:description" content="Descrizone della news " />	'
+				tag += '<meta property="og:image" content="http://www.trovoperte.com/public/upload_gallery/immagini/consulenza_web_2015211122415.jpg" />'
+				alert(tag);
+				$("head").append(tag);*/
+					var meta = "<meta property='og:title' content='"+ name.titolo_newsPromo +"'>";
+					if(name.descrizione_newsPromo != "")
+					meta += "<meta property='og:description' content='"+ name.descrizione_newsPromo +"'>";
+					meta += "<meta property='og:type' content='article'>";
+					meta += "<meta property='og:locale' content='it_IT'>";					
+					//meta += "<meta property='og:url' content='www.trovoperte.com/app/page/dettaglio_newsPromo.html?tipologia="+ tipologia_newsPromo + "&id_newsPromo="+id_newsPromo +"'>";
+					meta += "<meta property='og:image' content='http://www.trovoperte.com/public/upload_gallery/immagini/"+ name.icona_newsPromo + "'>";
+					alert(meta);
+					$("head").append(meta)
+                    //add the <li> to "li" variable
+                    //note the use of += in the variable
+                    //meaning I'm adding to the existing data. not replacing it.
+                    //store index value in array as id of the <a> tag
+                    if (name.id_newsPromo == id_newsPromo) {
+
+                        //variabile di appoggio dove salvo da data perché il campo del DB è composto da data+ora, e in questo caso serve solo l'ora
+                        var data = name.data_newsPromo.split(" ")[0];
+
+                        scheda = scheda + "<div class='info_newsPromo'>";
+                        scheda = scheda + "<h1>" + name.titolo_newsPromo + "</h1>";
+                        if (name.icona_newsPromo != '') {
+                            scheda += "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/" + name.icona_newsPromo + "'>";
+                        }
+                        scheda = scheda + "<p id='descrizione_newsPromo'>" + name.descrizione_newsPromo + "</p></div></div></div>"
+						
+						
+                        footer_dettaglio += "<div   class='info_azienda'><div class='ui-content'><p>Pubblicato da " + name.ragione_sociale + "</p><p>Inserito il: " + data + "</p>"; // RAGIONE SOCIALE
+                        /*footer_dettaglio += "<p><a id=navigatore href='http://maps.google.com/maps?&daddr=" + name.coordinate + "' data-icon='navigation' class=' btn-tel-dettagli ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-navigation ui-btn-icon-left'>" + name.indirizzo + " " + name.num + " " + name.cap + " " + name.paese + " " + name.provincia + "</a></p>"; // INDIRIZZO
+							footer_dettaglio += "<p><a href='tel:" + name.tel + "' data-icon='phone' class=' btn-tel-dettagli ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-phone ui-btn-icon-left'>" + name.tel + "</a></p>"; // TELEFONO
+							footer_dettaglio += "<p><a href='mailto:" + name.mail + "' data-icon='mail' class='btn-tel-dettagli ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-mail ui-btn-icon-left'>" + name.mail + "</a></p>"; // MAIL
+							footer_dettaglio += "<p><a href='http://" + name.web + "' data-icon'=heart' class='btn-tel-dettagli ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-heart ui-btn-icon-left'>" + name.web + "</a></p></div>"; // WEB
+                        
+						*/
+						
+						footer_dettaglio += "<div style='text-align:center'><button class='ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-mini' onclick='condividi()'}>Condividi</button></div><br>";
+						
+						footer_dettaglio += "<p id='azienda_link'><a href='dettaglio.html?id_azienda=" + name.id_attivita + "' data-ajax='false' data-icon='arrow-r' class='btn-tel-dettagli ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-carat-r ui-btn-icon-right'>Accedi alla scheda azienda</a></p>"; // WEB
+
+                    }
+                });
+                //append list to ul
+                var htmlObject = $(scheda);
+
+				
+                $("#footer_dettaglio").append(footer_dettaglio).promise().done(function () { });
+                $("#scheda_newsPromo").append(htmlObject).promise().done(function () { });
+
+
+
+
+
+        }   
+
+
+
+    </script>
+
 </head>
 <body>
     <div class="txtwrapper">
@@ -255,196 +447,5 @@ Oppure <br /><br />
         </div>
         <!--page-->
     </div>
-    <script>
-		
-		
-		document.addEventListener("deviceready", onDeviceReady, false);
-		
-		function onDeviceReady(){
-			window.requestFileSystem(window.TEMPORARY, 1024 * 1024 ,searchDir, errorHandler);
-		}
-		
-		
-		function errorHandler(e) {
-				var msg = '';
-
-				switch (e.code) {
-					case FileError.QUOTA_EXCEEDED_ERR:
-						msg = 'QUOTA_EXCEEDED_ERR';
-						break;
-					case FileError.NOT_FOUND_ERR:
-						msg = 'NOT_FOUND_ERR';
-						msg = msg + "Non è presente un file in locale, collegarsi a internet per fruire dei servizi";
-						break;
-					case FileError.SECURITY_ERR:
-						msg = 'SECURITY_ERR';
-						break;
-					case FileError.INVALID_MODIFICATION_ERR:
-						msg = 'INVALID_MODIFICATION_ERR';
-						break;
-					case FileError.INVALID_STATE_ERR:
-						msg = 'INVALID_STATE_ERR';
-						break;
-					default:
-						msg = 'Unknown Error';
-						break;
-				};
-
-				alert('Error: ' + msg);
-			}
-
-		function searchDir(fs){
-			var dati ="";
-			var newsPromo = "";
-			var tipologia_newsPromo = getParameterByName("tipologia");
-			
-			fs.root.getDirectory('dati', {create: false}, function(dirEntry){	
-				alert(dirEntry);
-				dirEntry.getFile('log.txt', {}, function (fileEntry) {
-					//alert("fileEntry: " +fileEntry);
-					// Get a File object representing the file,
-					// then use FileReader to read its contents.
-					fileEntry.file(function (file) {						
-						var reader = new FileReader();
-						reader.onloadend = function (e) {							
-							dati=this.result;
-							caricaMappa(dati);
-						};
-						reader.readAsText(file);
-					}, errorHandler);
-
-				}, errorHandler);
-				dirEntry.getFile('news.txt', {}, function (fileEntry) {
-					//alert("fileEntry: " +fileEntry);
-					// Get a File object representing the file,
-					// then use FileReader to read its contents.
-					fileEntry.file(function (file) {						
-						var reader = new FileReader();
-						reader.onloadend = function (e) {							
-							news=this.result;
-							if(tipologia_newsPromo == "news")
-							caricaDettaglioNewsPromo(news);
-						};
-						reader.readAsText(file);
-					}, errorHandler);
-
-				}, errorHandler);		
-				dirEntry.getFile('promo.txt', {}, function (fileEntry) {
-					//alert("fileEntry: " +fileEntry);
-					// Get a File object representing the file,
-					// then use FileReader to read its contents.
-					fileEntry.file(function (file) {						
-						var reader = new FileReader();
-						reader.onloadend = function (e) {							
-							promo=this.result;	
-							if(tipologia_newsPromo == "promo")
-							caricaDettaglioNewsPromo(promo);
-						};
-						reader.readAsText(file);
-					}, errorHandler);
-
-				}, errorHandler);				
-				//window.requestFileSystem(dirEntry, 1024 * 1024, onInitFs, errorHandler);
-			},errorHandler);			
-		}
-
-		function caricaMappa(dati){
-
-		var datiDecompressi = JSON.parse(dati);
-		var elencoMarker = new Array();           
-
-			$.each(datiDecompressi, function (i, name) {
-				if (name.coordinate != "") {
-					var azienda = {};
-					azienda.id = name.id;
-					azienda.nome = name.ragione_sociale;
-					azienda.lat = parseFloat(name.coordinate.split(",")[0]);
-					azienda.lon = parseFloat(name.coordinate.split(",")[1]);
-					elencoMarker.push(azienda);
-				}
-			});
-			//caricaAllIndustry(elencoMarker);
-        
-		}
-		
-	
-        function caricaDettaglioNewsPromo(newsPromo){
-			var newsPromoDecompressi = JSON.parse(newsPromo);
-			
-            var id_newsPromo = getParameterByName("id_newsPromo");
-            var tipologia_newsPromo = getParameterByName("tipologia");
-            
-
-
-            var scheda = "";
-            var footer_dettaglio = "";
-           
-
-
-                $.each(newsPromoDecompressi, function (i, name) {
-				/*var tag = '<meta property="og:title" content="Consulenza web gratis" />';
-				tag += '<meta property="og:type" content="article" />'
-				tag += '<meta property="og:locale" content="it_IT" />';
-				tag += '<meta property="og:site_name" content="Trovo per te" />    '
-				tag += '<meta property="og:description" content="Descrizone della news " />	'
-				tag += '<meta property="og:image" content="http://www.trovoperte.com/public/upload_gallery/immagini/consulenza_web_2015211122415.jpg" />'
-				alert(tag);
-				$("head").append(tag);*/
-					var meta = "<meta property='og:title' content='"+ name.titolo_newsPromo +"'>";
-					if(name.descrizione_newsPromo != "")
-					meta += "<meta property='og:description' content='"+ name.descrizione_newsPromo +"'>";
-					meta += "<meta property='og:type' content='article'>";
-					meta += "<meta property='og:locale' content='it_IT'>";					
-					//meta += "<meta property='og:url' content='www.trovoperte.com/app/page/dettaglio_newsPromo.html?tipologia="+ tipologia_newsPromo + "&id_newsPromo="+id_newsPromo +"'>";
-					meta += "<meta property='og:image' content='http://www.trovoperte.com/public/upload_gallery/immagini/"+ name.icona_newsPromo + "'>";
-					alert(meta);
-					$("head").append(meta)
-                    //add the <li> to "li" variable
-                    //note the use of += in the variable
-                    //meaning I'm adding to the existing data. not replacing it.
-                    //store index value in array as id of the <a> tag
-                    if (name.id_newsPromo == id_newsPromo) {
-
-                        //variabile di appoggio dove salvo da data perché il campo del DB è composto da data+ora, e in questo caso serve solo l'ora
-                        var data = name.data_newsPromo.split(" ")[0];
-
-                        scheda = scheda + "<div class='info_newsPromo'>";
-                        scheda = scheda + "<h1>" + name.titolo_newsPromo + "</h1>";
-                        if (name.icona_newsPromo != '') {
-                            scheda += "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/" + name.icona_newsPromo + "'>";
-                        }
-                        scheda = scheda + "<p id='descrizione_newsPromo'>" + name.descrizione_newsPromo + "</p></div></div></div>"
-						
-						
-                        footer_dettaglio += "<div   class='info_azienda'><div class='ui-content'><p>Pubblicato da " + name.ragione_sociale + "</p><p>Inserito il: " + data + "</p>"; // RAGIONE SOCIALE
-                        /*footer_dettaglio += "<p><a id=navigatore href='http://maps.google.com/maps?&daddr=" + name.coordinate + "' data-icon='navigation' class=' btn-tel-dettagli ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-navigation ui-btn-icon-left'>" + name.indirizzo + " " + name.num + " " + name.cap + " " + name.paese + " " + name.provincia + "</a></p>"; // INDIRIZZO
-							footer_dettaglio += "<p><a href='tel:" + name.tel + "' data-icon='phone' class=' btn-tel-dettagli ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-phone ui-btn-icon-left'>" + name.tel + "</a></p>"; // TELEFONO
-							footer_dettaglio += "<p><a href='mailto:" + name.mail + "' data-icon='mail' class='btn-tel-dettagli ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-mail ui-btn-icon-left'>" + name.mail + "</a></p>"; // MAIL
-							footer_dettaglio += "<p><a href='http://" + name.web + "' data-icon'=heart' class='btn-tel-dettagli ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-heart ui-btn-icon-left'>" + name.web + "</a></p></div>"; // WEB
-                        
-						*/
-						
-						footer_dettaglio += "<div style='text-align:center'><button class='ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-mini' onclick='condividi()'}>Condividi</button></div><br>";
-						
-						footer_dettaglio += "<p id='azienda_link'><a href='dettaglio.html?id_azienda=" + name.id_attivita + "' data-ajax='false' data-icon='arrow-r' class='btn-tel-dettagli ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-carat-r ui-btn-icon-right'>Accedi alla scheda azienda</a></p>"; // WEB
-
-                    }
-                });
-                //append list to ul
-                var htmlObject = $(scheda);
-
-				
-                $("#footer_dettaglio").append(footer_dettaglio).promise().done(function () { });
-                $("#scheda_newsPromo").append(htmlObject).promise().done(function () { });
-
-
-
-
-
-        }   
-
-
-
-    </script>
-</body>
+   </body>
 </html>
