@@ -227,7 +227,7 @@ Oppure <br /><br />
             
             <form role="form" class="box_search">
                 <div class="form-group">
-                  <input type="search" name="search" class="form-control input-lg" data-mini="true" id="search" placeholder="Cerca..."  />
+                  <input type="search" name="search" class="form-control input-lg" data-ajax="false" data-mini="true" id="search" placeholder="Cerca..."  />
                    
                     <select id="lstCitta">
                         <option>Tutti i paesi</option>
@@ -352,13 +352,13 @@ Oppure <br /><br />
             //caricaAllIndustry(elencoMarker);
         }
 
-		$(document).ready(function(){
-			$('#search').focusout(function () {
-				alert("keyup");
-				if(DATI != "")
-				caricaListeFiltrate();
-			});
+		
+		$('#search').focusout(function () {
+			alert("keyup");
+			if(DATI != "")
+			caricaListeFiltrate();
 		});
+		
         //append list to ul
        
 
@@ -369,6 +369,7 @@ Oppure <br /><br />
 
 
     function caricaListeFiltrate() {
+		
 		var datiDecompressi = JSON.parse(DATI);
         var searchField = $('#search').val();
         var regex = new RegExp(searchField, "i");
