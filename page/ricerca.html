@@ -351,12 +351,14 @@ Oppure <br /><br />
             //caricaAllIndustry(elencoMarker);
         }
 
-		
-		$('#search').keyup(function () {
-			alert("keyup");			
-			caricaListeFiltrate();
-			return false;
+		$(document).ready(function(){
+			$('#search').change(function () {
+				alert("keyup");			
+				caricaListeFiltrate();
+				return false;
+			});
 		});
+		
 		
 		
 		
