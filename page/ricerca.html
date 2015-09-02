@@ -224,7 +224,7 @@ Oppure <br /><br />
             </div>
             
             <h1>Ricerca</h1>
-            
+            <form onsubmit="return false">
            
                 <div class="form-group">
                   <input type="search" name="search" class="form-control input-lg" data-ajax="false" data-mini="true" id="search" placeholder="Cerca..."  />
@@ -234,7 +234,7 @@ Oppure <br /><br />
                     </select>
              
                 </div>
-           
+			</form>
             
         </div>
         
@@ -355,6 +355,7 @@ Oppure <br /><br />
 		$('#search').keyup(function () {
 			alert("keyup");			
 			caricaListeFiltrate();
+			return false;
 		});
 		
 		
