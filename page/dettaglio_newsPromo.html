@@ -298,7 +298,8 @@ Oppure <br /><br />
 			var newsPromo = "";
 			var tipologia_newsPromo = getParameterByName("tipologia");
 			
-			fs.root.getDirectory('dati', {create: false}, function(dirEntry){				
+			fs.root.getDirectory('dati', {create: false}, function(dirEntry){	
+				alert(dirEntry);
 				dirEntry.getFile('log.txt', {}, function (fileEntry) {
 					//alert("fileEntry: " +fileEntry);
 					// Get a File object representing the file,
