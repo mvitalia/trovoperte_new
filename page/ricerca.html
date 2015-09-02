@@ -271,14 +271,73 @@ Oppure <br /><br />
 
 
 <script>
+	
+	var DATI = "";
+	
+	document.addEventListener("deviceready", onDeviceReady, false);
+		
+	function onDeviceReady(){
+		window.requestFileSystem(window.TEMPORARY, 1024 * 1024 ,searchDir, errorHandler);
+	}
+	
+	function errorHandler(e) {
+				var msg = '';
 
-    $("#page_ricerca").on("pageshow", function (event) {
+				switch (e.code) {
+					case FileError.QUOTA_EXCEEDED_ERR:
+						msg = 'QUOTA_EXCEEDED_ERR';
+						break;
+					case FileError.NOT_FOUND_ERR:
+						msg = 'NOT_FOUND_ERR';
+						msg = msg + "Non è presente un file in locale, collegarsi a internet per fruire dei servizi";
+						break;
+					case FileError.SECURITY_ERR:
+						msg = 'SECURITY_ERR';
+						break;
+					case FileError.INVALID_MODIFICATION_ERR:
+						msg = 'INVALID_MODIFICATION_ERR';
+						break;
+					case FileError.INVALID_STATE_ERR:
+						msg = 'INVALID_STATE_ERR';
+						break;
+					default:
+						msg = 'Unknown Error';
+						break;
+				};
 
-        var elencoMarker = new Array();
+				alert('Error: ' + msg);
+			}
 
+		function searchDir(fs){
+			var dati ="";
+			var newsPromo = "";
+			var tipologia_newsPromo = getParameterByName("tipologia");
+			
+			fs.root.getDirectory('dati', {create: false}, function(dirEntry){	
+				alert(dirEntry);
+				dirEntry.getFile('log.txt', {}, function (fileEntry) {
+					//alert("fileEntry: " +fileEntry);
+					// Get a File object representing the file,
+					// then use FileReader to read its contents.
+					fileEntry.file(function (file) {						
+						var reader = new FileReader();
+						reader.onloadend = function (e) {							
+							DATI = this.result;
+							caricaMappa(DATI);
+						};
+						reader.readAsText(file);
+					}, errorHandler);
 
-        $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp", function (info_allIndustry) {
+				}, errorHandler);				
+				//window.requestFileSystem(dirEntry, 1024 * 1024, onInitFs, errorHandler);
+			},errorHandler);			
+		}
+	
 
+		function caricaMappa(dati){
+			var elencoMarker = new Array();
+			datiDecompressi = JSON.parse(dati);
+			
             caricaCitta(info_allIndustry);
 
             $.each(info_allIndustry, function (i, name) {
@@ -292,30 +351,31 @@ Oppure <br /><br />
                 }
 
             });
-            caricaAllIndustry(elencoMarker);
-        });
+            //caricaAllIndustry(elencoMarker);
+        }
 
         //append list to ul
         $('#search').keyup(function () {
+			if(DATI != "")
             caricaListeFiltrate();
         });
 
         $("#lstCitta").change(function () {
+			if(DATI != "")
             caricaListeFiltrate();
         });
-    })
+
 
     function caricaListeFiltrate() {
+		var datiDecompressi = JSON.parse(DATI);
         var searchField = $('#search').val();
         var regex = new RegExp(searchField, "i");
         var output = '';
         var count = 1;
 
         var citta = $("#lstCitta").val();
-
-
-        $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.asp", function (info) {
-            $.each(info, function (key, val) {
+        
+            $.each(datiDecompressi, function (key, val) {
                 if ((val.ragione_sociale.search(regex) != -1) || (val.servizi.search(regex) != -1) || (val.macrocategoria.search(regex) != -1) || (val.categoria.search(regex) != -1) || (val.paese.search(regex) != -1)) {
                     if (citta != "Tutti i paesi" && val.paese.indexOf(""+citta) != -1 ) {
                         output += '<li class="ui-li-has-thumb ui-last-child"><a href="dettaglio.html?id_azienda=' + val.id + '" id="' + val.id + '" class="azienda-go ui-btn ui-btn-icon-right ui-icon-carat-r" data-ajax="false">';
@@ -343,9 +403,6 @@ Oppure <br /><br />
             });
 
             $(this).listview("refresh");
-        });
-
-
     }  
 
 
