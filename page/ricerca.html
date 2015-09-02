@@ -309,10 +309,7 @@ Oppure <br /><br />
 			}
 
 		function searchDir(fs){
-			var dati ="";
-			var newsPromo = "";
-			var tipologia_newsPromo = getParameterByName("tipologia");
-			
+			var dati ="";			
 			fs.root.getDirectory('dati', {create: false}, function(dirEntry){	
 				alert(dirEntry);
 				dirEntry.getFile('log.txt', {}, function (fileEntry) {
