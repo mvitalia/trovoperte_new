@@ -311,9 +311,9 @@ Oppure <br /><br />
 		function searchDir(fs){
 			var dati ="";			
 			fs.root.getDirectory('dati', {create: false}, function(dirEntry){	
-				alert(dirEntry);
+				
 				dirEntry.getFile('log.txt', {}, function (fileEntry) {
-					//alert("fileEntry: " +fileEntry);
+					
 					// Get a File object representing the file,
 					// then use FileReader to read its contents.
 					fileEntry.file(function (file) {						                                                                                                                                                                                                                          

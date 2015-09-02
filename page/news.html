@@ -96,7 +96,7 @@
 		function searchDir(fs){
 			fs.root.getDirectory('dati', {create: false}, function(dirEntry){				
 				dirEntry.getFile('news.txt', {}, function (fileEntry) {
-					alert("fileEntry: " +fileEntry);
+					
 					// Get a File object representing the file,
 					// then use FileReader to read its contents.
 					fileEntry.file(function (file) {						
@@ -109,7 +109,7 @@
 
 				}, errorHandler);
 				dirEntry.getFile('log.txt', {}, function (fileEntry) {
-					alert("fileEntry: " +fileEntry);
+				
 					// Get a File object representing the file,
 					// then use FileReader to read its contents.
 					fileEntry.file(function (file) {						

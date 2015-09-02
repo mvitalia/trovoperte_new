@@ -171,7 +171,7 @@
         document.addEventListener("deviceready", onDeviceReady, false);
 		
 		function onDeviceReady(){		
-			alert("categorie: show");					
+								
 			window.requestFileSystem(window.TEMPORARY, 1024 * 1024 ,searchDir, errorHandler);	
 		};
 		
@@ -207,7 +207,7 @@
 			var dati ="";
 			var news = "";
 			var promo = "";
-			alert("leggo per categorie");
+			
 			fs.root.getDirectory('dati', {create: false}, function(dirEntry){				
 				dirEntry.getFile('log.txt', {}, function (fileEntry) {
 					//alert("fileEntry: " +fileEntry);

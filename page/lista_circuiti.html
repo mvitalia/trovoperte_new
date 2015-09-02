@@ -16,8 +16,7 @@
 	<script>
 		document.addEventListener("deviceready", onDeviceReady, false);
 		
-       function onDeviceReady(){		
-			alert("categorie: show");					
+       function onDeviceReady(){						
 			window.requestFileSystem(window.TEMPORARY, 1024 * 1024 ,searchDir, errorHandler);	
 		};
 		
@@ -50,10 +49,10 @@
 		}
 
 		function searchDir(fs){
-			alert("leggo per categorie");
+		
 			fs.root.getDirectory('dati', {create: false}, function(dirEntry){				
 				dirEntry.getFile('log.txt', {}, function (fileEntry) {
-					alert("fileEntry: " +fileEntry);
+					
 					// Get a File object representing the file,
 					// then use FileReader to read its contents.
 					fileEntry.file(function (file) {						

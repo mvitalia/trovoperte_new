@@ -76,9 +76,7 @@
 			var tipologia_newsPromo = getParameterByName("tipologia");
 			
 			fs.root.getDirectory('dati', {create: false}, function(dirEntry){	
-				alert(dirEntry);
 				dirEntry.getFile('log.txt', {}, function (fileEntry) {
-					//alert("fileEntry: " +fileEntry);
 					// Get a File object representing the file,
 					// then use FileReader to read its contents.
 					fileEntry.file(function (file) {						
@@ -92,7 +90,7 @@
 
 				}, errorHandler);
 				dirEntry.getFile('news.txt', {}, function (fileEntry) {
-					//alert("fileEntry: " +fileEntry);
+					
 					// Get a File object representing the file,
 					// then use FileReader to read its contents.
 					fileEntry.file(function (file) {						
@@ -107,7 +105,6 @@
 
 				}, errorHandler);		
 				dirEntry.getFile('promo.txt', {}, function (fileEntry) {
-					//alert("fileEntry: " +fileEntry);
 					// Get a File object representing the file,
 					// then use FileReader to read its contents.
 					fileEntry.file(function (file) {						
@@ -165,7 +162,7 @@
 				tag += '<meta property="og:site_name" content="Trovo per te" />    '
 				tag += '<meta property="og:description" content="Descrizone della news " />	'
 				tag += '<meta property="og:image" content="http://www.trovoperte.com/public/upload_gallery/immagini/consulenza_web_2015211122415.jpg" />'
-				alert(tag);
+				
 				$("head").append(tag);*/
 					var meta = "<meta property='og:title' content='"+ name.titolo_newsPromo +"'>";
 					if(name.descrizione_newsPromo != "")
@@ -174,7 +171,7 @@
 					meta += "<meta property='og:locale' content='it_IT'>";					
 					//meta += "<meta property='og:url' content='www.trovoperte.com/app/page/dettaglio_newsPromo.html?tipologia="+ tipologia_newsPromo + "&id_newsPromo="+id_newsPromo +"'>";
 					meta += "<meta property='og:image' content='http://www.trovoperte.com/public/upload_gallery/immagini/"+ name.icona_newsPromo + "'>";
-					alert(meta);
+					
 					$("head").append(meta)
                     //add the <li> to "li" variable
                     //note the use of += in the variable

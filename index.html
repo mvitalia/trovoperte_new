@@ -48,11 +48,11 @@
 
 			if(states[networkState] == "No network connection" || states[networkState] == "Unknown connection"){
 				window.requestFileSystem(window.TEMPORARY, 1024 *1024 ,searchDir, errorHandler);
-				alert(states[networkState])
+				//alert(states[networkState])
 			}
 			else{
 				window.requestFileSystem(window.TEMPORARY, 1024 * 1024, createDir, errorHandler);
-				alert(states[networkState])
+				//alert(states[networkState])
 			}
 		}
 
@@ -186,7 +186,7 @@
 		function searchDir(fs){
 			fs.root.getDirectory('dati', {create: false}, function(dirEntry) {				
 				dirEntry.getFile('log.txt', {}, function (fileEntry) {
-					alert("fileEntry: " +fileEntry);
+					//alert("fileEntry: " +fileEntry);
 					// Get a File object representing the file,
 					// then use FileReader to read its contents.
 					fileEntry.file(function (file) {						
