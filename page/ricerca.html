@@ -316,7 +316,7 @@ Oppure <br /><br />
 					//alert("fileEntry: " +fileEntry);
 					// Get a File object representing the file,
 					// then use FileReader to read its contents.
-					fileEntry.file(function (file) {						
+					fileEntry.file(function (file) {						                                                                                                                                                                                                                          
 						var reader = new FileReader();
 						reader.onloadend = function (e) {							
 							DATI = this.result;
@@ -335,7 +335,7 @@ Oppure <br /><br />
 			var elencoMarker = new Array();
 			datiDecompressi = JSON.parse(dati);
 			
-            caricaCitta(datiDecompressi);
+            caricaCitta(datiDecompressi);                                        
 
             $.each(info_allIndustry, function (i, name) {
                 if (name.coordinate != "") {
