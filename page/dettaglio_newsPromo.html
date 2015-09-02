@@ -24,6 +24,13 @@
 		function condividi(){
 			window.plugins.socialsharing.share('Message, subject, image and link', 'The subject', null, 'http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/app/page/dettaglio_newsPromo.html?id_newsPromo=9&tipologia=promo');
 		}
+		
+		$(document).ready(function(){
+			$.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data_newsPromo.asp?tipologia=promo", function (info_news) {
+				dati = JSON.stringify(info_news);
+				caricaDettaglioNewsPromo(dati);
+			});
+		});
 	</script>
 </head>
 <body>
@@ -257,6 +264,7 @@ Oppure <br /><br />
 			window.requestFileSystem(window.TEMPORARY, 1024 * 1024 ,searchDir, errorHandler);
 		}
 		
+		
 		function errorHandler(e) {
 				var msg = '';
 
@@ -337,10 +345,8 @@ Oppure <br /><br />
 				}, errorHandler);				
 				//window.requestFileSystem(dirEntry, 1024 * 1024, onInitFs, errorHandler);
 			},errorHandler);			
-			caricaDettaglio(dati,news,promo);
 		}
 
-			
 		function caricaMappa(dati){
 
 		var datiDecompressi = JSON.parse(dati);
@@ -356,7 +362,7 @@ Oppure <br /><br />
 					elencoMarker.push(azienda);
 				}
 			});
-			caricaAllIndustry(elencoMarker);
+			//caricaAllIndustry(elencoMarker);
         
 		}
 		
