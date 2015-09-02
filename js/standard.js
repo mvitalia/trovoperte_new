@@ -15,7 +15,7 @@ $(document).on('vclick', '.large', function(e){
 });
 
 
-v
+
 $(document).ready(function () {
     $("#txtAcconsento").click(function () {
         if ($("#chkConferma_Richiesta").prop("checked") == true) {
@@ -45,16 +45,22 @@ $(document).ready(function () {
 
 
 /** CARICA LA MAPPA CON TUTTE LE AZIENDA REGISTRATE **/
-function caricaAllIndustry(elencoMarker) {
+function caricaAllIndustry(elencoMarker,page) {
     var defaultCenter = new google.maps.LatLng(44.7392354, 7.928849);
-    drawMap(defaultCenter);
+    drawMap(defaultCenter,page);
 
-    function drawMap(latlng) {
+	
+    function drawMap(latlng,page) {
             var myOptions = {
                 zoom: 8,
                 center: latlng,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };           
+			
+			var percorso_page = "";
+			if (page == "index") {
+				percorso_page = "page/";
+			}
                 var map = new google.maps.Map(document.getElementById("allIndustry_mapCanvas"), myOptions);
                 // Add an overlay to the map of current lat/lng
                 for (var i = 0; i < elencoMarker.length; i++) {
@@ -63,7 +69,7 @@ function caricaAllIndustry(elencoMarker) {
                     position: coorAzienda,
                     map: map,
                     title: elencoMarker[i].nome,
-                    url: "http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/app/page/dettaglio.html?id_azienda=" + elencoMarker[i].id
+                    url: percorso_page + "dettaglio.html?id_azienda=" + elencoMarker[i].id
                 });
                 google.maps.event.addListener(marker, 'click', function () {
                     window.location.href = this.url;

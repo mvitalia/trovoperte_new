@@ -5,6 +5,15 @@ html, body
     padding: 0;
     margin: 0;
 }
+
+/* solo web*/
+/*
+body {width:75% !important; margin:0 auto !important; overflow-x:hidden}
+.ui-header , .ui-footer {width:75% !important; margin: 0 auto !important}
+.btn_search {width:95% !important}
+*/
+/*fine solo web*/
+
 .link_index
 {
     position: relative !important;
@@ -152,6 +161,7 @@ html, body
     clear: both;
     padding-top: 0px;
     text-align: justify;
+	width:99%
 }
 #scheda_azienda .servizi
 {
@@ -322,14 +332,17 @@ html, body
 
 #lista_news .news_imgCentrata
 {
-      top:50% ;
-      transform: translateY(-50%) ;  
+/*      top:50% ;
+      transform: translateY(-50%) ;  */
+	  vertical-align:middle
 }
 
 #lista_promo .news_imgCentrata
 {
-      top:50% ;
-      transform: translateY(-50%) ;  
+      /*top:50% ;
+      transform: translateY(-50%) ;  */
+	  
+	   vertical-align:middle
 }
 
 /* Pagina dei dettagli delle news e delle promo */
@@ -550,11 +563,11 @@ html, body {
 }
 
 /* Mappa per la pagina dettaglio */
-@media screen and (min-width: 850px)
-{    
+
      #map-page
     {
         width: 500px;
+		height:500px;
         padding:0 !important;
          margin: 0 auto !important; 
     }    
@@ -572,7 +585,7 @@ html, body {
        
     } 
     
-}
+
 
 @media screen and (max-width: 700px)
 {    
@@ -601,11 +614,11 @@ html, body {
 
 /* Mappa per tutte le ditte */
 
-@media screen and (min-width: 850px)
-{    
+
      #allIndustry_mapPage
     {
         width: 500px;
+		height:500px;
         padding:0 !important;
          margin: 0 auto !important; 
     }    
@@ -623,7 +636,7 @@ html, body {
        
     } 
     
-}
+
 
 @media screen and (max-width: 700px)
 {    
