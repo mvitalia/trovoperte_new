@@ -351,20 +351,19 @@ Oppure <br /><br />
             //caricaAllIndustry(elencoMarker);
         }
 
-		$(document).ready(function({
-			$('#search').keypress(function () {
-			alert("keyup");
-			if(DATI != "")
+		
+		$('#search').keyup(function () {
+			alert("keyup");			
 			caricaListeFiltrate();
 		});
-		});
+		
 		
 		
         //append list to ul
        
 
         $("#lstCitta").change(function () {
-			if(DATI != "")
+			
             caricaListeFiltrate();
         });
 
