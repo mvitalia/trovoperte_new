@@ -352,11 +352,10 @@ Oppure <br /><br />
         }
 
 		
-		$('#search').focusout(function () {
+		$('#search').keyup(function () {
 			alert("keyup");
 			if(DATI != "")
 			caricaListeFiltrate();
-			return false;
 		});
 		
         //append list to ul
