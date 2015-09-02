@@ -352,8 +352,7 @@ Oppure <br /><br />
         }
 
 		$("#page_ricerca").on("pageshow", function(){
-			$('#search').change(function () {
-				alert("keyup");			
+			$('#search').keyup(function () {	
 				caricaListeFiltrate();
 			});	
 		
