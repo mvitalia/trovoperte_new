@@ -353,7 +353,7 @@ Oppure <br /><br />
         }
 
         //append list to ul
-        $('#search').change(function () {
+        $('#search').focusout(function () {
 			alert("keyup");
 			if(DATI != "")
             caricaListeFiltrate();
