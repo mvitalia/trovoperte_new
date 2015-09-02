@@ -321,7 +321,7 @@ Oppure <br /><br />
 						var reader = new FileReader();
 						reader.onloadend = function (e) {							
 							news=this.result;
-							if(tipologia_newsPromo == news)
+							if(tipologia_newsPromo == "news")
 							caricaDettaglioNewsPromo(news);
 						};
 						reader.readAsText(file);
@@ -336,7 +336,7 @@ Oppure <br /><br />
 						var reader = new FileReader();
 						reader.onloadend = function (e) {							
 							promo=this.result;	
-							if(tipologia_newsPromo == promo)
+							if(tipologia_newsPromo == "promo")
 							caricaDettaglioNewsPromo(promo);
 						};
 						reader.readAsText(file);
