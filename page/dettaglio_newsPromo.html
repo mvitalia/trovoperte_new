@@ -1,8 +1,8 @@
 <html>
 <head >
 	
-<script type="text/javascript" src="../cordova.js"></script>
-	<script src="../js/SocialSharing.js"></script>
+	<!--<script type="text/javascript" src="../cordova.js"></script>
+	<script src="../js/SocialSharing.js"></script>-->
 	
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,12 +25,12 @@
 			window.plugins.socialsharing.share('Message, subject, image and link', 'The subject', null, 'http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/app/page/dettaglio_newsPromo.html?id_newsPromo=9&tipologia=promo');
 		}
 		
-		$(document).ready(function(){
+		/*$(document).ready(function(){
 			$.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data_newsPromo.asp?tipologia=promo", function (info_news) {
 				dati = JSON.stringify(info_news);
 				caricaDettaglioNewsPromo(dati);
 			});
-		});
+		});*/
 	</script>
 </head>
 <body>
@@ -367,7 +367,7 @@ Oppure <br /><br />
 		}
 		
 	
-        function caricaDettaglioNewsPromo(dati, newsPromo){
+        function caricaDettaglioNewsPromo(newsPromo){
 			var newsPromoDecompressi = JSON.parse(newsPromo);
 			
             var id_newsPromo = getParameterByName("id_newsPromo");
