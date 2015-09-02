@@ -1,15 +1,9 @@
 <html>
-<head>
+<head >
+	
 <script type="text/javascript" src="../cordova.js"></script>
 	<script src="../js/SocialSharing.js"></script>
-	<meta property="og:title" content="Consulenza web gratis" />
-	<meta property="og:type" content="website" />
-	 <meta property="og:locale" content="it_IT" />
-	 <meta property="og:site_name" content="Trovo per te" />
-    
-    <meta property="og:description" content="Descrizone della news " />
-	<meta property="og:url" content="http://www.trovoperte.com/app/page/dettaglio_newsPromo.html?tipologia=promo&amp;id_newsPromo=9" />
-	<meta property="og:img" content="http://www.trovoperte.com/public/upload_gallery/immagini/consulenza_web_2015211122415.jpg" />
+	
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -284,6 +278,13 @@ Oppure <br /><br />
 
 
                 $.each(info_dettaglio, function (i, name) {
+				var tag = '<meta property="og:title" content="Consulenza web gratis" />';
+				tag += '<meta property="og:type" content="article" />'
+				tag += '<meta property="og:locale" content="it_IT" />';
+				tag += '<meta property="og:site_name" content="Trovo per te" />    '
+				tag += '<meta property="og:description" content="Descrizone della news " />	'
+				tag += '<meta property="og:image" content="http://www.trovoperte.com/public/upload_gallery/immagini/consulenza_web_2015211122415.jpg" />'
+				$("head").append(tag);
 					/*var meta = "<meta property='og:title' content='"+ name.titolo_newsPromo +"'>";
 					if(name.descrizione_newsPromo != "")
 					meta += "<meta property='og:description' content='"+ name.descrizione_newsPromo +"'>";
