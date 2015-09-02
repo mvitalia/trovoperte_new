@@ -224,10 +224,10 @@ Oppure <br /><br />
             </div>
             
             <h1>Ricerca</h1>
-            <form onsubmit="return false">
+            <form onsubmit="return false" role="form" class =" box_search">
            
                 <div class="form-group">
-                  <input type="search" name="search" class="form-control input-lg" data-ajax="false" data-mini="true" id="search" placeholder="Cerca..."  />
+                  <input type="search" name="search" class="form-control input-lg" data-mini="true" id="search" placeholder="Cerca..."  />
                    
                     <select id="lstCitta">
                         <option>Tutti i paesi</option>
@@ -351,24 +351,22 @@ Oppure <br /><br />
             //caricaAllIndustry(elencoMarker);
         }
 
-		$(document).ready(function(){
-			$('#search').keydown(function () {
+		$("#page_ricerca").on("pageshow", function(){
+			$('#search').change(function () {
 				alert("keyup");			
 				caricaListeFiltrate();
-				return false;
-			});
-		});
-		
-		
-		
+			});	
 		
         //append list to ul
        
 
-        $("#lstCitta").change(function () {
-			
-            caricaListeFiltrate();
-        });
+			$("#lstCitta").change(function () {
+				
+				caricaListeFiltrate();
+			});
+		});
+		
+		
 
 
     function caricaListeFiltrate() {
