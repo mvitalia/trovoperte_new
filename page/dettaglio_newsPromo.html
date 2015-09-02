@@ -249,27 +249,124 @@ Oppure <br /><br />
         <!--page-->
     </div>
     <script>
+		
+		
+		document.addEventListener("deviceready", onDeviceReady, false);
+		
+		function onDeviceReady(){
+			window.requestFileSystem(window.TEMPORARY, 1024 * 1024 ,searchDir, errorHandler);
+		}
+		
+		function errorHandler(e) {
+				var msg = '';
 
-        $("#page_dettaglio_newsPromo").on("pageshow", function (event) {
+				switch (e.code) {
+					case FileError.QUOTA_EXCEEDED_ERR:
+						msg = 'QUOTA_EXCEEDED_ERR';
+						break;
+					case FileError.NOT_FOUND_ERR:
+						msg = 'NOT_FOUND_ERR';
+						msg = msg + "Non è presente un file in locale, collegarsi a internet per fruire dei servizi";
+						break;
+					case FileError.SECURITY_ERR:
+						msg = 'SECURITY_ERR';
+						break;
+					case FileError.INVALID_MODIFICATION_ERR:
+						msg = 'INVALID_MODIFICATION_ERR';
+						break;
+					case FileError.INVALID_STATE_ERR:
+						msg = 'INVALID_STATE_ERR';
+						break;
+					default:
+						msg = 'Unknown Error';
+						break;
+				};
+
+				alert('Error: ' + msg);
+			}
+
+		function searchDir(fs){
+			var dati ="";
+			var newsPromo = "";
+			var tipologia_newsPromo = getParameterByName("tipologia");
+			
+			fs.root.getDirectory('dati', {create: false}, function(dirEntry){				
+				dirEntry.getFile('log.txt', {}, function (fileEntry) {
+					//alert("fileEntry: " +fileEntry);
+					// Get a File object representing the file,
+					// then use FileReader to read its contents.
+					fileEntry.file(function (file) {						
+						var reader = new FileReader();
+						reader.onloadend = function (e) {							
+							dati=this.result;
+							caricaMappa(dati);
+						};
+						reader.readAsText(file);
+					}, errorHandler);
+
+				}, errorHandler);
+				dirEntry.getFile('news.txt', {}, function (fileEntry) {
+					//alert("fileEntry: " +fileEntry);
+					// Get a File object representing the file,
+					// then use FileReader to read its contents.
+					fileEntry.file(function (file) {						
+						var reader = new FileReader();
+						reader.onloadend = function (e) {							
+							news=this.result;
+							if(tipologia_newsPromo == news)
+							caricaDettaglioNewsPromo(news);
+						};
+						reader.readAsText(file);
+					}, errorHandler);
+
+				}, errorHandler);		
+				dirEntry.getFile('promo.txt', {}, function (fileEntry) {
+					//alert("fileEntry: " +fileEntry);
+					// Get a File object representing the file,
+					// then use FileReader to read its contents.
+					fileEntry.file(function (file) {						
+						var reader = new FileReader();
+						reader.onloadend = function (e) {							
+							promo=this.result;	
+							if(tipologia_newsPromo == promo)
+							caricaDettaglioNewsPromo(promo);
+						};
+						reader.readAsText(file);
+					}, errorHandler);
+
+				}, errorHandler);				
+				//window.requestFileSystem(dirEntry, 1024 * 1024, onInitFs, errorHandler);
+			},errorHandler);			
+			caricaDettaglio(dati,news,promo);
+		}
+
+			
+		function caricaMappa(dati){
+
+		var datiDecompressi = JSON.parse(dati);
+		var elencoMarker = new Array();           
+
+			$.each(datiDecompressi, function (i, name) {
+				if (name.coordinate != "") {
+					var azienda = {};
+					azienda.id = name.id;
+					azienda.nome = name.ragione_sociale;
+					azienda.lat = parseFloat(name.coordinate.split(",")[0]);
+					azienda.lon = parseFloat(name.coordinate.split(",")[1]);
+					elencoMarker.push(azienda);
+				}
+			});
+			caricaAllIndustry(elencoMarker);
+        
+		}
+		
+	
+        function caricaDettaglioNewsPromo(dati, newsPromo){
+			var newsPromoDecompressi = JSON.parse(newsPromo);
+			
             var id_newsPromo = getParameterByName("id_newsPromo");
             var tipologia_newsPromo = getParameterByName("tipologia");
-            var elencoMarker = new Array();
-
-            /*$.getJSON("http://www.trovoperte.com/admin/get_json_data.asp", function (info_allIndustry) {
-
-                $.each(info_allIndustry, function (i, name) {
-                    if (name.coordinate != "") {
-                        var azienda = {};
-                        azienda.id = name.id;
-                        azienda.nome = name.ragione_sociale;
-                        azienda.lat = parseFloat(name.coordinate.split(",")[0]);
-                        azienda.lon = parseFloat(name.coordinate.split(",")[1]);
-                        elencoMarker.push(azienda);
-                    }
-                });
-                caricaAllIndustry(elencoMarker);
-
-            });*/
+            
 
 
             var scheda = "";
@@ -314,9 +411,9 @@ Oppure <br /><br />
 						
                         footer_dettaglio += "<div   class='info_azienda'><div class='ui-content'><p>Pubblicato da " + name.ragione_sociale + "</p><p>Inserito il: " + data + "</p>"; // RAGIONE SOCIALE
                         /*footer_dettaglio += "<p><a id=navigatore href='http://maps.google.com/maps?&daddr=" + name.coordinate + "' data-icon='navigation' class=' btn-tel-dettagli ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-navigation ui-btn-icon-left'>" + name.indirizzo + " " + name.num + " " + name.cap + " " + name.paese + " " + name.provincia + "</a></p>"; // INDIRIZZO
-                        footer_dettaglio += "<p><a href='tel:" + name.tel + "' data-icon='phone' class=' btn-tel-dettagli ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-phone ui-btn-icon-left'>" + name.tel + "</a></p>"; // TELEFONO
-                        footer_dettaglio += "<p><a href='mailto:" + name.mail + "' data-icon='mail' class='btn-tel-dettagli ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-mail ui-btn-icon-left'>" + name.mail + "</a></p>"; // MAIL
-                        footer_dettaglio += "<p><a href='http://" + name.web + "' data-icon'=heart' class='btn-tel-dettagli ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-heart ui-btn-icon-left'>" + name.web + "</a></p></div>"; // WEB
+							footer_dettaglio += "<p><a href='tel:" + name.tel + "' data-icon='phone' class=' btn-tel-dettagli ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-phone ui-btn-icon-left'>" + name.tel + "</a></p>"; // TELEFONO
+							footer_dettaglio += "<p><a href='mailto:" + name.mail + "' data-icon='mail' class='btn-tel-dettagli ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-mail ui-btn-icon-left'>" + name.mail + "</a></p>"; // MAIL
+							footer_dettaglio += "<p><a href='http://" + name.web + "' data-icon'=heart' class='btn-tel-dettagli ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-heart ui-btn-icon-left'>" + name.web + "</a></p></div>"; // WEB
                         
 						*/
 						
@@ -337,7 +434,7 @@ Oppure <br /><br />
 
 
             });
-        })   
+        }   
 
 
 
