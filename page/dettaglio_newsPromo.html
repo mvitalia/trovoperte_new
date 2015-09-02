@@ -371,10 +371,10 @@ Oppure <br /><br />
 
             var scheda = "";
             var footer_dettaglio = "";
-            $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data_newsPromo.asp?id_newsPromo=" + id_newsPromo + "&tipologia=" + tipologia_newsPromo, function (info_dettaglio) {
+           
 
 
-                $.each(info_dettaglio, function (i, name) {
+                $.each(newsPromoDecompressi, function (i, name) {
 				/*var tag = '<meta property="og:title" content="Consulenza web gratis" />';
 				tag += '<meta property="og:type" content="article" />'
 				tag += '<meta property="og:locale" content="it_IT" />';
@@ -433,7 +433,7 @@ Oppure <br /><br />
 
 
 
-            });
+
         }   
 
 
