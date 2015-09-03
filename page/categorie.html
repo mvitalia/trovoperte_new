@@ -18,7 +18,7 @@
 
 		document.addEventListener("deviceready", onDeviceReady, false);
 		
-       function onDeviceReady(){					
+		function onDeviceReady(){					
 			window.requestFileSystem(window.TEMPORARY, 1024 * 1024 ,searchDir, errorHandler);	
 		};
 		
@@ -83,7 +83,7 @@
 							elencoMarker.push(azienda);
 						}
 					});
-					caricaAllIndustry(elencoMarker,"categorie");
+					//caricaAllIndustry(elencoMarker,"categorie");
 
 				var id_macrocategoria = getParameterByName("id_macrocategoria");
 			   
