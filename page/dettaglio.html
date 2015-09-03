@@ -438,19 +438,6 @@ var id_azienda = getParameterByName("id_azienda");
 			}
 		}
 		
-		
-		function avviaNavigatore(dest){
-			
-			launchnavigator.navigate(
-				[50.279306, -5.163158],
-				
-				function(){
-					alert("Plugin success");
-				},
-				function(error){
-					alert("Plugin error: "+ error);
-				});
-		}
 
 		function caricaPromo(promo){
 		var id_azienda = getParameterByName("id_azienda");
