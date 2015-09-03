@@ -21,8 +21,8 @@
 	<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
 	<script type="text/javascript">stLight.options({publisher: "2412a263-b8ee-4297-9739-f1bd0d2207b6", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>-->
 	<script>
-		function condividi(){
-			window.plugins.socialsharing.share('Message, subject, image and link', 'The subject', null, 'http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/app/page/dettaglio_newsPromo.html?id_newsPromo=9&tipologia=promo');
+		function condividi(titolo, descrizione,  azienda){
+			window.plugins.socialsharing.share(descrizione, azienda, null, titolo, null, 'http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/app/page/dettaglio_newsPromo.html?id_newsPromo=9&tipologia=promo');
 		}
 		
 		/*$(document).ready(function(){
@@ -198,7 +198,7 @@
                         
 						*/
 						
-						footer_dettaglio += "<div style='text-align:center'><button class='ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-mini' onclick='condividi()'}>Condividi</button></div><br>";
+						footer_dettaglio += "<div style='text-align:center'><button class='ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-mini' onclick='condividi("+ name.titolo_newsPromo  + "," + name.descrizione_newsPromo + "," + name.ragione_sociale +")'}>Condividi</button></div><br>";
 						
 						footer_dettaglio += "<p id='azienda_link'><a href='dettaglio.html?id_azienda=" + name.id_attivita + "' data-ajax='false' data-icon='arrow-r' class='btn-tel-dettagli ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-carat-r ui-btn-icon-right'>Accedi alla scheda azienda</a></p>"; // WEB
 
