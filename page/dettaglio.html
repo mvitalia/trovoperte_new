@@ -430,7 +430,7 @@ var id_azienda = getParameterByName("id_azienda");
 			var internet = checkInternet();
 			alert(internet + " - " + window.indirizzo);
 			if(internet == true){
-				var url = encodeURI(window.indirizzo);
+				var url = encodeURI("http://" + window.indirizzo);
 				window.open(url, '_blank','location=no');
 			}
 			else{
