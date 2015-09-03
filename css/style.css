@@ -555,11 +555,16 @@ html, body {
         
 }
 
+#map-page div{
+	z-index:0;	
+}
+
 #btnNavigazione
 {
     background-color:#57BA46 !important;  
     color:#fff;    
-	text-shadow:none
+	text-shadow:none;
+	z-index:1;
 }
 
 /* Mappa per la pagina dettaglio */
