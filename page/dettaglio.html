@@ -396,7 +396,7 @@ var id_azienda = getParameterByName("id_azienda");
 								if(internet == true)
 								{
 									caricaMappa(name.coordinate, name.ragione_sociale);
-									 $("#map-canvas").text("Per questa attività non è disponibile la visualizzazione della mappa");
+									$("#map-canvas").text("Per questa attività non è disponibile la visualizzazione della mappa");
 								}
 
                                 //$("#btnNavigazione").attr("href","http://maps.google.com/maps?&daddr=" + name.coordinate);
@@ -430,7 +430,8 @@ var id_azienda = getParameterByName("id_azienda");
 			var internet = checkInternet();
 			alert(internet + " - " + window.indirizzo);
 			if(internet == true){
-				obj.href = "http://" + window.indirizzo;
+				var url = encodeURI(window.indirizzo);
+				window.open(url, '_blank');
 			}
 			else{
 				obj.href = "#"; 
@@ -471,6 +472,11 @@ var id_azienda = getParameterByName("id_azienda");
 
 			$(".slider_promo").append(blocco);
 		}
+		
+		/*function openLink(link){
+			myURL = encodeURI(link);
+			window.open(myURL, '_blank');
+		}*/
             
 		function caricaNews(news){
 			var id_azienda = getParameterByName("id_azienda");
