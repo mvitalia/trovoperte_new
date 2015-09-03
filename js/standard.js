@@ -41,6 +41,7 @@ $(document).ready(function () {
     });
 	
 	$("#btnNavigazione").click(function(){
+		alert("cftyuijhy");
 		var dest = $("#map-page").attr("destinazione");
 		var lat = parseFloat(dest.split(",")[0]);
 		var lon = parseFloat(dest.split(",")[1]);
