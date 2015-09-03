@@ -386,7 +386,8 @@ var id_azienda = getParameterByName("id_azienda");
                         //footer_dettaglio = "<li class='ui-block-a' style='float:left;width:25%'><a href='page_info' data-icon='info' data-role='button' class='ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-info ui-btn-icon-left'>Info</a></li>";
 
                         //if(name.tipo_contratto != 'base' && name.tipo_contratto != 'free') {
-                            footer_dettaglio += "<li class='ui-block-a' style='float:left;width:25%'><a onclick='checkWeb(''" + name.web + "'')' href='http://" + name.web + "' target='_blank' data-icon='heart' data-role='button' class='btn_web ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-heart ui-btn-icon-left'>Web</a></li>";
+							window.indirizzo = name.web;
+                            footer_dettaglio += "<li class='ui-block-a' style='float:left;width:25%'><a onclick='checkWeb()' href='http://" + name.web + "' target='_blank' data-icon='heart' data-role='button' class='btn_web ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-heart ui-btn-icon-left'>Web</a></li>";
                             footer_dettaglio += "<li class='ui-block-b '><a href='mailto:" + name.mail + "' data-icon='mail' data-role='button' class='btn_mail ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-mail ui-btn-icon-left'>E-mail</a></li>";
                             footer_dettaglio += "<li class='ui-block-c '><a href='tel:" + name.tel + "' data-icon='phone' data-role='button'  class='btn_tel ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-phone ui-btn-icon-left'>Tel.</a></li>";
                             footer_dettaglio += "<li class='ui-block-d '><a href='#map-page' data-icon='info' data-rel='popup'data-position-to='window' data-transition='pop' data-icon='navigation' class='btn_fax ui-btn ui-state-persist ui-btn-up-a ui-icon-navigation ui-btn-inline ui-btn-icon-left'>Raggiungici</a>";
@@ -434,11 +435,11 @@ var id_azienda = getParameterByName("id_azienda");
 
         }
 		
-		function checkWeb(url){
+		function checkWeb(){
 			var internet = checkInternet();
 			alert(internet);
 			if(internet == true){
-				$(this).attr("href" , url);
+				$(this).attr("href" , window.indirizzo);
 			}
 			else{
 				$(this).attr("href","#");
