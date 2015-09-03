@@ -40,6 +40,20 @@ $(document).ready(function () {
         popupafterclose: function (event, ui) { if (page == "registrazione") { $("#page_registrazione").popup("open"); page = ""; } else if (page == "info") { $("#page_richiestaInfo").popup("open"); page = ""; } }
     });
 	
+	$("#btnNavigazione").click(function(){
+		var dest = $("#map-page").attr("destinazione");
+		var lat = parseFloat(dest.split(",")[0]);
+		var lon = parseFloat(dest.split(",")[1]);
+		launchnavigator.navigate(
+			  [lat, lon],
+			  function(){
+				  alert("Plugin success");
+			  },
+			  function(error){
+				  alert("Plugin error: "+ error);
+		});
+	});
+	
 });
 
 
