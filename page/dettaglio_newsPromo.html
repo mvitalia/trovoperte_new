@@ -22,7 +22,9 @@
 	<script type="text/javascript">stLight.options({publisher: "2412a263-b8ee-4297-9739-f1bd0d2207b6", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>-->
 	<script>
 		function condividi(titolo, descrizione,  azienda){
-			window.plugins.socialsharing.share(descrizione, azienda, null, titolo, null, 'http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/app/page/dettaglio_newsPromo.html?id_newsPromo=9&tipologia=promo');
+			var aus = descrizione + "," + azienda;
+			alert(aus);
+			window.plugins.socialsharing.share(aus,  null, titolo, null, 'http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/app/page/dettaglio_newsPromo.html?id_newsPromo=9&tipologia=promo');
 		}
 		
 		/*$(document).ready(function(){
