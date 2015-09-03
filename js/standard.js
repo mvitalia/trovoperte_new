@@ -203,8 +203,8 @@ function validateFormRegistrazione() {
                 return false;
             }
         }
-
-         alert("La sua richiesta di registrazione è stata inviata correttamente, le risponderemo non appena possibile. Grazie per la collaborazione.");
+		return true;
+        // alert("La sua richiesta di registrazione è stata inviata correttamente, le risponderemo non appena possibile. Grazie per la collaborazione.");
         //$("#txtNomeRegistrazione, #txtCognomeRegistrazione, #txtMailRegistrazione, #txtTelRegistrazione, #txtRagioneSociale, #txtPIVA, #txtCodiceFiscale, #txtIndirizzo, #txtCAP, #txtCitta").val("");
         //$("#chkConferma_Richiesta").prop("checked",false);
     }   
@@ -213,7 +213,8 @@ function validateFormRegistrazione() {
 	}
 }
 function validateFormInfo() {
-
+		var internet = checkInternet();
+	if(internet == true){
         var mail_reg_exp = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-]{2,})+\.)+([a-zA-Z0-9]{2,})+$/;
 
         var moduloControllo = document.forms['form_richiestaInfo'];
@@ -251,11 +252,15 @@ function validateFormInfo() {
                 return false;
             }
         }
-        alert("La sua richiesta di informazioni è stata inviata correttamente, le risponderemo non appena possibile. Grazie per la collaborazione.");
+		return true;
+        //alert("La sua richiesta di informazioni è stata inviata correttamente, le risponderemo non appena possibile. Grazie per la collaborazione.");
         //$("#txtNomeInfo, #txtCognomeInfo, #txtMailInfo, #richiesta").val("");
         //$("#chkConferma_info").prop("checked",false);
-     
     }
+	else{
+		alert("E necessario avere una connessione internet per continuare")	;
+	}
+}
 
 /** GET PARAMETER **/
 function getParameterByName(name)

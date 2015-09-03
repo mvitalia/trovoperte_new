@@ -53,11 +53,52 @@ With iMsg
    .Send
 End With
 
+With iMsg
+	  Set .Configuration = iConf
+	   .To = invioDa
+	   .From = invioA
+	   .sender=invioDa
+	   .Subject = "Richiesta info o registrazione Trovo x Te " & nomeDominio
+	   .HTMLBody = "<img src='http://www.trovoperte.com/images/logo_trovoperte.png' alt='logo Trovo x Te' style='float: center' /><br><br><font face=verdana size=2>Buongiorno " & nome & " " & cognome & ", <br>abbiamo ricevuto la tua richiesta, sarai ricontattato al pi&ugrave; presto da un nostro operatore.<br><br>Grazie e arrivederci.<br><br><br><br><br>" & corpoMessaggio 
+	   .Send
+End With
+
 
 ' rendirizzamento
-response.redirect("index.html")
+'response.redirect("index.html?info=ok")
 
 %>
+<html>
+<head>
+    <script type="text/javascript" src="cordova.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" href="css/default_theme.min.css">
+    <link rel="stylesheet" href="css/jquery.mobile.icons.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/jquery-1.11.2.min.js"></script>
+    <script src="js/jquery.mobile-1.4.5.min.js"></script>    
+ 
+<body>
+    <div class="txtwrapper">
+        <!-- Home -->
+        <div data-role="page" id="page_index">
+        	<div data-role="header" data-position="fixed">
+                <a href="index.html" data-role="none" class="link_index">
+                    <img src="img/logo_trovoperte.png" class="logo_trovo"></a>
+            </div>
+            <div data-role="main"  data-backbtn="false">
+                <p style="text-align:center">Grazie per averci contattato!<br />La sua richiesta di informazioni è stata inviata correttamente, le risponderemo appena possibile.
+                <br /><br /><br />
+                <a href='index.html' data-icon='home' data-ajax="false" class='ui-btn ui-shadow ui-btn-inline ui-icon-home ui-btn-icon-left'>Home</a></p>
+            </div>
 
+		</div>
+    </div>
+</body>
+</html>
 
 
