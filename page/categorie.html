@@ -69,7 +69,8 @@
 				},errorHandler);
 			}
 				
-			function caricaCategorie(dati){			
+			function caricaCategorie(dati){	
+				var internet = checkInternet();
 				var datiDecompressi = JSON.parse(dati);				
 				var elencoMarker = new Array();				
 
@@ -83,7 +84,10 @@
 							elencoMarker.push(azienda);
 						}
 					});
-					//caricaAllIndustry(elencoMarker,"categorie");
+					if(internet ==  true){
+						caricaAllIndustry(elencoMarker,"categorie");
+					}
+					
 
 				var id_macrocategoria = getParameterByName("id_macrocategoria");
 			   

@@ -70,6 +70,7 @@
 		}
 		
 		function caricaCircuiti(dati){
+			var internet = checkInternet();
 			var datiDecompressi = JSON.parse(dati);		
             var id_circuito = getParameterByName("id_circuito");
             var elencoMarker = new Array();
@@ -84,7 +85,11 @@
 					elencoMarker.push(azienda);
 				}
 			});
-			caricaAllIndustry(elencoMarker,"lista_circuiti");            
+			
+			if(internet == true){
+				caricaAllIndustry(elencoMarker,"lista_circuiti");            
+			}
+			
 
                 //string to put HTML in
                 //set up string for adding <li/>

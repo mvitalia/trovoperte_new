@@ -259,6 +259,7 @@
 		
 		
 		function caricaDettaglio(dati, news, promo){
+			var internet = checkInternet();
 			var datiDecompressi = JSON.parse(dati);			
 			var elencoMarker = new Array();
        
@@ -274,7 +275,10 @@ var id_azienda = getParameterByName("id_azienda");
                           elencoMarker.push(azienda);
                     }
                 });
-                caricaAllIndustry(elencoMarker,"dettaglio");    
+				if(internet == true){
+					caricaAllIndustry(elencoMarker,"dettaglio");    
+				}
+                
             
 
             

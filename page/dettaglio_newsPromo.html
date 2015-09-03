@@ -128,7 +128,7 @@
 		}
 
 		function caricaMappa(dati){
-
+		var internet = checkIntrnet();
 		var datiDecompressi = JSON.parse(dati);
 		var elencoMarker = new Array();           
 
@@ -142,7 +142,11 @@
 					elencoMarker.push(azienda);
 				}
 			});
-			caricaAllIndustry(elencoMarker,"dettaglio_newsPromo");
+			
+			if(internet == true){
+				caricaAllIndustry(elencoMarker,"dettaglio_newsPromo");
+			}
+			
         
 		}
 		

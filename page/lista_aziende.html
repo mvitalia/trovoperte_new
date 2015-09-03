@@ -73,7 +73,7 @@
 	
 		function caricaListaAziende(dati){
 			var datiDecompressi = JSON.parse(dati);
-		
+			var internet = checkInternet();
 			var id_categoria = getParameterByName("id_categoria");
             var id_circuito = getParameterByName("id_circuito");
             var elenco_recenti = getParameterByName("elenco_recenti")
@@ -91,7 +91,11 @@
 					elencoMarker.push(azienda);
 				}
 			});
-			caricaAllIndustry(elencoMarker,"lista_aziende");   
+			
+			if(internet == true){
+				caricaAllIndustry(elencoMarker,"lista_aziende");   
+			}
+			
 
 
             if (id_categoria && id_categoria != "") {
