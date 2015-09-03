@@ -47,7 +47,7 @@
 			
 			
 			if(states[networkState] == "No network connection" || states[networkState] == "Unknown connection"){
-				window.requestFileSystem(window.TEMPORARY, 1024 *1024 ,sear chDir, errorHandler);
+				window.requestFileSystem(window.TEMPORARY, 1024 *1024 ,sear createDirDir, errorHandler);
 				
 				alert(states[networkState])
 			}
@@ -76,7 +76,6 @@
 				}
 			});
 			//caricaAllIndustry(elencoMarker,"index");         
-
 
 			$(".btn_search").bind("change", function (event, ui) {
 				$.mobile.pageContainer.pagecontainer("change", "#page_ricerca", {
