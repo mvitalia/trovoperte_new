@@ -195,7 +195,7 @@
 						var reader = new FileReader();
 						reader.onloadend = function (e) {							
 							caricaIndex(this.result);
-										
+							alert(this.alert)	;
 						};
 						reader.readAsText(file);
 					}, errorHandler);
