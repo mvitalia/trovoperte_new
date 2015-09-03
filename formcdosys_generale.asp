@@ -5,7 +5,7 @@
 
 DIM corpoMessaggio, numeroCampi, invioA, invioDa, nomeDominio, indirizzoIp, modulo, browserSistemaOperativo
 
-invioA =  "a.nota@mvitalia.com"
+invioA =  "info@trovoperte.com"
 
 invioDa =  Request.Form("email")
 if invioDa = "" then
@@ -38,7 +38,7 @@ Set iConf = CreateObject("CDO.Configuration")
 Set Flds = iConf.Fields
 
 Flds(cdoSendUsingMethod) = cdoSendUsingPort
-Flds(cdoSMTPServer) = "smtp.mvitalia.com" 
+Flds(cdoSMTPServer) = "smtp.trovoperte.com" 
 Flds(cdoSMTPServerPort) = 25
 Flds(cdoSMTPAuthenticate) = cdoAnonymous ' 0
 Flds.Update
@@ -49,7 +49,7 @@ With iMsg
    .From = invioDa
    .sender=invioDa
    .Subject = "Contatto dal dominio " & nomeDominio
-   .HTMLBody = "<img src='http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/app/img/logo_trovoperte.png' alt='logo trovo per te' style='float: center;' /><br><br><font face=verdana size=2>Contatto da " & nome & ", <br><br>" & corpoMessaggio & "<br><br><br> Questi i dati inseriti nel modulo presente alla pagina <b> " & modulo & " </b>da utente con indirizzo IP <b>" & indirizzoIp & " </b> browser e sistema operativo <b>" & browserSistemaOperativo  & "</b>"
+   .HTMLBody = "<img src='http://www.trovoperte.com/app/img/logo_trovoperte.png' alt='logo trovo per te' style='float: center;' /><br><br><font face=verdana size=2>Contatto da " & nome & ", <br><br>" & corpoMessaggio & "<br><br><br> Questi i dati inseriti nel modulo presente alla pagina <b> " & modulo & " </b>da utente con indirizzo IP <b>" & indirizzoIp & " </b> browser e sistema operativo <b>" & browserSistemaOperativo  & "</b>"
    .Send
 End With
 
