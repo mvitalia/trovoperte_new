@@ -114,8 +114,31 @@ function apriInfo() {
         $("#page_info").popup("close");
     }
   
+  function checkInternet(){
+		var networkState = navigator.connection.type;
+
+		var states = {};
+		states[Connection.UNKNOWN]  = 'Unknown connection';
+		states[Connection.ETHERNET] = 'Ethernet connection';
+		states[Connection.WIFI]     = 'WiFi connection';
+		states[Connection.CELL_2G]  = 'Cell 2G connection';
+		states[Connection.CELL_3G]  = 'Cell 3G connection';
+		states[Connection.CELL_4G]  = 'Cell 4G connection';
+		states[Connection.CELL]     = 'Cell generic connection';
+		states[Connection.NONE]     = 'No network connection';
+		
+		if(states[networkState] == "No network connection" || states[networkState] == "Unknown connection"){
+			return false;
+		}
+		else{
+			return true;
+		}
+	}
+  
 /** CONVALIDA DEI DATI INSERITI NELLE FORM **/
 function validateFormRegistrazione() {
+		var internet = checkInternet();
+	if(internet == true){
         var mail_reg_exp = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-]{2,})+\.)+([a-zA-Z0-9]{2,})+$/;
 
         var moduloControllo = document.forms['form_registrazioneAzienda'];
@@ -184,8 +207,11 @@ function validateFormRegistrazione() {
          alert("La sua richiesta di registrazione è stata inviata correttamente, le risponderemo non appena possibile. Grazie per la collaborazione.");
         //$("#txtNomeRegistrazione, #txtCognomeRegistrazione, #txtMailRegistrazione, #txtTelRegistrazione, #txtRagioneSociale, #txtPIVA, #txtCodiceFiscale, #txtIndirizzo, #txtCAP, #txtCitta").val("");
         //$("#chkConferma_Richiesta").prop("checked",false);
-        
-    }
+    }   
+	else{
+		alert("E' necessario avere una connessione internet per continuare");
+	}
+}
 function validateFormInfo() {
 
         var mail_reg_exp = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-]{2,})+\.)+([a-zA-Z0-9]{2,})+$/;

@@ -73,7 +73,7 @@
     <gap:plugin name="org.apache.cordova.inappbrowser" version="0.5.2" />
     <gap:plugin name="nl.x-services.plugins.socialsharing" source="plugins.cordova.io" />
     <gap:plugin name="org.apache.cordova.file" version="1.3.1" />
-	
+	<gap:plugin name="com.danielcwilson.plugins.googleanalytics" version="0.6.1" />
 	
 	
     <!-- for iOS -->
@@ -82,6 +82,9 @@
     </feature>
 	<feature name="NetworkStatus">
 		<param name="ios-package" value="CDVConnection" />
+	</feature>
+	<feature name="UniversalAnalytics">
+	  <param name="ios-package" value="UniversalAnalyticsPlugin" />
 	</feature>
 	
 
@@ -98,10 +101,14 @@
         <param name="wp-package" value="SocialSharing"/>
     </feature>
 	
+	<feature name="UniversalAnalytics">
+	  <param name="android-package" value="com.danielcwilson.plugins.analytics.UniversalAnalyticsPlugin" />
+	</feature>
+	
 	
 	<uses-permission android:name="android.permission.INTERNET" />
-<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.READ_PHONE_STATE" />
 	<access origin="*" />	
 	
 </widget>

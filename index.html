@@ -47,14 +47,16 @@
 
 			if(states[networkState] == "No network connection" || states[networkState] == "Unknown connection"){
 				window.requestFileSystem(window.TEMPORARY, 1024 *1024 ,searchDir, errorHandler);
+				
 				//alert(states[networkState])
 			}
 			else{
 				window.requestFileSystem(window.TEMPORARY, 1024 * 1024, createDir, errorHandler);
+				window.analytics.startTrackerWithId('UA-11986172-29');
 				//alert(states[networkState])
 			}
 		}
-
+		
 		function caricaIndex(dati) { 
 
 				
@@ -349,7 +351,7 @@
                         <h1>
                             Richiesta iscrizione</h1>
                     </div>
-                   <form  method="post" onsubmit="return validateFormRegistrazione();" action="formcdosys_generale.asp" id="form_registrazioneAzienda" name="form_registrazioneAzienda" >
+                   <form  method="post" onSubmit="return validateFormRegistrazione();" action="formcdosys_generale.asp" id="form_registrazioneAzienda" name="form_registrazioneAzienda" >
 						<input type="hidden" value="Richiesta iscrizione"/>
                         <div class="form_left">
                             <input  name="nome" id="txtNomeRegistrazione" type="text" placeholder="Nome" class="required"/>
@@ -414,11 +416,11 @@ Ideale per estendere la tua visibilità sui dispositivi mobili a basso costo e i
 Tramite un semplice pannello di controllo potrai gestire descrizioni, servizi, news, promo, offerte ogni volta che vorrai. <br><br />
 Tutti potranno interagire tramite i tasti funzionali della tua scheda azienda: telefono, mail, navigatore, social, ecc.. <br><br />
 Quattro fasce di prezzo annuali in base alle vostre necessità: 30€, 80€, 120€, 150€ iva esclusa.<br /><br />
-<b>Richiedi l'iscrizione cliccando <a onclick="apriRegistrazione()" href='#page_registrazione' data-rel='popup'
+<b>Richiedi l'iscrizione cliccando <a onClick="apriRegistrazione()" href='#page_registrazione' data-rel='popup'
                         data-position-to='window' data-transition='pop'>qui</a></b><br/><br />
 Oppure <br /><br />
 
-<b>Contattaci per avere maggiori informazioni cliccando <a onclick="apriInfo()" href='#page_richiestaInfo' data-rel='popup'
+<b>Contattaci per avere maggiori informazioni cliccando <a onClick="apriInfo()" href='#page_richiestaInfo' data-rel='popup'
                         data-position-to='window' data-transition='pop'>
                         qui</a></b>
 
