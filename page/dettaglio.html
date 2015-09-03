@@ -436,6 +436,7 @@ var id_azienda = getParameterByName("id_azienda");
 		
 		function checkWeb(url){
 			var internet = checkInternet();
+			alert(internet);
 			if(internet == true){
 				$(this).attr("href" , url);
 			}
