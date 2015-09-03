@@ -411,16 +411,7 @@ var id_azienda = getParameterByName("id_azienda");
                 });
                 //append list to ul
                 var htmlObject = $(scheda);
-				
-				
-                
-                    
-                
-
-                
-				
-                    
-                
+			
 
                 $(".slider_gallery").append(scheda_gallery);
                 $("#footer_dettaglio").append(footer_dettaglio).promise().done(function () { });
@@ -437,9 +428,9 @@ var id_azienda = getParameterByName("id_azienda");
 		
 		function checkWeb(obj){
 			var internet = checkInternet();
-			alert(internet);
+			alert(internet + " - " + window.indirizzo);
 			if(internet == true){
-				obj.href = window.indirizzo;
+				obj.href = "http://" + window.indirizzo;
 			}
 			else{
 				obj.href = "#"; 
