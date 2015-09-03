@@ -22,9 +22,10 @@
 	<script type="text/javascript">stLight.options({publisher: "2412a263-b8ee-4297-9739-f1bd0d2207b6", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>-->
 	<script>
 		function condividi(){
-			var aus = window.descrizione + "," + window.ragione_sociale;
+			var aus = window.ragione_sociale;
+			var img = "http://www.trovoperte.com/upload_gallery/immagini/" + window.immagine;
 			alert(aus);
-			window.plugins.socialsharing.share(aus, window.titolo, null, 'http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/app/page/dettaglio_newsPromo.html?id_newsPromo=9&tipologia=promo');
+			window.plugins.socialsharing.share(aus, window.titolo, img, 'http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/app/page/dettaglio_newsPromo.html?id_newsPromo=9&tipologia=promo');
 			//window.plugins.socialsharing.share('Message, subject, image and link', 'The subject', 'https://www.google.nl/images/srpr/logo4w.png', 'http://www.x-services.nl')
 		}
 		
@@ -182,7 +183,7 @@
                     //store index value in array as id of the <a> tag
                     if (name.id_newsPromo == id_newsPromo) {
 						window.titolo = name.titolo_newsPromo;
-						window.descrizione = name.descrizione_newsPromo;
+						window.immagine = name.icona_newsPromo;
 						window.ragione_sociale = name.ragione_sociale;
                         //variabile di appoggio dove salvo da data perché il campo del DB è composto da data+ora, e in questo caso serve solo l'ora
                         var data = name.data_newsPromo.split(" ")[0];
