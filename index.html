@@ -75,7 +75,7 @@
 					elencoMarker.push(azienda);
 				}
 			});
-			caricaAllIndustry(elencoMarker,"index");         
+			//caricaAllIndustry(elencoMarker,"index");         
 
 
 			$(".btn_search").bind("change", function (event, ui) {
@@ -186,7 +186,6 @@
 				}
 				
 		function searchDir(fs){
-			alert("index");
 			fs.root.getDirectory('dati', {create: false}, function(dirEntry) {				
 				dirEntry.getFile('log.txt', {}, function (fileEntry) {
 					//alert("fileEntry: " +fileEntry);
@@ -196,7 +195,6 @@
 						var reader = new FileReader();
 						reader.onloadend = function (e) {							
 							caricaIndex(this.result);
-							alert(this.result);
 						};
 						reader.readAsText(file);
 					}, errorHandler);
