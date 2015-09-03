@@ -186,6 +186,7 @@
 				}
 				
 		function searchDir(fs){
+			alert("index");
 			fs.root.getDirectory('dati', {create: false}, function(dirEntry) {				
 				dirEntry.getFile('log.txt', {}, function (fileEntry) {
 					//alert("fileEntry: " +fileEntry);
@@ -195,7 +196,7 @@
 						var reader = new FileReader();
 						reader.onloadend = function (e) {							
 							caricaIndex(this.result);
-							alert(this.alert)	;
+							alert(this.alert);
 						};
 						reader.readAsText(file);
 					}, errorHandler);
