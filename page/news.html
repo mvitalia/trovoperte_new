@@ -16,6 +16,7 @@
 	<script>
 		
 		function caricaMappaNews(dati){
+			var internet = checkInternet();
 			datiDecompressi = JSON.parse(dati);
 			
             var elencoMarker = new Array();           
@@ -30,7 +31,10 @@
 					elencoMarker.push(azienda);
 				}
 			});
-			caricaAllIndustry(elencoMarker,"news");
+			if(internet == true){
+				caricaAllIndustry(elencoMarker,"news");
+			}
+			
 		}
 		
 		function caricaNews(dati){

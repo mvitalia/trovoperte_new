@@ -81,6 +81,7 @@
 		}
 	 
 		function caricaMappaPromo(dati){
+			var internet = checkInternet();
 			datiDecompressi = JSON.parse(dati)
 			 var elencoMarker = new Array();           
 
@@ -94,7 +95,10 @@
 					elencoMarker.push(azienda);
 				}
 			});
-			caricaAllIndustry(elencoMarker,"promo");            
+			if(internet == true){
+				caricaAllIndustry(elencoMarker,"promo");            
+			}
+			
 		}
 	 
         function caricaPromo(dati){

@@ -332,6 +332,7 @@ Oppure <br /><br />
 	
 
 		function caricaMappa(dati){
+			var internet = checkInternet();
 			var elencoMarker = new Array();
 			datiDecompressi = JSON.parse(dati);
 			
@@ -348,7 +349,10 @@ Oppure <br /><br />
                 }
 
             });
-            caricaAllIndustry(elencoMarker,"ricerca");
+			if(internet == true){
+				caricaAllIndustry(elencoMarker,"ricerca");
+			}
+            
         }
 
 		$("#page_ricerca").on("pageshow", function(){

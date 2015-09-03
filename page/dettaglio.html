@@ -391,7 +391,10 @@ var id_azienda = getParameterByName("id_azienda");
                             footer_dettaglio += "<li class='ui-block-c '><a href='tel:" + name.tel + "' data-icon='phone' data-role='button'  class='btn_tel ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-phone ui-btn-icon-left'>Tel.</a></li>";
                             footer_dettaglio += "<li class='ui-block-d '><a href='#map-page' data-icon='info' data-rel='popup'data-position-to='window' data-transition='pop' data-icon='navigation' class='btn_fax ui-btn ui-state-persist ui-btn-up-a ui-icon-navigation ui-btn-inline ui-btn-icon-left'>Raggiungici</a>";
                             if(name.coordinate != ""){
-                                caricaMappa(name.coordinate, name.ragione_sociale);
+								if(internet == true)
+								{
+									caricaMappa(name.coordinate, name.ragione_sociale);
+								}
 
                                 $("#btnNavigazione").attr("href","http://maps.google.com/maps?&daddr=" + name.coordinate);
                             }
