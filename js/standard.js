@@ -32,6 +32,13 @@ $(document).ready(function () {
 			alert("Collegarsi ad internet per visualizzare la mappa aggiornata");
 		}
 	});
+	
+	$("#btnRaggiungici").click(function(){
+		var rete = checkInternet();		
+		if(rete == false){
+			alert("Collegarsi ad internet per visualizzare la mappa aggiornata");
+		}
+	});
 
     $("#txtAcconsentoInfo").click(function () {
         if ($("#chkConferma_info").prop("checked") == true) {
