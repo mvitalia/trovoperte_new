@@ -50,15 +50,12 @@ $(document).ready(function () {
     });
 	
 	$("#btnNavigazione").click(function(){
-		alert("cftyuijhy");
 		var dest = $("#map-page").attr("destinazione");
 		var lat = parseFloat(dest.split(",")[0]);
 		var lon = parseFloat(dest.split(",")[1]);
-		alert(lat + " - " + lon);
 		launchnavigator.navigate(
 			  [lat, lon],
 			  function(){
-				  alert("Plugin success");
 			  },
 			  function(error){
 				  alert("Plugin error: "+ error);
