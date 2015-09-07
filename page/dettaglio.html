@@ -278,11 +278,11 @@ var id_azienda = getParameterByName("id_azienda");
 				if(internet == true){
 					caricaAllIndustry(elencoMarker,"dettaglio");    
 				}
+				else{
+					alert("Attenzione! Collegarsi a internet per visualizzare la mappa");
+				}
                 
             
-
-            
-
                 var scheda = "";
                 var footer_dettaglio = "";
 
@@ -343,6 +343,8 @@ var id_azienda = getParameterByName("id_azienda");
 
                         if (count_gallery == 0) {
                             scheda_gallery += "<p>Nessuna immagine da visualizzare</p>";
+							$("#mySwipeGallery.slider_next").hide();
+							$("#mySwipeGallery.slider_prev").hide();
                         }
                         /* if (count_news == 0) {
                         scheda_news += "Nessuna immagine da visualizzare";
@@ -396,13 +398,17 @@ var id_azienda = getParameterByName("id_azienda");
 								if(internet == true)
 								{
 									caricaMappa(name.coordinate, name.ragione_sociale);
-									$("#map-canvas").innerHtml("Per questa attività non è disponibile la visualizzazione della mappa");
+								}
+								else{
+									alert("Attenzione! Collegarsi a internet per visualizzare la mappa");
 								}
 
                                 //$("#btnNavigazione").attr("href","http://maps.google.com/maps?&daddr=" + name.coordinate);
                             }
                             else{
-                                $("#map-canvas").innerHtml("Per questa attività non è disponibile la visualizzazione della mappa");
+                             
+								alert("Attenzione! Questa azienda non disponde di una mappa;");
+			
                                 
                             }
                         //}
@@ -468,6 +474,8 @@ var id_azienda = getParameterByName("id_azienda");
 			}
 			else {
 				blocco = blocco + "<p> Non ci sono promo da visualizzare</p>"
+				$("#mySwipePromo .slider_next").hide();
+				$("#mySwipePromo .slider_prev").hide();
 			}
 
 			$(".slider_promo").append(blocco);
@@ -505,6 +513,8 @@ var id_azienda = getParameterByName("id_azienda");
 			}
 			else {
 				blocco = blocco + "<p> Non ci sono news da visualizzare</p>"
+				$("#mySwipe.slider_next").hide();
+				$("#mySwipe.slider_prev").hide();
 			}
 
 			$(".slider_news").append(blocco);
@@ -813,7 +823,7 @@ var id_azienda = getParameterByName("id_azienda");
                         <div id="scheda_gallery" data-divider-theme="a" data-inset="true">
                             <div id="lista_immagini" class="liste_foto">
                                 <div data-role="content" id="contentSlider">
-                                    <a href="#" onclick='mySwipe.prev()' class="slider_prev ui-btn ui-icon-carat-l ui-btn-icon-left">
+                                    <a href="#"  onclick='mySwipe.prev()' class="slider_prev ui-btn ui-icon-carat-l ui-btn-icon-left">
                                     </a><a href="#" onclick='mySwipe.next()' class=" slider_next ui-btn ui-icon-carat-r ui-btn-icon-left">
                                     </a>
                                     <div id='mySwipeGallery' style='margin: 0 auto' class='swipe'>

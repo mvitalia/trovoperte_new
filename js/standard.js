@@ -225,7 +225,7 @@ function validateFormRegistrazione() {
         //$("#chkConferma_Richiesta").prop("checked",false);
     }   
 	else{
-		alert("Attenzione! Per inviare la richiesta è necessaria una connessione internet.");
+		alert("Attenzione! Collegarsi a internet per inviare una richiesta.");
 		return false;
 	}
 }
@@ -275,7 +275,7 @@ function validateFormInfo() {
         //$("#chkConferma_info").prop("checked",false);
     }
 	else{
-		alert("Attenzione! Per inviare la richiesta è necessaria una connessione internet.")	;
+		alert("Attenzione! Collegarsi a internet per inviare una richiesta.");
 		return false;
 	}
 }
