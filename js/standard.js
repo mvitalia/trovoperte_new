@@ -29,7 +29,7 @@ $(document).ready(function () {
 	$("#btnAllIndustry").click(function(){
 		var rete = checkInternet();		
 		if(rete == false){
-			alert("Collegarsi ad internet per visualizzare la mappa")	;
+			alert("Collegarsi ad internet per visualizzare la mappa aggiornata");
 		}
 	});
 
