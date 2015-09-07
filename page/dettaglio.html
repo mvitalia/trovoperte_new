@@ -341,8 +341,8 @@ var id_azienda = getParameterByName("id_azienda");
 
                         if (count_gallery == 0) {
                             scheda_gallery += "<p>Nessuna immagine da visualizzare</p>";
-							$("#mySwipeGallery.slider_next").hide();
-							$("#mySwipeGallery.slider_prev").hide();
+							$("#scheda_gallery .slider_next").hide();
+							$("#scheda_gallery .slider_prev").hide();
                         }
                         /* if (count_news == 0) {
                         scheda_news += "Nessuna immagine da visualizzare";
@@ -397,9 +397,7 @@ var id_azienda = getParameterByName("id_azienda");
 								{
 									caricaMappa(name.coordinate, name.ragione_sociale);
 								}
-								else{
-									alert("Attenzione! Collegarsi a internet per visualizzare la mappa");
-								}
+								
 
                                 //$("#btnNavigazione").attr("href","http://maps.google.com/maps?&daddr=" + name.coordinate);
                             }
@@ -472,8 +470,8 @@ var id_azienda = getParameterByName("id_azienda");
 			}
 			else {
 				blocco = blocco + "<p> Non ci sono promo da visualizzare</p>"
-				$("#mySwipePromo .slider_next").hide();
-				$("#mySwipePromo .slider_prev").hide();
+				$("#scheda_promo .slider_next").hide();
+				$("#scheda_promo .slider_prev").hide();
 			}
 
 			$(".slider_promo").append(blocco);
@@ -511,8 +509,8 @@ var id_azienda = getParameterByName("id_azienda");
 			}
 			else {
 				blocco = blocco + "<p> Non ci sono news da visualizzare</p>"
-				$("#mySwipe.slider_next").hide();
-				$("#mySwipe.slider_prev").hide();
+				$("#scheda_news .slider_next").hide();
+				$("#scheda_news .slider_prev").hide();
 			}
 
 			$(".slider_news").append(blocco);
