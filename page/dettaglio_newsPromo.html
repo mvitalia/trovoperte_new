@@ -202,7 +202,7 @@
                         scheda = scheda + "<p id='descrizione_newsPromo'>" + name.descrizione_newsPromo + "</p></div></div></div>"
 						
 						
-                        footer_dettaglio += "<li><div   class='info_azienda'><div class='ui-content'><p>Pubblicato da " + name.ragione_sociale + "</p><p>Inserito il: " + data + "</p>"; // RAGIONE SOCIALE
+                        footer_dettaglio += "<div style='height:auto;'  class='info_azienda'><div class='ui-content'><p>Pubblicato da " + name.ragione_sociale + "</p><p>Inserito il: " + data + "</p>"; // RAGIONE SOCIALE
                         /*footer_dettaglio += "<p><a id=navigatore href='http://maps.google.com/maps?&daddr=" + name.coordinate + "' data-icon='navigation' class=' btn-tel-dettagli ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-navigation ui-btn-icon-left'>" + name.indirizzo + " " + name.num + " " + name.cap + " " + name.paese + " " + name.provincia + "</a></p>"; // INDIRIZZO
 							footer_dettaglio += "<p><a href='tel:" + name.tel + "' data-icon='phone' class=' btn-tel-dettagli ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-phone ui-btn-icon-left'>" + name.tel + "</a></p>"; // TELEFONO
 							footer_dettaglio += "<p><a href='mailto:" + name.mail + "' data-icon='mail' class='btn-tel-dettagli ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-mail ui-btn-icon-left'>" + name.mail + "</a></p>"; // MAIL
@@ -212,7 +212,7 @@
 						
 						footer_dettaglio += "<div style='text-align:center'><button class='ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-mini' onclick='condividi()'>Condividi</button></div><br>";
 						
-						footer_dettaglio += "<p id='azienda_link'><a href='dettaglio.html?id_azienda=" + name.id_attivita + "' data-ajax='false' data-icon='arrow-r' class='btn-tel-dettagli ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-carat-r ui-btn-icon-right'>Accedi alla scheda azienda</a></p></li>"; // WEB
+						footer_dettaglio += "<p id='azienda_link'><a href='dettaglio.html?id_azienda=" + name.id_attivita + "' data-ajax='false' data-icon='arrow-r' class='btn-tel-dettagli ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-carat-r ui-btn-icon-right'>Accedi alla scheda azienda</a></p>"; // WEB
 
                     }
                 });
