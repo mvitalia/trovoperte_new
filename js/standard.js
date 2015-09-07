@@ -25,6 +25,13 @@ $(document).ready(function () {
             $("#chkConferma_Richiesta").prop("checked", true);
         }
     });
+	
+	$("#btnAllIndustry").click(function(){
+		var rete = checkInternet();		
+		if(rete == false){
+			alert("Collegarsi ad internet per visualizzare la mappa")	;
+		}
+	});
 
     $("#txtAcconsentoInfo").click(function () {
         if ($("#chkConferma_info").prop("checked") == true) {
