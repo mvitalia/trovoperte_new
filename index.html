@@ -27,9 +27,17 @@
 		
 		$(document).on("pageshow", "#page_index",function(){
 			var $this = $( this ),
-			
+			theme = $this.jqmData( "theme" ),
+			msgText = $this.jqmData( "msgtext" ),
+			textVisible = $this.jqmData( "textvisible" ),
+			textonly = !!$this.jqmData( "textonly" );
+			html = $this.jqmData( "html" );
 			$.mobile.loading( 'show', {
-				theme: "b",				
+				text: msgText,
+				textVisible: textVisible,
+				theme: theme,
+				textonly: textonly,
+				html: html
 			});
 		})
 		
