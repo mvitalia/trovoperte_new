@@ -299,7 +299,7 @@ var id_azienda = getParameterByName("id_azienda");
                     if (name.id == id_azienda) {
 
                         if (name.foto_principale != '') {
-                            scheda += "<img src='name.foto_principale' class='logo_azienda' >";
+                            scheda += "<img src='" + name.foto_principale+ "' class='logo_azienda' >";
                         } 
 						/*else {
                             scheda += "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/ico_vuoto.jpg' class='logo_azienda' >";
