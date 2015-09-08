@@ -117,7 +117,7 @@
 					});
 					//append list to ul
 					$("#lista_categorie").append(li).promise().done(function () {
-
+						 $.mobile.loading( "hide" );
 						//refresh list to enhance its styling.
 						$(this).listview("refresh");
 					});

@@ -418,7 +418,7 @@ var id_azienda = getParameterByName("id_azienda");
 
                 $(".slider_gallery").append(scheda_gallery);
                 $("#footer_dettaglio").append(footer_dettaglio).promise().done(function () { });
-
+				 $.mobile.loading( "hide" );
                 $("#scheda_azienda").append(htmlObject).promise().done(function () { });
 
 

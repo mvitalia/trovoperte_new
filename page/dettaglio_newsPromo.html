@@ -219,7 +219,7 @@
                 //append list to ul
                 var htmlObject = $(scheda);
 
-				
+				 $.mobile.loading( "hide" );
                 $("#footer_dettaglio").append(footer_dettaglio).promise().done(function () { });
                 $("#scheda_newsPromo").append(htmlObject).promise().done(function () { });
 
