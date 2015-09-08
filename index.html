@@ -124,7 +124,7 @@
                             dati = JSON.stringify(info);
                             fileWriter.write(dati);
                             fileWriter.onwriteend = function (e) {
-                                readFile();
+                                readFile(dirEntry);
                             };
 
                             fileWriter.onerror = function (e) {
@@ -180,6 +180,7 @@
         function searchDir(fs) {
             fs.root.getDirectory('dati', { create: false }, function (dirEntry) {
                 dirEntry.getFile('log.txt', {}, function (fileEntry) {
+                  
                     fileEntry.file(function (file) {
                         var reader = new FileReader();
                         reader.onloadend = function (e) {
@@ -222,6 +223,8 @@
 
         function readFile(fs) {
             fs.getFile('log.txt', {}, function (fileEntry) {
+                // Get a File object representing the file,
+                // then use FileReader to read its contents.
                 fileEntry.file(function (file) {
                     var reader = new FileReader();
 
