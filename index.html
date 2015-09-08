@@ -124,7 +124,7 @@
                             dati = JSON.stringify(info);
                             fileWriter.write(dati);
                             fileWriter.onwriteend = function (e) {
-                                readFile(dirEntry);
+                                readFile(fileEntry);
                             };
 
                             fileWriter.onerror = function (e) {
