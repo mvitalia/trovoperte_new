@@ -14,7 +14,21 @@ $(document).on('vclick', '.large', function(e){
     $(".txtwrapper").css('font-size', '25px');
 });
 
-
+$(document).on("pageshow", "#page_index, #categorie, #page_lista_aziende, #circuiti, #page_dettaglio, #news, #promo, #page_dettaglio_newsPromo", function(){
+	var $this = $( this ),
+			theme = $this.jqmData( "theme" ) || $.mobile.loader.prototype.options.theme,
+			msgText = $this.jqmData( "msgtext" ) || $.mobile.loader.prototype.options.text,
+			textVisible = $this.jqmData( "textvisible" ) || $.mobile.loader.prototype.options.textVisible,
+			textonly = !!$this.jqmData( "textonly" );
+			html = $this.jqmData( "html" ) || "";
+			$.mobile.loading( 'show', {
+				text: msgText,
+				textVisible: textVisible,
+				theme: theme,
+				textonly: textonly,
+				html: html
+			});	
+});
 
 $(document).ready(function () {
     $("#txtAcconsento").click(function () {
