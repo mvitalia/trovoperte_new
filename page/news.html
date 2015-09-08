@@ -52,10 +52,10 @@
 				if ((name.id_newsPromo != "" && name.id_newsPromo != undefined)) {
 					li += '<li><a href="dettaglio_newsPromo.html?tipologia=news&id_newsPromo=' + name.id_newsPromo + '" id="' + name.id_newsPromo + '" class="categ-go" data-ajax="false">';
 					if (name.icona_newsPromo != "") {
-						li += '<img class="news_imgCentrata" src="http://www.trovoperte.com/public/upload_gallery/immagini/' + name.icona_newsPromo + '" class="ui-li-thumb"/>';
+						li += '<img class="news_imgCentrata" src="' + name.icona_newsPromo + '" class="ui-li-thumb"/>';
 					}
 					else {
-						li += '<img class="news_imgCentrata" src="http://www.trovoperte.com/public/upload_gallery/immagini/ico_vuoto.jpg" class="ui-li-thumb"/>';
+						li += '<img class="news_imgCentrata" src="' + name.icona_newsPromo + '" class="ui-li-thumb"/>';
 					}
 					li += '<h3 class="ui-li-heading">' + name.titolo_newsPromo + '</h3><p class="ui-li-desc">' + name.ragione_sociale + " - " + name.paese + '</p></a></li>';
 

@@ -149,7 +149,7 @@
                     // Create a FileWriter object for our FileEntry (log.txt).
                     fileEntry.createWriter(function (fileWriter) {
                         var dati = "";
-                        $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data_newsPromo.asp?tipologia=news", function (info_news) {
+                        $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data_newsPromo.aspx?tipologia=news", function (info_news) {
                             dati = JSON.stringify(info_news);
                             fileWriter.write(dati);
                             fileWriter.onwriteend = function (e) {
@@ -169,7 +169,7 @@
                     // Create a FileWriter object for our FileEntry (log.txt).
                     fileEntry.createWriter(function (fileWriter) {
                         var dati = "";
-                        $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data_newsPromo.asp?tipologia=promo", function (info_promo) {
+                        $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data_newsPromo.aspx?tipologia=promo", function (info_promo) {
                             dati = JSON.stringify(info_promo);
                             fileWriter.write(dati);
                             fileWriter.onwriteend = function (e) {
