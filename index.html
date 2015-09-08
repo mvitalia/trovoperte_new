@@ -107,7 +107,7 @@
                     //store index value in array as id of the <a> tag
                     li += '<li><a href="page/categorie.html?id_macrocategoria=' + name.id_macrocategoria + '"  id="' + name.id_macrocategoria + '" class="macro-go" data-ajax="false">';
                     if (name.icona_macrocategoria != "") {
-                        li += '<img src="http://www.trovoperte.com/public/upload_gallery/immagini/' + name.icona_macrocategoria + '" class="ui-li-thumb"/>';
+                        li += '<img src="' + name.icona_macrocategoria + '" class="ui-li-thumb"/>';
                     }
                     li += '<h3 class="ui-li-heading">' + name.macrocategoria + '</h3></a></li>';
                     id_val = name.id_macrocategoria;

@@ -34,12 +34,12 @@
     </script>
     <script>
 		
-		$(document).on("pageshow", "#page_dettaglio" , function(){
+		/*$(document).on("pageshow", "#page_dettaglio" , function(){
 			$.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data_newsPromo.asp?tipologia=promo", function (info_allIndustry) {
 			var dati = JSON.stringify(info_allIndustry);
 			caricaPromo(dati);
 			});
-		});
+		});*/
 		
         function caricaSlider() {
              var elem = document.getElementById('mySwipe');
@@ -299,10 +299,11 @@ var id_azienda = getParameterByName("id_azienda");
                     if (name.id == id_azienda) {
 
                         if (name.foto_principale != '') {
-                            scheda += "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/" + name.foto_principale + "' class='logo_azienda' >";
-                        } else {
+                            scheda += "<img src='name.foto_principale' class='logo_azienda' >";
+                        } 
+						/*else {
                             scheda += "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/ico_vuoto.jpg' class='logo_azienda' >";
-                        }
+                        }*/
 
                         // IMMAGINE PRINCIPALE
                         $.each(name.foto, function (i, foto) {
@@ -310,7 +311,7 @@ var id_azienda = getParameterByName("id_azienda");
 
                             // GALLERY
                             if (foto.tipologia == 'gallery') {
-                                scheda_gallery += "<div><img src='http://www.trovoperte.com/public/upload_gallery/immagini/" + foto.immagine + "' class='img_azienda'/></div>";
+                                scheda_gallery += "<div><img src='foto.immagine' class='img_azienda'/></div>";
 
                                 //<div data-role='popup' id='myPopup_" + count_gallery + "'><img src='http://www.trovoperte.com%5Cpublic%5Cupload_gallery%5Cimmagini%5C" + foto.immagine + "' style='width:800px;height:400px;'></div>
                                 count_gallery += 1;
@@ -467,10 +468,9 @@ var id_azienda = getParameterByName("id_azienda");
 			if (elenco_promo.length > 0) {
 					for (var i = 0; i < elenco_promo.length; i++) {                            
 					blocco = blocco + "<div><h1>" + elenco_promo[i].titolo + "</h1>"
-					blocco = blocco + "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/" + elenco_promo[i].icona + "' class='img_azienda'>";
+					blocco = blocco + "<img src='" + elenco_promo[i].icona + "' class='img_azienda'>";
 					blocco = blocco + "<div class='descrizione_newsPromoPopup'>" + elenco_promo[i].descrizione + "</div>"
-					blocco = blocco + "<h5><br/><br/>Inserito il: " + elenco_promo[i].data.split(" ")[0] + "</h5></div>"
-					
+					blocco = blocco + "<h5><br/><br/>Inserito il: " + elenco_promo[i].data.split(" ")[0] + "</h5></div>"					
 				}
 			}
 			else {
@@ -507,7 +507,7 @@ var id_azienda = getParameterByName("id_azienda");
 			if (elenco_news.length > 0) {
 				for (var i = 0; i < elenco_news.length; i++) { 						
 					blocco = blocco + "<div><h1>" + elenco_news[i].titolo + "</h1>"
-					blocco = blocco + "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/" + elenco_news[i].icona + "' class='img_azienda'>";
+					blocco = blocco + "<img src='" + elenco_news[i].icona + "' class='img_azienda'>";
 					blocco = blocco + "<div class='descrizione_newsPromoPopup'>" + elenco_news[i].descrizione + "</div>"
 					blocco = blocco + "<h5><br/><br/>Inserito il: " + elenco_news[i].data.split(" ")[0] + "</h5></div>"
 				}

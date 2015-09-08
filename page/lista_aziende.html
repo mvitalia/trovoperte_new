@@ -112,7 +112,7 @@
 					if ((name.id_categoria == id_categoria)) {
 						li += '<li><a href="dettaglio.html?id_azienda=' + name.id + '" id="' + name.id + '" class="azienda-go" data-ajax="false">';
 						if (name.foto_principale != "") {
-							li += '<img src="http://www.trovoperte.com/public/upload_gallery/immagini/' + name.foto_principale + '" class="ui-li-thumb"/>';
+							li += '<img src="' + name.foto_principale + '" class="ui-li-thumb"/>';
 						}
 						else {
 							li += "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/ico-vuoto.jpg' class='ui-li-thumb'/>";

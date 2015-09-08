@@ -129,11 +129,11 @@
                         li += "<li><a href='lista_aziende.html?id_circuito=" + circuiti[i].id_circuito + "' id='" + circuiti[i].id_circuito + "' data-ajax='false'>";
 
                         if (circuiti[i].img != "undefined" && circuiti[i].img != "" && circuiti[i].img != "null") {
-                            li += "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/" + circuiti[i].img + "' class='ui-li-thumb'/>";
+                            li += "<img src='" + circuiti[i].img + "' class='ui-li-thumb'/>";
                         }
-                        else {
+                        /*else {
                             li += "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/ico-vuoto.jpg' class='ui-li-thumb'/>";
-                        }
+                        }*/
 
                         li += '<h3 class="ui-li-heading">' + circuiti[i].circuito + '</h3></a></li>';
                     }
