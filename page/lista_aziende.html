@@ -141,7 +141,7 @@
 					if ((name.id_circuito == id_circuito)) {
 						li += '<li><a href="dettaglio.html?id_azienda=' + name.id + '" id="' + name.id + '" class="azienda-go" data-ajax="false">';
 						if (name.foto_principale != "") {
-							li += '<img src="http://www.trovoperte.com/public/upload_gallery/immagini/' + name.foto_principale + '" class="ui-li-thumb"/>';
+							li += '<img src="' + name.foto_principale + '" class="ui-li-thumb"/>';
 						}
 						else {
 							li += "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/ico-vuoto.jpg' class='ui-li-thumb'/>";
@@ -175,10 +175,10 @@
 						li += '<li><a href="dettaglio.html?id_azienda=' + name.id + '" id="' + name.id + '" class="azienda-go" data-ajax="false">';
 
 						if (name.foto_principale != "") {
-							li += '<img src="http://www.trovoperte.com/public/upload_gallery/immagini/' + name.foto_principale + '" class="ui-li-thumb"/>';
+							li += '<img src="' + name.foto_principale + '" class="ui-li-thumb"/>';
 						}
 						else {
-							li += "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/ico-vuoto.jpg' class='ui-li-thumb'/>";
+							li += '<img src="' + name.foto_principale + '" class="ui-li-thumb"/>';
 						}
 						li += '<h3 class="ui-li-heading">' + name.ragione_sociale + '</h3><p class="ui-li-desc">' + name.paese + '</p></a></li>';
 					}
