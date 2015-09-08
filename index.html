@@ -22,8 +22,25 @@
 
         $(document).on("pageinit", "#page_index", function () {
             $.mobile.page.prototype.options.domCache = true;
-            $.mobile.ajaxEnabled = true;
+            $.mobile.ajaxEnabled = true;			
         });
+		
+		$(document).on("pageshow", "#page_index",function(){
+			var $this = $( this ),
+			theme = $this.jqmData( "theme" ) || $.mobile.loader.prototype.options.theme,
+			msgText = $this.jqmData( "msgtext" ) || $.mobile.loader.prototype.options.text,
+			textVisible = $this.jqmData( "textvisible" ) || $.mobile.loader.prototype.options.textVisible,
+			textonly = !!$this.jqmData( "textonly" );
+			html = $this.jqmData( "html" ) || "";
+			$.mobile.loading( 'show', {
+				text: msgText,
+				textVisible: textVisible,
+				theme: theme,
+				textonly: textonly,
+				html: html
+			});
+		})
+		
         // device APIs are available
         //
         function onDeviceReady() {
