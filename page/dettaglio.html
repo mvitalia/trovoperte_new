@@ -355,7 +355,7 @@ var id_azienda = getParameterByName("id_azienda");
                         scheda += "<div class='info_azienda'><h1>" + name.ragione_sociale + "</h1>"; // RAGIONE SOCIALE
                         scheda += "<p>" + name.indirizzo + " " + name.num + "</p><p>" + name.cap + " " + name.paese + " " + name.provincia + "</p>";
                         if (name.circuito != "" && name.circuito != undefined) {
-                            scheda += "<p class='info_circuito'><a href='lista_aziende.html?id_circuito=" + name.id_circuito + "' data-ajax='false'><img id='img_circuito' src='http://www.trovoperte.com/public/upload_gallery/immagini/" + name.icona_circuito + "' class='ui-li-thumb'/></a></p>";
+                            scheda += "<p class='info_circuito'><a href='lista_aziende.html?id_circuito=" + name.id_circuito + "' data-ajax='false'><img id='img_circuito' src='" + name.icona_circuito + "' class='ui-li-thumb'/></a></p>";
                         }
                         scheda += "</div>"
                         if (name.tipo_contratto != 'base' && name.tipo_contratto != 'free') {
