@@ -166,7 +166,7 @@
                     // Create a FileWriter object for our FileEntry (log.txt).
                     fileEntry.createWriter(function (fileWriter) {
                         var dati = "";
-                        $.getJSON("http://www.trovoperte.com/admin/get_json_data_newsPromo.aspx?tipologia=news", function (info_news) {
+                        $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/app/trovo_x_te/admin/get_json_data_newsPromo.aspx?tipologia=news", function (info_news) {
                             dati = JSON.stringify(info_news);
                             fileWriter.write(dati);
                             fileWriter.onwriteend = function (e) {
