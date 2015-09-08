@@ -240,9 +240,6 @@ function validateFormRegistrazione() {
             }
         }
 		return true;
-        // alert("La sua richiesta di registrazione è stata inviata correttamente, le risponderemo non appena possibile. Grazie per la collaborazione.");
-        //$("#txtNomeRegistrazione, #txtCognomeRegistrazione, #txtMailRegistrazione, #txtTelRegistrazione, #txtRagioneSociale, #txtPIVA, #txtCodiceFiscale, #txtIndirizzo, #txtCAP, #txtCitta").val("");
-        //$("#chkConferma_Richiesta").prop("checked",false);
     }   
 	else{
 		alert("Attenzione! Collegarsi a internet per inviare una richiesta.");

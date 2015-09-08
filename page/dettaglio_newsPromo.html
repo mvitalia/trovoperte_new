@@ -16,26 +16,15 @@
     <script src="../js/jquery.mobile-1.4.5.min.js"></script>
     <script src='https://maps.googleapis.com/maps/api/js?v=3.exp'></script>
     <script src="../js/standard.js"></script>
-	 
-    <!--<script type="text/javascript">var switchTo5x=true;</script>
-	<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
-	<script type="text/javascript">stLight.options({publisher: "2412a263-b8ee-4297-9739-f1bd0d2207b6", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>-->
 	<script>
 		function condividi(){
 			var aus = window.ragione_sociale  + '\n' + window.titolo + '\n';
 			var titolo = "";
 			var img = "http://www.trovoperte.com/public/upload_gallery/immagini/" + window.immagine;
-			//alert(aus + " - " + titolo);
 			window.plugins.socialsharing.share(aus, titolo, img, 'http://www.trovoperte.com/app/page/dettaglio_newsPromo.html?id_newsPromo=9&tipologia=promo');
 			//window.plugins.socialsharing.share('Message, subject, image and link', 'The subject', 'https://www.google.nl/images/srpr/logo4w.png', 'http://www.x-services.nl')
 		}
 		
-		/*$(document).ready(function(){
-			$.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data_newsPromo.asp?tipologia=promo", function (info_news) {
-				dati = JSON.stringify(info_news);
-				caricaDettaglioNewsPromo(dati);
-			});
-		});*/
 	</script>
 	 <script>
 		
@@ -82,8 +71,6 @@
 			
 			fs.root.getDirectory('dati', {create: false}, function(dirEntry){	
 				dirEntry.getFile('log.txt', {}, function (fileEntry) {
-					// Get a File object representing the file,
-					// then use FileReader to read its contents.
 					fileEntry.file(function (file) {						
 						var reader = new FileReader();
 						reader.onloadend = function (e) {							
@@ -95,9 +82,6 @@
 
 				}, errorHandler);
 				dirEntry.getFile('news.txt', {}, function (fileEntry) {
-					
-					// Get a File object representing the file,
-					// then use FileReader to read its contents.
 					fileEntry.file(function (file) {						
 						var reader = new FileReader();
 						reader.onloadend = function (e) {							
@@ -110,8 +94,6 @@
 
 				}, errorHandler);		
 				dirEntry.getFile('promo.txt', {}, function (fileEntry) {
-					// Get a File object representing the file,
-					// then use FileReader to read its contents.
 					fileEntry.file(function (file) {						
 						var reader = new FileReader();
 						reader.onloadend = function (e) {							
@@ -123,7 +105,6 @@
 					}, errorHandler);
 
 				}, errorHandler);				
-				//window.requestFileSystem(dirEntry, 1024 * 1024, onInitFs, errorHandler);
 			},errorHandler);			
 		}
 
@@ -146,9 +127,6 @@
 			if(internet == true){
 				caricaAllIndustry(elencoMarker,"dettaglio_newsPromo");
 			}
-			
-			
-        
 		}
 		
 	
@@ -157,22 +135,12 @@
 			
             var id_newsPromo = getParameterByName("id_newsPromo");
             var tipologia_newsPromo = getParameterByName("tipologia");
-            
-
-
             var scheda = "";
             var footer_dettaglio = "";
            
 
 
                 $.each(newsPromoDecompressi, function (i, name) {
-				/*var tag = '<meta property="og:title" content="Consulenza web gratis" />';
-				tag += '<meta property="og:type" content="article" />'
-				tag += '<meta property="og:locale" content="it_IT" />';
-				tag += '<meta property="og:site_name" content="Trovo per te" />    '
-				tag += '<meta property="og:description" content="Descrizone della news " />	'
-				tag += '<meta property="og:image" content="http://www.trovoperte.com/public/upload_gallery/immagini/consulenza_web_2015211122415.jpg" />'
-				
 				$("head").append(tag);*/
 					var meta = "<meta property='og:title' content='"+ name.titolo_newsPromo +"'>";
 					if(name.descrizione_newsPromo != "")
@@ -183,10 +151,6 @@
 					meta += "<meta property='og:image' content='http://www.trovoperte.com/public/upload_gallery/immagini/"+ name.icona_newsPromo + "'>";
 					
 					$("head").append(meta)
-                    //add the <li> to "li" variable
-                    //note the use of += in the variable
-                    //meaning I'm adding to the existing data. not replacing it.
-                    //store index value in array as id of the <a> tag
                     if (name.id_newsPromo == id_newsPromo) {
 						window.titolo = name.titolo_newsPromo;
 						window.immagine = name.icona_newsPromo;
@@ -222,17 +186,8 @@
 				 $.mobile.loading( "hide" );
                 $("#footer_dettaglio").append(footer_dettaglio).promise().done(function () { });
                 $("#scheda_newsPromo").append(htmlObject).promise().done(function () { });
-
-
-
-
-
         }   
-
-
-
     </script>
-
 </head>
 <body>
     <div class="txtwrapper">

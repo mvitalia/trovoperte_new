@@ -13,117 +13,11 @@
     <script src="../js/jquery.mobile-1.4.5.min.js"></script>
     <script src='https://maps.googleapis.com/maps/api/js?v=3.exp'></script>
     <script src="../js/standard.js"></script>
-	<script>
-		document.addEventListener("devicereadydeviceready", onDeviceReady, false);
-		
-		function onDeviceReady(){					
-			window.requestFileSystem(window.TEMPORARY, 1024 * 1024 ,searchDir, errorHandler);	
-		};
-		
-			function errorHandler(e) {
-				var msg = '';
+	ment.addEventListener("deviceready", onDeviceReady, false);
 
-				switch (e.code) {
-					case FileError.QUOTA_EXCEEDED_ERR:
-						msg = 'QUOTA_EXCEEDED_ERR';
-						break;
-					case FileError.NOT_FOUND_ERR:
-						msg = 'NOT_FOUND_ERR';
-						msg = msg + "Non è presente un file in locale, collegarsi a internet per fruire dei servizi";
-						break;
-					case FileError.SECURITY_ERR:
-						msg = 'SECURITY_ERR';
-						break;
-					case FileError.INVALID_MODIFICATION_ERR:
-						msg = 'INVALID_MODIFICATION_ERR';
-						break;
-					case FileError.INVALID_STATE_ERR:
-						msg = 'INVALID_STATE_ERR';
-						break;
-					default:
-						msg = 'Unknown Error';
-						break;
-				};
-
-				alert('Error: ' + msg);
-			}
-
-			function searchDir(fs){
-				fs.root.getDirectory('dati', {create: false}, function(dirEntry){				
-					dirEntry.getFile('log.txt', {}, function (fileEntry) {
-						// Get a File object representing the file,
-						// then use FileReader to read its contents.
-						fileEntry.file(function (file) {						
-							var reader = new FileReader();
-							reader.onloadend = function (e) {							
-								caricaCategorie(this.result);
-											
-							};
-							reader.readAsText(file);
-						}, errorHandler);
-
-					}, errorHandler);			
-				},errorHandler);
-			}
-				
-			function caricaCategorie(dati){	
-				var internet = checkInternet();
-				var datiDecompressi = JSON.parse(dati);				
-				var elencoMarker = new Array();				
-
-					$.each(datiDecompressi, function (i, name) {
-						if (name.coordinate != "") {
-							var azienda = {};
-							azienda.id = name.id;
-							azienda.nome = name.ragione_sociale;
-							azienda.lat = parseFloat(name.coordinate.split(",")[0]);
-							azienda.lon = parseFloat(name.coordinate.split(",")[1]);
-							elencoMarker.push(azienda);
-						}
-					});
-					if(internet ==  true){
-						caricaAllIndustry(elencoMarker,"categorie");
-					}
-					
-
-				var id_macrocategoria = getParameterByName("id_macrocategoria");
-			   
-
-					//string to put HTML in
-					//set up string for adding <li/>
-					var li = "";
-					var id_val = "";
-					//container for $li to be added
-					$.each(datiDecompressi, function (i, name) {
-						if ((name.id_macrocategoria == id_macrocategoria)) {
-							if (name.id_categoria != id_val) {
-								li += '<li><a href="lista_aziende.html?id_categoria=' + name.id_categoria + '" id="' + name.id_categoria + '" class="categ-go" data-ajax="false">';
-								if (name.icona_categoria != "") {
-									li += '<img src="' + name.icona_categoria + '" class="ui-li-thumb"/>';
-									
-								}
-								li += '<h3 class="ui-li-heading">' + name.categoria + '</h3></a></li>';
-								id_val = name.id_categoria;
-							} 
-							
-						}
-					});
-					//append list to ul
-					$("#lista_categorie").append(li).promise().done(function () {
-						 $.mobile.loading( "hide" );
-						//refresh list to enhance its styling.
-						$(this).listview("refresh");
-					});
-			   
-			}
-			
-
-
-
-    </script>
 </head>
 <body>
-    <div class="txtwrapper">
+   
         <!-- categorie -->
         <div data-role="page" id="categorie">
             <!-- pannello laterale -->
@@ -331,23 +225,28 @@ Oppure <br /><br />
             </div>
             <div role="main" id="" class="ui-content">
                 <div data-role="content">
-                    <ul data-role="listview" id="lista_categorie" data-divider-theme="a" data-inset="true">
-                        <li data-role="list-divider" data-theme="b" role="heading">Seleziona tipo attività</li>
-                    </ul>
+                    <form>
+						<div>
+							<label>Area riservata</label><br/>
+							<label>Username</label> <input name="username" type="text" placeholder="Username..."><br/>
+							<label>Password</label> <input name="password" type="password" placeholder="Password..."><br/>
+							<input type="submit" name="btnAccedi">
+						</div>
+					</form>
                 </div>
             </div>
             <div data-role="footer" data-position="fixed">
-                <a href='#page_richiestaInfo' data-icon='mail' data-rel='popup' data-position-to='window'
+                <!--<a href='#page_richiestaInfo' data-icon='mail' data-rel='popup' data-position-to='window'
                     data-transition='pop' class='ui-btn ui-shadow ui-btn-inline ui-icon-mail ui-btn-icon-left'>
                     Contattaci</a> 
 					<a href='#page_registrazione' data-icon='plus' data-rel='popup'
                         data-position-to='window' data-transition='pop' class='ui-btn ui-shadow ui-btn-inline ui-icon-plus ui-btn-icon-left'>
                         Registrati</a> <a id='btnCircuitiConvenzionati' href='lista_circuiti.html' data-icon='star' data-ajax='false'
-                        class='ui-btn ui-shadow ui-btn-inline ui-icon-star ui-btn-icon-left'>Convenzioni</a>
+                        class='ui-btn ui-shadow ui-btn-inline ui-icon-star ui-btn-icon-left'>Convenzioni</a>-->
             </div>
         </div>
         <!--page-->
-    </div>
+    
     <!-- setting -->
     <div id="settings" data-role="page">
         <div data-role="header">
@@ -362,6 +261,8 @@ Oppure <br /><br />
                 <li><a href="#" class="large">Large</a></li>
             </ul>
         </div>
-    </div>   
+    </div>
+    
+   
 </body>
 </html>

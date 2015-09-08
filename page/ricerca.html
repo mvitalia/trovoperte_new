@@ -34,14 +34,11 @@
                     data-position-to='window' data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-info ui-btn-icon-left'>
                     Mappa aziende</a>
 
-
 			<a href='#settings' data-icon='gear' data-rel='popup' data-position-to='window' data-transition='pop' class='btn_search ui-btn sideOption ui-btn-inline ui-icon-gear ui-btn-icon-left'>Impostazioni</a>
             <!-- setting -->
             <div id="settings" data-role="popup">
                 <div data-role="header">
                     <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all sideOption ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right" data-rel="back" data-icon="delete">&nbsp;</a>
-                    
-                    
                     <h1>Impostazioni</h1>
                 </div>
                 <div data-role="content">
@@ -93,17 +90,8 @@ Oppure <br /><br />
 <b>Contattaci per avere maggiori informazioni cliccando <a onclick="apriInfo()" href='#page_richiestaInfo' data-rel='popup'
                         data-position-to='window' data-transition='pop'>
                         qui</a></b>
-
-
-
               </div>
-                
-
-
-              
             </div>
-		
-         
                  <!-- richiesta informazioni -->
                 <div data-role="popup" id="page_richiestaInfo" style="width: 35%; margin: 0 auto;">
                         
@@ -188,8 +176,6 @@ Oppure <br /><br />
                             196/2003INFORMATIVA AI SENSI DEL DLGS 196/2003 FINALITA' E MODALITA' DEL TRATTAMENTO
                             DEI DATI PERSONALI</p>
                         <br />
-                        
-                        
                        <div style="padding:0 10px 0 10px;"> <input type="checkbox"  name="conferma" class="required" id="chkConferma_Richiesta" />
                         <label style="text-indent:35px;" id="txtAcconsento">
                             Acconsento il trattamento dei dati personali</label></div>
@@ -216,8 +202,6 @@ Oppure <br /><br />
         
         <div data-role="header" data-position="fixed">
             <a href="#" data-rel="back" data-icon="back" data-position="inline" class="ui-btn-left" >&nbsp;</a>
-			
-            
             <div class="ui-btn-right">
                 <a href="#myPanel" class="ui-btn ui-shadow ui-btn-inline ui-btn-icon-left ui-icon-grid" data-role="button" data-icon="grid" >&nbsp;</a>
                
@@ -245,10 +229,6 @@ Oppure <br /><br />
             </ul>
         </div>
     </div>
-
-	
-
-
 	<!-- setting -->
 	<div id="settings" data-role="page">
             <div data-role="header">
@@ -263,10 +243,6 @@ Oppure <br /><br />
                 </ul>
             </div>
     </div>
-    
-    
-   
-    
 </div>
 
 
@@ -326,7 +302,6 @@ Oppure <br /><br />
 					}, errorHandler);
 
 				}, errorHandler);				
-				//window.requestFileSystem(dirEntry, 1024 * 1024, onInitFs, errorHandler);
 			},errorHandler);			
 		}
 	
@@ -359,19 +334,12 @@ Oppure <br /><br />
 			$('#search').keyup(function () {	
 				caricaListeFiltrate();
 			});	
-		
-        //append list to ul
-       
-
 			$("#lstCitta").change(function () {
 				
 				caricaListeFiltrate();
 			});
 		});
 		
-		
-
-
     function caricaListeFiltrate() {
 		
 		var datiDecompressi = JSON.parse(DATI);
@@ -404,16 +372,12 @@ Oppure <br /><br />
                     }
                 }
             });
-            //$('#results').html(output);
             $("#results").html(output).promise().done(function () {
 
             });
 
             $(this).listview("refresh");
     }  
-
-
-
 </script>
 </body>
 </html>

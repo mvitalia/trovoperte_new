@@ -47,9 +47,6 @@
 		function searchDir(fs){
 			fs.root.getDirectory('dati', {create: false}, function(dirEntry){				
 				dirEntry.getFile('promo.txt', {}, function (fileEntry) {
-					
-					// Get a File object representing the file,
-					// then use FileReader to read its contents.
 					fileEntry.file(function (file) {						
 						var reader = new FileReader();
 						reader.onloadend = function (e) {							
@@ -60,9 +57,6 @@
 
 				}, errorHandler);
 				dirEntry.getFile('log.txt', {}, function (fileEntry) {
-					
-					// Get a File object representing the file,
-					// then use FileReader to read its contents.
 					fileEntry.file(function (file) {						
 						var reader = new FileReader();
 						reader.onloadend = function (e) {							
@@ -72,7 +66,6 @@
 					}, errorHandler);
 
 				}, errorHandler);	
-				//window.requestFileSystem(dirEntry, 1024 * 1024, onInitFs, errorHandler);
 			},errorHandler);
 		}
 		
@@ -109,10 +102,6 @@
 			var li = "";
 			//container for $li to be added
 			$.each(datiDecompressi, function (i, name) {
-				//add the <li> to "li" variable
-				//note the use of += in the variable
-				//meaning I'm adding to the existing data. not replacing it.
-				//store index value in array as id of the <a> tag
 				if ((name.id_newsPromo != "" && name.id_newsPromo != undefined)) {
 					li += '<li><a href="dettaglio_newsPromo.html?tipologia=promo&id_newsPromo=' + name.id_newsPromo + '" id="' + name.id_newsPromo + '" class="categ-go" data-ajax="false">';
 					if (name.icona_newsPromo != "") {
@@ -216,14 +205,7 @@ Oppure <br /><br />
 <b>Contattaci per avere maggiori informazioni cliccando <a onclick="apriInfo()" href='#page_richiestaInfo' data-rel='popup'
                         data-position-to='window' data-transition='pop'>
                         qui</a></b>
-
-
-
               </div>
-                
-
-
-              
             </div>
                  <!-- richiesta informazioni -->
                 <div data-role="popup" id="page_richiestaInfo" style="width: 35%; margin: 0 auto;">
@@ -376,23 +358,6 @@ Oppure <br /><br />
                 <li><a href="#" class="large">Large</a></li>
             </ul>
         </div>
-    </div>
-    <!-- info -->
-    <!--<div data-role="page" data-dialog="true" id="page_info">
-        <div data-role="header">
-            <h1>
-                Info</h1>
-        </div>
-        <div data-role="main" class="ui-content">
-            Maurizio Voglino<br>
-            <a href="mailto:info@mvitalia.com">info@mvitalia.com</a><br>
-            <a href="http://www.mvitalia.com/" target="_blank">www.mvitalia.com</a></p>
-        </div>
-        <div data-role="footer">
-            <h1>
-            </h1>
-        </div>-->
-   
-   
+    </div>   
 </body>
 </html>

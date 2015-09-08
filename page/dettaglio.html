@@ -34,12 +34,7 @@
     </script>
     <script>
 		
-		/*$(document).on("pageshow", "#page_dettaglio" , function(){
-			$.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data_newsPromo.asp?tipologia=promo", function (info_allIndustry) {
-			var dati = JSON.stringify(info_allIndustry);
-			caricaPromo(dati);
-			});
-		});*/
+		
 		
         function caricaSlider() {
              var elem = document.getElementById('mySwipe');
@@ -80,9 +75,7 @@
         });
         }
 
-        $(document).one("pagecreate", ".demo-page", function () {
-
-            
+        $(document).one("pagecreate", ".demo-page", function () {          
 
             // Initialize the external persistent header and footer
             $("#header").toolbar({ theme: "b" });
@@ -210,9 +203,6 @@
 			
 			fs.root.getDirectory('dati', {create: false}, function(dirEntry){				
 				dirEntry.getFile('log.txt', {}, function (fileEntry) {
-					//alert("fileEntry: " +fileEntry);
-					// Get a File object representing the file,
-					// then use FileReader to read its contents.
 					fileEntry.file(function (file) {						
 						var reader = new FileReader();
 						reader.onloadend = function (e) {							
@@ -224,9 +214,6 @@
 
 				}, errorHandler);	
 				dirEntry.getFile('news.txt', {}, function (fileEntry) {
-					//alert("fileEntry: " +fileEntry);
-					// Get a File object representing the file,
-					// then use FileReader to read its contents.
 					fileEntry.file(function (file) {						
 						var reader = new FileReader();
 						reader.onloadend = function (e) {							
@@ -238,9 +225,6 @@
 
 				}, errorHandler);		
 				dirEntry.getFile('promo.txt', {}, function (fileEntry) {
-					//alert("fileEntry: " +fileEntry);
-					// Get a File object representing the file,
-					// then use FileReader to read its contents.
 					fileEntry.file(function (file) {						
 						var reader = new FileReader();
 						reader.onloadend = function (e) {							
@@ -251,7 +235,6 @@
 					}, errorHandler);
 
 				}, errorHandler);				
-				//window.requestFileSystem(dirEntry, 1024 * 1024, onInitFs, errorHandler);
 			},errorHandler);			
 			caricaDettaglio(dati,news,promo);
 		}
@@ -316,27 +299,6 @@ var id_azienda = getParameterByName("id_azienda");
                                 //<div data-role='popup' id='myPopup_" + count_gallery + "'><img src='http://www.trovoperte.com%5Cpublic%5Cupload_gallery%5Cimmagini%5C" + foto.immagine + "' style='width:800px;height:400px;'></div>
                                 count_gallery += 1;
                             }
-
-
-
-                            /*if (name.tipo_contratto != 'intermedio') {
-
-                            // NEWS
-                            if (foto.tipologia == 'news') {
-                            scheda_news += "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/" + foto.immagine + "' class='img_azienda'>";
-                            count_news += 1;
-                            }
-
-
-                            // PROMO
-                            if (foto.tipologia == 'promo') {
-                            scheda_promo += "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/" + foto.immagine + "' class='img_azienda'>";
-                            count_promo += 1;
-                            }
-
-
-                            }*/
-
                         });
 
 
@@ -345,13 +307,7 @@ var id_azienda = getParameterByName("id_azienda");
 							$("#scheda_gallery .slider_next").hide();
 							$("#scheda_gallery .slider_prev").hide();
                         }
-                        /* if (count_news == 0) {
-                        scheda_news += "Nessuna immagine da visualizzare";
-                        }
-                        if (count_promo == 0) {
-                        scheda_promo += "Nessuna immagine da visualizzare";
-                        }*/
-
+						
                         scheda += "<div class='info_azienda'><h1>" + name.ragione_sociale + "</h1>"; // RAGIONE SOCIALE
                         scheda += "<p>" + name.indirizzo + " " + name.num + "</p><p>" + name.cap + " " + name.paese + " " + name.provincia + "</p>";
                         if (name.circuito != "" && name.circuito != undefined) {
@@ -369,22 +325,12 @@ var id_azienda = getParameterByName("id_azienda");
                             scheda += "</div>"
                         }
 
-                        //scheda += "<div data-role='collapsibleset' data-theme='a' data-content-theme='a' class='ui-collapsible-set ui-group-theme-a ui-corner-all descrizione'>";
-
-                        // DESCRIZIONE
-                        //scheda += "<div data-role='collapsible' data-collapsed='false' class='ui-collapsible ui-collapsible-inset ui-corner-all ui-collapsible-themed-content ui-first-child ui-collapsible-collapsed'><h3 class='ui-collapsible-heading ui-collapsible-heading-collapsed'><a href='#' class='ui-collapsible-heading-toggle ui-btn ui-btn-icon-left ui-btn-a ui-icon-plus'>Descrizione<span class='ui-collapsible-heading-status'>click to expand contents</span></a></h3><div class='ui-collapsible-content ui-body-a ui-collapsible-content-collapsed' aria-hidden='false'><p>" + name.descrizione + "</p></div></div>";
-
-                        // SERVIZI
-                        //scheda += "<div data-role='collapsible' class='ui-collapsible ui-collapsible-inset ui-corner-all ui-collapsible-themed-content ui-first-child ui-collapsible-collapsed'><h3 class='ui-collapsible-heading ui-collapsible-heading-collapsed'><a href='#' class='ui-collapsible-heading-toggle ui-btn ui-btn-icon-left ui-btn-a ui-icon-plus'>Servizi<span class='ui-collapsible-heading-status'>click to expand contents</span></a></h3><div class='ui-collapsible-content ui-body-a ui-collapsible-content-collapsed' aria-hidden='true'><p>" + name.servizi + "</p></div></div>";
-
-                        //scheda += "</div>";
+                       
                         if (name.tipo_contratto != 'free') {
                             scheda += "<div class='descrizione'><h3>Descrizione</h3>" + name.descrizione + "</div>"; // DESCRIZIONE
                             scheda += "<div class='servizi'><h3>Servizi</h3>" + name.servizi + "</div><br/><br/>"; // SERVIZI
                         }
 
-                        //<li class='ui-block-a' style="float:left;width:25%"><a href="#page_info" data-icon="info" data-iconpos="left" class="ui-state-persist"></a></li>
-                        //footer_dettaglio = "<li class='ui-block-a' style='float:left;width:25%'><a href='page_info' data-icon='info' data-role='button' class='ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-info ui-btn-icon-left'>Info</a></li>";
 
                         //if(name.tipo_contratto != 'base' && name.tipo_contratto != 'free') {
 							window.indirizzo = name.web;
@@ -405,11 +351,8 @@ var id_azienda = getParameterByName("id_azienda");
                             else{
                              
 								alert("Attenzione! Questa azienda non disponde di una mappa;");
-			
-                                
                             }
                         //}
-
                     }
                 });
                 //append list to ul
@@ -420,8 +363,6 @@ var id_azienda = getParameterByName("id_azienda");
                 $("#footer_dettaglio").append(footer_dettaglio).promise().done(function () { });
 				 $.mobile.loading( "hide" );
                 $("#scheda_azienda").append(htmlObject).promise().done(function () { });
-
-
                 /*$("#lista_immagini").html(scheda_gallery).promise().done(function () { });*/
 
                 $("#lista_promo").append(scheda_promo).promise().done(function () { });
@@ -482,11 +423,6 @@ var id_azienda = getParameterByName("id_azienda");
 			$(".slider_promo").append(blocco);
 		}
 		
-		/*function openLink(link){
-			myURL = encodeURI(link);
-			window.open(myURL, '_blank');
-		}*/
-            
 		function caricaNews(news){
 			var id_azienda = getParameterByName("id_azienda");
 			var newsDecompresse = JSON.parse(news);
@@ -519,50 +455,7 @@ var id_azienda = getParameterByName("id_azienda");
 			}
 
 			$(".slider_news").append(blocco);
-			}	
-		
-			
-		/*$.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data_newsPromo.asp?id_azienda=" + id_azienda + "tipologia=news", function (info_news) {
-
-
-		var news = "";
-
-		$.each(info_news, function (i, name) {
-		var news;
-		news.id = name.id_newsPromo;
-		news.titolo = name.titolo_newsPromo;
-		news.data = name.data_newsPromo;
-		news.icona = name.icona_newsPromo;
-		news.descrizione = name.descrizione_newsPromo;
-		elenco_news.push(news);
-		});
-		var blocco = "";
-		blocco = blocco + "<h3>" + elenco_news[0].data + "</h3>"
-		blocco = blocco + "<h1>" + elenco_news[0].titolo + "</h1>"
-		blocco = blocco + "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/" + elenco_news[0].icona + "' class='img_azienda'>";
-		blocco = blocco + "<p>" + elenco_news[0].descrizione + "</p>"
-
-		$("#lista_news").append(blocco);
-		});
-
-		$.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data_newsPromo.asp?id_azienda=" + id_azienda + "tipologia=promo", function (info_promo) {
-
-
-		var news = "";
-
-		$.each(info_promo, function (i, name) {
-		var promo;
-		news.id = name.id_newsPromo;
-		news.titolo = name.titolo_newsPromo;
-		news.data = name.data_newsPromo;
-		news.icona = name.icona_newsPromo;
-		news.descrizione = name.descrizione_newsPromo;
-		elenco_promo.push(promo);
-
-		});
-		});*/
-        
-		
+			}		
        
     </script>
  

@@ -52,9 +52,6 @@
 		
 			fs.root.getDirectory('dati', {create: false}, function(dirEntry){				
 				dirEntry.getFile('log.txt', {}, function (fileEntry) {
-					
-					// Get a File object representing the file,
-					// then use FileReader to read its contents.
 					fileEntry.file(function (file) {						
 						var reader = new FileReader();
 						reader.onloadend = function (e) {							
@@ -65,7 +62,6 @@
 					}, errorHandler);
 
 				}, errorHandler);			
-				//window.requestFileSystem(dirEntry, 1024 * 1024, onInitFs, errorHandler);
 			},errorHandler);
 		}
 		
@@ -90,17 +86,8 @@
 				caricaAllIndustry(elencoMarker,"lista_circuiti");            
 			}
 		
-
-                //string to put HTML in
-                //set up string for adding <li/>
-
                 var circuiti = new Array();
-                //container for $li to be added
                 $.each(datiDecompressi, function (i, name) {
-                    //add the <li> to "li" variable
-                    //note the use of += in the variable
-                    //meaning I'm adding to the existing data. not replacing it.
-                    //store index value in array as id of the <a> tag
 
                     var trovato = false;
                     for (var i = 0; i < circuiti.length; i++) {
@@ -230,14 +217,8 @@ Oppure <br /><br />
 <b>Contattaci per avere maggiori informazioni cliccando <a onclick="apriInfo()" href='#page_richiestaInfo' data-rel='popup'
                         data-position-to='window' data-transition='pop'>
                         qui</a></b>
-
-
-
               </div>
-                
-
-
-              
+         
             </div>
                  <!-- richiesta informazioni -->
                 <div data-role="popup" id="page_richiestaInfo" style="width: 35%; margin: 0 auto;">
@@ -370,32 +351,8 @@ Oppure <br /><br />
         <div data-role="footer" data-position="fixed">
             <a href="#page_info" data-icon="info" class="btn_info">info</a>
         </div>
-    </div>
-    <!--page-->
-    <!-- setting -->
-    <!--<div id="settings" data-role="page">
-        <div data-role="header">
-            <a href="#" data-rel="back" data-icon="back" data-icon="back">&nbsp;</a>
-            <h1>
-                Impostazioni</h1>
-        </div>
-        <div data-role="content">
-            <ul data-role="listview">
-                <li><a href="#" class="small">Small</a></li>
-                <li><a href="#" class="med">Medium</a></li>
-                <li><a href="#" class="large">Large</a></li>
-            </ul>
-        </div>
-    </div>-->
-   
+    </div>  
    
     </div>
-    <script>
-
-		
-
-
-
-    </script>
 </body>
 </html>

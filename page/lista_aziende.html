@@ -66,7 +66,6 @@
 						}, errorHandler);
 
 					}, errorHandler);			
-					//window.requestFileSystem(dirEntry, 1024 * 1024, onInitFs, errorHandler);
 				},errorHandler);
 			}
 				
@@ -129,15 +128,8 @@
 				});                
             }
             if (id_circuito && id_circuito != "") {                
-				//string to put HTML in
-				//set up string for adding <li/>
 				var li = "";
-				//container for $li to be added
 				$.each(datiDecompressi, function (i, name) {
-					//add the <li> to "li" variable
-					//note the use of += in the variable
-					//meaning I'm adding to the existing data. not replacing it.
-					//store index value in array as id of the <a> tag
 					if ((name.id_circuito == id_circuito)) {
 						li += '<li><a href="dettaglio.html?id_azienda=' + name.id + '" id="' + name.id + '" class="azienda-go" data-ajax="false">';
 						if (name.foto_principale != "") {
@@ -159,18 +151,10 @@
             }
             if (elenco_recenti && elenco_recenti != "") {
 				
-				
-				
-				//string to put HTML in
-				//set up string for adding <li/>
 				var li = "";
 				//container for $li to be added
 				$.each(datiDecompressi, function (i, name) {
 					if(i<50){
-						//add the <li> to "li" variable
-						//note the use of += in the variable
-						//meaning I'm adding to the existing data. not replacing it.
-						//store index value in array as id of the <a> tag
 						
 						li += '<li><a href="dettaglio.html?id_azienda=' + name.id + '" id="' + name.id + '" class="azienda-go" data-ajax="false">';
 
@@ -275,14 +259,8 @@ Oppure <br /><br />
 <b>Contattaci per avere maggiori informazioni cliccando <a onclick="apriInfo()" href='#page_richiestaInfo' data-rel='popup'
                         data-position-to='window' data-transition='pop'>
                         qui</a></b>
-
-
-
               </div>
                 
-
-
-              
             </div>
                  <!-- richiesta informazioni -->
                 <div data-role="popup" id="page_richiestaInfo" style="width: 35%; margin: 0 auto;">
@@ -389,13 +367,9 @@ Oppure <br /><br />
                         Mappa aziende</h1>
                 </div>
              <div role="main" class="ui-content" id="allIndustry_mapCanvas">          
-            </div>
-              
+            </div>              
         </div>
- 
-
             </div>
-
             <!-- fine pannello laterale -->
             <div data-role="header" data-position="fixed">
                 <a href="#" data-rel="back" data-icon="back" data-position="inline" class="ui-btn-left">
