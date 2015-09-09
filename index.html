@@ -18,7 +18,7 @@
         var rete;
         // Wait for device API libraries to load
         //
-        document.addEventListener("deviceready", onDeviceReady, false);
+        //document.addEventListener("deviceready", onDeviceReady, false);
 
         $(document).on("pageinit", "#page_index", function () {
             $.mobile.page.prototype.options.domCache = true;
@@ -26,9 +26,7 @@
         });
 		
 		$(document).ready(function(){
-			$("#btnAggiornamento").click(function(){
-				window.requestFileSystem(window.TEMPORARY, 1024 * 1024, createDir, errorHandler);
-			});
+			onDeviceReady();
 		});
 		
 		/*$(document).on("pageshow", "#page_index",function(){
@@ -74,7 +72,7 @@
                 //alert(states[networkState])
             }
             else {
-                //window.requestFileSystem(window.TEMPORARY, 1024 * 1024, createDir, errorHandler);
+                window.requestFileSystem(window.TEMPORARY, 1024 * 1024, createDir, errorHandler);
                 window.analytics.startTrackerWithId('UA-11986172-29');
                 //alert(states[networkState])
             }
