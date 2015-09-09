@@ -47,7 +47,7 @@ $(document).ready(function () {
 		}
 	});
 	
-	$("#btnAggiornamento").click(function(){
+	/*$("#btnAggiornamento").click(function(){
 		var rete = checkInternet();
 		if(rete == true){
 			window.requestFileSystem(window.TEMPORARY, 1024 * 1024, createDirAggiornamento, errorHandler);
@@ -55,7 +55,7 @@ $(document).ready(function () {
 		else{
 			alert("Attenzione! Collegarsi a internet per aggiornare i dati");
 		}
-	});
+	});*/
 
     $("#txtAcconsentoInfo").click(function () {
         if ($("#chkConferma_info").prop("checked") == true) {
