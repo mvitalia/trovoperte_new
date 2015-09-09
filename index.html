@@ -22,8 +22,10 @@
 
         $(document).on("pageinit", "#page_index", function () {
             $.mobile.page.prototype.options.domCache = true;
-            $.mobile.ajaxEnabled = true;			
+            $.mobile.ajaxEnabled = true;
         });
+		
+		
 		
 		/*$(document).on("pageshow", "#page_index",function(){
 			var $this = $( this ),
@@ -295,7 +297,10 @@
                         </ul>
                     </div>
                 </div>
-                <a href='#page_info' data-icon='info' data-rel='popup' data-position-to='window' data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-info ui-btn-icon-left'>Info generali</a> <a href='#page_richiestaInfo' data-icon='mail' data-rel='popup' data-position-to='window' data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-mail ui-btn-icon-left'>Contattaci</a> <a href='#page_registrazione' data-icon='plus' data-rel='popup' data-position-to='window' data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-plus ui-btn-icon-left'>Richiesta iscrizione</a>
+                <a href='#page_info' data-icon='info' data-rel='popup' data-position-to='window' data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-info ui-btn-icon-left'>Info generali</a> 
+				<a href='#page_richiestaInfo' data-icon='mail' data-rel='popup' data-position-to='window' data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-mail ui-btn-icon-left'>Contattaci</a> 
+				<a href='#page_registrazione' data-icon='plus' data-rel='popup' data-position-to='window' data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-plus ui-btn-icon-left'>Richiesta iscrizione</a>
+				<a href='login.html' data-icon='plus' data-rel='popup' data-position-to='window' data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-plus ui-btn-icon-left'>Accedi</a>
                 <!-- richiesta informazioni -->
                 <div data-role="popup" id="page_richiestaInfo" style="width: 35%; margin: 0 auto;">
                     <div data-role="header">

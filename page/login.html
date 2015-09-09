@@ -13,11 +13,66 @@
     <script src="../js/jquery.mobile-1.4.5.min.js"></script>
     <script src='https://maps.googleapis.com/maps/api/js?v=3.exp'></script>
     <script src="../js/standard.js"></script>
-	ment.addEventListener("deviceready", onDeviceReady, false);
-
+	<script>	
+		function verificaUtente(){
+			var username;
+			username = $("#username").val();
+			var password;
+			password = $("#password").val();
+			
+			$.ajax({		
+				type:"POST",		
+				url: "http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/verificaUtente.aspx",
+				crossDomain:true,			
+				data:{username: username, password: password},
+				beforeSend: function(){
+					//$(".provaClass").html("loading");
+				
+					var $this = $( this ),
+						theme = $this.jqmData( "theme" ) || $.mobile.loader.prototype.options.theme,
+						msgText = $this.jqmData( "msgtext" ) || $.mobile.loader.prototype.options.text,
+						textVisible = $this.jqmData( "textvisible" ) || $.mobile.loader.prototype.options.textVisible,
+						textonly = !!$this.jqmData( "textonly" );
+						html = $this.jqmData( "html" ) || "";
+						$.mobile.loading('show', {
+							text: msgText,
+							textVisible: textVisible,
+							theme: theme,
+							textonly: textonly,
+							html: html
+						});	
+				},
+				//funzione richiamata all'evento success della nostra richiesta ajax
+				success: function(result){	
+					$.mobile.loading( "hide" );
+					/*$(".provaClass").empty();
+					$(".provaClass").append(result);*/	
+					
+					if(result=="yes"){
+						//location.href="http://www.mvitalia.com/dimostrativi/patrizia/alex/admin/login2.asp?form_utente=" + username + "&form_password=" + password + "&tipo=app";
+						var internet = checkInternet();
+			i	
+						var url = encodeURI('http://www.mvitalia.com/dimostrativi/patrizia/alex/admin/login2.asp?form_utente="' + username + '"&form_password="' + password + '"&tipo=app"');
+						window.open(url, '_system','location=yes');
+					
+					}
+					else{
+						alert("L'username o la password inseriti non sono corretti");
+					}
+				},		
+				error: function () {
+					$.mobile.loading( "hide" );
+					//$(".provaClass").html("error");
+					
+				}
+			});		
+		}
+	
+		
+	</script>
 </head>
 <body>
-   
+		
         <!-- categorie -->
         <div data-role="page" id="page_login">
             <!-- pannello laterale -->
@@ -228,11 +283,12 @@ Oppure <br /><br />
                     <form>
 						<div style="width:75%; margin: 0 auto;">
 							<label>Area riservata</label><br/>
-							<label>Username</label> <input name="username" type="text" placeholder="Username..."><br/>
-							<label>Password</label> <input name="password" type="password" placeholder="Password..."><br/>
-							<input type="submit" value="Accedi" name="btnAccedi">
+							<label>Username</label> <input id="username" name="username" type="text" placeholder="Username..."><br/>
+							<label>Password</label> <input id="password" name="password" type="password" placeholder="Password..."><br/>
+							<input type="button" onclick="verificaUtente()" value="Accedi" name="btnAccedi">
 						</div>
 					</form>
+					<div class="provaClass"><div>
                 </div>
             </div>
             <div data-role="footer" data-position="fixed">
