@@ -70,7 +70,7 @@
                 //alert(states[networkState])
             }
             else {
-                window.requestFileSystem(window.TEMPORARY, 1024 * 1024, createDir, errorHandler);
+                //window.requestFileSystem(window.TEMPORARY, 1024 * 1024, createDir, errorHandler);
                 window.analytics.startTrackerWithId('UA-11986172-29');
                 //alert(states[networkState])
             }
@@ -156,7 +156,7 @@
                     // Create a FileWriter object for our FileEntry (log.txt).
 					fileEntry.getMetadata(win,null);
 					if(window.differenza > 600000){
-						fileEntry.createWriter(function (fileWriter) {
+						fileEntry.createWriter(function (fileWriter) {   
 							var dati = "";
 							$.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.aspx", function (info) {
 								dati = JSON.stringify(info);
@@ -170,6 +170,15 @@
 								};
 							});
 
+						}, errorHandler);
+					}
+					else{
+						fileEntry.file(function (file) {
+							var reader = new FileReader();
+							reader.onloadend = function (e) {
+								caricaIndex(this.result);
+							};
+							reader.readAsText(file);
 						}, errorHandler);
 					}
                 }, errorHandler);
