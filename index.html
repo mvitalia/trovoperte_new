@@ -18,15 +18,18 @@
         var rete;
         // Wait for device API libraries to load
         //
-        //document.addEventListener("deviceready", onDeviceReady, false);
+        document.addEventListener("deviceready", onDeviceReady, false);
 
+		//Per fare l'aggiornamento di dati bisogna farlo in due fasi separate, prima il download poi
+		//la lettura perche altrimenti si blocca il telefono
+		
         $(document).on("pageinit", "#page_index", function () {
             $.mobile.page.prototype.options.domCache = true;
             $.mobile.ajaxEnabled = true;
         });
 		
 		$(document).ready(function(){
-			onDeviceReady();
+			//onDeviceReady();
 		});
 		
 		/*$(document).on("pageshow", "#page_index",function(){
