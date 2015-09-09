@@ -146,9 +146,9 @@
 		function win(metadata){
 			alert(metadata.modificationTime);
 			var adesso = new Date();
-			var mil = adesso.getMilliseconds();
+			var mil = adesso.getTime();
 			alert(mil);
-			var mod = metadata.modificationTime.getMilliseconds();
+			var mod = metadata.modificationTime.getTime();
 			alert(mil + " - " + mod);
 			
 			window.differenza = mil-mod;
