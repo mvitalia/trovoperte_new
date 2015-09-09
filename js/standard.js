@@ -91,7 +91,7 @@ function createDirAggiornamento(fs){
 			if(window.differenza > 600000){
 				fileEntry.createWriter(function (fileWriter) {
 					var dati = "";
-					$.getJSON("http://www.trovoperte.com/admin/get_json_data.aspx", function (info) {
+					$.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.aspx", function (info) {
 						dati = JSON.stringify(info);
 						fileWriter.write(dati);
 						fileWriter.onwriteend = function (e) {
