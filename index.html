@@ -25,7 +25,11 @@
             $.mobile.ajaxEnabled = true;
         });
 		
-		
+		$(document).ready(function(){
+			$("#btnAggiornamento").click(function(){
+				window.requestFileSystem(window.TEMPORARY, 1024 * 1024, createDir, errorHandler);
+			});
+		});
 		
 		/*$(document).on("pageshow", "#page_index",function(){
 			var $this = $( this ),
