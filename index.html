@@ -142,24 +142,23 @@
             });
         }
 
-		/*function win(metadata){
+		
+		function win(metadata){
 			alert(metadata.modificationTime);
 			Date adesso = new Date();
 			var mil = adesso.getMilliseconds();
 			var mod = metadata.modificationTime.getMilliseconds();
+			alert(mil + " - " + mod);
 			
-		}*/
+			window.differenza = mil-mod;
+			alert(window.differenza);
+		}
 		
         function createDir(fs) {
             fs.root.getDirectory('dati', { create: true }, function (dirEntry) {
                 dirEntry.getFile('log.txt', { create: true }, function (fileEntry) {
                     // Create a FileWriter object for our FileEntry (log.txt).
-					fileEntry.getMetadata(function(metadata){
-						alert(metadata.modificationTime);
-						Date adesso = new Date();
-						var mil = adesso.getMilliseconds();
-						var mod = metadata.modificationTime.getMilliseconds();
-					},null);
+					fileEntry.getMetadata(win,null);
                     fileEntry.createWriter(function (fileWriter) {
                         var dati = "";
                         $.getJSON("http://www.trovoperte.com/admin/get_json_data.aspx", function (info) {
