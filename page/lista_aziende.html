@@ -49,8 +49,7 @@
 			alert('Error: ' + msg);
 		}
 
-		function searchDir(fs){
-				
+		function searchDir(fs){				
 				fs.root.getDirectory('dati', {create: false}, function(dirEntry){				
 					dirEntry.getFile('log.txt', {}, function (fileEntry) {
 					

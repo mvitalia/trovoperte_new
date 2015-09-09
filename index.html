@@ -143,19 +143,14 @@
         }
 
 		
-		function win(metadata){
-			alert(metadata.modificationTime);
+		function win(metadata){		
 			var adesso = new Date();
-			var mil = adesso.getTime();
-			alert(mil);
-			var mod = metadata.modificationTime.getTime();
-			alert(mil + " - " + mod);
-			
-			window.differenza = mil-mod;
-			alert(window.differenza);
+			var mil = adesso.getTime();			
+			var mod = metadata.modificationTime.getTime();			
+			window.differenza = mil-mod;			
 		}
 		
-        function createDir(fs) {
+        function createDir(fs){
             fs.root.getDirectory('dati', { create: true }, function (dirEntry) {
                 dirEntry.getFile('log.txt', { create: true }, function (fileEntry) {
                     // Create a FileWriter object for our FileEntry (log.txt).
@@ -321,6 +316,7 @@
 				<a href='#page_richiestaInfo' data-icon='mail' data-rel='popup' data-position-to='window' data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-mail ui-btn-icon-left'>Contattaci</a> 
 				<a href='#page_registrazione' data-icon='plus' data-rel='popup' data-position-to='window' data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-plus ui-btn-icon-left'>Richiesta iscrizione</a>
 				<a href="page/login.html" class="btn_search sideOption ui-btn  ui-btn-inline ui-icon-search ui-btn-icon-left" data-role="button" data-icon="search" data-ajax="false">Accedi</a>
+				<a href="#" id="btnAggiornamento" class="btn_search sideOption ui-btn  ui-btn-inline ui-icon-search ui-btn-icon-left" data-role="button" data-icon="search" data-ajax="false">Aggiorna dati</a>
                 <!-- richiesta informazioni -->
                 <div data-role="popup" id="page_richiestaInfo" style="width: 35%; margin: 0 auto;">
                     <div data-role="header">

@@ -47,7 +47,12 @@ $(document).ready(function () {
 		}
 	});
 	
-	
+	$("#btnAggiornamento").click(function(){
+		var rete = checkInternet();
+		if(rete == true){
+			window.requestFileSystem(window.TEMPORARY, 1024 * 1024, createDirAggiornamento, errorHandler);
+		}		
+	});
 
     $("#txtAcconsentoInfo").click(function () {
         if ($("#chkConferma_info").prop("checked") == true) {
@@ -78,7 +83,75 @@ $(document).ready(function () {
 	
 });
 
+function createDirAggiornamento(fs){
+	fs.root.getDirectory('dati', { create: true }, function (dirEntry) {
+		dirEntry.getFile('log.txt', { create: true }, function (fileEntry) {
+			// Create a FileWriter object for our FileEntry (log.txt).
+			fileEntry.getMetadata(win,null);
+			if(window.differenza > 600000){
+				fileEntry.createWriter(function (fileWriter) {
+					var dati = "";
+					$.getJSON("http://www.trovoperte.com/admin/get_json_data.aspx", function (info) {
+						dati = JSON.stringify(info);
+						fileWriter.write(dati);
+						fileWriter.onwriteend = function (e) {
+							console.log("Write completed");
+						};
 
+						fileWriter.onerror = function (e) {
+							console.log('Write failed: ' + e.toString());
+						};
+					});
+
+				}, errorHandler);
+			}
+		}, errorHandler);
+		//window.requestFileSystem(dirEntry, 1024 * 1024, onInitFs, errorHandler);
+		dirEntry.getFile('news.txt', { create: true }, function (fileEntry) {
+			// Create a FileWriter object for our FileEntry (log.txt).
+			if(window.differenza > 600000){
+				fileEntry.createWriter(function (fileWriter) {
+					var dati = "";
+					$.getJSON("http://www.trovoperte.com/admin/get_json_data_newsPromo.aspx?tipologia=news", function (info_news) {
+						dati = JSON.stringify(info_news);
+						fileWriter.write(dati);
+						fileWriter.onwriteend = function (e) {
+							console.log("write completed");
+						};
+
+						fileWriter.onerror = function (e) {
+							console.log('Write failed: ' + e.toString());
+						};
+					});
+
+				}, errorHandler);
+			}
+
+		}, errorHandler);
+
+		dirEntry.getFile('promo.txt', { create: true }, function (fileEntry) {
+			// Create a FileWriter object for our FileEntry (log.txt).
+			if(window.differenza > 600000){
+				fileEntry.createWriter(function (fileWriter) {
+					var dati = "";
+					$.getJSON("http://www.trovoperte.com/admin/get_json_data_newsPromo.aspx?tipologia=promo", function (info_promo) {
+						dati = JSON.stringify(info_promo);
+						fileWriter.write(dati);
+						fileWriter.onwriteend = function (e) {
+							console.log("write completed");
+						};
+
+						fileWriter.onerror = function (e) {
+							console.log('Write failed: ' + e.toString());
+						};
+					});
+
+				}, errorHandler);
+			}
+
+		}, errorHandler);
+	}, errorHandler);
+}
 
 /** CARICA LA MAPPA CON TUTTE LE AZIENDA REGISTRATE **/
 function caricaAllIndustry(elencoMarker,page) {
