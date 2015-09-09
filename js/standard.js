@@ -88,7 +88,7 @@ function createDirAggiornamento(fs){
 		dirEntry.getFile('log.txt', { create: true }, function (fileEntry) {
 			// Create a FileWriter object for our FileEntry (log.txt).
 			fileEntry.getMetadata(win,null);
-			if(window.differenza > 600000){
+			//if(window.differenza > 600000){
 				fileEntry.createWriter(function (fileWriter) {
 					var dati = "";
 					$.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.aspx", function (info) {
@@ -104,12 +104,12 @@ function createDirAggiornamento(fs){
 					});
 
 				}, errorHandler);
-			}
+			//}
 		}, errorHandler);
 		//window.requestFileSystem(dirEntry, 1024 * 1024, onInitFs, errorHandler);
 		dirEntry.getFile('news.txt', { create: true }, function (fileEntry) {
 			// Create a FileWriter object for our FileEntry (log.txt).
-			if(window.differenza > 600000){
+			//if(window.differenza > 600000){
 				fileEntry.createWriter(function (fileWriter) {
 					var dati = "";
 					$.getJSON("http://www.trovoperte.com/admin/get_json_data_newsPromo.aspx?tipologia=news", function (info_news) {
@@ -125,13 +125,13 @@ function createDirAggiornamento(fs){
 					});
 
 				}, errorHandler);
-			}
+			//}
 
 		}, errorHandler);
 
 		dirEntry.getFile('promo.txt', { create: true }, function (fileEntry) {
 			// Create a FileWriter object for our FileEntry (log.txt).
-			if(window.differenza > 600000){
+			//if(window.differenza > 600000){
 				fileEntry.createWriter(function (fileWriter) {
 					var dati = "";
 					$.getJSON("http://www.trovoperte.com/admin/get_json_data_newsPromo.aspx?tipologia=promo", function (info_promo) {
@@ -147,7 +147,7 @@ function createDirAggiornamento(fs){
 					});
 
 				}, errorHandler);
-			}
+			//}
 
 		}, errorHandler);
 	}, errorHandler);
