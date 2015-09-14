@@ -13,7 +13,7 @@ var app = (function()
 	{
 		document.addEventListener(
 			'deviceready',
-			function() { evothings.scriptsLoaded(onDeviceReady); },
+			function() { evothings.scriptsLoaded(onDeviceReady) },
 			false);
 	};
 
