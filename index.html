@@ -32,16 +32,8 @@
 		$(document).ready(function(){
 			$("#btnRileva").click(function(){
 				alert("prova");
-				evothings.eddystone.startScan(
-				function(beacon)
-				{
-					alert('Found beacon: ' + beacon.url)
-				},
-				function(error)
-				{
-					console.log('Eddystone scan error: ' + error)
-				});
-			});
+				evothings.eddystone.startScan(successCallback,errorCallback);
+				
 		});
 		
 		function successCallback(beacon){
