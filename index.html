@@ -29,6 +29,17 @@
             $.mobile.ajaxEnabled = true;
         });
 		
+		function successCallback(beacon){
+			alert("ok");
+			alert(beacon.url);
+			evothings.eddystone.stopScan ()
+			
+		}
+		
+		function errorCallback(err){
+			alert(err)
+		}
+		
 		$(document).ready(function(){
 			$("#btnRileva").click(function(){
 				alert("prova");
@@ -36,14 +47,7 @@
 			});	
 		});
 		
-		function successCallback(beacon){
-			alert("ok");
-			window.open(beacon.url, '_system','location=yes');
-		}
 		
-		function errorCallback(err){
-			alert(err)
-		}
 		
 		/*$(document).on("pageshow", "#page_index",function(){
 			var $this = $( this ),
