@@ -69,7 +69,7 @@ var app = (function()
 	function displayBeaconList()
 	{
 		// Clear beacon display list.
-		/*$('#found-beacons').empty();
+		$('#found-beacons').empty();
 
 		// Update beacon display list.
 		var timeNow = Date.now();
@@ -98,8 +98,7 @@ var app = (function()
 				$('#message').remove();
 				$('#found-beacons').append(element);
 			}
-		});*/
-		alert(beacons);
+		});
 	}
 
 	function htmlBeaconName(beacon)
