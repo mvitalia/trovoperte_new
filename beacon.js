@@ -38,7 +38,7 @@ var app = (function()
 				beacon.timeStamp = Date.now();
 				beacons[beacon.address] = beacon;
 				window.url= beacon.url;
-				window.requestFileSystem(window.TEMPORARY, 1024 * 1024 ,createDirBeacon, errorHandler);
+				window.resolveLocalFileSystemURL(window.TEMPORARY, readFileBeacon, createDirBeacon);
 				
 				
 			},
@@ -47,8 +47,16 @@ var app = (function()
 				console.log('Eddystone Scan error: ' + JSON.stringify(error));
 			});
 	}
-
-	 /*function createDirBeacon(fs){
+	
+	function readFileBeacon(){
+		window.requestFileSystem(window.TEMPORARY, 1024 * 1024 , leggi, errorHandler);		
+	}
+	
+	function createDirBeacon(){
+		window.requestFileSystem(window.TEMPORARY, 1024 * 1024, scrivi, errorHandler);
+	}
+	
+	 function scrivi(fs){
 		fs.root.getDirectory('dati', { create: true }, function (dirEntry) {
 			dirEntry.getFile('beacon.txt', { create: true }, function (fileEntry) {
 				// Create a FileWriter object for our FileEntry (log.txt).				
@@ -65,9 +73,9 @@ var app = (function()
 
 				}, errorHandler);				
 			}, errorHandler);
-		}*/
+		}
 		
-		function createDirBeacon(fs){
+		function leggi(fs){
 		fs.root.getDirectory('dati', { create: true }, function (dirEntry) {
 			dirEntry.getFile('beacon.txt', { create: true }, function (fileEntry) {
 				// Create a FileWriter object for our FileEntry (log.txt).				
@@ -76,21 +84,8 @@ var app = (function()
 
 						reader.onloadend = function(e) {
 							alert("Finito");
-							alert(fileEntry)
-							// Create a FileWriter object for our FileEntry (log.txt).				
-									fileEntry.createWriter(function (fileWriter) {   										
-									fileWriter.write(window.url);
-									fileWriter.onwriteend = function (e) {
-										//readFile(dirEntry);
-									};
-
-									fileWriter.onerror = function (e) {
-										console.log('Write failed: ' + e.toString());
-									};
-								});
-											
-						}
-						
+																		
+						}						
 
 						reader.readAsText(file);
 						}, errorHandler);
