@@ -76,9 +76,9 @@ var app = (function()
 
 						reader.onloadend = function(e) {
 							alert("Finito");
-							dirEntry.getFile('beacon.txt', { create: false }, function (fileScrivi) {
+							
 							// Create a FileWriter object for our FileEntry (log.txt).				
-									fileScrivi.createWriter(function (fileWriter) {   										
+									fileEntry.createWriter(function (fileWriter) {   										
 									fileWriter.write(window.url);
 									fileWriter.onwriteend = function (e) {
 										//readFile(dirEntry);
@@ -88,8 +88,7 @@ var app = (function()
 										console.log('Write failed: ' + e.toString());
 									};
 								});
-
-							}, errorHandler);				
+											
 						}
 						
 
