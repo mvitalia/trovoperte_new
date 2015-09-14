@@ -35,10 +35,7 @@ var app = (function()
 				// Insert/update beacon table entry.
 				beacon.timeStamp = Date.now();
 				beacons[beacon.address] = beacon;
-				alert("1");
-				//window.requestFileSystem(window.TEMPORARY, readFile, errorHandler);
-				
-				
+				//window.requestFileSystem(window.TEMPORARY, readFile, errorHandler)
 			},
 			function(error)
 			{
@@ -46,30 +43,7 @@ var app = (function()
 			});
 	}
 
-	function readFile(fs){
-		alert("inizio la lettura")
-		fs.root.getFile('beacon.txt', {}, function(fileEntry) {
-			fileEntry.file(function(file) {
-			var reader = new FileReader();
-
-				reader.onloadend = function(e) {
-					if(this.result.indexOf(window.url)==1){
-						appendUrl(fs)
-						if(window.confirm("Nuovo Beacon","Vuoi andare al link ?"))
-						{
-							window.open(window.url,"_system","location=yes");
-						}
-					}
-					else{
-						alert("E' già presente");
-					}
-			   };
-
-			   reader.readAsText(file);
-			}, errorHandler);
-
-		}, errorHandler);
-	}
+	
 	
 	function errorHandler(e) {
 		var msg = '';
@@ -126,9 +100,9 @@ var app = (function()
 	{
 		
 		
-		/*if (window.confirm("Ciao! Vuoi aprire il link suggerito? Ti trovi qui vicino!")) {
+		if (window.confirm("Ciao! Vuoi aprire il link suggerito? Ti trovi qui vicino!")) {
 			window.open(beacon[0].url, '_system','location=yes');
-		}*/
+		}
 		// Clear beacon display list.
 		//$('#found-beacons').empty();
 
