@@ -48,7 +48,7 @@ var app = (function()
 			});
 	}
 
-	 function createDirBeacon(fs){
+	 /*function createDirBeacon(fs){
 		fs.root.getDirectory('dati', { create: true }, function (dirEntry) {
 			dirEntry.getFile('beacon.txt', { create: true }, function (fileEntry) {
 				// Create a FileWriter object for our FileEntry (log.txt).				
@@ -62,6 +62,40 @@ var app = (function()
 							console.log('Write failed: ' + e.toString());
 						};
 					});
+
+				}, errorHandler);				
+			}, errorHandler);
+		}*/
+		
+		function createDirBeacon(fs){
+		fs.root.getDirectory('dati', { create: true }, function (dirEntry) {
+			dirEntry.getFile('beacon.txt', { create: true }, function (fileEntry) {
+				// Create a FileWriter object for our FileEntry (log.txt).				
+				fileEntry.createWriter(function (fileWriter) {   
+						fileEntry.file(function(file) {
+						var reader = new FileReader();
+
+						reader.onloadend = function(e) {
+							alert("Finito");
+							dirEntry.getFile('beacon.txt', { create: false }, function (fileScrivi) {
+							// Create a FileWriter object for our FileEntry (log.txt).				
+									fileScrivi.createWriter(function (fileWriter) {   										
+									fileWriter.write(window.url);
+									fileWriter.onwriteend = function (e) {
+										//readFile(dirEntry);
+									};
+
+									fileWriter.onerror = function (e) {
+										console.log('Write failed: ' + e.toString());
+									};
+								});
+
+							}, errorHandler);				
+			}, errorHandler);
+						};
+
+						reader.readAsText(file);
+						}, errorHandler);
 
 				}, errorHandler);				
 			}, errorHandler);
