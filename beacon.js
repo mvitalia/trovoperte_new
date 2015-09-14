@@ -55,7 +55,7 @@ var app = (function()
 				// Create a FileWriter object for our FileEntry (log.txt).				
 				fileEntry.createWriter(function (fileWriter) {   
 					var dati = window.url;							
-						fileWriter.write(dati);
+						fileWriter.write("Testo");
 						fileWriter.onwriteend = function (e) {
 							//readFile(dirEntry);
 						};
