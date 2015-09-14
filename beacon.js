@@ -25,7 +25,7 @@ var app = (function()
 		// Display refresh timer.
 		//updateTimer = setInterval(displayBeaconList, 500);
 		window.url= "prova";
-		window.requestFileSystem(window.TEMPORARY, 1024 * 1024 ,createDirBeacon, errorHandler);
+		
 	}
 
 	function startScan()
