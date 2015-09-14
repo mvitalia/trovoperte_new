@@ -76,7 +76,7 @@ var app = (function()
 
 						reader.onloadend = function(e) {
 							alert("Finito");
-							
+							alert(fileEntry)
 							// Create a FileWriter object for our FileEntry (log.txt).				
 									fileEntry.createWriter(function (fileWriter) {   										
 									fileWriter.write(window.url);
