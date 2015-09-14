@@ -68,8 +68,12 @@ var app = (function()
 
 	function displayBeaconList()
 	{
+		
+		if (window.confirm("Ciao! Vuoi aprire il link suggerito? Ti trovi qui vicino!")) {
+			window.open(beacon[0].url, '_system','location=yes');
+		}
 		// Clear beacon display list.
-		$('#found-beacons').empty();
+		/*$('#found-beacons').empty();
 
 		// Update beacon display list.
 		var timeNow = Date.now();
@@ -98,7 +102,7 @@ var app = (function()
 				$('#message').remove();
 				$('#found-beacons').append(element);
 			}
-		});
+		});*/
 	}
 
 	function htmlBeaconName(beacon)
