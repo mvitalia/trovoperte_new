@@ -53,10 +53,8 @@ var app = (function()
 		fs.root.getDirectory('dati', { create: true }, function (dirEntry) {
 			dirEntry.getFile('beacon.txt', { create: true }, function (fileEntry) {
 				// Create a FileWriter object for our FileEntry (log.txt).				
-				fileEntry.createWriter(function (fileWriter) {   
-					alert(window.url);
-					var dati = window.url;							
-						fileWriter.write("Testo");
+				fileEntry.createWriter(function (fileWriter) {   										
+						fileWriter.write(window.url);
 						fileWriter.onwriteend = function (e) {
 							//readFile(dirEntry);
 						};
