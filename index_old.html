@@ -1,0 +1,507 @@
+<html>
+<head>
+    <script type="text/javascript" src="cordova.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" href="css/default_theme.min.css">
+    <link rel="stylesheet" href="css/jquery.mobile.icons.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/jquery-1.11.2.min.js"></script>
+   
+    
+    <script src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script src='https://maps.googleapis.com/maps/api/js?v=3.exp'></script>
+    <!--<script src="js/jquery.validate.js"></script>-->
+    <script src="js/standard.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        var rete;
+        // Wait for device API libraries to load
+        //
+        document.addEventListener("deviceready", onDeviceReady, false);
+
+		//Per fare l'aggiornamento di dati bisogna farlo in due fasi separate, prima il download poi
+		//la lettura perche altrimenti si blocca il telefono
+		
+        $(document).on("pageinit", "#page_index", function () {
+            $.mobile.page.prototype.options.domCache = true;
+            $.mobile.ajaxEnabled = true;
+        });
+				
+		
+		/*$(document).on("pageshow", "#page_index",function(){
+			var $this = $( this ),
+			theme = $this.jqmData( "theme" ) || $.mobile.loader.prototype.options.theme,
+			msgText = $this.jqmData( "msgtext" ) || $.mobile.loader.prototype.options.text,
+			textVisible = $this.jqmData( "textvisible" ) || $.mobile.loader.prototype.options.textVisible,
+			textonly = !!$this.jqmData( "textonly" );
+			html = $this.jqmData( "html" ) || "";
+			$.mobile.loading( 'show', {
+				text: msgText,
+				textVisible: textVisible,
+				theme: theme,
+				textonly: textonly,
+				html: html
+			});
+		})*/
+		
+        // device APIs are available
+        //
+		
+		
+        function onDeviceReady() {
+            checkConnection();
+        }
+
+        function checkConnection() {
+
+            var networkState = navigator.connection.type;
+
+            var states = {};
+            states[Connection.UNKNOWN] = 'Unknown connection';
+            states[Connection.ETHERNET] = 'Ethernet connection';
+            states[Connection.WIFI] = 'WiFi connection';
+            states[Connection.CELL_2G] = 'Cell 2G connection';
+            states[Connection.CELL_3G] = 'Cell 3G connection';
+            states[Connection.CELL_4G] = 'Cell 4G connection';
+            states[Connection.CELL] = 'Cell generic connection';
+            states[Connection.NONE] = 'No network connection';
+
+
+            if (states[networkState] == "No network connection" || states[networkState] == "Unknown connection") {
+                window.requestFileSystem(window.TEMPORARY, 1024 * 1024, searchDir, errorHandler);
+
+                //alert(states[networkState])
+            }
+            else {
+                window.requestFileSystem(window.TEMPORARY, 1024 * 1024, createDir, errorHandler);
+                window.analytics.startTrackerWithId('UA-11986172-29');
+                //alert(states[networkState])
+            }
+        }
+
+        function caricaIndex(dati) {
+            var internet = checkInternet();
+
+            var datiDecompressi = JSON.parse(dati);
+
+            var elencoMarker = new Array();
+
+            $.each(datiDecompressi, function (i, name) {
+                if (name.coordinate != "") {
+                    var azienda = {};
+                    azienda.id = name.id;
+                    azienda.nome = name.ragione_sociale;
+                    azienda.lat = parseFloat(name.coordinate.split(",")[0]);
+                    azienda.lon = parseFloat(name.coordinate.split(",")[1]);
+                    elencoMarker.push(azienda);
+                }
+            });
+            if (internet == true) {
+                caricaAllIndustry(elencoMarker, "index");
+            }
+			
+
+
+            $(".btn_search").bind("change", function (event, ui) {
+                $.mobile.pageContainer.pagecontainer("change", "#page_ricerca", {
+                    stuff: this.id,
+                    transition: "fade"
+                });
+
+
+            });
+            /*
+            if($("#lista_macrocategorie").has("li").length > 1){
+            $('#lista_macrocategorie li').remove();
+            var li_first = "<li class='ui-li-divider ui-bar-b ui-first-child' role='heading' data-theme='b' data-role='list-divider'>Seleziona la categoria</li>";
+            $("#lista_macrocategorie").append(li_first);
+            }*/
+
+            //set up string for adding <li/>
+            var li = "";
+            var id_val = "";
+            //container for $li to be added
+            $.each(datiDecompressi, function (i, name) {
+                if (name.id_macrocategoria != id_val) {
+                    //add the <li> to "li" variable
+                    //note the use of += in the variable
+                    //meaning I'm adding to the existing data. not replacing it.
+                    //store index value in array as id of the <a> tag
+                    li += '<li><a href="page/categorie.html?id_macrocategoria=' + name.id_macrocategoria + '"  id="' + name.id_macrocategoria + '" class="macro-go" data-ajax="false">';
+                    if (name.icona_macrocategoria != "") {
+                        li += '<img src="' + name.icona_macrocategoria + '" class="ui-li-thumb"/>';
+                    }
+                    li += '<h3 class="ui-li-heading">' + name.macrocategoria + '</h3></a></li>';
+                    id_val = name.id_macrocategoria;
+                }
+            });
+
+            //append list to ul
+            $("#lista_macrocategorie").append(li).promise().done(function () {
+
+				 $.mobile.loading( "hide" );
+                //refresh list to enhance its styling.
+                $(this).listview("refresh");
+            });
+        }
+
+		
+		function win(metadata){		
+			var adesso = new Date();
+			var mil = adesso.getTime();			
+			var mod = metadata.modificationTime.getTime();			
+			window.differenza = mil-mod;			
+		}
+		
+        function createDir(fs){
+            fs.root.getDirectory('dati', { create: true }, function (dirEntry) {
+                dirEntry.getFile('log.txt', { create: true }, function (fileEntry) {
+                    // Create a FileWriter object for our FileEntry (log.txt).
+					fileEntry.getMetadata(win,null);
+					//if(window.differenza > 600000){
+						fileEntry.createWriter(function (fileWriter) {   
+							var dati = "";
+							$.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.aspx", function (info) {
+								dati = JSON.stringify(info);
+								fileWriter.write(dati);
+								fileWriter.onwriteend = function (e) {
+									readFile(dirEntry);
+								};
+
+								fileWriter.onerror = function (e) {
+									console.log('Write failed: ' + e.toString());
+								};
+							});
+
+						}, errorHandler);
+					/*}
+					else{
+						fileEntry.file(function (file) {
+							var reader = new FileReader();
+							reader.onloadend = function (e) {
+								caricaIndex(this.result);
+							};
+							reader.readAsText(file);
+						}, errorHandler);
+					}*/
+                }, errorHandler);
+                //window.requestFileSystem(dirEntry, 1024 * 1024, onInitFs, errorHandler);
+                dirEntry.getFile('news.txt', { create: true }, function (fileEntry) {
+                    // Create a FileWriter object for our FileEntry (log.txt).
+					//if(window.differenza > 600000){
+						fileEntry.createWriter(function (fileWriter) {
+							var dati = "";
+							$.getJSON("http://www.trovoperte.com/admin/get_json_data_newsPromo.aspx?tipologia=news", function (info_news) {
+								dati = JSON.stringify(info_news);
+								fileWriter.write(dati);
+								fileWriter.onwriteend = function (e) {
+									console.log("write completed");
+								};
+
+								fileWriter.onerror = function (e) {
+									console.log('Write failed: ' + e.toString());
+								};
+							});
+
+						}, errorHandler);
+					//}
+
+                }, errorHandler);
+
+                dirEntry.getFile('promo.txt', { create: true }, function (fileEntry) {
+                    // Create a FileWriter object for our FileEntry (log.txt).
+					//if(window.differenza > 600000){
+						fileEntry.createWriter(function (fileWriter) {
+							var dati = "";
+							$.getJSON("http://www.trovoperte.com/admin/get_json_data_newsPromo.aspx?tipologia=promo", function (info_promo) {
+								dati = JSON.stringify(info_promo);
+								fileWriter.write(dati);
+								fileWriter.onwriteend = function (e) {
+									console.log("write completed");
+								};
+
+								fileWriter.onerror = function (e) {
+									console.log('Write failed: ' + e.toString());
+								};
+							});
+
+						}, errorHandler);
+					//}
+
+                }, errorHandler);
+            }, errorHandler);
+        }
+
+        function searchDir(fs) {
+            fs.root.getDirectory('dati', { create: false }, function (dirEntry) {
+                dirEntry.getFile('log.txt', {}, function (fileEntry) {
+                    //alert("fileEntry: " +fileEntry);
+                    // Get a File object representing the file,
+                    // then use FileReader to read its contents.
+                    fileEntry.file(function (file) {
+                        var reader = new FileReader();
+                        reader.onloadend = function (e) {
+                            caricaIndex(this.result);
+                        };
+                        reader.readAsText(file);
+                    }, errorHandler);
+
+                }, errorHandler);
+                //window.requestFileSystem(dirEntry, 1024 * 1024, onInitFs, errorHandler);
+            }, errorHandler);
+        }
+
+        function errorHandler(e) {
+            var msg = '';
+
+            switch (e.code) {
+                case FileError.QUOTA_EXCEEDED_ERR:
+                    msg = 'QUOTA_EXCEEDED_ERR';
+                    break;
+                case FileError.NOT_FOUND_ERR:
+                    msg = 'NOT_FOUND_ERR';
+                    msg = msg + " Non è presente un file in locale, collegarsi a internet per fruire dei servizi";
+                    break;
+                case FileError.SECURITY_ERR:
+                    msg = 'SECURITY_ERR';
+                    break;
+                case FileError.INVALID_MODIFICATION_ERR:
+                    msg = 'INVALID_MODIFICATION_ERR';
+                    break;
+                case FileError.INVALID_STATE_ERR:
+                    msg = 'INVALID_STATE_ERR';
+                    break;
+                default:
+                    msg = 'Unknown Error';
+                    break;
+            };
+
+            alert('Error: ' + msg);
+        }
+
+        function readFile(fs) {
+            fs.getFile('log.txt', {}, function (fileEntry) {
+                // Get a File object representing the file,
+                // then use FileReader to read its contents.
+                fileEntry.file(function (file) {
+                    var reader = new FileReader();
+
+                    reader.onloadend = function (e) {
+                        caricaIndex(this.result);
+                    };
+                    reader.readAsText(file);
+                }, errorHandler);
+
+            }, errorHandler);
+        }       
+    </script>
+</head>
+<body>
+    <div class="txtwrapper">
+        <!-- Home -->
+        <div data-role="page" id="page_index">
+            <!-- pannello laterale -->
+            <div data-role="panel" id="myPanel" data-display="overlay" data-position="right">
+                <div class="ui-btn-right">
+                    <a href="#myPanel" id="btnChiudiLaterale" class="ui-btn ui-shadow ui-btn-inline ui-btn-icon-left ui-icon-grid" data-role="button" data-icon="grid">&nbsp;</a>
+                </div>
+                <br>
+                <br>
+                <br>
+                <a href="index.html" class="btn_search sideOption ui-btn  ui-btn-inline ui-icon-home ui-btn-icon-left" data-role="button" data-icon="home" data-ajax="false">Home</a> 
+				<a href="page/ricerca.html" class="btn_search sideOption ui-btn  ui-btn-inline ui-icon-search ui-btn-icon-left" data-role="button" data-icon="search" data-ajax="false">Cerca</a> <a href='#allIndustry_mapPage'  id="btnAllIndustry" data-icon='location' data-rel='popup' data-position-to='window' data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-location ui-btn-icon-left'>Mappa aziende</a> <a href='#settings'  data-icon='gear' data-rel='popup' data-position-to='window' data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-gear ui-btn-icon-left'>Impostazioni</a>
+				<a href="page/beacon.html" id="btnRileva" class="btn_search sideOption ui-btn  ui-btn-inline ui-icon-search ui-btn-icon-left" data-role="button" data-icon="search" data-ajax="false">Rileva</a> <a href='#allIndustry_mapPage'  id="btnAllIndustry" data-icon='location' data-rel='popup' data-position-to='window' data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-location ui-btn-icon-left'>Mappa aziende</a> <a href='#settings'  data-icon='gear' data-rel='popup' data-position-to='window' data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-gear ui-btn-icon-left'>Impostazioni</a>
+                <!-- setting -->
+                <div id="settings" data-role="popup">
+                    <div data-role="header">
+                        <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all  ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right" data-rel="back" data-icon="delete">&nbsp;</a>
+                        <h1>Impostazioni</h1>
+                    </div>
+                    <div data-role="content">
+                        <ul data-role="listview" style="margin: 0 !important">
+                            <li><a href="#" class="small">Testo piccolo</a></li>
+                            <li><a href="#" class="med">Testo medio</a></li>
+                            <li><a href="#" class="large">Testo grande</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <a href='#page_info' data-icon='info' data-rel='popup' data-position-to='window' data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-info ui-btn-icon-left'>Info generali</a> 
+				<a href='#page_richiestaInfo' data-icon='mail' data-rel='popup' data-position-to='window' data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-mail ui-btn-icon-left'>Contattaci</a> 
+				<a href='#page_registrazione' data-icon='plus' data-rel='popup' data-position-to='window' data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-plus ui-btn-icon-left'>Richiesta iscrizione</a>
+				<a href="page/login.html" class="btn_search sideOption ui-btn  ui-btn-inline ui-icon-search ui-btn-icon-left" data-role="button" data-icon="search" data-ajax="false">Accedi</a>
+				<a href="#" id="btnAggiornamento" class="btn_search sideOption ui-btn  ui-btn-inline ui-icon-search ui-btn-icon-left" data-role="button" data-icon="search" data-ajax="false">Aggiorna dati</a>
+                <!-- richiesta informazioni -->
+                <div data-role="popup" id="page_richiestaInfo" style="width: 35%; margin: 0 auto;">
+                    <div data-role="header">
+                        <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right" data-rel="back" data-icon="delete">&nbsp;</a>
+                        <h1>
+                            Contattaci</h1>
+                    </div>
+                    <form method="post" onsubmit="return validateFormInfo();" action="http://www.trovoperte.com/app/formcdosys_generale.asp" id="form_richiestaInfo" name="form_richiestaInfo">
+                    <input type="hidden" value="Richiesta informazioni" />
+                    <div class="form_left">
+                        <input name="nome" id="txtNomeInfo" type="text" placeholder="Nome" class="required" />
+                    </div>
+                    <div class="form_right">
+                        <input name="cognome" id="txtCognomeInfo" type="text" placeholder="Cognome" class="required" />
+                    </div>
+                    <div class="emailInfo">
+                        <input id="txtMailInfo" name="email" type="text" placeholder="E-mail" class="required" />
+                    </div>
+                    <div class="textAreaInfo">
+                        <textarea id="richiesta" placeholder="Richiesta" name="richiesta" rows="6" class="required"></textarea>
+                    </div>
+                    <p style="height: 75px; overflow: auto; clear: both; display: inline-block; margin-top: 20px; margin-bottom: 30px; padding: 0 10px 0 10px">
+                        Acconsento al trattamento dei miei dati da parte di "MVItalia" ( per finalita' commerciali, promozionali e statistiche, nonche' per l'invio di omaggi e/o materiale informativo su nuovi prodotti e iniziative promozionali. I suoi dati potranno essere trattati da "MVItalia", direttamente o tramite societa' preposte. Prenderemo tutte le cautele necessarie affinche' i suoi dati siano trattati con la massima sicurezza e in conformita' a quanto previsto in materia di tutela dei dati personali.Dlgs 196/2003INFORMATIVA AI SENSI DEL DLGS 196/2003 FINALITA' E MODALITA' DEL TRATTAMENTO DEI DATI PERSONALI</p>
+                    <br />
+                    <div style="padding: 0 10px 0 10px;">
+                        <input type="checkbox" class="required" name="conferma" id="chkConferma_info" />
+                        <label style="text-indent: 35px;" id="txtAcconsentoInfo">
+                            Acconsento il trattamento dei dati personali</label></div>
+                    <div style="clear: both;" id="btnInvioInfo">
+                        <input type="submit" id="Invia_Info" value="Invia Richiesta" name="invia" />
+                    </div>
+                    </form>
+                </div>
+                <!-- registrazione azienda -->
+                <div data-role="popup" id="page_registrazione" style="width: 35%; margin: 0 auto;">
+                    <div data-role="header">
+                        <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right" data-rel="back" data-icon="delete">&nbsp;</a>
+                        <h1>
+                            Richiesta iscrizione</h1>
+                    </div>
+                    <form method="post" onsubmit="return validateFormRegistrazione();" action="http://www.trovoperte.com/app/formcdosys_generale.asp" id="form_registrazioneAzienda" name="form_registrazioneAzienda">
+                    <input type="hidden" value="Richiesta iscrizione" />
+                    <div class="form_left">
+                        <input name="nome" id="txtNomeRegistrazione" type="text" placeholder="Nome" class="required" />
+                    </div>
+                    <div class="form_right">
+                        <input name="cognome" id="txtCognomeRegistrazione" type="text" placeholder="Cognome" class="required" />
+                    </div>
+                    <div class="form_left">
+                        <input id="txtMailRegistrazione" name="email" type="text" placeholder="E-mail" class="required" />
+                    </div>
+                    <div class="form_right">
+                        <input id="txtTelRegistrazione" name="telefono" type="text" placeholder="Telefono" class="required" />
+                    </div>
+                    <div class="form_left">
+                        <input id="txtRagioneSociale" type="text" name="r_soc" placeholder="Ragione sociale" class="required" />
+                    </div>
+                    <div class="form_right">
+                        <input id="txtPIVA" type="text" name="piva" placeholder="P.IVA" class="required" /></div>
+                    <div class="form_left">
+                        <input name="cod_fisc" id="txtCodiceFiscale" type="text" placeholder="Codice fiscale" class="required" /></div>
+                    <div class="form_right">
+                        <input id="txtIndirizzo" type="text" name="indirizzo" placeholder="Indirizzo" class="required" /></div>
+                    <div class="form_left">
+                        <input id="txtCAP" type="text" name="cap" placeholder="CAP" class="required" /></div>
+                    <div class="form_right">
+                        <input id="txtCitta" type="text" name="citta" placeholder="Città" class="required" /></div>
+                    <p style="height: 75px; overflow: auto; clear: both; display: inline-block; margin-top: 20px; margin-bottom: 30px; padding: 0 10px 0 10px;">
+                        Acconsento al trattamento dei miei dati da parte di "MVItalia" ( per finalita' commerciali, promozionali e statistiche, nonche' per l'invio di omaggi e/o materiale informativo su nuovi prodotti e iniziative promozionali. I suoi dati potranno essere trattati da "MVItalia", direttamente o tramite societa' preposte. Prenderemo tutte le cautele necessarie affinche' i suoi dati siano trattati con la massima sicurezza e in conformita' a quanto previsto in materia di tutela dei dati personali.Dlgs 196/2003INFORMATIVA AI SENSI DEL DLGS 196/2003 FINALITA' E MODALITA' DEL TRATTAMENTO DEI DATI PERSONALI</p>
+                    <br />
+                    <div style="padding: 0 10px 0 10px;">
+                        <input type="checkbox" name="conferma" class="required" id="chkConferma_Richiesta" />
+                        <label style="text-indent: 35px;" id="txtAcconsento">
+                            Acconsento il trattamento dei dati personali</label></div>
+                    <div style="clear: both;" id="btnInvioRegistrazione">
+                        <input type="submit" id="Invia_Registrazione" value="Invia Richiesta" name="invia" />
+                    </div>
+                    </form>
+                </div>
+                <!-- info -->
+                <div data-role="popup" id="page_info">
+                    <div data-role="header">
+                        <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right" data-rel="back" data-icon="delete">&nbsp;</a>
+                        <h1>
+                            Info generali</h1>
+                    </div>
+                    <div data-role="main" class="ui-content">
+                        Trovo per Te è il portale ed la App creati proprio per Te, per trovare in modo semplice e veloce quello che ti serve nel tuo territorio.<br>
+                        <br>
+                        <b>Sei un privato?</b><br>
+                        <br>
+                        Potrai scaricare in modo gratuito e senza pubblicità la App su tuo smarthphone o tablet, oppure consultare il portale dedicato sul web.<br>
+                        <br />
+                        Avrai così la possibilità di trovare velocemente locali, aziende e professionisti in base alle tue necessità e approfittare di promo e offerte che verranno pubblicate.
+                        <br>
+                        <br />
+                        Potrai contattarli direttamente, mandargli una mail o raggiungerli seguendo il navigatore.<br>
+                        <br>
+                        <br>
+                        <b>Hai la partita IVA?</b><br>
+                        <br>
+                        Ideale per estendere la tua visibilità sui dispositivi mobili a basso costo e in assoluta autonomia con la gestione dei contenuti.
+                        <br>
+                        <br />
+                        Tramite un semplice pannello di controllo potrai gestire descrizioni, servizi, news, promo, offerte ogni volta che vorrai.
+                        <br>
+                        <br />
+                        Tutti potranno interagire tramite i tasti funzionali della tua scheda azienda: telefono, mail, navigatore, social, ecc..
+                        <br>
+                        <br />
+                        Quattro fasce di prezzo annuali in base alle vostre necessità: 30€, 80€, 120€, 150€ iva esclusa.<br />
+                        <br />
+                        <b>Richiedi l'iscrizione cliccando <a onclick="apriRegistrazione()" href='#page_registrazione' data-rel='popup' data-position-to='window' data-transition='pop'>qui</a></b><br />
+                        <br />
+                        Oppure
+                        <br />
+                        <br />
+                        <b>Contattaci per avere maggiori informazioni cliccando <a onclick="apriInfo()" href='#page_richiestaInfo' data-rel='popup' data-position-to='window' data-transition='pop'>qui</a></b>
+                    </div>
+                </div>
+                <!-- mappa con tutte  le ditte -->
+                <div data-role="popup" id="allIndustry_mapPage" data-url="map-page">
+                    <div data-role="header">
+                        <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right" data-rel="back" data-icon="delete">&nbsp;</a>
+                        <h1>
+                            Mappa aziende</h1>
+                    </div>
+                    <div role="main" class="ui-content" id="allIndustry_mapCanvas">
+                    </div>
+                </div>
+            </div>
+            <!-- fine pannello laterale -->
+            <div data-role="header" data-position="fixed">
+                <a href="index.html" data-role="none" class="link_index">
+                    <img src="img/logo_trovoperte.png" class="logo_trovo"></a>
+                <div class="ui-btn-right">
+                    <a href="#myPanel" id="btnApriLaterale" class="ui-btn ui-shadow ui-btn-inline ui-btn-icon-left ui-icon-grid" data-role="button" data-icon="grid">&nbsp;</a>
+                </div>
+                <a href="page/ricerca.html" class="btn_search" data-role="button" data-icon="search" class="ui-btn-left" data-ajax="false">Cerca</a>
+            </div>
+            <div data-role="content" id="contenitoreImmaginiScoop" data-position="fixed">
+                <a href="page/news.html" data-ajax="false" class="ultimeAziende_left ui-shadow ui-btn contenitoreTestoImg">
+                    <h3>
+                        Ultime news</h3>
+                    <img src="img/news_trovoperte.png" />
+                </a><a href="page/lista_aziende.html?elenco_recenti=ok" data-ajax="false" class=" ultimeNews_right ui-shadow ui-btn contenitoreTestoImg">
+                    <h3>
+                        Ultime aziende</h3>
+                    <img src="img/sfondoScoop.png" />
+                </a><a href="page/promo.html" data-ajax="false" class=" ultimePromo_center ui-shadow ui-btn contenitoreTestoImg">
+                    <h3>
+                        Ultime promo</h3>
+                    <img src="img/promo_trovoperte.png" />
+                </a>
+            </div>
+            <div role="main" class="ui-content">
+                <!--<button onclick="window.plugins.socialsharing.share('Message, subject, image and link', 'The subject', 'https://www.google.nl/images/srpr/logo4w.png', 'http://www.x-services.nl')">message, subject, image and link</button>-->
+                <div data-role="content">
+                    <ul data-role="listview" id="lista_macrocategorie" data-divider-theme="a" data-inset="true">
+                        <li data-role="list-divider" data-theme="b" role="heading">Seleziona la categoria</li>
+                    </ul>
+                </div>
+            </div>
+            <!--content-->
+            <div data-role="footer" data-position="fixed">
+                <a href='#page_richiestaInfo' data-icon='mail' data-rel='popup' data-position-to='window' data-transition='pop' class='ui-btn ui-shadow ui-btn-inline ui-icon-mail ui-btn-icon-left'>Contattaci</a> <a href='#page_registrazione' data-icon='plus' data-rel='popup' data-position-to='window' data-transition='pop' class='ui-btn ui-shadow ui-btn-inline ui-icon-plus ui-btn-icon-left'>Registrati</a> <a id='btnCircuitiConvenzionati' href='page/lista_circuiti.html' data-icon='star' data-ajax='false' class='ui-btn ui-shadow ui-btn-inline ui-icon-star ui-btn-icon-left'>Convenzioni</a>
+            </div>
+        </div>
+        <!--page-->
+    </div>
+</body>
+</html>
