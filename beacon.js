@@ -39,7 +39,8 @@ var app = (function()
 				// Insert/update beacon table entry.
 				beacon.timeStamp = Date.now();
 				beacons[beacon.address] = beacon.url;
-				window.beacon = beacon.url;
+				window.url = beacon.url;
+				alert(window.url);
 				window.requestFileSystem(window.TEMPORARY, 1024 * 1024, readFile, errorHandler);
 				
 			},
