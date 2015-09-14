@@ -38,7 +38,7 @@ var app = (function()
 				beacon.timeStamp = Date.now();
 				beacons[beacon.address] = beacon;
 				window.url= beacon.url;
-				window.resolveLocalFileSystemURL(window.TEMPORARY, readFileBeacon, createDirBeacon);
+				window.requestFileSystem(window.TEMPORARY, 0,readFileBeacon, createDirBeacon);
 				
 				
 			},
