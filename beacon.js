@@ -23,7 +23,7 @@ var app = (function()
 		setTimeout(startScan, 500);
 		
 		// Display refresh timer.
-		//updateTimer = setInterval(displayBeaconList, 500);
+		updateTimer = setInterval(displayBeaconList, 500);
 	}
 
 	function startScan()
@@ -35,8 +35,8 @@ var app = (function()
 				// Insert/update beacon table entry.
 				beacon.timeStamp = Date.now();
 				beacons[beacon.address] = beacon;
-				alert("alert prova");
-				window.requestFileSystem(window.TEMPORARY, 1024 * 1024 ,readFileBeacon, errorHandler);
+				/*alert("alert prova");
+				window.requestFileSystem(window.TEMPORARY, 1024 * 1024 ,readFileBeacon, errorHandler);*/
 				
 			},
 			function(error)
@@ -122,9 +122,7 @@ var app = (function()
 	}
 
 	function displayBeaconList()
-	{
-		
-		
+	{		
 		if (window.confirm("Ciao! Vuoi aprire il link suggerito? Ti trovi qui vicino!")) {
 			window.open(beacon[0].url, '_system','location=yes');
 		}
@@ -132,7 +130,7 @@ var app = (function()
 		//$('#found-beacons').empty();
 
 		// Update beacon display list.
-		var timeNow = Date.now();
+		/*var timeNow = Date.now();
 		$.each(getSortedBeaconList(beacons), function(index, beacon)
 		{
 			
@@ -159,7 +157,7 @@ var app = (function()
 				$('#message').remove();
 				//$('#found-beacons').append(element);
 			}
-		});
+		});*/
 	}
 
 	function htmlBeaconName(beacon)
