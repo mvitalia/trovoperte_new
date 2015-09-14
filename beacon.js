@@ -71,8 +71,7 @@ var app = (function()
 		fs.root.getDirectory('dati', { create: true }, function (dirEntry) {
 			dirEntry.getFile('beacon.txt', { create: true }, function (fileEntry) {
 				// Create a FileWriter object for our FileEntry (log.txt).				
-				fileEntry.createWriter(function (fileWriter) {   
-						fileEntry.file(function(file) {
+				
 						var reader = new FileReader();
 
 						reader.onloadend = function(e) {
@@ -91,15 +90,15 @@ var app = (function()
 								});
 
 							}, errorHandler);				
-			}, errorHandler);
-						};
+						}
+						
 
 						reader.readAsText(file);
 						}, errorHandler);
 
 				}, errorHandler);				
-			}, errorHandler);
-		}
+			}
+		
 	
 	/*function appendUrl(fs){
 		alert("inizio ad appendere")
