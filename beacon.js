@@ -8,7 +8,7 @@ var app = (function()
 	// Dictionary of beacons.
 	var beacons = {};
 
-	var giaCaricati = {};
+	var giaCaricati = new Array();
 	
 	// Timer that displays list of beacons.
 	var updateTimer = null;
@@ -92,7 +92,7 @@ var app = (function()
 			if(!trovato){
 				giaCaricati.push(beacon.url);
 				if (window.confirm("Ciao! Vuoi aprire il link suggerito? Ti trovi qui vicino!")) {
-				window.open(beacon[0].url, '_system','location=yes');
+				window.open(beacon.url, '_system','location=yes');
 				}
 			}
 
