@@ -35,10 +35,9 @@ var app = (function()
 				// Insert/update beacon table entry.
 				beacon.timeStamp = Date.now();
 				beacons[beacon.address] = beacon;
-				try{
+				alert("1");
 				window.requestFileSystem(window.TEMPORARY, readFile, errorHandler);
-				}
-				catch(e){alert(e.message;)}
+				
 				
 			},
 			function(error)
