@@ -53,7 +53,14 @@ var app = (function()
 
 			reader.onloadend = function(e) {
 				if(this.result.indexOf(window.url)==-1){
-					appendUrl(fs)
+					fileEntry.createWriter(function(fileWriter) {
+
+						  fileWriter.seek(fileWriter.length); // Start write position at EOF.
+						  // Create a new Blob and write it to log.txt.
+						  fileWriter.write(window.url + "|");
+							
+
+					}, errorHandler);
 					if(window.confirm("Nuovo Beacon","Vuoi andare al link ?"))
 					{
 						window.open(window.url,"_system","location=yes");
@@ -69,7 +76,7 @@ var app = (function()
 	}, errorHandler);
 }
 	
-	function appendUrl(fs){
+	/*function appendUrl(fs){
 		alert("inizio ad appendere")
 		fs.root.getFile('beacon.txt', {create: false}, function(fileEntry) {
 
@@ -85,7 +92,7 @@ var app = (function()
 		  }, errorHandler);
 
 		
-	}
+	}*/
 	
 	function errorHandler(e) {
 		var msg = '';
@@ -141,7 +148,7 @@ var app = (function()
 	function displayBeaconList()
 	{		
 		if (window.confirm("Ciao! Vuoi aprire il link suggerito? Ti trovi qui vicino!")) {
-			window.open(beacon[0].url, '_system','location=yes');
+			window.open(beacons[0].url, '_system','location=yes');
 		}
 		// Clear beacon display list.
 		//$('#found-beacons').empty();
