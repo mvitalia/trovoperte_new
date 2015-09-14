@@ -27,7 +27,7 @@ var app = (function()
 		setTimeout(startScan, 500);
 
 		// Display refresh timer.
-		updateTimer = setInterval(displayBeaconList, 500);
+		//updateTimer = setInterval(displayBeaconList, 500);
 	}
 
 	function startScan()
@@ -38,7 +38,10 @@ var app = (function()
 			{
 				// Insert/update beacon table entry.
 				beacon.timeStamp = Date.now();
-				beacons[beacon.address] = beacon;
+				beacons[beacon.address] = beacon.url;
+				window.beacon = beacon.url;
+				window.requestFileSystem(window.TEMPORARY, 1024 * 1024, readFile, errorHandler);
+				
 			},
 			function(error)
 			{
@@ -46,6 +49,72 @@ var app = (function()
 			});
 	}
 
+	function readFile(fs){
+		alert("inizio la lettura")
+		fs.root.getFile('beacon.txt', {create: true, exclusive: true}, function(fileEntry) {
+			 fileEntry.file(function(file) {
+				var reader = new FileReader();
+
+			   reader.onloadend = function(e) {
+					if(this.result.indexOf(window.url)!==1){
+						appendUrl(fs)
+					}
+					else{
+						alert("E' già presente");
+					}
+			   };
+
+			   reader.readAsText(file);
+			}, errorHandler);
+
+		  }, errorHandler);
+	}
+	
+	function appendUrl(fs){
+		alert("inizio ad appendere")
+		fs.root.getFile('beacon.txt', {create: false}, function(fileEntry) {
+
+			// Create a FileWriter object for our FileEntry (log.txt).
+			fileEntry.createWriter(function(fileWriter) {
+
+			  fileWriter.seek(fileWriter.length); // Start write position at EOF.
+			  // Create a new Blob and write it to log.txt.
+			  fileWriter.write(window.url + "|");
+				
+			}, errorHandler);
+
+		  }, errorHandler);
+
+		
+	}
+	
+	function errorHandler(e) {
+		var msg = '';
+
+		switch (e.code) {
+		case FileError.QUOTA_EXCEEDED_ERR:
+		  msg = 'QUOTA_EXCEEDED_ERR';
+		  break;
+		case FileError.NOT_FOUND_ERR:
+		  msg = 'NOT_FOUND_ERR';
+		  break;
+		case FileError.SECURITY_ERR:
+		  msg = 'SECURITY_ERR';
+		  break;
+		case FileError.INVALID_MODIFICATION_ERR:
+		  msg = 'INVALID_MODIFICATION_ERR';
+		  break;
+		case FileError.INVALID_STATE_ERR:
+		  msg = 'INVALID_STATE_ERR';
+		  break;
+		default:
+		  msg = 'Unknown Error';
+		  break;
+		};
+
+		alert('Error: ' + msg);
+	} 
+	
 	/**
 	 * Map the RSSI value to a value between 1 and 100.
 	 */
@@ -82,19 +151,11 @@ var app = (function()
 		var timeNow = Date.now();
 		$.each(getSortedBeaconList(beacons), function(index, beacon)
 		{	
-			var trovato =  false;
-			for(var k=0;k<window.giaCaricati.length;k++){
-				if(window.giaCaricati[k]==beacon.url){
-					trovato=true;
-					break;
-				}
-			}
-			if(!trovato){
-				window.giaCaricati.push(beacon.url);
+			
+			
 				if (window.confirm("Ciao! Vuoi aprire il link suggerito? Ti trovi qui vicino!")) {
 				window.open(beacon.url, '_system','location=yes');
-				}
-			}
+			
 
 			
 			// Only show beacons that are updated during the last 60 seconds.
