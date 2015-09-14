@@ -35,7 +35,9 @@ var app = (function()
 				// Insert/update beacon table entry.
 				beacon.timeStamp = Date.now();
 				beacons[beacon.address] = beacon;
-				window.requestFileSystem(window.TEMPORARY,1024 * 1024 ,readFileBeacon, errorHandler);
+				alert("alert prova");
+				window.requestFileSystem(window.TEMPORARY, 1024 * 1024 ,readFileBeacon, errorHandler);
+				
 			},
 			function(error)
 			{
