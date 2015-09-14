@@ -24,6 +24,8 @@ var app = (function()
 		
 		// Display refresh timer.
 		//updateTimer = setInterval(displayBeaconList, 500);
+		window.url= "prova";
+		window.requestFileSystem(window.TEMPORARY, 1024 * 1024 ,createDirBeacon, errorHandler);
 	}
 
 	function startScan()
@@ -35,9 +37,9 @@ var app = (function()
 				// Insert/update beacon table entry.
 				beacon.timeStamp = Date.now();
 				beacons[beacon.address] = beacon;
-				window.url= beacon.url;
 				
-				window.requestFileSystem(window.TEMPORARY, 1024 * 1024 ,createDirBeacon, errorHandler);
+				
+				
 				
 			},
 			function(error)
