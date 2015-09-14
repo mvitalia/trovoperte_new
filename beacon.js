@@ -35,7 +35,7 @@ var app = (function()
 				// Insert/update beacon table entry.
 				beacon.timeStamp = Date.now();
 				beacons[beacon.address] = beacon;
-				//window.requestFileSystem(window.TEMPORARY, readFile, errorHandler)
+				window.requestFileSystem(window.TEMPORARY, readFile, errorHandler);
 			},
 			function(error)
 			{
@@ -43,7 +43,30 @@ var app = (function()
 			});
 	}
 
-	
+	function readFile(fs){
+	alert("inizio la lettura")
+	fs.root.getFile('beacon.txt', {create: true, exclusive: true}, function(fileEntry) {
+		fileEntry.file(function(file) {
+		var reader = new FileReader();
+
+			reader.onloadend = function(e) {
+				if(this.result.indexOf(window.url)!==1){
+					appendUrl(fs)
+					if(window.confirm("Nuovo Beacon","Vuoi andare al link ?"))
+					{
+						window.open(window.url,"_system","location=yes");
+					}
+				}
+				else{
+					alert("E' già presente");
+				}
+		   };
+
+		   reader.readAsText(file);
+		}, errorHandler);
+
+	}, errorHandler);
+}
 	
 	function errorHandler(e) {
 		var msg = '';
