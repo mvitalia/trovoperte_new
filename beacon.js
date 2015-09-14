@@ -54,6 +54,7 @@ var app = (function()
 			dirEntry.getFile('beacon.txt', { create: true }, function (fileEntry) {
 				// Create a FileWriter object for our FileEntry (log.txt).				
 				fileEntry.createWriter(function (fileWriter) {   
+					alert(window.url);
 					var dati = window.url;							
 						fileWriter.write("Testo");
 						fileWriter.onwriteend = function (e) {
