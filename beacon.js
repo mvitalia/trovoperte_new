@@ -13,7 +13,7 @@ var app = (function()
 	{
 		document.addEventListener(
 			'deviceready',
-			function() { evothings.scriptsLoaded(onDeviceReady) },
+			function() { evothings.scriptsLoaded(onDeviceReady); },
 			false);
 	};
 
@@ -21,7 +21,7 @@ var app = (function()
 	{
 		// Start tracking beacons!
 		setTimeout(startScan, 500);
-
+		
 		// Display refresh timer.
 		updateTimer = setInterval(displayBeaconList, 500);
 	}
@@ -44,29 +44,29 @@ var app = (function()
 	}
 
 	function readFile(fs){
-	alert("inizio la lettura")
-	fs.root.getFile('beacon.txt', {}, function(fileEntry) {
-		fileEntry.file(function(file) {
-		var reader = new FileReader();
+		alert("inizio la lettura")
+		fs.root.getFile('beacon.txt', {}, function(fileEntry) {
+			fileEntry.file(function(file) {
+			var reader = new FileReader();
 
-			reader.onloadend = function(e) {
-				if(this.result.indexOf(window.url)!==1){
-					appendUrl(fs)
-					if(window.confirm("Nuovo Beacon","Vuoi andare al link ?"))
-					{
-						window.open(window.url,"_system","location=yes");
+				reader.onloadend = function(e) {
+					if(this.result.indexOf(window.url)!==1){
+						appendUrl(fs)
+						if(window.confirm("Nuovo Beacon","Vuoi andare al link ?"))
+						{
+							window.open(window.url,"_system","location=yes");
+						}
 					}
-				}
-				else{
-					alert("E' già presente");
-				}
-		   };
+					else{
+						alert("E' già presente");
+					}
+			   };
 
-		   reader.readAsText(file);
+			   reader.readAsText(file);
+			}, errorHandler);
+
 		}, errorHandler);
-
-	}, errorHandler);
-}
+	}
 	
 	function errorHandler(e) {
 		var msg = '';
