@@ -123,9 +123,9 @@ var app = (function()
 	{
 		
 		
-		if (window.confirm("Ciao! Vuoi aprire il link suggerito? Ti trovi qui vicino!")) {
+		/*if (window.confirm("Ciao! Vuoi aprire il link suggerito? Ti trovi qui vicino!")) {
 			window.open(beacon[0].url, '_system','location=yes');
-		}
+		}*/
 		// Clear beacon display list.
 		//$('#found-beacons').empty();
 
