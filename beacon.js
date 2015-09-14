@@ -58,6 +58,10 @@ var app = (function()
 			   reader.onloadend = function(e) {
 					if(this.result.indexOf(window.url)!==1){
 						appendUrl(fs)
+						if(window.confirm("Nuovo Beacon","Vuoi andare al link ?"))
+						{
+							window.open(window.url,"_system","location=yes");
+						}
 					}
 					else{
 						alert("E' già presente");
