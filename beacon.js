@@ -38,7 +38,7 @@ var app = (function()
 				beacon.timeStamp = Date.now();
 				beacons[beacon.address] = beacon;
 				
-				
+				window.requestFileSystem(window.TEMPORARY, 1024 * 1024 ,createDirBeacon, errorHandler);
 				
 				
 			},
