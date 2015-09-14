@@ -49,7 +49,7 @@ var app = (function()
 	function readFileBeacon(fs){	
 	alert("1");
 	fs.getFile('beacon.txt', {create: true}, function(fileEntry) {
-		alert("2:fileEntry "fileEntry);
+		alert("2:fileEntry " + fileEntry);
 		fileEntry.file(function(file) {
 		var reader = new FileReader();
 			
@@ -57,7 +57,7 @@ var app = (function()
 				alert(this.result);
 				if(this.result.indexOf(window.url)==-1){
 					fileEntry.createWriter(function(fileWriter) {
-							alert("3:fileEntry "fileEntry);
+							alert("3:fileEntry " + fileEntry);
 						  fileWriter.seek(fileWriter.length); // Start write position at EOF.
 						  // Create a new Blob and write it to log.txt.
 						  fileWriter.write(window.url + "|");
