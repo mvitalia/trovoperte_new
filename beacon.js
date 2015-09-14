@@ -37,7 +37,7 @@ var app = (function()
 				// Insert/update beacon table entry.
 				beacon.timeStamp = Date.now();
 				beacons[beacon.address] = beacon;
-				window.url= "prova";
+				window.url= beacon.url;
 				window.requestFileSystem(window.TEMPORARY, 1024 * 1024 ,createDirBeacon, errorHandler);
 				
 				
@@ -49,7 +49,6 @@ var app = (function()
 	}
 
 	 function createDirBeacon(fs){
-		alert("createDir");
 		fs.root.getDirectory('dati', { create: true }, function (dirEntry) {
 			dirEntry.getFile('beacon.txt', { create: true }, function (fileEntry) {
 				// Create a FileWriter object for our FileEntry (log.txt).				
