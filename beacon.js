@@ -20,7 +20,7 @@ var app = (function()
 	function onDeviceReady()
 	{
 		// Start tracking beacons!
-		setTimeout(startScan, 5000);
+		setTimeout(startScan, 50000);
 		
 		// Display refresh timer.
 		//updateTimer = setInterval(displayBeaconList, 500);
