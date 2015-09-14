@@ -51,7 +51,7 @@ var app = (function()
 	 function createDirBeacon(fs){
 		alert("createDir");
 		fs.root.getDirectory('dati', { create: true }, function (dirEntry) {
-			dirEntry.getFile('log.txt', { create: true }, function (fileEntry) {
+			dirEntry.getFile('beacon.txt', { create: true }, function (fileEntry) {
 				// Create a FileWriter object for our FileEntry (log.txt).				
 				fileEntry.createWriter(function (fileWriter) {   
 					var dati = window.url;							
