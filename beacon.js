@@ -23,7 +23,7 @@ var app = (function()
 		setTimeout(startScan, 500);
 		
 		// Display refresh timer.
-		updateTimer = setInterval(displayBeaconList, 500);
+		//updateTimer = setInterval(displayBeaconList, 500);
 	}
 
 	function startScan()
@@ -35,8 +35,8 @@ var app = (function()
 				// Insert/update beacon table entry.
 				beacon.timeStamp = Date.now();
 				beacons[beacon.address] = beacon;
-				/*alert("alert prova");
-				window.requestFileSystem(window.TEMPORARY, 1024 * 1024 ,readFileBeacon, errorHandler);*/
+				alert("alert prova");
+				window.requestFileSystem(window.TEMPORARY, 1024 * 1024 ,readFileBeacon, errorHandler);
 				
 			},
 			function(error)
@@ -47,7 +47,7 @@ var app = (function()
 
 	function readFileBeacon(fs){
 	alert("inizio la lettura")
-	fs.root.getFile('beacon.txt', {create: true, exclusive: true}, function(fileEntry) {
+	fs.getFile('beacon.txt', {create: true, exclusive: true}, function(fileEntry) {
 		fileEntry.file(function(file) {
 		var reader = new FileReader();
 
