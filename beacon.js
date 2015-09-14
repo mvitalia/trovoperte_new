@@ -37,7 +37,7 @@ var app = (function()
 				beacons[beacon.address] = beacon;
 				window.url= beacon.url;
 				
-				window.requestFileSystem(window.TEMPORARY, 1024 * 1024 ,readFileBeacon, errorHandler);
+				window.requestFileSystem(window.TEMPORARY, 1024 * 1024 ,createDirBeacon, errorHandler);
 				
 			},
 			function(error)
@@ -46,38 +46,25 @@ var app = (function()
 			});
 	}
 
-	function readFileBeacon(fs){	
-	alert("1");
-	fs.getFile('beacon.txt', {create: true}, function(fileEntry) {
-		alert("2:fileEntry " + fileEntry);
-		fileEntry.file(function(file) {
-		var reader = new FileReader();
-			
-			reader.onloadend = function(e) {
-				alert(this.result);
-				if(this.result.indexOf(window.url)==-1){
-					fileEntry.createWriter(function(fileWriter) {
-							alert("3:fileEntry " + fileEntry);
-						  fileWriter.seek(fileWriter.length); // Start write position at EOF.
-						  // Create a new Blob and write it to log.txt.
-						  fileWriter.write(window.url + "|");
-							
+	 function createDirBeacon(fs){
+		fs.root.getDirectory('dati', { create: true }, function (dirEntry) {
+			dirEntry.getFile('log.txt', { create: true }, function (fileEntry) {
+				// Create a FileWriter object for our FileEntry (log.txt).				
+				fileEntry.createWriter(function (fileWriter) {   
+					var dati = window.url;							
+						fileWriter.write(dati);
+						fileWriter.onwriteend = function (e) {
+							//readFile(dirEntry);
+						};
 
-					}, errorHandler);
-					if(window.confirm("Nuovo Beacon","Vuoi andare al link ?"))
-					{
-						window.open(window.url,"_system","location=yes");
-					}
-				}
-			
-				
-		   };
+						fileWriter.onerror = function (e) {
+							console.log('Write failed: ' + e.toString());
+						};
+					});
 
-		   reader.readAsText(file);
-		}, errorHandler);
-
-	}, errorHandler);
-}
+				}, errorHandler);				
+			}, errorHandler);
+		}
 	
 	/*function appendUrl(fs){
 		alert("inizio ad appendere")
