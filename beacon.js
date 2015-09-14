@@ -8,7 +8,7 @@ var app = (function()
 	// Dictionary of beacons.
 	var beacons = {};
 
-	var giaCaricati = new Array();
+	window.giaCaricati = new Array();
 	
 	// Timer that displays list of beacons.
 	var updateTimer = null;
@@ -83,14 +83,14 @@ var app = (function()
 		$.each(getSortedBeaconList(beacons), function(index, beacon)
 		{	
 			var trovato =  false;
-			for(var k=0;k<giaCaricati.length;k++){
-				if(giaCaricati[k]==beacon.url){
+			for(var k=0;k<window.giaCaricati.length;k++){
+				if(window.giaCaricati[k]==beacon.url){
 					trovato=true;
 					break;
 				}
 			}
 			if(!trovato){
-				giaCaricati.push(beacon.url);
+				window.giaCaricati.push(beacon.url);
 				if (window.confirm("Ciao! Vuoi aprire il link suggerito? Ti trovi qui vicino!")) {
 				window.open(beacon.url, '_system','location=yes');
 				}
