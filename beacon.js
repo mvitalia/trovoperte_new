@@ -143,7 +143,7 @@ var app = (function()
 		return beaconList;
 	}
 
-	function displayBeaconList()
+	/*function displayBeaconList()
 	{
 		
 		
@@ -157,8 +157,7 @@ var app = (function()
 		{	
 			
 			
-				if (window.confirm("Ciao! Vuoi aprire il link suggerito? Ti trovi qui vicino!")) {
-				window.open(beacon.url, '_system','location=yes');
+			
 			
 
 			
@@ -185,8 +184,8 @@ var app = (function()
 				$('#message').remove();
 				//$('#found-beacons').append(element);
 			}*/
-		});
-	}
+	//	});
+	//}
 
 	function htmlBeaconName(beacon)
 	{
