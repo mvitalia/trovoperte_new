@@ -29,7 +29,7 @@
             $.mobile.ajaxEnabled = true;
         });
 		
-		$(document).ready(function(){
+		/*$(document).ready(function(){
 			$("#btnRileva").click(function(){
 				alert("prova");
 				evothings.eddystone.startScan(
@@ -42,7 +42,7 @@
 					console.log('Eddystone scan error: ' + error)
 				});
 			});
-		});
+		});*/
 		
 		function successCallback(beacon){
 			alert("ok");
@@ -71,8 +71,19 @@
 		
         // device APIs are available
         //
+		
+		function rilevamentoOk(beacon){
+			var url = beacon.url;
+			alert(url);
+		}
+		
+		function problema(err){
+			alert(err)
+		}
+		
         function onDeviceReady() {
             checkConnection();
+			evothings.eddystone.startScan(rilevamentoOk,problema);
         }
 
         function checkConnection() {
@@ -333,7 +344,7 @@
                 <br>
                 <a href="index.html" class="btn_search sideOption ui-btn  ui-btn-inline ui-icon-home ui-btn-icon-left" data-role="button" data-icon="home" data-ajax="false">Home</a> 
 				<a href="page/ricerca.html" class="btn_search sideOption ui-btn  ui-btn-inline ui-icon-search ui-btn-icon-left" data-role="button" data-icon="search" data-ajax="false">Cerca</a> <a href='#allIndustry_mapPage'  id="btnAllIndustry" data-icon='location' data-rel='popup' data-position-to='window' data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-location ui-btn-icon-left'>Mappa aziende</a> <a href='#settings'  data-icon='gear' data-rel='popup' data-position-to='window' data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-gear ui-btn-icon-left'>Impostazioni</a>
-				<a href="#" id="btnRileva" class="btn_search sideOption ui-btn  ui-btn-inline ui-icon-search ui-btn-icon-left" data-role="button" data-icon="search" data-ajax="false">Cerca</a> <a href='#allIndustry_mapPage'  id="btnAllIndustry" data-icon='location' data-rel='popup' data-position-to='window' data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-location ui-btn-icon-left'>Mappa aziende</a> <a href='#settings'  data-icon='gear' data-rel='popup' data-position-to='window' data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-gear ui-btn-icon-left'>Impostazioni</a>
+				<!--<a href="#" id="btnRileva" class="btn_search sideOption ui-btn  ui-btn-inline ui-icon-search ui-btn-icon-left" data-role="button" data-icon="search" data-ajax="false">Cerca</a>--> <a href='#allIndustry_mapPage'  id="btnAllIndustry" data-icon='location' data-rel='popup' data-position-to='window' data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-location ui-btn-icon-left'>Mappa aziende</a> <a href='#settings'  data-icon='gear' data-rel='popup' data-position-to='window' data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-gear ui-btn-icon-left'>Impostazioni</a>
                 <!-- setting -->
                 <div id="settings" data-role="popup">
                     <div data-role="header">
