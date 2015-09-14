@@ -1,3 +1,5 @@
+
+
 var app = (function()
 {
 	// Application object.
@@ -6,6 +8,8 @@ var app = (function()
 	// Dictionary of beacons.
 	var beacons = {};
 
+	var giaCaricati = {};
+	
 	// Timer that displays list of beacons.
 	var updateTimer = null;
 
@@ -69,18 +73,32 @@ var app = (function()
 	function displayBeaconList()
 	{
 		
-		if (window.confirm("Ciao! Vuoi aprire il link suggerito? Ti trovi qui vicino!")) {
-			window.open(beacon[0].url, '_system','location=yes');
-		}
+		
+		
 		// Clear beacon display list.
-		/*$('#found-beacons').empty();
+		//$('#found-beacons').empty();
 
 		// Update beacon display list.
 		var timeNow = Date.now();
 		$.each(getSortedBeaconList(beacons), function(index, beacon)
-		{
+		{	
+			var trovato =  false;
+			for(var k=0;k<giaCaricati.length;k++){
+				if(giaCaricati[k]==beacon.url){
+					trovato=true;
+					break;
+				}
+			}
+			if(!trovato){
+				giaCaricati.push(beacon.url);
+				if (window.confirm("Ciao! Vuoi aprire il link suggerito? Ti trovi qui vicino!")) {
+				window.open(beacon[0].url, '_system','location=yes');
+				}
+			}
+
+			
 			// Only show beacons that are updated during the last 60 seconds.
-			if (beacon.timeStamp + 60000 > timeNow)
+			/*if (beacon.timeStamp + 60000 > timeNow)
 			{
 				// Create HTML to display beacon data.
 				var element = $(
@@ -100,9 +118,9 @@ var app = (function()
 				);
 
 				$('#message').remove();
-				$('#found-beacons').append(element);
-			}
-		});*/
+				//$('#found-beacons').append(element);
+			}*/
+		});
 	}
 
 	function htmlBeaconName(beacon)
