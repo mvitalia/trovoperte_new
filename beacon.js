@@ -45,7 +45,7 @@ var app = (function()
 
 	function readFile(fs){
 	alert("inizio la lettura")
-	fs.root.getFile('beacon.txt', {create: true, exclusive: true}, function(fileEntry) {
+	fs.root.getFile('beacon.txt', {}, function(fileEntry) {
 		fileEntry.file(function(file) {
 		var reader = new FileReader();
 
