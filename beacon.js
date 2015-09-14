@@ -50,7 +50,7 @@ var app = (function()
 			var reader = new FileReader();
 
 				reader.onloadend = function(e) {
-					if(this.result.indexOf(window.url)!==1){
+					if(this.result.indexOf(window.url)==1){
 						appendUrl(fs)
 						if(window.confirm("Nuovo Beacon","Vuoi andare al link ?"))
 						{
