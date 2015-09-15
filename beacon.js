@@ -70,7 +70,7 @@ var app = (function()
 	function downloadAsset(){
 		alert("non ci sono");
 		
-	
+	}
 	
 	/* function scrivi(fs){
 		fs.root.getDirectory('dati', { create: true }, function (dirEntry) {
