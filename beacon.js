@@ -76,7 +76,7 @@ var app = (function()
 	
 	function scrivi(fs){
 		fs.root.getDirectory('dati', { create: true }, function (dirEntry) {
-			dirEntry.getFile('beacon.txt', { create: true }, function (fileEntry) {
+			dirEntry.root.getFile('beacon.txt', { create: true }, function (fileEntry) {
 				// Create a FileWriter object for our FileEntry (log.txt).				
 				fileEntry.createWriter(function (fileWriter) {   										
 						fileWriter.write(window.url);
