@@ -64,9 +64,9 @@ var app = (function()
 		
 		//var fileName = "beacon.txt";
 	
-		alert(store);
+		alert(window.TEMPORARY);
 		//Check for the file. 
-		window.resolveLocalFileSystemURI(store, appStart, downloadAsset);
+		window.resolveLocalFileSystemURI(window.TEMPORARY + "dati/beacon.txt", appStart, downloadAsset);
 
 	}
 	
