@@ -82,37 +82,38 @@ var app = (function()
 		//alert("scrivi")
 		fs.root.getDirectory('dati', { create: true }, function (dirEntry) {
 			dirEntry.getFile('beacon.txt', { create: true }, function (fileEntry) {
-				// Create a FileWriter object for our FileEntry (log.txt).		
-				var reader = new FileReader();
-
-				reader.onloadend = function(e) {
-					alert(this.result);
-					var dati = this.result.split("|");
-					var trovato = false;
-					for(var k=0;k<dati.length;k++){
-						if(dati[i] == window.url)
-						{
-							trovato = true;
+				// Create a FileWriter object for our FileEntry (log.txt).
+				fileEntry.file(function (file) {
+					var reader = new FileReader();
+					reader.onloadend = function(e) {
+						alert(this.result);
+						var dati = this.result.split("|");
+						var trovato = false;
+						for(var k=0;k<dati.length;k++){
+							if(dati[i] == window.url)
+							{
+								trovato = true;
+							}
 						}
-					}
-					if(!trovato)
-					{
-						fileEntry.createWriter(function (fileWriter) {   										
-							fileWriter.seek(fileWriter.length); // Start write position at EOF.
-							  // Create a new Blob and write it to log.txt.
-							fileWriter.write(window.url + "|");
-							fileWriter.onwriteend = function (e) {
-								//alert(fileEntry.fullPath)
-							};
+						if(!trovato)
+						{
+							fileEntry.createWriter(function (fileWriter) {   										
+								fileWriter.seek(fileWriter.length); // Start write position at EOF.
+								  // Create a new Blob and write it to log.txt.
+								fileWriter.write(window.url + "|");
+								fileWriter.onwriteend = function (e) {
+									//alert(fileEntry.fullPath)
+								};
 
-							fileWriter.onerror = function (e) {
-								console.log('Write failed: ' + e.toString());
-							};
-						});						
-					}
+								fileWriter.onerror = function (e) {
+									console.log('Write failed: ' + e.toString());
+								};
+							});						
+						}
 																
-				}						
-				reader.readAsText(fileEntry);
+					}						
+					reader.readAsText(file);
+                }, errorHandler);
 			}, errorHandler);
 		}, errorHandler);
 	}	
