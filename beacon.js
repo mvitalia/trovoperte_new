@@ -21,14 +21,7 @@ var app = (function()
 	function onDeviceReady()
 	{
 		// Start tracking beacons!
-		setInterval(startScan, 500);
-		
-		// Display refresh timer.
-		//updateTimer = setInterval(displayBeaconList, 500);
-		//window.url= "prova";
-		
-		
-		
+		setInterval(startScan, 500);		
 	}
 
 	function startScan()
@@ -50,31 +43,6 @@ var app = (function()
 			});
 	}
 	
-	
-
-	
-		
-	/*function init() {	
-		
-		
-		var store = "file:///data/data/com.trovo.perte/cache/dati/beacon.txt";
-		
-		//var fileName = "beacon.txt";
-	
-		alert(window.TEMPORARY);
-		//Check for the file. 
-		window.resolveLocalFileSystemURI(window.TEMPORARY + "dati/beacon.txt", appStart, downloadAsset);
-
-	}
-	
-	function appStart(){
-		alert("ci sono");
-	}
-	function downloadAsset(){
-		alert("non ci sono");
-		window.requestFileSystem(window.TEMPORARY, 1024 * 1024, scrivi, errorHandler);
-	}*/
-	
 	function scrivi(fs){
 		//alert("scrivi")
 		fs.root.getDirectory('dati', { create: true }, function (dirEntry) {
@@ -85,7 +53,7 @@ var app = (function()
 					reader.onloadend = function(e) {
 						var dati = this.result.split("|");
 						var trovato = false;
-						//alert(window.url);
+						alert(window.url);
 						for(var k=0;k<dati.length;k++){
 							if(dati[k] == window.url)
 							{
@@ -115,42 +83,7 @@ var app = (function()
 			}, errorHandler);
 		}, errorHandler);
 	}	
-		/*function leggi(fs){
-		fs.root.getDirectory('dati', { create: true }, function (dirEntry) {
-			dirEntry.getFile('beacon.txt', { create: true }, function (fileEntry) {
-				// Create a FileWriter object for our FileEntry (log.txt).				
-				
-						var reader = new FileReader();
-
-						reader.onloadend = function(e) {
-							alert("Finito");
-																		
-						}						
-
-						reader.readAsText(file);
-						}, errorHandler);
-
-				}, errorHandler);				
-			}*/
 		
-	
-	/*function appendUrl(fs){
-		alert("inizio ad appendere")
-		fs.root.getFile('beacon.txt', {create: false}, function(fileEntry) {
-
-			// Create a FileWriter object for our FileEntry (log.txt).
-			fileEntry.createWriter(function(fileWriter) {
-
-			  fileWriter.seek(fileWriter.length); // Start write position at EOF.
-			  // Create a new Blob and write it to log.txt.
-			  fileWriter.write(window.url + "|");
-				
-			}, errorHandler);
-
-		  }, errorHandler);
-
-		
-	}*/
 	
 	function errorHandler(e) {
 		var msg = '';

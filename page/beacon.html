@@ -53,7 +53,6 @@
 			}
 
 			function searchDir(fs){
-				alert("read");
 				fs.root.getDirectory('dati', {create: false}, function(dirEntry){				
 					dirEntry.getFile('beacon.txt', {}, function (fileEntry) {
 						// Get a File object representing the file,
