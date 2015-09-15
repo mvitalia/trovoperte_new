@@ -86,11 +86,11 @@ var app = (function()
 				fileEntry.file(function (file) {
 					var reader = new FileReader();
 					reader.onloadend = function(e) {
-						alert(this.result);
 						var dati = this.result.split("|");
 						var trovato = false;
+						alert("1: " + trovato);
 						for(var k=0;k<dati.length;k++){
-							if(dati[i] == window.url)
+							if(dati[k] == window.url)
 							{
 								trovato = true;
 							}
