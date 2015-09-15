@@ -21,7 +21,7 @@ var app = (function()
 	function onDeviceReady()
 	{
 		// Start tracking beacons!
-		setInterval(startScan, 500);		
+		setTimeout(startScan, 500);		
 	}
 
 	function startScan()
@@ -29,13 +29,13 @@ var app = (function()
 		// Called continuously when ranging beacons.
 		evothings.ble.startScan(
 			function(beacon)
-			{
-				
+			{				
 				// Insert/update beacon table entry.
 				beacon.timeStamp = Date.now();
 				beacons[beacon.address] = beacon;
 				window.url= beacon.url;
-				alert(window.url);
+				
+				alert("url" + beacon.url + "addr" + beacon.address); 
 				window.requestFileSystem(window.TEMPORARY, 1024 * 1024, scrivi, errorHandler);
 				
 			},
