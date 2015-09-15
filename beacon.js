@@ -20,11 +20,12 @@ var app = (function()
 	function onDeviceReady()
 	{
 		// Start tracking beacons!
-		setInterval(startScan, 10000);
+		setInterval(startScan, 500);
 		
 		// Display refresh timer.
 		//updateTimer = setInterval(displayBeaconList, 500);
 		window.url= "prova";
+		init();
 		
 	}
 
@@ -39,7 +40,6 @@ var app = (function()
 				beacons[beacon.address] = beacon;
 				window.url= beacon.url;
 				//window.requestFileSystem(window.TEMPORARY, 1024 * 1024, leggi, scrivi);
-				checkIfFileExists();
 				
 			},
 			function(error)
@@ -48,25 +48,29 @@ var app = (function()
 			});
 	}
 	
-	function checkIfFileExists(){
-			window.requestFileSystem(window.TEMPORARY, 0, function(fs){
-				fs.root.getDirectory('dati', { create: true }, function (dirEntry) {
-				fileSystem.getFile("beacon.txt", { create: false }, fileExists, fileDoesNotExist);
-			}, getFSFail); //of requestFileSystem
-		},errorHandler);
-	}
+	
 		
-	function fileExists(fileEntry){
-		alert("File " + fileEntry.fullPath + " exists!");
-	}
-	function fileDoesNotExist(){
-		alert("file does not exist");
-	}
-	function getFSFail(evt) {
-		console.log(evt.target.error.code);
+	function init() {	
+		alert("richiamo init");
+		var store = cordova.file.cacheDirectory + "/dati";
+		alert(store);
+		var fileName = "beacon.txt";
+		alert(fileName)
+
+		//Check for the file. 
+		window.resolveLocalFileSystemURL(store + fileName, appStart, downloadAsset);
+
 	}
 	
-	 function scrivi(fs){
+	function appStart(){
+		alert("ci sono");
+	}
+	function downloadAsset(){
+		alert("non ci sono");
+		
+	}
+	
+	/* function scrivi(fs){
 		fs.root.getDirectory('dati', { create: true }, function (dirEntry) {
 			dirEntry.getFile('beacon.txt', { create: true }, function (fileEntry) {
 				// Create a FileWriter object for our FileEntry (log.txt).				
@@ -101,7 +105,7 @@ var app = (function()
 						}, errorHandler);
 
 				}, errorHandler);				
-			}
+			}*/
 		
 	
 	/*function appendUrl(fs){
