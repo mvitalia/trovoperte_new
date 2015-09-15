@@ -11,12 +11,12 @@ var app = (function()
 	// Timer that displays list of beacons.
 	var updateTimer = null;
 
-	/*app.initialize = function()
+	app.initialize = function()
 	{
 		document.addEventListener('deviceready',function() { evothings.scriptsLoaded(onDeviceReady) },false);
-	};*/
+	};
 
-	document.addEventListener('deviceready',function() { evothings.scriptsLoaded(onDeviceReady) },false);
+	//document.addEventListener('deviceready',function() { evothings.scriptsLoaded(onDeviceReady) },false);
 	
 	function onDeviceReady()
 	{
