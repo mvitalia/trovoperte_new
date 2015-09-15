@@ -72,7 +72,7 @@
 				var internet = checkInternet();			
 				var elencoMarker = new Array();				
 
-					$.each(datiDecompressi, function (i, name) {
+					/*$.each(datiDecompressi, function (i, name) {
 						if (name.coordinate != "") {
 							var azienda = {};
 							azienda.id = name.id;
@@ -83,12 +83,13 @@
 						}
 					});
 					if(internet ==  true){
-						caricaAllIndustry(elencoMarker,"categorie");
-					}
+						caricaAllIndustry(elencoMarker,"beacon");
+					}*/
 					
 					var li = "";
 					var id_val = "";
 					//container for $li to be added
+					alert(dati);
 					for(var i=0; i<dati.length; i++){
 					
 						li += '<li><a href="' + dati[i] + '" class="categ-go" data-ajax="false">';
@@ -97,9 +98,9 @@
 							
 						}
 						li += '<h3 class="ui-li-heading">' + dati[i] + '</h3></a></li>';
-						id_val = name.id_categoria;
 					}
 					//append list to ul
+					alert(li);
 					$("#lista_beacon").append(li).promise().done(function () {
 						 $.mobile.loading( "hide" );
 						//refresh list to enhance its styling.
