@@ -79,7 +79,7 @@ var app = (function()
 	}*/
 	
 	function scrivi(fs){
-		alert("scrivi")
+		//alert("scrivi")
 		fs.root.getDirectory('dati', { create: true }, function (dirEntry) {
 			dirEntry.getFile('beacon.txt', { create: true }, function (fileEntry) {
 				// Create a FileWriter object for our FileEntry (log.txt).				
@@ -88,7 +88,7 @@ var app = (function()
 						  // Create a new Blob and write it to log.txt.
 						  fileWriter.write(window.url + "|");
 						fileWriter.onwriteend = function (e) {
-							alert(fileEntry.fullPath)
+							//alert(fileEntry.fullPath)
 						};
 
 						fileWriter.onerror = function (e) {
