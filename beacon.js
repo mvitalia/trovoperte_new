@@ -112,7 +112,7 @@ var app = (function()
 					}
 																
 				}						
-				
+				reader.readAsText(fileEntry);
 			}, errorHandler);
 		}, errorHandler);
 	}	
