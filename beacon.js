@@ -56,7 +56,7 @@ var app = (function()
 		alert(store);
 		var fileName = "beacon.txt";
 		alert(fileName)
-
+		alert(store + fileName);
 		//Check for the file. 
 		window.resolveLocalFileSystemURL(store + fileName, appStart, downloadAsset);
 
