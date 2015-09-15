@@ -68,7 +68,8 @@ $(document).ready(function () {
     });
 
 	$(".beacon").click(function(){
-		var url = $(this).attr("collegamento");
+		var url = $(this).prop("collegamento");
+		alert(url);
 		window.open(url,"_system","location=yes");
 		
 	});
