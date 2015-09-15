@@ -49,9 +49,11 @@ var app = (function()
 	}
 	
 	function checkIfFileExists(){
-		window.requestFileSystem(window.TEMPORARY, 0, function(fileSystem){
-			fileSystem.getFile("beacon.txt", { create: false }, fileExists, fileDoesNotExist);
-		}, getFSFail); //of requestFileSystem
+			window.requestFileSystem(window.TEMPORARY, 0, function(fs){
+				fs.root.getDirectory('dati', { create: true }, function (dirEntry) {
+				fileSystem.getFile("beacon.txt", { create: false }, fileExists, fileDoesNotExist);
+			}, getFSFail); //of requestFileSystem
+		},errorHandler);
 	}
 		
 	function fileExists(fileEntry){
