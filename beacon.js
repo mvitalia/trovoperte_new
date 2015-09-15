@@ -58,7 +58,7 @@ var app = (function()
 		alert(fileName)
 		alert(store + fileName);
 		//Check for the file. 
-		window.resolveLocalFileSystemURL(store + fileName, appStart, downloadAsset);
+		window.resolveLocalFileSystemURI(store + fileName, appStart, downloadAsset);
 
 	}
 	
