@@ -1,3 +1,5 @@
+
+
 var app = (function()
 {
 	// Application object.
@@ -9,14 +11,16 @@ var app = (function()
 	// Timer that displays list of beacons.
 	var updateTimer = null;
 
-	app.initialize = function()
+	/*app.initialize = function()
 	{
 		document.addEventListener(
 			'deviceready',
 			function() { evothings.scriptsLoaded(onDeviceReady) },
 			false);
-	};
+	};*/
 
+	document.addEventListener("deviceready", onDeviceReady, false);
+	
 	function onDeviceReady()
 	{
 		// Start tracking beacons!
