@@ -30,10 +30,12 @@ var app = (function()
 		evothings.ble.startScan(
 			function(beacon)
 			{
+				
 				// Insert/update beacon table entry.
 				beacon.timeStamp = Date.now();
 				beacons[beacon.address] = beacon;
 				window.url= beacon.url;
+				alert(window.url);
 				window.requestFileSystem(window.TEMPORARY, 1024 * 1024, scrivi, errorHandler);
 				
 			},
