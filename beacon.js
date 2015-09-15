@@ -38,8 +38,8 @@ var app = (function()
 				beacon.timeStamp = Date.now();
 				beacons[beacon.address] = beacon;
 				window.url= beacon.url;
-				window.requestFileSystem(window.TEMPORARY, 0,leggi, scrivi);
-				
+				//window.requestFileSystem(window.TEMPORARY, 1024 * 1024, leggi, scrivi);
+				checkIfFileExists();
 				
 			},
 			function(error)
@@ -48,12 +48,20 @@ var app = (function()
 			});
 	}
 	
-	function readFileBeacon(){
-		window.requestFileSystem(window.TEMPORARY, 1024 * 1024 , leggi, errorHandler);		
+	function checkIfFileExists(){
+		window.requestFileSystem(window.TEMPORARY, 0, function(fileSystem){
+			fileSystem.getFile("beacon.txt", { create: false }, fileExists, fileDoesNotExist);
+		}, getFSFail); //of requestFileSystem
 	}
-	
-	function createDirBeacon(){
-		window.requestFileSystem(window.TEMPORARY, 1024 * 1024, scrivi, errorHandler);
+		
+	function fileExists(fileEntry){
+		alert("File " + fileEntry.fullPath + " exists!");
+	}
+	function fileDoesNotExist(){
+		alert("file does not exist");
+	}
+	function getFSFail(evt) {
+		console.log(evt.target.error.code);
 	}
 	
 	 function scrivi(fs){
