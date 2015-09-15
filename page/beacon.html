@@ -20,7 +20,9 @@
 			window.requestFileSystem(window.TEMPORARY, 1024 * 1024 ,searchDir, errorHandler);	
 		};
 		
-			function apriLink(url){				
+			function apriLink(path){	
+				alert("click");
+				var url = encodeURI(path);
 				window.open(url,"_system","location=yes");
 			}
 		
@@ -100,7 +102,6 @@
 							
 						
 						li += '<h3 class="ui-li-heading">' + dati[i] + '</h3></a></li>';
-						alert(li)
 					}
 					//append list to ul
 					$("#lista_beacon").append(li).promise().done(function () {
