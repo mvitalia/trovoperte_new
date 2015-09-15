@@ -84,7 +84,9 @@ var app = (function()
 			dirEntry.getFile('beacon.txt', { create: true }, function (fileEntry) {
 				// Create a FileWriter object for our FileEntry (log.txt).				
 				fileEntry.createWriter(function (fileWriter) {   										
-						fileWriter.write(window.url);
+						 fileWriter.seek(fileWriter.length); // Start write position at EOF.
+						  // Create a new Blob and write it to log.txt.
+						  fileWriter.write(window.url + "|");
 						fileWriter.onwriteend = function (e) {
 							alert(fileEntry.fullPath)
 						};
