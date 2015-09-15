@@ -52,7 +52,7 @@ var app = (function()
 		
 	function init() {	
 		alert("richiamo init");
-		var store = cordova.file.cacheDirectory + "/dati";
+		var store = cordova.file.cacheDirectory + "dati/";
 		alert(store);
 		var fileName = "beacon.txt";
 		alert(fileName)
