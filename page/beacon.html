@@ -89,18 +89,17 @@
 					var li = "";
 					var id_val = "";
 					//container for $li to be added
-					alert(dati);
 					for(var i=0; i<dati.length; i++){
 					
 						li += '<li><a href="' + dati[i] + '" class="categ-go" data-ajax="false">';
-						if (name.icona_categoria != "") {
-							li += '<img src="' + name.icona_vuoto + '" class="ui-li-thumb"/>';
+						
+						li += '<img src="" class="ui-li-thumb"/>';
 							
-						}
+						
 						li += '<h3 class="ui-li-heading">' + dati[i] + '</h3></a></li>';
+						alert(li)
 					}
 					//append list to ul
-					alert(li);
 					$("#lista_beacon").append(li).promise().done(function () {
 						 $.mobile.loading( "hide" );
 						//refresh list to enhance its styling.
