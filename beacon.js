@@ -27,6 +27,7 @@ var app = (function()
 		window.url= "prova";
 		init();
 		
+		
 	}
 
 	function startScan()
@@ -54,6 +55,7 @@ var app = (function()
 		
 	function init() {	
 		
+		
 		var store = cordova.file.cacheDirectory + "dati/";
 		
 		var fileName = "beacon.txt";
@@ -69,10 +71,10 @@ var app = (function()
 	}
 	function downloadAsset(){
 		alert("non ci sono");
-		
+		window.requestFileSystem(window.TEMPORARY, 1024 * 1024, scrivi, errorHandler);
 	}
 	
-	/* function scrivi(fs){
+	function scrivi(fs){
 		fs.root.getDirectory('dati', { create: true }, function (dirEntry) {
 			dirEntry.getFile('beacon.txt', { create: true }, function (fileEntry) {
 				// Create a FileWriter object for our FileEntry (log.txt).				
@@ -91,7 +93,7 @@ var app = (function()
 			}, errorHandler);
 		}
 		
-		function leggi(fs){
+		/*function leggi(fs){
 		fs.root.getDirectory('dati', { create: true }, function (dirEntry) {
 			dirEntry.getFile('beacon.txt', { create: true }, function (fileEntry) {
 				// Create a FileWriter object for our FileEntry (log.txt).				
