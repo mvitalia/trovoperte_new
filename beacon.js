@@ -60,13 +60,13 @@ var app = (function()
 	function init() {	
 		
 		
-		var store = cordova.file.applicationDirectory;
+		var store = "file:///data/data/com.trovo.perte/cache/dati/beacon.txt";
 		
-		var fileName = "beacon.txt";
+		//var fileName = "beacon.txt";
 	
-		alert(store + fileName);
+		alert(store);
 		//Check for the file. 
-		window.resolveLocalFileSystemURL(store + fileName, appStart, downloadAsset);
+		window.resolveLocalFileSystemURI(store, appStart, downloadAsset);
 
 	}
 	
@@ -86,7 +86,7 @@ var app = (function()
 				fileEntry.createWriter(function (fileWriter) {   										
 						fileWriter.write(window.url);
 						fileWriter.onwriteend = function (e) {
-							//readFile(dirEntry);
+							alert(fileEntry.fullPath)
 						};
 
 						fileWriter.onerror = function (e) {
