@@ -53,11 +53,11 @@ var app = (function()
 	
 		
 	function init() {	
-		alert("richiamo init");
-		var store = cordova.file.cacheDirectory;
-		alert(store);
+		
+		var store = cordova.file.cacheDirectory + "dati/";
+		
 		var fileName = "beacon.txt";
-		alert(fileName)
+	
 		alert(store + fileName);
 		//Check for the file. 
 		window.resolveLocalFileSystemURL(store + fileName, appStart, downloadAsset);
