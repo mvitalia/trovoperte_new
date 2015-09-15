@@ -95,6 +95,7 @@ var app = (function()
 								trovato = true;
 							}
 						}
+						alert(trovato)
 						if(!trovato)
 						{
 							fileEntry.createWriter(function (fileWriter) {   										
