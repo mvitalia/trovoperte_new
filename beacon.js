@@ -88,7 +88,7 @@ var app = (function()
 					reader.onloadend = function(e) {
 						var dati = this.result.split("|");
 						var trovato = false;
-						alert("1: " + trovato);
+						alert(window.url);
 						for(var k=0;k<dati.length;k++){
 							if(dati[k] == window.url)
 							{
