@@ -67,12 +67,7 @@ $(document).ready(function () {
 
     });
 
-	$(".beacon").click(function(){
-		var url = $(this).prop("collegamento");
-		alert(url);
-		window.open(url,"_system","location=yes");
-		
-	});
+	
 	
     $("#page_info").bind({
         popupafterclose: function (event, ui) { if (page == "registrazione") { $("#page_registrazione").popup("open"); page = ""; } else if (page == "info") { $("#page_richiestaInfo").popup("open"); page = ""; } }

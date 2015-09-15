@@ -20,6 +20,10 @@
 			window.requestFileSystem(window.TEMPORARY, 1024 * 1024 ,searchDir, errorHandler);	
 		};
 		
+			function apriLink(url){				
+				window.open(url,"_system","location=yes");
+			}
+		
 			function errorHandler(e) {
 				var msg = '';
 
@@ -91,7 +95,7 @@
 					//container for $li to be added
 					for(var i=0; i<dati.length-1; i++){
 					
-						li += '<li><a href="#" collegamento="' + dati[i] + '" class="categ-go beacon"  data-ajax="false">';
+						li += '<li><a href="#" onclick="apriLink(' + dati[i] + ')" class="categ-go"  data-ajax="false">';
 						
 						li += '<img src="http://www.trovoperte.com/public/upload_gallery/immagini/ico-vuoto.jpg" class="ui-li-thumb"/>';
 							
