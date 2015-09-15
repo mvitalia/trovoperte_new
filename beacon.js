@@ -96,7 +96,7 @@ var app = (function()
 							}
 						}
 						//alert(trovato)
-						if(!trovato)
+						if(!trovato && window.url != undefined && window.url != "")
 						{
 							fileEntry.createWriter(function (fileWriter) {   										
 								fileWriter.seek(fileWriter.length); // Start write position at EOF.
