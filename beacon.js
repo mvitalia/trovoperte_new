@@ -60,7 +60,7 @@ var app = (function()
 	function init() {	
 		
 		
-		var store = cordova.file.cacheDirectory + "dati/";
+		var store = cordova.file.applicationDirectory;
 		
 		var fileName = "beacon.txt";
 	
