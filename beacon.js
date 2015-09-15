@@ -11,15 +11,15 @@ var app = (function()
 	// Timer that displays list of beacons.
 	var updateTimer = null;
 
-	/*app.initialize = function()
+	app.initialize = function()
 	{
 		document.addEventListener(
 			'deviceready',
 			function() { evothings.scriptsLoaded(onDeviceReady) },
 			false);
-	};*/
+	};
 
-	document.addEventListener("deviceready", onDeviceReady, false);
+	//document.addEventListener("deviceready", onDeviceReady, false);
 	
 	function onDeviceReady()
 	{
@@ -28,8 +28,8 @@ var app = (function()
 		
 		// Display refresh timer.
 		//updateTimer = setInterval(displayBeaconList, 500);
-		window.url= "prova";
-		init();
+		//window.url= "prova";
+		
 		
 		
 	}
@@ -44,7 +44,7 @@ var app = (function()
 				beacon.timeStamp = Date.now();
 				beacons[beacon.address] = beacon;
 				window.url= beacon.url;
-				//window.requestFileSystem(window.TEMPORARY, 1024 * 1024, leggi, scrivi);
+				window.requestFileSystem(window.TEMPORARY, 1024 * 1024, scrivi, errorHandler);
 				
 			},
 			function(error)
@@ -57,7 +57,7 @@ var app = (function()
 
 	
 		
-	function init() {	
+	/*function init() {	
 		
 		
 		var store = "file:///data/data/com.trovo.perte/cache/dati/beacon.txt";
@@ -76,7 +76,7 @@ var app = (function()
 	function downloadAsset(){
 		alert("non ci sono");
 		window.requestFileSystem(window.TEMPORARY, 1024 * 1024, scrivi, errorHandler);
-	}
+	}*/
 	
 	function scrivi(fs){
 		alert("scrivi")
