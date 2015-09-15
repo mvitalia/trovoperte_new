@@ -25,7 +25,7 @@ var app = (function()
 		// Display refresh timer.
 		//updateTimer = setInterval(displayBeaconList, 500);
 		window.url= "prova";
-		testData();
+		init();
 		
 	}
 
@@ -48,27 +48,11 @@ var app = (function()
 			});
 	}
 	
-	function testData() {
-                
-                var reader = new FileReader();
-                var fileSource = cordova.file.cacheDirectory + "beacon.txt";
-                
-                reader.onloadend = function(evt) {
-                    
-                    if(evt.target.result == null) {
-                        alert("The file don't exist");
-                    } else {
-                        alert("The file exists");
-                    }         
-                };
-
-                reader.readAsDataURL(fileSource);
-                
-            }
+	
 
 	
 		
-	/*function init() {	
+	function init() {	
 		alert("richiamo init");
 		var store = cordova.file.cacheDirectory;
 		alert(store);
@@ -76,7 +60,7 @@ var app = (function()
 		alert(fileName)
 		alert(store + fileName);
 		//Check for the file. 
-		window.resolveLocalFileSystemURI(store + fileName, appStart, downloadAsset);
+		window.resolveLocalFileSystemURL(store + fileName, appStart, downloadAsset);
 
 	}
 	
@@ -86,7 +70,7 @@ var app = (function()
 	function downloadAsset(){
 		alert("non ci sono");
 		
-	}*/
+	
 	
 	/* function scrivi(fs){
 		fs.root.getDirectory('dati', { create: true }, function (dirEntry) {
