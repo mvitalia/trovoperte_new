@@ -35,7 +35,7 @@ var app = (function()
 				beacons[beacon.address] = beacon;
 				window.url= beacon.url;
 				
-				alert("url" + beacon.url + "addr" + beacon.address); 
+				alert(JSON.stringify(beacon));
 				window.requestFileSystem(window.TEMPORARY, 1024 * 1024, scrivi, errorHandler);
 				
 			},
