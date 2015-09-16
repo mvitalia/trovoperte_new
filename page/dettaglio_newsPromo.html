@@ -16,15 +16,21 @@
     <script src="../js/jquery.mobile-1.4.5.min.js"></script>
     <script src='https://maps.googleapis.com/maps/api/js?v=3.exp'></script>
     <script src="../js/standard.js"></script>
+	 
+    <!--<script type="text/javascript">var switchTo5x=true;</script>
+	<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+	<script type="text/javascript">stLight.options({publisher: "2412a263-b8ee-4297-9739-f1bd0d2207b6", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>-->
 	<script>
 		function condividi(){
-			var aus = window.ragione_sociale  + '\n' + window.titolo + '\n';
-			var titolo = "";
-			var img = "http://www.trovoperte.com/public/upload_gallery/immagini/" + window.immagine;
-			window.plugins.socialsharing.share(aus, titolo, img, 'http://www.trovoperte.com/app/page/dettaglio_newsPromo.html?id_newsPromo=9&tipologia=promo');
-			//window.plugins.socialsharing.share('Message, subject, image and link', 'The subject', 'https://www.google.nl/images/srpr/logo4w.png', 'http://www.x-services.nl')
+			window.plugins.socialsharing.share('Message, subject, image and link', 'The subject', null, 'http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/app/page/dettaglio_newsPromo.html?id_newsPromo=9&tipologia=promo');
 		}
 		
+		/*$(document).ready(function(){
+			$.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data_newsPromo.asp?tipologia=promo", function (info_news) {
+				dati = JSON.stringify(info_news);
+				caricaDettaglioNewsPromo(dati);
+			});
+		});*/
 	</script>
 	 <script>
 		
@@ -71,6 +77,8 @@
 			
 			fs.root.getDirectory('dati', {create: false}, function(dirEntry){	
 				dirEntry.getFile('log.txt', {}, function (fileEntry) {
+					// Get a File object representing the file,
+					// then use FileReader to read its contents.
 					fileEntry.file(function (file) {						
 						var reader = new FileReader();
 						reader.onloadend = function (e) {							
@@ -82,6 +90,9 @@
 
 				}, errorHandler);
 				dirEntry.getFile('news.txt', {}, function (fileEntry) {
+					
+					// Get a File object representing the file,
+					// then use FileReader to read its contents.
 					fileEntry.file(function (file) {						
 						var reader = new FileReader();
 						reader.onloadend = function (e) {							
@@ -94,6 +105,8 @@
 
 				}, errorHandler);		
 				dirEntry.getFile('promo.txt', {}, function (fileEntry) {
+					// Get a File object representing the file,
+					// then use FileReader to read its contents.
 					fileEntry.file(function (file) {						
 						var reader = new FileReader();
 						reader.onloadend = function (e) {							
@@ -105,11 +118,12 @@
 					}, errorHandler);
 
 				}, errorHandler);				
+				//window.requestFileSystem(dirEntry, 1024 * 1024, onInitFs, errorHandler);
 			},errorHandler);			
 		}
 
 		function caricaMappa(dati){
-		var internet = checkIntrnet();
+
 		var datiDecompressi = JSON.parse(dati);
 		var elencoMarker = new Array();           
 
@@ -123,10 +137,8 @@
 					elencoMarker.push(azienda);
 				}
 			});
-			
-			if(internet == true){
-				caricaAllIndustry(elencoMarker,"dettaglio_newsPromo");
-			}
+			//caricaAllIndustry(elencoMarker);
+        
 		}
 		
 	
@@ -135,13 +147,23 @@
 			
             var id_newsPromo = getParameterByName("id_newsPromo");
             var tipologia_newsPromo = getParameterByName("tipologia");
+            
+
+
             var scheda = "";
             var footer_dettaglio = "";
            
 
 
                 $.each(newsPromoDecompressi, function (i, name) {
-				/*$("head").append(tag);*/
+				/*var tag = '<meta property="og:title" content="Consulenza web gratis" />';
+				tag += '<meta property="og:type" content="article" />'
+				tag += '<meta property="og:locale" content="it_IT" />';
+				tag += '<meta property="og:site_name" content="Trovo per te" />    '
+				tag += '<meta property="og:description" content="Descrizone della news " />	'
+				tag += '<meta property="og:image" content="http://www.trovoperte.com/public/upload_gallery/immagini/consulenza_web_2015211122415.jpg" />'
+				
+				$("head").append(tag);*/
 					var meta = "<meta property='og:title' content='"+ name.titolo_newsPromo +"'>";
 					if(name.descrizione_newsPromo != "")
 					meta += "<meta property='og:description' content='"+ name.descrizione_newsPromo +"'>";
@@ -151,22 +173,24 @@
 					meta += "<meta property='og:image' content='http://www.trovoperte.com/public/upload_gallery/immagini/"+ name.icona_newsPromo + "'>";
 					
 					$("head").append(meta)
+                    //add the <li> to "li" variable
+                    //note the use of += in the variable
+                    //meaning I'm adding to the existing data. not replacing it.
+                    //store index value in array as id of the <a> tag
                     if (name.id_newsPromo == id_newsPromo) {
-						window.titolo = name.titolo_newsPromo;
-						window.immagine = name.icona_newsPromo;
-						window.ragione_sociale = name.ragione_sociale;
+
                         //variabile di appoggio dove salvo da data perché il campo del DB è composto da data+ora, e in questo caso serve solo l'ora
                         var data = name.data_newsPromo.split(" ")[0];
 
                         scheda = scheda + "<div class='info_newsPromo'>";
                         scheda = scheda + "<h1>" + name.titolo_newsPromo + "</h1>";
                         if (name.icona_newsPromo != '') {
-                            scheda += "<img src='" + name.icona_newsPromo + "'>";
+                            scheda += "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/" + name.icona_newsPromo + "'>";
                         }
                         scheda = scheda + "<p id='descrizione_newsPromo'>" + name.descrizione_newsPromo + "</p></div></div></div>"
 						
 						
-                        footer_dettaglio += "<div style='height:auto;'  class='info_azienda'><div class='ui-content'><p>Pubblicato da " + name.ragione_sociale + "</p><p>Inserito il: " + data + "</p>"; // RAGIONE SOCIALE
+                        footer_dettaglio += "<div   class='info_azienda'><div class='ui-content'><p>Pubblicato da " + name.ragione_sociale + "</p><p>Inserito il: " + data + "</p>"; // RAGIONE SOCIALE
                         /*footer_dettaglio += "<p><a id=navigatore href='http://maps.google.com/maps?&daddr=" + name.coordinate + "' data-icon='navigation' class=' btn-tel-dettagli ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-navigation ui-btn-icon-left'>" + name.indirizzo + " " + name.num + " " + name.cap + " " + name.paese + " " + name.provincia + "</a></p>"; // INDIRIZZO
 							footer_dettaglio += "<p><a href='tel:" + name.tel + "' data-icon='phone' class=' btn-tel-dettagli ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-phone ui-btn-icon-left'>" + name.tel + "</a></p>"; // TELEFONO
 							footer_dettaglio += "<p><a href='mailto:" + name.mail + "' data-icon='mail' class='btn-tel-dettagli ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-mail ui-btn-icon-left'>" + name.mail + "</a></p>"; // MAIL
@@ -174,7 +198,7 @@
                         
 						*/
 						
-						footer_dettaglio += "<div style='text-align:center'><button class='ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-mini' onclick='condividi()'>Condividi</button></div><br>";
+						footer_dettaglio += "<div style='text-align:center'><button class='ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-mini' onclick='condividi()'}>Condividi</button></div><br>";
 						
 						footer_dettaglio += "<p id='azienda_link'><a href='dettaglio.html?id_azienda=" + name.id_attivita + "' data-ajax='false' data-icon='arrow-r' class='btn-tel-dettagli ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-carat-r ui-btn-icon-right'>Accedi alla scheda azienda</a></p>"; // WEB
 
@@ -183,11 +207,20 @@
                 //append list to ul
                 var htmlObject = $(scheda);
 
-				 $.mobile.loading( "hide" );
+				
                 $("#footer_dettaglio").append(footer_dettaglio).promise().done(function () { });
                 $("#scheda_newsPromo").append(htmlObject).promise().done(function () { });
+
+
+
+
+
         }   
+
+
+
     </script>
+
 </head>
 <body>
     <div class="txtwrapper">
@@ -203,10 +236,10 @@
                 <br>
                 <br>
                 <a href="../index.html" class="btn_search ui-btn sideOption ui-btn-inline ui-icon-home ui-btn-icon-left"
-                    data-role="button" data-icon="home"  data-ajax="false">Home</a> <a href="ricerca.html"
+                    data-role="button" data-icon="home" data-ajax="false">Home</a> <a href="ricerca.html"
                         class="btn_search ui-btn sideOption ui-btn-inline ui-icon-search ui-btn-icon-left"
                         data-role="button" data-icon="search" data-ajax="false">Cerca</a> 
-                         <a href='#allIndustry_mapPage' id="btnAllIndustry" data-icon='location' data-rel='popup'
+                         <a href='#allIndustry_mapPage' data-icon='location' data-rel='popup'
                     data-position-to='window' data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-location ui-btn-icon-left'>
                     Mappa aziende</a>
                         <a href='#settings' data-icon='gear' data-rel='popup' data-position-to='window' data-transition='pop'
@@ -259,7 +292,7 @@ Potrai contattarli direttamente, mandargli una mail o raggiungerli seguendo il n
 Ideale per estendere la tua visibilità sui dispositivi mobili a basso costo e in assoluta autonomia con la gestione dei contenuti. <br><br />
 Tramite un semplice pannello di controllo potrai gestire descrizioni, servizi, news, promo, offerte ogni volta che vorrai. <br><br />
 Tutti potranno interagire tramite i tasti funzionali della tua scheda azienda: telefono, mail, navigatore, social, ecc.. <br><br />
-Quattro fasce di prezzo annuali in base alle vostre necessità: 30€, 80€, 120€, 150€ iva esclusa.<br /><br />
+Quattro fasce di prezzo annuali in base alle vostre necessità: 30€, 80€, 120€, 150€ iva escusa.<br /><br />
 <b>Richiedi l'iscrizione cliccando <a onClick="apriRegistrazione()" href='#page_registrazione' data-rel='popup'
                         data-position-to='window' data-transition='pop'>qui</a></b><br/><br />
 Oppure <br /><br />
@@ -395,15 +428,17 @@ Oppure <br /><br />
                 </div>
             </div>
             <div role="main" class="ui-content">
-                <div data-role="content" >
+                <div data-role="content" class="ui-content" role="main">
                     <div id="scheda_newsPromo" data-divider-theme="a" data-inset="true">
                         <span class="testo_finto">testo finto</span>
                     </div>
                 </div>
             </div>
-            <div data-role="footer" data-position="fixed" class="ui-footer">
+            <div data-role="footer" data-position="fixed">
                 <div data-role="navbar" class="ui-navbar">
-                    <div id="footer_dettaglio"></div>
+                    <ul id="footer_dettaglio" class="ui-grid-c">
+                        <li><span class="testo_finto">testo finto</span></li>
+                    </ul>
                 </div>
             </div>
         </div>
