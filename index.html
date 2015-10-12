@@ -22,7 +22,7 @@
 				$("#lstMacrocategorie").change(function(){
 					$("#lstCategorie option").remove();
 					var macrocategoria = $("#lstMacrocategorie").val();
-					$.getJSON("http://www.trovoperte.com/admin/get_MacroCategorie.asp?tipologia=categorie&macrocategoria="+macrocategoria, function (info) {
+					$.getJSON("http://www.trovoperte.com/get_MacroCategorie.asp?tipologia=categorie&macrocategoria="+macrocategoria, function (info) {
 						for(var i=0; i<info.length;i++){
 							var option = "<option value="+ info[i].id_categoria +">" + info[i].titolo_categoria + "</option>"
 							$("#lstCategorie").append(option);
@@ -73,13 +73,13 @@
 
             });
 			
-			$.getJSON("http://www.trovoperte.com/admin/get_MacroCategorie.asp?tipologia=macrocategorie", function (info) {
+			$.getJSON("http://www.trovoperte.com/get_MacroCategorie.asp?tipologia=macrocategorie", function (info) {
 				for(var i=0; i<info.length;i++){
 					var option = "<option macroID="+ info[i].id_macrocategoria +">" + info[i].titolo_macrocategoria + "</option>"
 					$("#lstMacrocategorie").append(option);
 				}
 				
-				$.getJSON("http://www.trovoperte.com/admin/get_MacroCategorie.asp?tipologia=categorie&macrocategoria="+info[0].titolo_macrocategoria, function (info) {
+				$.getJSON("http://www.trovoperte.com/get_MacroCategorie.asp?tipologia=categorie&macrocategoria="+info[0].titolo_macrocategoria, function (info) {
 					for(var i=0; i<info.length;i++){
 						var option = "<option value="+ info[i].id_categoria +">" + info[i].titolo_categoria + "</option>"
 						$("#lstCategorie").append(option);
