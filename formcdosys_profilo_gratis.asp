@@ -9,7 +9,7 @@ DIM corpoMessaggio, numeroCampi, invioA, invioDa, nomeDominio, indirizzoIp, modu
 	
 
 'invioA =  "p.guglielmo@mvitalia.com"
-invioA =  "info@trovoperte.com"
+invioA =  "a.nota@mvitalia.com"
 
 
 ' SALVATTAGGIO IN DB
