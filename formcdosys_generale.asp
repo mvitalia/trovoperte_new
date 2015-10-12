@@ -38,7 +38,7 @@ Set iConf = CreateObject("CDO.Configuration")
 Set Flds = iConf.Fields
 
 Flds(cdoSendUsingMethod) = cdoSendUsingPort
-Flds(cdoSMTPServer) = "smtp.trovoperte.com" 
+Flds(cdoSMTPServer) = "localhost" 
 Flds(cdoSMTPServerPort) = 25
 Flds(cdoSMTPAuthenticate) = cdoAnonymous ' 0
 Flds.Update
@@ -51,16 +51,6 @@ With iMsg
    .Subject = "Contatto dal dominio " & nomeDominio
    .HTMLBody = "<img src='http://www.trovoperte.com/app/img/logo_trovoperte.png' alt='logo trovo per te' style='float: center;' /><br><br><font face=verdana size=2>Contatto da " & nome & ", <br><br>" & corpoMessaggio & "<br><br><br> Questi i dati inseriti nel modulo presente alla pagina <b> " & modulo & " </b>da utente con indirizzo IP <b>" & indirizzoIp & " </b> browser e sistema operativo <b>" & browserSistemaOperativo  & "</b>"
    .Send
-End With
-
-With iMsg
-	  Set .Configuration = iConf
-	   .To = invioDa
-	   .From = invioA
-	   .sender=invioDa
-	   .Subject = "Richiesta info o registrazione Trovo x Te " & nomeDominio
-	   .HTMLBody = "<img src='http://www.trovoperte.com/images/logo_trovoperte.png' alt='logo Trovo x Te' style='float: center' /><br><br><font face=verdana size=2>Buongiorno " & nome & " " & cognome & ", <br>abbiamo ricevuto la tua richiesta, sarai ricontattato al pi&ugrave; presto da un nostro operatore.<br><br>Grazie e arrivederci.<br><br><br><br><br>" & corpoMessaggio 
-	   .Send
 End With
 
 
@@ -93,7 +83,8 @@ End With
             <div data-role="main"  data-backbtn="false">
                 <p style="text-align:center">Grazie per averci contattato!<br />La sua richiesta di informazioni è stata inviata correttamente, le risponderemo appena possibile.
                 <br /><br /><br />
-                <a href='index.html' data-icon='home' data-ajax="false" class='ui-btn ui-shadow ui-btn-inline ui-icon-home ui-btn-icon-left'>Home</a></p>
+                <a href='index.html' data-icon='home' data-ajax="false" class='ui-btn ui-shadow ui-btn-inline ui-icon-home ui-btn-icon-left'>Home</a>
+                <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all  ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right" data-rel="back" data-icon="delete">&nbsp;</a></p>
             </div>
 
 		</div>

@@ -1,6 +1,5 @@
 <html>
 <head>
-<script type="text/javascript" src="../cordova.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1"> 
 <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -30,15 +29,18 @@
             
             <a href="../index.html" class="btn_search ui-btn sideOption ui-btn-inline ui-icon-home ui-btn-icon-left" data-role="button" data-icon="home" data-ajax="false" >Home</a>
             <a href="ricerca.html" class="btn_search ui-btn sideOption ui-btn-inline ui-icon-search ui-btn-icon-left" data-role="button" data-icon="search"  data-ajax="false" >Cerca</a>
-              <a href='#allIndustry_mapPage' id="btnAllIndustry" data-icon='info' data-rel='popup'
-                    data-position-to='window' data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-info ui-btn-icon-left'>
+              <a href='#allIndustry_mapPage' data-icon='location' data-rel='popup'
+                    data-position-to='window' data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-location ui-btn-icon-left'>
                     Mappa aziende</a>
+
 
 			<a href='#settings' data-icon='gear' data-rel='popup' data-position-to='window' data-transition='pop' class='btn_search ui-btn sideOption ui-btn-inline ui-icon-gear ui-btn-icon-left'>Impostazioni</a>
             <!-- setting -->
             <div id="settings" data-role="popup">
                 <div data-role="header">
                     <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all sideOption ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right" data-rel="back" data-icon="delete">&nbsp;</a>
+                    
+                    
                     <h1>Impostazioni</h1>
                 </div>
                 <div data-role="content">
@@ -52,16 +54,17 @@
               <a href='#page_info' data-icon='info' data-rel='popup' data-position-to='window'
                     data-transition='pop' class='btn_search sideOption ui-btn sideOption ui-btn-inline ui-icon-info ui-btn-icon-left'>
                     Info generali</a>
-                <a href='#page_richiestaInfo' data-icon='info' data-rel='popup' data-position-to='window'
-                    data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-info ui-btn-icon-left'>
+                <a href='#page_richiestaInfo' data-icon='mail' data-rel='popup' data-position-to='window'
+                    data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-mail ui-btn-icon-left'>
                     Contattaci</a>
-                 <a href='#page_registrazione' data-icon='info' data-rel='popup' data-position-to='window'
-                    data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-info ui-btn-icon-left'>
+                 <a href='#page_registrazione' data-icon='plus' data-rel='popup' data-position-to='window'
+                    data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-plus ui-btn-icon-left'>
                     Richiesta iscrizione</a>
             
+            		<a href="#" onClick="prepara_link_areariservata(this)" class="btn_search sideOption ui-btn  ui-btn-inline ui-icon-lock ui-btn-icon-left" data-role="button" data-icon="lock" data-ajax="false">Area riservata</a>   
              <!-- info -->
               
-                                           <div data-role="popup" id="page_info">
+             <div data-role="popup" id="page_info">
               <div data-role="header">
               	 <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right" data-rel="back" data-icon="delete">&nbsp;</a>
                 <h1>Info generali</h1>
@@ -83,15 +86,24 @@ Ideale per estendere la tua visibilità sui dispositivi mobili a basso costo e i
 Tramite un semplice pannello di controllo potrai gestire descrizioni, servizi, news, promo, offerte ogni volta che vorrai. <br><br />
 Tutti potranno interagire tramite i tasti funzionali della tua scheda azienda: telefono, mail, navigatore, social, ecc.. <br><br />
 Quattro fasce di prezzo annuali in base alle vostre necessità: 30€, 80€, 120€, 150€ iva esclusa.<br /><br />
-<b>Richiedi l'iscrizione cliccando <a onclick="apriRegistrazione()" href='#page_registrazione' data-rel='popup'
+<b>Richiedi l'iscrizione cliccando <a onClick="apriRegistrazione()" href='#page_registrazione' data-rel='popup'
                         data-position-to='window' data-transition='pop'>qui</a></b><br/><br />
 Oppure <br /><br />
 
-<b>Contattaci per avere maggiori informazioni cliccando <a onclick="apriInfo()" href='#page_richiestaInfo' data-rel='popup'
+<b>Contattaci per avere maggiori informazioni cliccando <a onClick="apriInfo()" href='#page_richiestaInfo' data-rel='popup'
                         data-position-to='window' data-transition='pop'>
                         qui</a></b>
+
+
+
               </div>
+                
+
+
+              
             </div>
+		
+         
                  <!-- richiesta informazioni -->
                 <div data-role="popup" id="page_richiestaInfo" style="width: 35%; margin: 0 auto;">
                         
@@ -101,7 +113,7 @@ Oppure <br /><br />
                     <h1>
                         Contattaci</h1>
                 </div>
-                <form  method="post"  onsubmit="return validateFormInfo();" action="formcdosys_generale.asp" id="form_richiestaInfo" name="form_richiestaInfo">
+                <form  method="post"  onsubmit="return validateFormInfo();" action="http://www.trovoperte.com/app/formcdosys_generale.asp" id="form_richiestaInfo" name="form_richiestaInfo"><input type="hidden" name="tipologia" value="Richiesta informazioni">
                      <div class="form_left">
                             <input  name="nome" id="txtNomeInfo" type="text" placeholder="Nome" class="required"/>
                         </div >
@@ -144,7 +156,7 @@ Oppure <br /><br />
                         <h1>
                             Richiesta iscrizione</h1>
                     </div>
-                   <form  method="post"  onsubmit="return validateFormRegistrazione();" action="formcdosys_generale.asp" id="form_registrazioneAzienda" name="form_registrazioneAzienda" >
+                   <form  method="post"  onsubmit="return validateFormRegistrazione();" action="http://www.trovoperte.com/app/formcdosys_generale.asp" id="form_registrazioneAzienda" name="form_registrazioneAzienda" ><input type="hidden" name="tipologia" value="Richiesta registrazione">
                     
                         <div class="form_left">
                             <input  name="nome" id="txtNomeRegistrazione" type="text" placeholder="Nome" class="required"/>
@@ -176,6 +188,8 @@ Oppure <br /><br />
                             196/2003INFORMATIVA AI SENSI DEL DLGS 196/2003 FINALITA' E MODALITA' DEL TRATTAMENTO
                             DEI DATI PERSONALI</p>
                         <br />
+                        
+                        
                        <div style="padding:0 10px 0 10px;"> <input type="checkbox"  name="conferma" class="required" id="chkConferma_Richiesta" />
                         <label style="text-indent:35px;" id="txtAcconsento">
                             Acconsento il trattamento dei dati personali</label></div>
@@ -202,15 +216,17 @@ Oppure <br /><br />
         
         <div data-role="header" data-position="fixed">
             <a href="#" data-rel="back" data-icon="back" data-position="inline" class="ui-btn-left" >&nbsp;</a>
+			
+            
             <div class="ui-btn-right">
                 <a href="#myPanel" class="ui-btn ui-shadow ui-btn-inline ui-btn-icon-left ui-icon-grid" data-role="button" data-icon="grid" >&nbsp;</a>
                
             </div>
             
             <h1>Ricerca</h1>
-            <form onsubmit="return false" role="form" class =" box_search">
-           
-                <div class="form-group">
+            
+            <form role="form" class="box_search">
+                <div class="form-group ui-content">
                   <input type="search" name="search" class="form-control input-lg" data-mini="true" id="search" placeholder="Cerca..."  />
                    
                     <select id="lstCitta">
@@ -218,7 +234,8 @@ Oppure <br /><br />
                     </select>
              
                 </div>
-			</form>
+               
+            </form>
             
         </div>
         
@@ -229,6 +246,10 @@ Oppure <br /><br />
             </ul>
         </div>
     </div>
+
+	
+
+
 	<!-- setting -->
 	<div id="settings" data-role="page">
             <div data-role="header">
@@ -243,75 +264,23 @@ Oppure <br /><br />
                 </ul>
             </div>
     </div>
+    
+    
+   
+    
 </div>
 
 
 <script>
-	
-	var DATI = "";
-	
-	document.addEventListener("deviceready", onDeviceReady, false);
-		
-	function onDeviceReady(){
-		window.requestFileSystem(window.TEMPORARY, 1024 * 1024 ,searchDir, errorHandler);
-	}
-	
-	function errorHandler(e) {
-				var msg = '';
 
-				switch (e.code) {
-					case FileError.QUOTA_EXCEEDED_ERR:
-						msg = 'QUOTA_EXCEEDED_ERR';
-						break;
-					case FileError.NOT_FOUND_ERR:
-						msg = 'NOT_FOUND_ERR';
-						msg = msg + "Non è presente un file in locale, collegarsi a internet per fruire dei servizi";
-						break;
-					case FileError.SECURITY_ERR:
-						msg = 'SECURITY_ERR';
-						break;
-					case FileError.INVALID_MODIFICATION_ERR:
-						msg = 'INVALID_MODIFICATION_ERR';
-						break;
-					case FileError.INVALID_STATE_ERR:
-						msg = 'INVALID_STATE_ERR';
-						break;
-					default:
-						msg = 'Unknown Error';
-						break;
-				};
+    $("#page_ricerca").on("pageshow", function (event) {
 
-				alert('Error: ' + msg);
-			}
+        var elencoMarker = new Array();
 
-		function searchDir(fs){
-			var dati ="";			
-			fs.root.getDirectory('dati', {create: false}, function(dirEntry){	
-				
-				dirEntry.getFile('log.txt', {}, function (fileEntry) {
-					
-					// Get a File object representing the file,
-					// then use FileReader to read its contents.
-					fileEntry.file(function (file) {						                                                                                                                                                                                                                          
-						var reader = new FileReader();
-						reader.onloadend = function (e) {							
-							DATI = this.result;
-							caricaMappa(DATI);
-						};
-						reader.readAsText(file);
-					}, errorHandler);
 
-				}, errorHandler);				
-			},errorHandler);			
-		}
-	
+        $.getJSON("http://www.trovoperte.com/admin/get_json_data.asp", function (info_allIndustry) {
 
-		function caricaMappa(dati){
-			var internet = checkInternet();
-			var elencoMarker = new Array();
-			datiDecompressi = JSON.parse(dati);
-			
-            caricaCitta(datiDecompressi);                                        
+            caricaCitta(info_allIndustry);
 
             $.each(info_allIndustry, function (i, name) {
                 if (name.coordinate != "") {
@@ -324,39 +293,36 @@ Oppure <br /><br />
                 }
 
             });
-			if(internet == true){
-				caricaAllIndustry(elencoMarker,"ricerca");
-			}
-			
-        }
+            caricaAllIndustry(elencoMarker);
+        });
 
-		$("#page_ricerca").on("pageshow", function(){
-			$('#search').keyup(function () {	
-				caricaListeFiltrate();
-			});	
-			$("#lstCitta").change(function () {
-				
-				caricaListeFiltrate();
-			});
-		});
-		
+        //append list to ul
+        $('#search').keyup(function () {
+            caricaListeFiltrate();
+        });
+
+        $("#lstCitta").change(function () {
+            caricaListeFiltrate();
+        });
+    })
+
     function caricaListeFiltrate() {
-		
-		var datiDecompressi = JSON.parse(DATI);
         var searchField = $('#search').val();
         var regex = new RegExp(searchField, "i");
         var output = '';
         var count = 1;
 
         var citta = $("#lstCitta").val();
-        
-            $.each(datiDecompressi, function (key, val) {
+
+
+        $.getJSON("http://www.trovoperte.com/admin/get_json_data.asp", function (info) {
+            $.each(info, function (key, val) {
                 if ((val.ragione_sociale.search(regex) != -1) || (val.servizi.search(regex) != -1) || (val.macrocategoria.search(regex) != -1) || (val.categoria.search(regex) != -1) || (val.paese.search(regex) != -1)) {
                     if (citta != "Tutti i paesi" && val.paese.indexOf(""+citta) != -1 ) {
                         output += '<li class="ui-li-has-thumb ui-last-child"><a href="dettaglio.html?id_azienda=' + val.id + '" id="' + val.id + '" class="azienda-go ui-btn ui-btn-icon-right ui-icon-carat-r" data-ajax="false">';
 
                         if (name.foto_principale != "" && name.foto_princinpale != "undefined") {
-                            output += '<img src="' + val.foto_principale + '" class="ui-li-thumb"/>';
+                            output += '<img src="http://www.trovoperte.com/public/upload_gallery/immagini/' + val.foto_principale + '" class="ui-li-thumb"/>';
                         }
                         output += '<h3 class="ui-li-heading">' + val.ragione_sociale + '</h3><p class="ui-li-desc">' + val.paese + '</p></a></li>';
                         count++;
@@ -365,19 +331,26 @@ Oppure <br /><br />
                         output += '<li class="ui-li-has-thumb ui-last-child"><a href="dettaglio.html?id_azienda=' + val.id + '" id="' + val.id + '" class="azienda-go ui-btn ui-btn-icon-right ui-icon-carat-r" data-ajax="false">';
 
                         if (name.foto_principale != "" && name.foto_princinpale != "undefined") {
-                            output += '<img src="' + val.foto_principale + '" class="ui-li-thumb"/>';
+                            output += '<img src="http://www.trovoperte.com/public/upload_gallery/immagini/' + val.foto_principale + '" class="ui-li-thumb"/>';
                         }
                         output += '<h3 class="ui-li-heading">' + val.ragione_sociale + '</h3><p class="ui-li-desc">' + val.paese + '</p></a></li>';
                         count++;
                     }
                 }
             });
+            //$('#results').html(output);
             $("#results").html(output).promise().done(function () {
 
             });
 
             $(this).listview("refresh");
+        });
+
+
     }  
+
+
+
 </script>
 </body>
 </html>

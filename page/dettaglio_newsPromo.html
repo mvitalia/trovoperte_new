@@ -1,13 +1,5 @@
 <html>
-<head >
-	<meta property="og:title" content="consulenza web gratis" />
-	<meta property="og:description" content="consulenza web gratis" />
-	<meta property="og:type" content="website" />
-	<!--<meta property="og:url" content="http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/app/page/dettaglio_newsPromo.html?id_newsPromo=9&tipologia=promo"/>-->
-	<meta property="og:image" content="http://utenti.html.it/tmp_img/articolo_42dbbb815bdbc3b3.gif"/>
-	<script type="text/javascript" src="../cordova.js"></script>
-	<script src="../js/SocialSharing.js"></script>
-	
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -20,211 +12,18 @@
     <script src="../js/jquery.mobile-1.4.5.min.js"></script>
     <script src='https://maps.googleapis.com/maps/api/js?v=3.exp'></script>
     <script src="../js/standard.js"></script>
-	 
-    <!--<script type="text/javascript">var switchTo5x=true;</script>
-	<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
-	<script type="text/javascript">stLight.options({publisher: "2412a263-b8ee-4297-9739-f1bd0d2207b6", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>-->
+
+
 	<script>
 		function condividi(){
-			window.plugins.socialsharing.share('Message, subject, image and link', 'The subject', null, 'http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/app/page/dettaglio_newsPromo.html?tipologia=promo&id_newsPromo=9');
+			var aus = window.ragione_sociale  + '\n' + window.titolo + '\n';
+			var titolo = "";
+			var img = "http://www.trovoperte.com/public/upload_gallery/immagini/" + window.immagine;
+			window.plugins.socialsharing.share(aus, titolo, img, 'http://www.trovoperte.com/app/page/dettaglio_newsPromo.html?id_newsPromo=9&tipologia=promo');
+			//window.plugins.socialsharing.share('Message, subject, image and link', 'The subject', 'https://www.google.nl/images/srpr/logo4w.png', 'http://www.x-services.nl')
 		}
 		
-		/*$(document).ready(function(){
-			$.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data_newsPromo.asp?tipologia=promo", function (info_news) {
-				dati = JSON.stringify(info_news);
-				caricaDettaglioNewsPromo(dati);
-			});
-		});*/
 	</script>
-	 <script>
-		
-		
-		document.addEventListener("deviceready", onDeviceReady, false);
-		
-		function onDeviceReady(){
-			window.requestFileSystem(window.TEMPORARY, 1024 * 1024 ,searchDir, errorHandler);
-		}
-		
-		
-		function errorHandler(e) {
-				var msg = '';
-
-				switch (e.code) {
-					case FileError.QUOTA_EXCEEDED_ERR:
-						msg = 'QUOTA_EXCEEDED_ERR';
-						break;
-					case FileError.NOT_FOUND_ERR:
-						msg = 'NOT_FOUND_ERR';
-						msg = msg + "Non è presente un file in locale, collegarsi a internet per fruire dei servizi";
-						break;
-					case FileError.SECURITY_ERR:
-						msg = 'SECURITY_ERR';
-						break;
-					case FileError.INVALID_MODIFICATION_ERR:
-						msg = 'INVALID_MODIFICATION_ERR';
-						break;
-					case FileError.INVALID_STATE_ERR:
-						msg = 'INVALID_STATE_ERR';
-						break;
-					default:
-						msg = 'Unknown Error';
-						break;
-				};
-
-				alert('Error: ' + msg);
-			}
-
-		function searchDir(fs){
-			var dati ="";
-			var newsPromo = "";
-			var tipologia_newsPromo = getParameterByName("tipologia");
-			
-			fs.root.getDirectory('dati', {create: false}, function(dirEntry){	
-				dirEntry.getFile('log.txt', {}, function (fileEntry) {
-					// Get a File object representing the file,
-					// then use FileReader to read its contents.
-					fileEntry.file(function (file) {						
-						var reader = new FileReader();
-						reader.onloadend = function (e) {							
-							dati=this.result;
-							caricaMappa(dati);
-						};
-						reader.readAsText(file);
-					}, errorHandler);
-
-				}, errorHandler);
-				dirEntry.getFile('news.txt', {}, function (fileEntry) {
-					
-					// Get a File object representing the file,
-					// then use FileReader to read its contents.
-					fileEntry.file(function (file) {						
-						var reader = new FileReader();
-						reader.onloadend = function (e) {							
-							news=this.result;
-							if(tipologia_newsPromo == "news")
-							caricaDettaglioNewsPromo(news);
-						};
-						reader.readAsText(file);
-					}, errorHandler);
-
-				}, errorHandler);		
-				dirEntry.getFile('promo.txt', {}, function (fileEntry) {
-					// Get a File object representing the file,
-					// then use FileReader to read its contents.
-					fileEntry.file(function (file) {						
-						var reader = new FileReader();
-						reader.onloadend = function (e) {							
-							promo=this.result;	
-							if(tipologia_newsPromo == "promo")
-							caricaDettaglioNewsPromo(promo);
-						};
-						reader.readAsText(file);
-					}, errorHandler);
-
-				}, errorHandler);				
-				//window.requestFileSystem(dirEntry, 1024 * 1024, onInitFs, errorHandler);
-			},errorHandler);			
-		}
-
-		function caricaMappa(dati){
-
-		var datiDecompressi = JSON.parse(dati);
-		var elencoMarker = new Array();           
-
-			$.each(datiDecompressi, function (i, name) {
-				if (name.coordinate != "") {
-					var azienda = {};
-					azienda.id = name.id;
-					azienda.nome = name.ragione_sociale;
-					azienda.lat = parseFloat(name.coordinate.split(",")[0]);
-					azienda.lon = parseFloat(name.coordinate.split(",")[1]);
-					elencoMarker.push(azienda);
-				}
-			});
-			//caricaAllIndustry(elencoMarker);
-        
-		}
-		
-	
-        function caricaDettaglioNewsPromo(newsPromo){
-			var newsPromoDecompressi = JSON.parse(newsPromo);
-			
-            var id_newsPromo = getParameterByName("id_newsPromo");
-            var tipologia_newsPromo = getParameterByName("tipologia");
-            
-
-
-            var scheda = "";
-            var footer_dettaglio = "";
-           
-
-
-                $.each(newsPromoDecompressi, function (i, name) {
-				/*var tag = '<meta property="og:title" content="Consulenza web gratis" />';
-				tag += '<meta property="og:type" content="article" />'
-				tag += '<meta property="og:locale" content="it_IT" />';
-				tag += '<meta property="og:site_name" content="Trovo per te" />    '
-				tag += '<meta property="og:description" content="Descrizone della news " />	'
-				tag += '<meta property="og:image" content="http://www.trovoperte.com/public/upload_gallery/immagini/consulenza_web_2015211122415.jpg" />'
-				
-				$("head").append(tag);*/
-					var meta = "<meta property='og:title' content='"+ name.titolo_newsPromo +"'>";
-					if(name.descrizione_newsPromo != "")
-					meta += "<meta property='og:description' content='"+ name.descrizione_newsPromo +"'>";
-					meta += "<meta property='og:type' content='article'>";
-					meta += "<meta property='og:locale' content='it_IT'>";					
-					//meta += "<meta property='og:url' content='www.trovoperte.com/app/page/dettaglio_newsPromo.html?tipologia="+ tipologia_newsPromo + "&id_newsPromo="+id_newsPromo +"'>";
-					//meta += "<meta property='og:image' content='http://www.trovoperte.com/public/upload_gallery/immagini/"+ name.icona_newsPromo + "'>";
-					
-					$("head").append(meta)
-                    //add the <li> to "li" variable
-                    //note the use of += in the variable
-                    //meaning I'm adding to the existing data. not replacing it.
-                    //store index value in array as id of the <a> tag
-                    if (name.id_newsPromo == id_newsPromo) {
-
-                        //variabile di appoggio dove salvo da data perché il campo del DB è composto da data+ora, e in questo caso serve solo l'ora
-                        var data = name.data_newsPromo.split(" ")[0];
-
-                        scheda = scheda + "<div class='info_newsPromo'>";
-                        scheda = scheda + "<h1>" + name.titolo_newsPromo + "</h1>";
-                        if (name.icona_newsPromo != '') {
-                            scheda += "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/" + name.icona_newsPromo + "'>";
-                        }
-                        scheda = scheda + "<p id='descrizione_newsPromo'>" + name.descrizione_newsPromo + "</p></div></div></div>"
-						
-						
-                        footer_dettaglio += "<div   class='info_azienda'><div class='ui-content'><p>Pubblicato da " + name.ragione_sociale + "</p><p>Inserito il: " + data + "</p>"; // RAGIONE SOCIALE
-                        /*footer_dettaglio += "<p><a id=navigatore href='http://maps.google.com/maps?&daddr=" + name.coordinate + "' data-icon='navigation' class=' btn-tel-dettagli ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-navigation ui-btn-icon-left'>" + name.indirizzo + " " + name.num + " " + name.cap + " " + name.paese + " " + name.provincia + "</a></p>"; // INDIRIZZO
-							footer_dettaglio += "<p><a href='tel:" + name.tel + "' data-icon='phone' class=' btn-tel-dettagli ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-phone ui-btn-icon-left'>" + name.tel + "</a></p>"; // TELEFONO
-							footer_dettaglio += "<p><a href='mailto:" + name.mail + "' data-icon='mail' class='btn-tel-dettagli ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-mail ui-btn-icon-left'>" + name.mail + "</a></p>"; // MAIL
-							footer_dettaglio += "<p><a href='http://" + name.web + "' data-icon'=heart' class='btn-tel-dettagli ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-heart ui-btn-icon-left'>" + name.web + "</a></p></div>"; // WEB
-                        
-						*/
-						
-						footer_dettaglio += "<div style='text-align:center'><button class='ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-mini' onclick='condividi()'}>Condividi</button></div><br>";
-						
-						footer_dettaglio += "<p id='azienda_link'><a href='dettaglio.html?id_azienda=" + name.id_attivita + "' data-ajax='false' data-icon='arrow-r' class='btn-tel-dettagli ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-carat-r ui-btn-icon-right'>Accedi alla scheda azienda</a></p>"; // WEB
-
-                    }
-                });
-                //append list to ul
-                var htmlObject = $(scheda);
-
-				
-                $("#footer_dettaglio").append(footer_dettaglio).promise().done(function () { });
-                $("#scheda_newsPromo").append(htmlObject).promise().done(function () { });
-
-
-
-
-
-        }   
-
-
-
-    </script>
-
 </head>
 <body>
     <div class="txtwrapper">
@@ -268,12 +67,13 @@
                 <a href='#page_info' data-icon='info' data-rel='popup' data-position-to='window'
                     data-transition='pop' class='btn_search ui-btn sideOption ui-btn-inline ui-icon-info ui-btn-icon-left'>
                     Info generali</a>
-                <a href='#page_richiestaInfo' data-icon='mail' data-rel='popup' data-position-to='window'
+                <!--<a href='#page_richiestaInfo' data-icon='mail' data-rel='popup' data-position-to='window'
                     data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-mail ui-btn-icon-left'>
-                    Contattaci</a>
+                    Contattaci</a>-->
                  <a href='#page_registrazione' data-icon='plus' data-rel='popup' data-position-to='window'
                     data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-plus ui-btn-icon-left'>
                     Richiesta iscrizione</a>
+                   <a href="#" onClick="prepara_link_areariservata(this)" class="btn_search sideOption ui-btn  ui-btn-inline ui-icon-lock ui-btn-icon-left" data-role="button" data-icon="lock" data-ajax="false">Area riservata</a>
                 <!-- info -->
                                      <div data-role="popup" id="page_info">
               <div data-role="header">
@@ -296,7 +96,7 @@ Potrai contattarli direttamente, mandargli una mail o raggiungerli seguendo il n
 Ideale per estendere la tua visibilità sui dispositivi mobili a basso costo e in assoluta autonomia con la gestione dei contenuti. <br><br />
 Tramite un semplice pannello di controllo potrai gestire descrizioni, servizi, news, promo, offerte ogni volta che vorrai. <br><br />
 Tutti potranno interagire tramite i tasti funzionali della tua scheda azienda: telefono, mail, navigatore, social, ecc.. <br><br />
-Quattro fasce di prezzo annuali in base alle vostre necessità: 30€, 80€, 120€, 150€ iva escusa.<br /><br />
+Quattro fasce di prezzo annuali in base alle vostre necessità: 30€, 80€, 120€, 150€ iva esclusa.<br /><br />
 <b>Richiedi l'iscrizione cliccando <a onClick="apriRegistrazione()" href='#page_registrazione' data-rel='popup'
                         data-position-to='window' data-transition='pop'>qui</a></b><br/><br />
 Oppure <br /><br />
@@ -336,7 +136,6 @@ Oppure <br /><br />
                     <div class="textAreaInfo">
                         <textarea id="richiesta" placeholder="Richiesta" name="richiesta" rows="6" class="required"></textarea>
                    </div>
-				   
                     <p style="height: 75px; overflow: auto; clear:both; display:inline-block; margin-top:20px; margin-bottom:30px; padding:0 10px 0 10px">
                         Acconsento al trattamento dei miei dati da parte di "MVItalia" ( per finalita'
                         commerciali, promozionali e statistiche, nonche' per l'invio di omaggi e/o materiale
@@ -449,5 +248,96 @@ Oppure <br /><br />
         </div>
         <!--page-->
     </div>
-   </body>
+    <script>
+
+        $("#page_dettaglio_newsPromo").on("pageshow", function (event) {
+            var id_newsPromo = getParameterByName("id_newsPromo");
+            var tipologia_newsPromo = getParameterByName("tipologia");
+            var elencoMarker = new Array();
+
+            $.getJSON("http://www.trovoperte.com/admin/get_json_data.asp", function (info_allIndustry) {
+
+                $.each(info_allIndustry, function (i, name) {
+                    if (name.coordinate != "") {
+                        var azienda = {};
+                        azienda.id = name.id;
+                        azienda.nome = name.ragione_sociale;
+                        azienda.lat = parseFloat(name.coordinate.split(",")[0]);
+                        azienda.lon = parseFloat(name.coordinate.split(",")[1]);
+                        elencoMarker.push(azienda);
+                    }
+                });
+                caricaAllIndustry(elencoMarker);
+
+            });
+
+
+            var scheda = "";
+            var footer_dettaglio = "";
+			var id_newsPromo = getParameterByName("id_newsPromo");
+            var tipologia_newsPromo = getParameterByName("tipologia");
+			
+            $.getJSON("http://www.trovoperte.com/admin/get_json_data_newsPromo.asp?id_newsPromo=" + id_newsPromo + "&tipologia=" + tipologia_newsPromo, function (info_dettaglio) {
+
+
+                $.each(info_dettaglio, function (i, name) {
+
+					var meta = "<meta property='og:title' content='"+ name.titolo_newsPromo +"'>";
+					if(name.descrizione_newsPromo != "") 
+						meta += "<meta property='og:description' content='"+ name.descrizione_newsPromo +"'>";
+					meta += "<meta property='og:type' content='article'>";
+					meta += "<meta property='og:locale' content='it_IT'>";					
+					meta += "<meta property='og:url' content='www.trovoperte.com/app/page/dettaglio_newsPromo.html?tipologia="+ tipologia_newsPromo + "&id_newsPromo="+id_newsPromo +"'>";
+					meta += "<meta property='og:image' content='http://www.trovoperte.com/public/upload_gallery/immagini/"+ name.icona_newsPromo + "'>";
+					
+					$("head").append(meta);
+                    //add the <li> to "li" variable
+                    //note the use of += in the variable
+                    //meaning I'm adding to the existing data. not replacing it.
+                    //store index value in array as id of the <a> tag
+                    if (name.id_newsPromo == id_newsPromo) {
+
+                        //variabile di appoggio dove salvo da data perché il campo del DB è composto da data+ora, e in questo caso serve solo l'ora
+                        var data = name.data_newsPromo.split(" ")[0];
+
+                        scheda = scheda + "<div class='info_newsPromo'>";
+                        scheda = scheda + "<h1>" + name.titolo_newsPromo + "</h1>";
+                        if (name.icona_newsPromo != '') {
+                            scheda += "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/" + name.icona_newsPromo + "'>";
+                        }
+                        scheda = scheda + "<p id='descrizione_newsPromo'>" + name.descrizione_newsPromo + "</p></div></div></div>"
+						
+						
+                        footer_dettaglio += "<div   class='info_azienda'><div class='ui-content'><p>Pubblicato da " + name.ragione_sociale + "</p><p>Inserito il: " + data + "</p>"; // RAGIONE SOCIALE
+                        /*footer_dettaglio += "<p><a id=navigatore href='http://maps.google.com/maps?&daddr=" + name.coordinate + "' data-icon='navigation' class=' btn-tel-dettagli ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-navigation ui-btn-icon-left'>" + name.indirizzo + " " + name.num + " " + name.cap + " " + name.paese + " " + name.provincia + "</a></p>"; // INDIRIZZO
+                        footer_dettaglio += "<p><a href='tel:" + name.tel + "' data-icon='phone' class=' btn-tel-dettagli ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-phone ui-btn-icon-left'>" + name.tel + "</a></p>"; // TELEFONO
+                        footer_dettaglio += "<p><a href='mailto:" + name.mail + "' data-icon='mail' class='btn-tel-dettagli ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-mail ui-btn-icon-left'>" + name.mail + "</a></p>"; // MAIL
+                        footer_dettaglio += "<p><a href='http://" + name.web + "' data-icon'=heart' class='btn-tel-dettagli ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-heart ui-btn-icon-left'>" + name.web + "</a></p></div>"; // WEB
+                        
+						*/
+						
+						/*web only
+						footer_dettaglio += "<div style='text-align:center'><span class='st_sharethis_large' displayText='ShareThis'></span><span class='st_facebook_large' displayText='Facebook'></span><span class='st_twitter_large' displayText='Tweet'></span><span class='st_linkedin_large' displayText='LinkedIn'></span><span class='st_googleplus_large' displayText='Google +'></span><span class='st__large' displayText=''></span></div><br>";*/
+						footer_dettaglio += "<div style='text-align:center'><button class='ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-mini' onclick='condividi()'>Condividi</button></div><br>";
+						
+						footer_dettaglio += "<p id='azienda_link'><a href='dettaglio.html?id_azienda=" + name.id_attivita + "' data-ajax='false' data-icon='arrow-r' class='btn-tel-dettagli ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-carat-r ui-btn-icon-right'>Accedi alla scheda azienda</a></p>"; // WEB
+
+                    }
+                });
+                //append list to ul
+                var htmlObject = $(scheda);
+
+                $("#footer_dettaglio").append(footer_dettaglio).promise().done(function () { });
+                $("#scheda_newsPromo").append(htmlObject).promise().done(function () { });
+
+
+
+
+            });
+        })   
+
+
+
+    </script>
+</body>
 </html>

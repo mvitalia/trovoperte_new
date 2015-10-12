@@ -1,6 +1,5 @@
 <html>
 <head>
-	<script type="text/javascript" src="../cordova.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -13,130 +12,6 @@
     <script src="../js/jquery.mobile-1.4.5.min.js"></script>
     <script src='https://maps.googleapis.com/maps/api/js?v=3.exp'></script>
     <script src="../js/standard.js"></script>
-	<script>
-		document.addEventListener("deviceready", onDeviceReady, false);
-		
-       function onDeviceReady(){						
-			window.requestFileSystem(window.TEMPORARY, 1024 * 1024 ,searchDir, errorHandler);	
-		};
-		
-		function errorHandler(e) {
-			var msg = '';
-
-			switch (e.code) {
-				case FileError.QUOTA_EXCEEDED_ERR:
-					msg = 'QUOTA_EXCEEDED_ERR';
-					break;
-				case FileError.NOT_FOUND_ERR:
-					msg = 'NOT_FOUND_ERR';
-					msg = msg + "Non è presente un file in locale, collegarsi a internet per fruire dei servizi";
-					break;
-				case FileError.SECURITY_ERR:
-					msg = 'SECURITY_ERR';
-					break;
-				case FileError.INVALID_MODIFICATION_ERR:
-					msg = 'INVALID_MODIFICATION_ERR';
-					break;
-				case FileError.INVALID_STATE_ERR:
-					msg = 'INVALID_STATE_ERR';
-					break;
-				default:
-					msg = 'Unknown Error';
-					break;
-			};
-
-			alert('Error: ' + msg);
-		}
-
-		function searchDir(fs){
-		
-			fs.root.getDirectory('dati', {create: false}, function(dirEntry){				
-				dirEntry.getFile('log.txt', {}, function (fileEntry) {
-					fileEntry.file(function (file) {						
-						var reader = new FileReader();
-						reader.onloadend = function (e) {							
-							caricaCircuiti(this.result);
-										
-						};
-						reader.readAsText(file);
-					}, errorHandler);
-
-				}, errorHandler);			
-			},errorHandler);
-		}
-		
-		function caricaCircuiti(dati){
-			var internet = checkInternet();
-			var datiDecompressi = JSON.parse(dati);		
-            var id_circuito = getParameterByName("id_circuito");
-            var elencoMarker = new Array();
-
-			$.each(datiDecompressi, function (i, name) {
-				if (name.coordinate != "") {
-					var azienda = {};
-					azienda.id = name.id;
-					azienda.nome = name.ragione_sociale;
-					azienda.lat = parseFloat(name.coordinate.split(",")[0]);
-					azienda.lon = parseFloat(name.coordinate.split(",")[1]);
-					elencoMarker.push(azienda);
-				}
-			});
-			
-			if(internet == true){
-				caricaAllIndustry(elencoMarker,"lista_circuiti");            
-			}
-		
-                var circuiti = new Array();
-                $.each(datiDecompressi, function (i, name) {
-
-                    var trovato = false;
-                    for (var i = 0; i < circuiti.length; i++) {
-                        if (name.id_circuito == circuiti[i].id_circuito) {
-                            trovato = true;
-                        }
-                    }
-
-                    if (trovato == false) {
-                        var aus = {};
-                        aus.img = name.icona_circuito,
-                    aus.id_circuito = name.id_circuito,
-                    aus.circuito = name.circuito
-                        circuiti.push(aus);
-
-                    }
-                });
-
-
-
-                for (var i = 0; i < circuiti.length; i++) {
-                    var li = "";
-
-
-                    if (circuiti[i].circuito != null && circuiti[i].circuito != "" && circuiti[i].circuito != "undefined") {
-                        li += "<li><a href='lista_aziende.html?id_circuito=" + circuiti[i].id_circuito + "' id='" + circuiti[i].id_circuito + "' data-ajax='false'>";
-
-                        if (circuiti[i].img != "undefined" && circuiti[i].img != "" && circuiti[i].img != "null") {
-                            li += "<img src='" + circuiti[i].img + "' class='ui-li-thumb'/>";
-                        }
-                        /*else {
-                            li += "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/ico-vuoto.jpg' class='ui-li-thumb'/>";
-                        }*/
-
-                        li += '<h3 class="ui-li-heading">' + circuiti[i].circuito + '</h3></a></li>';
-                    }
-
-
-                    $("#lista_circuiti").append(li).promise().done(function () {
-						 $.mobile.loading( "hide" );
-                        //refresh list to enhance its styling.
-                        $(this).listview("refresh");
-                    });
-
-                }
-
-                //append list to ul
-        }
-	</script>
 </head>
 <body>
     <div class="txtwrapper">
@@ -155,7 +30,7 @@
                     data-role="button" data-icon="home" data-ajax="false">Home</a> <a href="ricerca.html"
                         class="btn_search ui-btn sideOption ui-btn-inline ui-icon-search ui-btn-icon-left"
                         data-role="button" data-icon="search" data-ajax="false">Cerca</a> 
-                         <a href='#allIndustry_mapPage' id="btnAllIndustry" data-icon='location' data-rel='popup'
+                         <a href='#allIndustry_mapPage' data-icon='location' data-rel='popup'
                     data-position-to='window' data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-location ui-btn-icon-left'>
                     Mappa aziende</a>
                         <a href='#settings'
@@ -187,8 +62,10 @@
                  <a href='#page_registrazione' data-icon='plus' data-rel='popup' data-position-to='window'
                     data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-plus ui-btn-icon-left'>
                     Richiesta iscrizione</a>
+                    
+                    <a href="#" onClick="prepara_link_areariservata(this)" class="btn_search sideOption ui-btn  ui-btn-inline ui-icon-lock ui-btn-icon-left" data-role="button" data-icon="lock" data-ajax="false">Area riservata</a>
                <!-- info -->
-                                <div data-role="popup" id="page_info">
+                                <div data-role="popup" id="Div1">
               <div data-role="header">
               	 <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right" data-rel="back" data-icon="delete">&nbsp;</a>
                 <h1>Info generali</h1>
@@ -210,15 +87,21 @@ Ideale per estendere la tua visibilità sui dispositivi mobili a basso costo e i
 Tramite un semplice pannello di controllo potrai gestire descrizioni, servizi, news, promo, offerte ogni volta che vorrai. <br><br />
 Tutti potranno interagire tramite i tasti funzionali della tua scheda azienda: telefono, mail, navigatore, social, ecc.. <br><br />
 Quattro fasce di prezzo annuali in base alle vostre necessità: 30€, 80€, 120€, 150€ iva esclusa.<br /><br />
-<b>Richiedi l'iscrizione cliccando <a onclick="apriRegistrazione()" href='#page_registrazione' data-rel='popup'
+<b>Richiedi l'iscrizione cliccando <a onClick="apriRegistrazione()" href='#page_registrazione' data-rel='popup'
                         data-position-to='window' data-transition='pop'>qui</a></b><br/><br />
 Oppure <br /><br />
 
-<b>Contattaci per avere maggiori informazioni cliccando <a onclick="apriInfo()" href='#page_richiestaInfo' data-rel='popup'
+<b>Contattaci per avere maggiori informazioni cliccando <a onClick="apriInfo()" href='#page_richiestaInfo' data-rel='popup'
                         data-position-to='window' data-transition='pop'>
                         qui</a></b>
+
+
+
               </div>
-         
+                
+
+
+              
             </div>
                  <!-- richiesta informazioni -->
                 <div data-role="popup" id="page_richiestaInfo" style="width: 35%; margin: 0 auto;">
@@ -229,9 +112,8 @@ Oppure <br /><br />
                     <h1>
                         Contattaci</h1>
                 </div>
-                <form  method="post"  onsubmit="return validateFormInfo();" action="formcdosys_generale.asp" id="form_richiestaInfo" name="form_richiestaInfo">
-					<input type="hidden" value="Richiesta informazioni"/>
-					 <div class="form_left">
+                <form  method="post"  onsubmit="return validateFormInfo();" action="http://www.trovoperte.com/app/formcdosys_generale.asp" id="form_richiestaInfo" name="form_richiestaInfo"><input type="hidden" name="tipologia" value="Richiesta informazioni">
+                     <div class="form_left">
                             <input  name="nome" id="txtNomeInfo" type="text" placeholder="Nome" class="required"/>
                         </div >
                         <div class="form_right">
@@ -273,8 +155,8 @@ Oppure <br /><br />
                         <h1>
                             Richiesta iscrizione</h1>
                     </div>
-                   <form  method="post" onsubmit="return validateFormRegistrazione();" action="formcdosys_generale.asp" id="form_registrazioneAzienda" name="form_registrazioneAzienda" >
-						<input type="hidden" value="Richiesta iscrizione"/>
+                   <form  method="post"  onsubmit="return validateFormRegistrazione();" action="http://www.trovoperte.com/app/formcdosys_generale.asp" id="form_registrazioneAzienda" name="form_registrazioneAzienda" ><input type="hidden" name="tipologia" value="Richiesta registrazione">
+                    
                         <div class="form_left">
                             <input  name="nome" id="txtNomeRegistrazione" type="text" placeholder="Nome" class="required"/>
                         </div >
@@ -351,8 +233,129 @@ Oppure <br /><br />
         <div data-role="footer" data-position="fixed">
             <a href="#page_info" data-icon="info" class="btn_info">info</a>
         </div>
-    </div>  
-   
     </div>
+    <!--page-->
+    <!-- setting -->
+    <div id="settings" data-role="page">
+        <div data-role="header">
+            <a href="#" data-rel="back" data-icon="back" data-icon="back">&nbsp;</a>
+            <h1>
+                Impostazioni</h1>
+        </div>
+        <div data-role="content">
+            <ul data-role="listview">
+                <li><a href="#" class="small">Small</a></li>
+                <li><a href="#" class="med">Medium</a></li>
+                <li><a href="#" class="large">Large</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- info -->
+    <div data-role="page" data-dialog="true" id="page_info">
+        <div data-role="header">
+            <h1>
+                Info</h1>
+        </div>
+        <div data-role="main" class="ui-content">
+            Maurizio Voglino<br>
+            <a href="mailto:info@mvitalia.com">info@mvitalia.com</a><br>
+            <a href="http://www.mvitalia.com/" target="_blank">www.mvitalia.com</a></p>
+        </div>
+        <div data-role="footer">
+            <h1>
+            </h1>
+        </div>
+    </div>
+    </div>
+    <script>
+
+        $("#circuiti").on("pageshow", function (event) {
+            var id_circuito = getParameterByName("id_circuito");
+            var elencoMarker = new Array();
+
+
+            $.getJSON("http://www.trovoperte.com/admin/get_json_data.asp", function (info_allIndustry) {
+
+                $.each(info_allIndustry, function (i, name) {
+                    if (name.coordinate != "") {
+                        var azienda = {};
+                        azienda.id = name.id;
+                        azienda.nome = name.ragione_sociale;
+                        azienda.lat = parseFloat(name.coordinate.split(",")[0]);
+                        azienda.lon = parseFloat(name.coordinate.split(",")[1]);
+                        elencoMarker.push(azienda);
+                    }
+                });
+                caricaAllIndustry(elencoMarker);
+
+            });
+
+
+            $.getJSON("http://www.trovoperte.com/admin/get_json_data.asp?id_circuito=" + id_circuito, function (info_circuiti) {
+
+                //string to put HTML in
+                //set up string for adding <li/>
+
+                var circuiti = new Array();
+                //container for $li to be added
+                $.each(info_circuiti, function (i, name) {
+                    //add the <li> to "li" variable
+                    //note the use of += in the variable
+                    //meaning I'm adding to the existing data. not replacing it.
+                    //store index value in array as id of the <a> tag
+
+                    var trovato = false;
+                    for (var i = 0; i < circuiti.length; i++) {
+                        if (name.id_circuito == circuiti[i].id_circuito) {
+                            trovato = true;
+                        }
+                    }
+
+                    if (trovato == false) {
+                        var aus = {};
+                        aus.img = name.icona_circuito,
+                    aus.id_circuito = name.id_circuito,
+                    aus.circuito = name.circuito
+                        circuiti.push(aus);
+
+                    }
+                });
+
+
+
+                for (var i = 0; i < circuiti.length; i++) {
+                    var li = "";
+
+
+                    if (circuiti[i].circuito != null && circuiti[i].circuito != "" && circuiti[i].circuito != "undefined") {
+                        li += "<li><a href='lista_aziende.html?id_circuito=" + circuiti[i].id_circuito + "' id='" + circuiti[i].id_circuito + "' data-ajax='false'>";
+
+                        if (circuiti[i].img != "undefined" && circuiti[i].img != "" && circuiti[i].img != "null") {
+                            li += "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/" + circuiti[i].img + "' class='ui-li-thumb'/>";
+                        }
+                        else {
+                            li += "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/ico-vuoto.jpg' class='ui-li-thumb'/>";
+                        }
+
+                        li += '<h3 class="ui-li-heading">' + circuiti[i].circuito + '</h3></a></li>';
+                    }
+
+
+                    $("#lista_circuiti").append(li).promise().done(function () {
+
+                        //refresh list to enhance its styling.
+                        $(this).listview("refresh");
+                    });
+
+                }
+
+                //append list to ul
+
+            });
+        });
+
+
+
+    </script>
 </body>
 </html>

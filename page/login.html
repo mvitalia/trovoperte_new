@@ -118,6 +118,8 @@
                  <a href='#page_registrazione' data-icon='plus' data-rel='popup' data-position-to='window'
                     data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-plus ui-btn-icon-left'>
                     Richiesta iscrizione</a>
+                    
+                    <a href="#" onClick="prepara_link_areariservata(this)" class="btn_search sideOption ui-btn  ui-btn-inline ui-icon-lock ui-btn-icon-left" data-role="button" data-icon="lock" data-ajax="false">Area riservata</a>
                 <!-- info -->
                 <div data-role="popup" id="page_info">
               <div data-role="header">
@@ -141,11 +143,11 @@ Ideale per estendere la tua visibilità sui dispositivi mobili a basso costo e i
 Tramite un semplice pannello di controllo potrai gestire descrizioni, servizi, news, promo, offerte ogni volta che vorrai. <br><br />
 Tutti potranno interagire tramite i tasti funzionali della tua scheda azienda: telefono, mail, navigatore, social, ecc.. <br><br />
 Quattro fasce di prezzo annuali in base alle vostre necessità: 30€, 80€, 120€, 150€ iva esclusa.<br /><br />
-<b>Richiedi l'iscrizione cliccando <a onclick="apriRegistrazione()" href='#page_registrazione' data-rel='popup'
+<b>Richiedi l'iscrizione cliccando <a onClick="apriRegistrazione()" href='#page_registrazione' data-rel='popup'
                         data-position-to='window' data-transition='pop'>qui</a></b><br/><br />
 Oppure <br /><br />
 
-<b>Contattaci per avere maggiori informazioni cliccando <a onclick="apriInfo()" href='#page_richiestaInfo' data-rel='popup'
+<b>Contattaci per avere maggiori informazioni cliccando <a onClick="apriInfo()" href='#page_richiestaInfo' data-rel='popup'
                         data-position-to='window' data-transition='pop'>
                         qui</a></b>
 
@@ -284,7 +286,7 @@ Oppure <br /><br />
 							<label>Area riservata</label><br/>
 							<label>Username</label> <input id="username" name="username" type="text" placeholder="Username..."><br/>
 							<label>Password</label> <input id="password" name="password" type="password" placeholder="Password..."><br/>
-							<input type="button" onclick="verificaUtente()" value="Accedi" name="btnAccedi">
+							<input type="button" onClick="verificaUtente()" value="Accedi" name="btnAccedi">
 						</div>
 					</form>
 					<div class="provaClass"><div>

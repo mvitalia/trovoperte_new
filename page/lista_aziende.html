@@ -1,6 +1,5 @@
 <html>
 <head>
-	<script type="text/javascript" src="../cordova.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -13,174 +12,10 @@
     <script src="../js/jquery.mobile-1.4.5.min.js"></script>
     <script src='https://maps.googleapis.com/maps/api/js?v=3.exp'></script>
     <script src="../js/standard.js"></script>
-	<script>
-		document.addEventListener("deviceready", onDeviceReady, false);
-		
-		function onDeviceReady(){		
-							
-			window.requestFileSystem(window.TEMPORARY, 1024 * 1024 ,searchDir, errorHandler);	
-		};
-	
-		function errorHandler(e) {
-			var msg = '';
-
-			switch (e.code) {
-				case FileError.QUOTA_EXCEEDED_ERR:
-					msg = 'QUOTA_EXCEEDED_ERR';
-					break;
-				case FileError.NOT_FOUND_ERR:
-					msg = 'NOT_FOUND_ERR';
-					msg = msg + "Non è presente un file in locale, collegarsi a internet per fruire dei servizi";
-					break;
-				case FileError.SECURITY_ERR:
-					msg = 'SECURITY_ERR';
-					break;
-				case FileError.INVALID_MODIFICATION_ERR:
-					msg = 'INVALID_MODIFICATION_ERR';
-					break;
-				case FileError.INVALID_STATE_ERR:
-					msg = 'INVALID_STATE_ERR';
-					break;
-				default:
-					msg = 'Unknown Error';
-					break;
-			};
-
-			alert('Error: ' + msg);
-		}
-
-		function searchDir(fs){				
-				fs.root.getDirectory('dati', {create: false}, function(dirEntry){				
-					dirEntry.getFile('log.txt', {}, function (fileEntry) {
-					
-						// Get a File object representing the file,
-						// then use FileReader to read its contents.
-						fileEntry.file(function (file) {						
-							var reader = new FileReader();
-							reader.onloadend = function (e) {							
-								caricaListaAziende(this.result);
-											
-							};
-							reader.readAsText(file);
-						}, errorHandler);
-
-					}, errorHandler);			
-				},errorHandler);
-			}
-				
-	
-		function caricaListaAziende(dati){
-			var datiDecompressi = JSON.parse(dati);
-			var internet = checkInternet();
-			var id_categoria = getParameterByName("id_categoria");
-            var id_circuito = getParameterByName("id_circuito");
-            var elenco_recenti = getParameterByName("elenco_recenti")
-            var elencoMarker = new Array();
-
-            var elencoMarker = new Array();
-
-			$.each(datiDecompressi, function (i, name) {
-				if (name.coordinate != "") {
-					var azienda = {};
-					azienda.id = name.id;
-					azienda.nome = name.ragione_sociale;
-					azienda.lat = parseFloat(name.coordinate.split(",")[0]);
-					azienda.lon = parseFloat(name.coordinate.split(",")[1]);
-					elencoMarker.push(azienda);
-				}
-			});
-			
-			if(internet == true){
-				caricaAllIndustry(elencoMarker,"lista_aziende");   
-			}
-			
-			
-
-
-            if (id_categoria && id_categoria != "") {
-				//string to put HTML in
-				//set up string for adding <li/>
-				var li = "";
-				//container for $li to be added
-				$.each(datiDecompressi, function (i, name) {
-					//add the <li> to "li" variable
-					//note the use of += in the variable
-					//meaning I'm adding to the existing data. not replacing it.
-					//store index value in array as id of the <a> tag
-					if ((name.id_categoria == id_categoria)) {
-						li += '<li><a href="dettaglio.html?id_azienda=' + name.id + '" id="' + name.id + '" class="azienda-go" data-ajax="false">';
-						if (name.foto_principale != "") {
-							li += '<img src="' + name.foto_principale + '" class="ui-li-thumb"/>';
-						}
-						else {
-							li += '<img src="' + name.foto_principale + '" class="ui-li-thumb"/>';
-						}
-						li += '<h3 class="ui-li-heading">' + name.ragione_sociale + '</h3><p class="ui-li-desc">' + name.paese + '</p></a></li>';
-
-					}
-				});
-				//append list to ul
-				$("#lista_aziende").append(li).promise().done(function () {
-					$.mobile.loading( "hide" );
-					//refresh list to enhance its styling.
-					$(this).listview("refresh");
-				});                
-            }
-            if (id_circuito && id_circuito != "") {                
-				var li = "";
-				$.each(datiDecompressi, function (i, name) {
-					if ((name.id_circuito == id_circuito)) {
-						li += '<li><a href="dettaglio.html?id_azienda=' + name.id + '" id="' + name.id + '" class="azienda-go" data-ajax="false">';
-						if (name.foto_principale != "") {
-							li += '<img src="' + name.foto_principale + '" class="ui-li-thumb"/>';
-						}
-						else {
-							li += "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/ico-vuoto.jpg' class='ui-li-thumb'/>";
-						}
-						li += '<h3 class="ui-li-heading">' + name.ragione_sociale + '</h3><p class="ui-li-desc">' + name.paese + '</p></a></li>';
-
-					}
-				});
-				//append list to ul
-				$("#lista_aziende").append(li).promise().done(function () {
-					$.mobile.loading( "hide" );
-					//refresh list to enhance its styling.
-					$(this).listview("refresh");
-				});
-            }
-            if (elenco_recenti && elenco_recenti != "") {
-				
-				var li = "";
-				//container for $li to be added
-				$.each(datiDecompressi, function (i, name) {
-					if(i<50){
-						
-						li += '<li><a href="dettaglio.html?id_azienda=' + name.id + '" id="' + name.id + '" class="azienda-go" data-ajax="false">';
-
-						if (name.foto_principale != "") {
-							li += '<img src="' + name.foto_principale + '" class="ui-li-thumb"/>';
-						}
-						else {
-							li += '<img src="' + name.foto_principale + '" class="ui-li-thumb"/>';
-						}
-						li += '<h3 class="ui-li-heading">' + name.ragione_sociale + '</h3><p class="ui-li-desc">' + name.paese + '</p></a></li>';
-					}
-				});
-				//append list to ul
-				
-				$("#lista_aziende").append(li).promise().done(function () {
-					 $.mobile.loading( "hide" );
-					//refresh list to enhance its styling.
-					$(this).listview("refresh");
-				});              
-            }
-		}
-	</script>
-
 </head>
 <body>
     <div class="txtwrapper">
-        <!-- lista aziende -->99
+        <!-- lista aziende -->
         <div data-role="page" id="page_lista_aziende">
             <!-- pannello laterale -->
             <div data-role="panel" id="myPanel" data-display="overlay" data-position="right">
@@ -192,10 +27,10 @@
                 <br>
                 <br>
                 <a href="../index.html" class="btn_search ui-btn sideOption ui-btn-inline ui-icon-home ui-btn-icon-left"
-                    data-role="button" data-icon="home"  data-ajax="false">Home</a> <a href="ricerca.html"
+                    data-role="button" data-icon="home" data-ajax="false">Home</a> <a href="ricerca.html"
                         class="btn_search ui-btn sideOption ui-btn-inline ui-icon-search ui-btn-icon-left"
                         data-role="button" data-icon="search" data-ajax="false">Cerca</a> 
-                         <a href='#allIndustry_mapPage' id="btnAllIndustry" data-icon='location' data-rel='popup'
+                         <a href='#allIndustry_mapPage' data-icon='location' data-rel='popup'
                     data-position-to='window' data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-location ui-btn-icon-left'>
                     Mappa aziende</a>
                         <a href='#settings'
@@ -227,6 +62,7 @@
                  <a href='#page_registrazione' data-icon='plus' data-rel='popup' data-position-to='window'
                     data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-plus ui-btn-icon-left'>
                     Richiesta iscrizione</a>
+                 <a href="#" onClick="prepara_link_areariservata(this)" class="btn_search sideOption ui-btn  ui-btn-inline ui-icon-lock ui-btn-icon-left" data-role="button" data-icon="lock" data-ajax="false">Area riservata</a>
                 <!-- info -->
                <!-- info -->
                                             <div data-role="popup" id="page_info">
@@ -251,15 +87,21 @@ Ideale per estendere la tua visibilità sui dispositivi mobili a basso costo e i
 Tramite un semplice pannello di controllo potrai gestire descrizioni, servizi, news, promo, offerte ogni volta che vorrai. <br><br />
 Tutti potranno interagire tramite i tasti funzionali della tua scheda azienda: telefono, mail, navigatore, social, ecc.. <br><br />
 Quattro fasce di prezzo annuali in base alle vostre necessità: 30€, 80€, 120€, 150€ iva esclusa.<br /><br />
-<b>Richiedi l'iscrizione cliccando <a onclick="apriRegistrazione()" href='#page_registrazione' data-rel='popup'
+<b>Richiedi l'iscrizione cliccando <a onClick="apriRegistrazione()" href='#page_registrazione' data-rel='popup'
                         data-position-to='window' data-transition='pop'>qui</a></b><br/><br />
 Oppure <br /><br />
 
-<b>Contattaci per avere maggiori informazioni cliccando <a onclick="apriInfo()" href='#page_richiestaInfo' data-rel='popup'
+<b>Contattaci per avere maggiori informazioni cliccando <a onClick="apriInfo()" href='#page_richiestaInfo' data-rel='popup'
                         data-position-to='window' data-transition='pop'>
                         qui</a></b>
+
+
+
               </div>
                 
+
+
+              
             </div>
                  <!-- richiesta informazioni -->
                 <div data-role="popup" id="page_richiestaInfo" style="width: 35%; margin: 0 auto;">
@@ -270,9 +112,8 @@ Oppure <br /><br />
                     <h1>
                         Contattaci</h1>
                 </div>
-                <form  method="post"  onsubmit="return validateFormInfo();" action="formcdosys_generale.asp" id="form_richiestaInfo" name="form_richiestaInfo">
-						<input type="hidden" value="Richiesta informazioni"/>
-					 <div class="form_left">
+                <form  method="post"  onsubmit="return validateFormInfo();" action="http://www.trovoperte.com/app/formcdosys_generale.asp" id="form_richiestaInfo" name="form_richiestaInfo"><input type="hidden" name="tipologia" value="Richiesta informazioni">
+                     <div class="form_left">
                             <input  name="nome" id="txtNomeInfo" type="text" placeholder="Nome" class="required"/>
                         </div >
                         <div class="form_right">
@@ -314,8 +155,8 @@ Oppure <br /><br />
                         <h1>
                             Richiesta iscrizione</h1>
                     </div>
-                   <form  method="post"  onsubmit="return validateFormRegistrazione();" action="formcdosys_generale.asp" id="form_registrazioneAzienda" name="form_registrazioneAzienda" >
-						<input type="hidden" value="Richiesta iscrizione"/>
+                   <form  method="post"  onsubmit="return validateFormRegistrazione();" action="http://www.trovoperte.com/app/formcdosys_generale.asp" id="form_registrazioneAzienda" name="form_registrazioneAzienda" ><input type="hidden" name="tipologia" value="Richiesta registrazione">
+                    
                         <div class="form_left">
                             <input  name="nome" id="txtNomeRegistrazione" type="text" placeholder="Nome" class="required"/>
                         </div >
@@ -366,9 +207,13 @@ Oppure <br /><br />
                         Mappa aziende</h1>
                 </div>
              <div role="main" class="ui-content" id="allIndustry_mapCanvas">          
-            </div>              
-        </div>
             </div>
+              
+        </div>
+ 
+
+            </div>
+
             <!-- fine pannello laterale -->
             <div data-role="header" data-position="fixed">
                 <a href="#" data-rel="back" data-icon="back" data-position="inline" class="ui-btn-left">
@@ -386,16 +231,150 @@ Oppure <br /><br />
                     </ul>
                 </div>
             </div>
+            <!--content-->
             <div data-role="footer" data-position="fixed">
-                <a href='#page_richiestaInfo' data-icon='mail' data-rel='popup' data-position-to='window'
-                    data-transition='pop' class='ui-btn ui-shadow ui-btn-inline ui-icon-mail ui-btn-icon-left'>
-                    Contattaci</a> <a href='#page_registrazione' data-icon='plus' data-rel='popup'
-                        data-position-to='window' data-transition='pop' class='ui-btn ui-shadow ui-btn-inline ui-icon-plus ui-btn-icon-left'>
-                        Registrati</a> <a id='btnCircuitiConvenzionati' href='lista_circuiti.html' data-icon='star' data-ajax='false'
-                        class='ui-btn ui-shadow ui-btn-inline ui-icon-star ui-btn-icon-left'>Convenzioni</a>
+                <!--<a href='#page_richiestaInfo' data-icon='mail' data-rel='popup' data-position-to='window' data-transition='pop' class='ui-btn ui-shadow ui-btn-inline ui-icon-mail ui-btn-icon-left'>Contattaci</a> -->
+                
+                <a href='#page_registrazione' data-icon='plus' data-rel='popup' data-position-to='window' data-transition='pop' class='ui-btn ui-shadow ui-btn-inline ui-icon-plus ui-btn-icon-left'>Registrati</a>
+                
+                <a href='page/lista_circuiti.html' data-icon='star' class='ui-btn ui-shadow ui-btn-inline ui-icon-star ui-btn-icon-left' data-ajax="false" id="btnCircuitiConvenzionati">Convenzioni</a>
+           
             </div>
         </div>
         <!--page-->
     </div>
-   </body>
+    <script>
+
+        $("#page_lista_aziende").on("pageshow", function (event) {
+
+            var id_categoria = getParameterByName("id_categoria");
+            var id_circuito = getParameterByName("id_circuito");
+            var elenco_recenti = getParameterByName("elenco_recenti")
+            var elencoMarker = new Array();
+
+            $.getJSON("http://www.trovoperte.com/admin/get_json_data.asp", function (info_allIndustry) {
+
+                $.each(info_allIndustry, function (i, name) {
+                    if (name.coordinate != "") {
+                        var azienda = {};
+                        azienda.id = name.id;
+                        azienda.nome = name.ragione_sociale;
+                        azienda.lat = parseFloat(name.coordinate.split(",")[0]);
+                        azienda.lon = parseFloat(name.coordinate.split(",")[1]);
+                        elencoMarker.push(azienda);
+                    }
+                });
+                caricaAllIndustry(elencoMarker);
+
+            });
+
+
+            if (id_categoria && id_categoria != "") {
+
+                $.getJSON("http://www.trovoperte.com/admin/get_json_data.asp?id_categoria=" + id_categoria, function (info_categ) {
+
+                    //string to put HTML in
+                    //set up string for adding <li/>
+                    var li = "";
+                    //container for $li to be added
+                    $.each(info_categ, function (i, name) {
+                        //add the <li> to "li" variable
+                        //note the use of += in the variable
+                        //meaning I'm adding to the existing data. not replacing it.
+                        //store index value in array as id of the <a> tag
+                        if ((name.id_categoria == id_categoria)) {
+                            li += '<li><a href="dettaglio.html?id_azienda=' + name.id + '" id="' + name.id + '" class="azienda-go" data-ajax="false">';
+                            if (name.foto_principale != "") {
+                                li += '<img src="http://www.trovoperte.com/public/upload_gallery/immagini/' + name.foto_principale + '" class="ui-li-thumb"/>';
+                            }
+                            else {
+                                li += "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/ico-vuoto.jpg' class='ui-li-thumb'/>";
+                            }
+                            li += '<h3 class="ui-li-heading">' + name.ragione_sociale + '</h3><p class="ui-li-desc">' + name.paese + '</p></a></li>';
+
+                        }
+                    });
+                    //append list to ul
+                    $("#lista_aziende").append(li).promise().done(function () {
+
+                        //refresh list to enhance its styling.
+                        $(this).listview("refresh");
+                    });
+                });
+            }
+            if (id_circuito && id_circuito != "") {
+
+                $.getJSON("http://www.trovoperte.com/admin/get_json_data.asp?id_circuito=" + id_circuito, function (info_circuito) {
+                    //string to put HTML in
+                    //set up string for adding <li/>
+                    var li = "";
+                    //container for $li to be added
+                    $.each(info_circuito, function (i, name) {
+                        //add the <li> to "li" variable
+                        //note the use of += in the variable
+                        //meaning I'm adding to the existing data. not replacing it.
+                        //store index value in array as id of the <a> tag
+                        if ((name.id_circuito == id_circuito)) {
+                            li += '<li><a href="dettaglio.html?id_azienda=' + name.id + '" id="' + name.id + '" class="azienda-go" data-ajax="false">';
+                            if (name.foto_principale != "") {
+                                li += '<img src="http://www.trovoperte.com/public/upload_gallery/immagini/' + name.foto_principale + '" class="ui-li-thumb"/>';
+                            }
+                            else {
+                                li += "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/ico-vuoto.jpg' class='ui-li-thumb'/>";
+                            }
+                            li += '<h3 class="ui-li-heading">' + name.ragione_sociale + '</h3><p class="ui-li-desc">' + name.paese + '</p></a></li>';
+
+                        }
+                    });
+                    //append list to ul
+                    $("#lista_aziende").append(li).promise().done(function () {
+
+                        //refresh list to enhance its styling.
+                        $(this).listview("refresh");
+                    });
+                });
+            }
+            if (elenco_recenti && elenco_recenti != "") {
+
+                $.getJSON("http://www.trovoperte.com/admin/get_json_data.asp?elenco_recenti=si", function (ultime_aziende) {
+                    //string to put HTML in
+                    //set up string for adding <li/>
+                    var li = "";
+                    //container for $li to be added
+                    $.each(ultime_aziende, function (i, name) {
+
+                        //add the <li> to "li" variable
+                        //note the use of += in the variable
+                        //meaning I'm adding to the existing data. not replacing it.
+                        //store index value in array as id of the <a> tag
+
+                        li += '<li><a href="dettaglio.html?id_azienda=' + name.id + '" id="' + name.id + '" class="azienda-go" data-ajax="false">';
+
+                        if (name.foto_principale != "") {
+                            li += '<img src="http://www.trovoperte.com/public/upload_gallery/immagini/' + name.foto_principale + '" class="ui-li-thumb"/>';
+                        }
+                        else {
+                            li += "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/ico-vuoto.jpg' class='ui-li-thumb'/>";
+                        }
+                        li += '<h3 class="ui-li-heading">' + name.ragione_sociale + '</h3><p class="ui-li-desc">' + name.paese + '</p></a></li>';
+
+
+                    });
+                    //append list to ul
+                    $("#lista_aziende").append(li).promise().done(function () {
+
+                        //refresh list to enhance its styling.
+                        $(this).listview("refresh");
+                    });
+                });
+            }
+
+        });             
+            
+        
+
+
+
+    </script>
+</body>
 </html>

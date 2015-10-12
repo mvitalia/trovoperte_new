@@ -65,7 +65,7 @@ body {width:75% !important; margin:0 auto !important; overflow-x:hidden}
     padding-bottom: 10px !important;
     right: inherit !important;
     text-align:left;
-    line-height:45px;
+    line-height:27px;
     font-size:1em !important;
 }
 
@@ -555,16 +555,11 @@ html, body {
         
 }
 
-#map-page div{
-	z-index:0;	
-}
-
 #btnNavigazione
 {
     background-color:#57BA46 !important;  
     color:#fff;    
-	text-shadow:none;
-	z-index:1;
+	text-shadow:none
 }
 
 /* Mappa per la pagina dettaglio */
@@ -752,3 +747,17 @@ html, body {
     }      
 }
 
+.form_left .ui-select, .form_right .ui-select{
+    width:100% !important;
+    margin-right:0   
+    
+  }
+
+.radioAbbonamento .ui-radio input{
+
+  position:relative !important;
+  float:left;
+  margin:0;left:0;
+  margin-right:10px
+
+}

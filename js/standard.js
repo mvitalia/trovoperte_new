@@ -14,22 +14,6 @@ $(document).on('vclick', '.large', function(e){
     $(".txtwrapper").css('font-size', '25px');
 });
 
-/*$(document).on("pageshow", "#page_index, #categorie, #page_lista_aziende, #circuiti, #page_dettaglio, #news, #promo, #page_dettaglio_newsPromo", function(){
-	var $this = $( this ),
-			theme = $this.jqmData( "theme" ) || $.mobile.loader.prototype.options.theme,
-			msgText = $this.jqmData( "msgtext" ) || $.mobile.loader.prototype.options.text,
-			textVisible = $this.jqmData( "textvisible" ) || $.mobile.loader.prototype.options.textVisible,
-			textonly = !!$this.jqmData( "textonly" );
-			html = $this.jqmData( "html" ) || "";
-			$.mobile.loading( 'show', {
-				text: msgText,
-				textVisible: textVisible,
-				theme: theme,
-				textonly: textonly,
-				html: html
-			});	
-});*/
-
 $(document).ready(function () {
     $("#txtAcconsento").click(function () {
         if ($("#chkConferma_Richiesta").prop("checked") == true) {
@@ -39,23 +23,6 @@ $(document).ready(function () {
             $("#chkConferma_Richiesta").prop("checked", true);
         }
     });
-	
-	$("#btnAllIndustry").click(function(){
-		var rete = checkInternet();		
-		if(rete == false){
-			alert("Collegarsi ad internet per visualizzare la mappa aggiornata");
-		}
-	});
-	
-	/*$("#btnAggiornamento").click(function(){
-		var rete = checkInternet();
-		if(rete == true){
-			window.requestFileSystem(window.TEMPORARY, 1024 * 1024, createDirAggiornamento, errorHandler);
-		}	
-		else{
-			alert("Attenzione! Collegarsi a internet per aggiornare i dati");
-		}
-	});*/
 
     $("#txtAcconsentoInfo").click(function () {
         if ($("#chkConferma_info").prop("checked") == true) {
@@ -67,98 +34,14 @@ $(document).ready(function () {
 
     });
 
-	
-	
     $("#page_info").bind({
         popupafterclose: function (event, ui) { if (page == "registrazione") { $("#page_registrazione").popup("open"); page = ""; } else if (page == "info") { $("#page_richiestaInfo").popup("open"); page = ""; } }
     });
 	
-	$("#btnNavigazione").click(function(){
-		var dest = $("#map-page").attr("destinazione");
-		var lat = parseFloat(dest.split(",")[0]);
-		var lon = parseFloat(dest.split(",")[1]);
-		launchnavigator.navigate(
-			  [lat, lon],
-			  function(){
-			  },
-			  function(error){
-				  alert("Plugin error: "+ error);
-		});
-	});
-	
+	//$("#lstMacrocategorie").change(function(){alert("cioa")});
+
 });
 
-function createDirAggiornamento(fs){
-	fs.root.getDirectory('dati', { create: true }, function (dirEntry) {
-		dirEntry.getFile('log.txt', { create: true }, function (fileEntry) {
-			// Create a FileWriter object for our FileEntry (log.txt).
-			fileEntry.getMetadata(win,null);
-			//if(window.differenza > 600000){
-				fileEntry.createWriter(function (fileWriter) {
-					var dati = "";
-					$.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data.aspx", function (info) {
-						dati = JSON.stringify(info);
-						fileWriter.write(dati);
-						fileWriter.onwriteend = function (e) {
-							console.log("Write completed");
-						};
-
-						fileWriter.onerror = function (e) {
-							console.log('Write failed: ' + e.toString());
-						};
-					});
-
-				}, errorHandler);
-			//}
-		}, errorHandler);
-		//window.requestFileSystem(dirEntry, 1024 * 1024, onInitFs, errorHandler);
-		dirEntry.getFile('news.txt', { create: true }, function (fileEntry) {
-			// Create a FileWriter object for our FileEntry (log.txt).
-			//if(window.differenza > 600000){
-				fileEntry.createWriter(function (fileWriter) {
-					var dati = "";
-					$.getJSON("http://www.trovoperte.com/admin/get_json_data_newsPromo.aspx?tipologia=news", function (info_news) {
-						dati = JSON.stringify(info_news);
-						fileWriter.write(dati);
-						fileWriter.onwriteend = function (e) {
-							console.log("write completed");
-						};
-
-						fileWriter.onerror = function (e) {
-							console.log('Write failed: ' + e.toString());
-						};
-					});
-
-				}, errorHandler);
-			//}
-
-		}, errorHandler);
-
-		dirEntry.getFile('promo.txt', { create: true }, function (fileEntry) {
-			// Create a FileWriter object for our FileEntry (log.txt).
-			//if(window.differenza > 600000){
-				fileEntry.createWriter(function (fileWriter) {
-					var dati = "";
-					$.getJSON("http://www.trovoperte.com/admin/get_json_data_newsPromo.aspx?tipologia=promo", function (info_promo) {
-						dati = JSON.stringify(info_promo);
-						fileWriter.write(dati);
-						fileWriter.onwriteend = function (e) {
-							console.log("write completed");
-						};
-
-						fileWriter.onerror = function (e) {
-							console.log('Write failed: ' + e.toString());
-						};
-					});
-
-				}, errorHandler);
-			//}
-
-		}, errorHandler);
-	}, errorHandler);
-}
-
-/** CARICA LA MAPPA CON TUTTE LE AZIENDA REGISTRATE **/
 function caricaAllIndustry(elencoMarker,page) {
     var defaultCenter = new google.maps.LatLng(44.7392354, 7.928849);
     drawMap(defaultCenter,page);
@@ -192,7 +75,7 @@ function caricaAllIndustry(elencoMarker,page) {
         }
 }
 
-/** CARICA LA MAPPA DELLA SINGOLA AZIENDA **/
+
 function caricaMappa(coordinate,nomeAzienda) {
     var lat = parseFloat(coordinate.split(",")[0]);
     var lon = parseFloat(coordinate.split(",")[1]);
@@ -217,42 +100,24 @@ function caricaMappa(coordinate,nomeAzienda) {
         $("#map-page-popup").addClass("ui-overlay-shadow");
     }
 
-/** APERTURA DELLE FORM DALLA PAGINA DELLE INFO **/	
-var page = "";	
-function apriRegistrazione() {
+    var page = "";
+
+    function apriRegistrazione() {
         page = "registrazione"
         $("#page_info").popup("close");
-}
-function apriInfo() {
+    }
+
+    function apriInfo() {
         page = "info"
         $("#page_info").popup("close");
     }
-  
-  function checkInternet(){
-		var networkState = navigator.connection.type;
 
-		var states = {};
-		states[Connection.UNKNOWN]  = 'Unknown connection';
-		states[Connection.ETHERNET] = 'Ethernet connection';
-		states[Connection.WIFI]     = 'WiFi connection';
-		states[Connection.CELL_2G]  = 'Cell 2G connection';
-		states[Connection.CELL_3G]  = 'Cell 3G connection';
-		states[Connection.CELL_4G]  = 'Cell 4G connection';
-		states[Connection.CELL]     = 'Cell generic connection';
-		states[Connection.NONE]     = 'No network connection';
-		
-		if(states[networkState] == "No network connection" || states[networkState] == "Unknown connection"){
-			return false;
-		}
-		else{
-			return true;
-		}
-	}
-  
-/** CONVALIDA DEI DATI INSERITI NELLE FORM **/
-function validateFormRegistrazione() {
-		var internet = checkInternet();
-	if(internet == true){
+
+
+   
+
+    function validateFormRegistrazione() {
+
         var mail_reg_exp = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-]{2,})+\.)+([a-zA-Z0-9]{2,})+$/;
 
         var moduloControllo = document.forms['form_registrazioneAzienda'];
@@ -312,21 +177,33 @@ function validateFormRegistrazione() {
                 alert("Devi completare il campo: Indirizzo");
                 return false;
             }
+			
+			 else if (moduloControllo.username.value.length == 0) {
+                alert("Devi completare il campo: Username");
+                return false;
+            }
+			 else if (moduloControllo.password.value.length == 0) {
+                alert("Devi completare il campo: Password");
+                return false;
+            }
+			
             else if ($("#chkConferma_Richiesta").prop("checked")==false) {
                 alert("Devi completare il campo: Acconsento il trattamento dei dati personali");
                 return false;
             }
         }
+
 		return true;
-    }   
-	else{
-		alert("Attenzione! Collegarsi a internet per inviare una richiesta.");
-		return false;
-	}
-}
-function validateFormInfo() {
-		var internet = checkInternet();
-	if(internet == true){
+         //alert("La sua richiesta di registrazione è stata inviata correttamente, le risponderemo non appena possibile. Grazie per la collaborazione.");
+        //$("#txtNomeRegistrazione, #txtCognomeRegistrazione, #txtMailRegistrazione, #txtTelRegistrazione, #txtRagioneSociale, #txtPIVA, #txtCodiceFiscale, #txtIndirizzo, #txtCAP, #txtCitta").val("");
+        //$("#chkConferma_Richiesta").prop("checked",false);
+        
+    }
+
+
+
+    function validateFormInfo() {
+
         var mail_reg_exp = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-]{2,})+\.)+([a-zA-Z0-9]{2,})+$/;
 
         var moduloControllo = document.forms['form_richiestaInfo'];
@@ -364,16 +241,23 @@ function validateFormInfo() {
                 return false;
             }
         }
+		
 		return true;
         //alert("La sua richiesta di informazioni è stata inviata correttamente, le risponderemo non appena possibile. Grazie per la collaborazione.");
         //$("#txtNomeInfo, #txtCognomeInfo, #txtMailInfo, #richiesta").val("");
         //$("#chkConferma_info").prop("checked",false);
+     
     }
-	else{
-		alert("Attenzione! Collegarsi a internet per inviare una richiesta.");
-		return false;
-	}
-}
+
+    function checkInternet() {
+        var online = window.navigator.onLine;
+        if (!online) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
 
 /** GET PARAMETER **/
 function getParameterByName(name)
@@ -388,7 +272,7 @@ function getParameterByName(name)
     return results[1];
 }
 
-/** CARICAMENTO DELLE CITTA' NEL VETTORE**/
+
 function caricaCitta(all) {
     var citta = new Array()
     for (var i = 0; i < all.length; i++) {
@@ -425,4 +309,36 @@ function caricaCitta(all) {
         $("#lstCitta").append("<option>" + cittaDefinitive[k] + "</option>");
     }
 
+}
+
+function prepara_link_areariservata(obj,page){
+	var isMobile = {
+		Android: function() {
+			return navigator.userAgent.match(/Android/i);
+		},
+		BlackBerry: function() {
+			return navigator.userAgent.match(/BlackBerry/i);
+		},
+		iOS: function() {
+			return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+		},
+		Opera: function() {
+			return navigator.userAgent.match(/Opera Mini/i);
+		},
+		Windows: function() {
+			return navigator.userAgent.match(/IEMobile/i);
+		},
+		any: function() {
+			return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+		}
+	};
+	
+	if( isMobile.any()){
+		if (page == "index")
+			obj.href = "page/login.html";
+		else
+			obj.href = "../page/login.html";
+	} else {
+		obj.href = "http://www.trovoperte.com/admin/";
+	}
 }

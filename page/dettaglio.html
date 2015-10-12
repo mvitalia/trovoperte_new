@@ -1,7 +1,6 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<script type="text/javascript" src="../cordova.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -9,8 +8,7 @@
     <script type='text/javascript' src='../js/jquery-1.11.2.min.js'></script>
     <script type="text/javascript" src="../js/jquery.mobile-1.4.5.min.js"></script>
      <script src='https://maps.googleapis.com/maps/api/js?v=3.exp'></script>
-    <link rel="stylesheet" type="text/css" href="../css/jquery.mobile-1.4.5.min.css">
-    <link rel="stylesheet" href="../css/default_theme.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/jquery.mobile-1.4.5.min.css">    <link rel="stylesheet" href="../css/default_theme.min.css">
     <link rel="stylesheet" href="../css/jquery.mobile.icons.min.css">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <script type="text/javascript" src="../js/swipe.js"></script>
@@ -32,10 +30,344 @@
     
      
     </script>
+       
+</head>
+<body>
+    <!-- dettaglio -->
+    <div data-role="page" id="page_dettaglio">
+        <!-- pannello laterale -->
+        <div data-role="panel" id="myPanel" data-display="overlay" data-position="right">
+            <div class="ui-btn-right">
+                <a href="#myPanel" class="ui-btn ui-shadow ui-btn-inline ui-btn-icon-left ui-icon-grid"
+                    data-role="button" data-icon="grid">&nbsp;</a>
+            </div>
+            <br>
+            <br>
+            <br>
+            <a href="../index.html" class="btn_search ui-btn sideOption ui-btn-inline ui-icon-home ui-btn-icon-left"
+                data-role="button" data-icon="home" data-ajax="false">Home</a> <a href="ricerca.html"
+                    class="btn_search ui-btn sideOption ui-btn-inline ui-icon-search ui-btn-icon-left"
+                    data-role="button" data-icon="search" data-ajax="false">Cerca</a>
+                    <a href='#allIndustry_mapPage' data-icon='location' data-rel='popup'
+                    data-position-to='window' data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-location ui-btn-icon-left'>
+                    Mappa aziende</a>
+                     <a href='#settings' data-icon='gear' data-rel='popup' data-position-to='window' data-transition='pop'
+                        class='btn_search ui-btn sideOption ui-btn-inline ui-icon-gear ui-btn-icon-left'>
+                        Impostazioni</a>
+            <!-- setting -->
+            <div id="settings" data-role="popup">
+                <div data-role="header">
+                    <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all sideOption ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right"
+                        data-rel="back" data-icon="delete">&nbsp;</a>
+                    <h1>
+                        Impostazioni</h1>
+                </div>
+                <div data-role="content">
+                    <ul data-role="listview" style="margin: 0 !important">
+                        <li><a href="#" class="small">Testo piccolo</a></li>
+                        <li><a href="#" class="med">Testo medio</a></li>
+                        <li><a href="#" class="large">Testo grande</a></li>
+                    </ul>
+                </div>
+            </div>
+            <a href='#page_info' data-icon='info' data-rel='popup' data-position-to='window'
+                data-transition='pop' class='btn_search ui-btn sideOption ui-btn-inline ui-icon-info ui-btn-icon-left'>
+                Info generali</a> <a href='#page_richiestaInfo' data-icon='mail' data-rel='popup'
+                    data-position-to='window' data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-mail ui-btn-icon-left'>
+                    Contattaci</a> <a href='#page_registrazione' data-icon='plus' data-rel='popup' data-position-to='window'
+                        data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-plus ui-btn-icon-left'>
+                        Richiesta iscrizione</a>
+                        <a href="#" onClick="prepara_link_areariservata(this)" class="btn_search sideOption ui-btn  ui-btn-inline ui-icon-lock ui-btn-icon-left" data-role="button" data-icon="lock" data-ajax="false">Area riservata</a>
+
+                        
+            <!-- info -->
+           
+            <div data-role="popup" id="page_info">
+                <div data-role="header">
+                    <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right"
+                        data-rel="back" data-icon="delete">&nbsp;</a>
+                    <h1>
+                        Info generali</h1>
+                </div>
+                <div data-role="main" class="ui-content">
+                    Trovo per Te è il portale ed la App creati proprio per Te, per trovare in modo semplice
+                    e veloce quello che ti serve nel tuo territorio.<br>
+                    <br>
+                    <b>Sei un privato?</b><br>
+                    <br>
+                    Potrai scaricare in modo gratuito e senza pubblicità la App su tuo smarthphone o
+                    tablet, oppure consultare il portale dedicato sul web.<br>
+                    <br />
+                    Avrai così la possibilità di trovare velocemente locali, aziende e professionisti
+                    in base alle tue necessità e approfittare di promo e offerte che verranno pubblicate.
+                    <br>
+                    <br />
+                    Potrai contattarli direttamente, mandargli una mail o raggiungerli seguendo il navigatore.<br>
+                    <br>
+                    <br>
+                    <b>Hai la partita IVA?</b><br>
+                    <br>
+                    Ideale per estendere la tua visibilità sui dispositivi mobili a basso costo e in
+                    assoluta autonomia con la gestione dei contenuti.
+                    <br>
+                    <br />
+                    Tramite un semplice pannello di controllo potrai gestire descrizioni, servizi, news,
+                    promo, offerte ogni volta che vorrai.
+                    <br>
+                    <br />
+                    Tutti potranno interagire tramite i tasti funzionali della tua scheda azienda: telefono,
+                    mail, navigatore, social, ecc..
+                    <br>
+                    <br />
+                    Quattro fasce di prezzo annuali in base alle vostre necessità: 30€, 80€, 120€, 150€
+                    iva esclusa.<br />
+                    <br />
+                    <b>Richiedi l'iscrizione cliccando <a onclick="apriRegistrazione()" href='#page_registrazione'
+                        data-rel='popup' data-position-to='window' data-transition='pop'>qui</a></b><br />
+                    <br />
+                    Oppure
+                    <br />
+                    <br />
+                    <b>Contattaci per avere maggiori informazioni cliccando <a onclick="apriInfo()" href='#page_richiestaInfo'
+                        data-rel='popup' data-position-to='window' data-transition='pop'>qui</a></b>
+                </div>
+            </div>
+            <!-- richiesta informazioni -->
+            <div data-role="popup" id="page_richiestaInfo" style="width: 35%; margin: 0 auto;">
+                <div data-role="header">
+                    <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right"
+                        data-rel="back" data-icon="delete">&nbsp;</a>
+                    <h1>
+                        Contattaci</h1>
+                </div>
+                <form method="post" onsubmit="return validateFormInfo();" action="http://www.trovoperte.com/app/formcdosys_generale.asp"
+                id="form_richiestaInfo" name="form_richiestaInfo"><input type="hidden" name="tipologia" value="Richiesta informazioni">
+                <div class="form_left">
+                    <input name="nome" id="txtNomeInfo" type="text" placeholder="Nome" class="required" />
+                </div>
+                <div class="form_right">
+                    <input name="cognome" id="txtCognomeInfo" type="text" placeholder="Cognome" class="required" />
+                </div>
+                <div class="emailInfo">
+                    <input id="txtMailInfo" name="email" type="text" placeholder="E-mail" class="required" />
+                </div>
+                <div class="textAreaInfo">
+                    <textarea id="richiesta" placeholder="Richiesta" name="richiesta" rows="6" class="required"></textarea>
+                </div>
+                <p style="height: 75px; overflow: auto; clear: both; display: inline-block; margin-top: 20px;
+                    margin-bottom: 30px; padding: 0 10px 0 10px">
+                    Acconsento al trattamento dei miei dati da parte di "MVItalia" ( per finalita' commerciali,
+                    promozionali e statistiche, nonche' per l'invio di omaggi e/o materiale informativo
+                    su nuovi prodotti e iniziative promozionali. I suoi dati potranno essere trattati
+                    da "MVItalia", direttamente o tramite societa' preposte. Prenderemo tutte le cautele
+                    necessarie affinche' i suoi dati siano trattati con la massima sicurezza e in conformita'
+                    a quanto previsto in materia di tutela dei dati personali.Dlgs 196/2003INFORMATIVA
+                    AI SENSI DEL DLGS 196/2003 FINALITA' E MODALITA' DEL TRATTAMENTO DEI DATI PERSONALI</p>
+                <br />
+                <div style="padding: 0 10px 0 10px;">
+                    <input type="checkbox" class="required" name="conferma" id="chkConferma_info" />
+                    <label style="text-indent: 35px;" id="txtAcconsentoInfo">
+                        Acconsento il trattamento dei dati personali</label></div>
+                <div style="clear: both;" id="btnInvioInfo">
+                    <input type="submit" id="Invia_Info" value="Invia Richiesta" name="invia" />
+                </div>
+                </form>
+            </div>
+            <!-- registrazione azienda -->
+            <div data-role="popup" id="page_registrazione" style="width: 35%; margin: 0 auto;">
+                <div data-role="header">
+                    <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right"
+                        data-rel="back" data-icon="delete">&nbsp;</a>
+                    <h1>
+                        Richiesta iscrizione</h1>
+                </div>
+                <form method="post" onsubmit="return validateFormRegistrazione();" action="http://www.trovoperte.com/app/formcdosys_generale.asp"
+                id="form_registrazioneAzienda" name="form_registrazioneAzienda">
+                <div class="form_left">
+                    <input name="nome" id="txtNomeRegistrazione" type="text" placeholder="Nome" class="required" />
+                </div>
+                <div class="form_right">
+                    <input name="cognome" id="txtCognomeRegistrazione" type="text" placeholder="Cognome"
+                        class="required" />
+                </div>
+                <div class="form_left">
+                    <input id="txtMailRegistrazione" name="email" type="text" placeholder="E-mail" class="required" />
+                </div>
+                <div class="form_right">
+                    <input id="txtTelRegistrazione" name="telefono" type="text" placeholder="Telefono"
+                        class="required" />
+                </div>
+                <div class="form_left">
+                    <input id="txtRagioneSociale" type="text" name="r_soc" placeholder="Ragione sociale"
+                        class="required" />
+                </div>
+                <div class="form_right">
+                    <input id="txtPIVA" type="text" name="piva" placeholder="P.IVA" class="required" /></div>
+                <div class="form_left">
+                    <input name="cod_fisc" id="txtCodiceFiscale" type="text" placeholder="Codice fiscale"
+                        class="required" /></div>
+                <div class="form_right">
+                    <input id="txtIndirizzo" type="text" name="indirizzo" placeholder="Indirizzo" class="required" /></div>
+                <div class="form_left">
+                    <input id="txtCAP" type="text" name="cap" placeholder="CAP" class="required" /></div>
+                <div class="form_right">
+                    <input id="txtCitta" type="text" name="citta" placeholder="Città" class="required" /></div>
+                <p style="height: 75px; overflow: auto; clear: both; margin-bottom: 30px; padding: 20px 10px 0 10px;">
+                    Acconsento al trattamento dei miei dati da parte di "MVItalia" ( per finalita' commerciali,
+                    promozionali e statistiche, nonche' per l'invio di omaggi e/o materiale informativo
+                    su nuovi prodotti e iniziative promozionali. I suoi dati potranno essere trattati
+                    da "MVItalia", direttamente o tramite societa' preposte. Prenderemo tutte le cautele
+                    necessarie affinche' i suoi dati siano trattati con la massima sicurezza e in conformita'
+                    a quanto previsto in materia di tutela dei dati personali.Dlgs 196/2003INFORMATIVA
+                    AI SENSI DEL DLGS 196/2003 FINALITA' E MODALITA' DEL TRATTAMENTO DEI DATI PERSONALI</p>
+                <br />
+                <div style="padding: 0 10px 0 10px;">
+                    <input type="checkbox" name="conferma" class="required" id="chkConferma_Richiesta" />
+                    <label style="text-indent: 35px;" id="txtAcconsento">
+                        Acconsento il trattamento dei dati personali</label></div>
+                <div style="clear: both;" id="btnInvioRegistrazione">
+                    <input type="submit" id="Invia_Registrazione" value="Invia Richiesta" name="invia" />
+                </div>
+                </form>
+            </div>
+            <!-- mappa con posizione ditta -->        
+         
+         <div data-role="popup" id="map-page" data-url="map-page" >
+              <div data-role="header">
+                    <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right"
+                        data-rel="back" data-icon="delete">&nbsp;</a>
+                    <h1>
+                        Posizione geografica</h1>
+                </div>
+             <div role="main" class="ui-content" id="map-canvas">          
+            </div>
+              <div data-role="footer" style="text-align: center">
+                       <a id="btnNavigazione">Avvia navigazione</a>
+                    </div>
+        </div>
+
+         <!-- mappa con tutte  le ditte -->  
+        <div data-role="popup" id="allIndustry_mapPage" data-url="map-page" >
+              <div data-role="header">
+                    <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right"
+                        data-rel="back" data-icon="delete">&nbsp;</a>
+                    <h1>
+                        Mappa aziende</h1>
+                </div>
+             <div role="main" class="ui-content" id="allIndustry_mapCanvas">          
+            </div>
+              
+        </div>
+ 
+        </div>
+        <!-- fine pannello laterale -->
+        <div data-role="header" data-position="fixed">
+            <a href="#" data-rel="back" data-icon="back" data-position="inline" class="ui-btn-left">
+                &nbsp;</a> <a href="../index.html" data-role="none" class="link_index" data-ajax="false">
+                    <img src="../img/logo_trovoperte.png" class="logo_trovo"></a>
+            <div class="ui-btn-right">
+                <a href="#myPanel" class="ui-btn ui-shadow ui-btn-inline ui-btn-icon-left ui-icon-grid"
+                    data-role="button" data-icon="grid">&nbsp;</a>
+            </div>
+        </div>
+        <div role="main" id="" class="ui-content">
+            <div data-role="content">
+                <div id="scheda_azienda" data-divider-theme="a" data-inset="true">
+                    <span class="testo_finto">testo finto</span>
+                </div>
+                <!-- gallery -->
+                <div data-role="popup" id="azienda_gallery">
+                    <div data-role="header">
+                        <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right"
+                            data-rel="back" data-icon="delete">&nbsp;</a>
+                        <h1>
+                            Gallery</h1>
+                    </div>
+                    <div data-role="main" class="ui-content">
+                        <!-- Swiper -->
+                        <div id="scheda_gallery" data-divider-theme="a" data-inset="true">
+                            <div id="lista_immagini" class="liste_foto">
+                                <div data-role="content" id="contentSlider">
+                                    <a href="#" onclick='mySwipe.prev()' class="slider_prev ui-btn ui-icon-carat-l ui-btn-icon-left">
+                                    </a><a href="#" onclick='mySwipe.next()' class=" slider_next ui-btn ui-icon-carat-r ui-btn-icon-left">
+                                    </a>
+                                    <div id='mySwipeGallery' style='margin: 0 auto' class='swipe'>
+                                        <div class='swipe-wrap slider_gallery'>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-role="footer" data-position="fixed">
+                    </div>
+                </div>
+                <!-- news -->
+                <div data-role="popup" id="azienda_news">
+                    <div data-role="header">
+                        <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right"
+                            data-rel="back" data-icon="delete">&nbsp;</a>
+                        <h1>
+                            News</h1>
+                    </div>
+                    <div data-role="main" class="ui-content">
+                        <div id="scheda_news" data-divider-theme="a" data-inset="true">
+                            <div id="lista_news" class="liste_foto">
+                                <div data-role="content" id="contentSlider">
+                                    <a href="#" onclick='mySwipe.prev()' class="slider_prev ui-btn ui-icon-carat-l ui-btn-icon-left">
+                                    </a><a href="#" onclick='mySwipe.next()' class=" slider_next ui-btn ui-icon-carat-r ui-btn-icon-left">
+                                    </a>
+                                    <div id='mySwipe' style='margin: 0 auto' class='swipe'>
+                                        <div class='swipe-wrap slider_news'>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-role="footer" data-position="fixed">
+                    </div>
+                </div>
+                <!-- promo -->
+                <div data-role="popup" id="azienda_promo">
+                    <div data-role="header">
+                        <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right"
+                            data-rel="back" data-icon="delete">&nbsp;</a>
+                        <h1>
+                            Promo</h1>
+                    </div>
+                    <div data-role="main" class="ui-content">
+                        <div id="scheda_promo" data-divider-theme="a" data-inset="true">
+                            <div id="lista_promo" class="liste_foto">
+                                <div data-role="content" id="contentSlider">
+                                    <a href="#" onclick='mySwipe.prev()' class="slider_prev ui-btn ui-icon-carat-l ui-btn-icon-left">
+                                    </a><a href="#" onclick='mySwipe.next()' class=" slider_next ui-btn ui-icon-carat-r ui-btn-icon-left">
+                                    </a>
+                                    <div id='mySwipePromo' style='margin: 0 auto' class='swipe'>
+                                        <div class='swipe-wrap slider_promo'>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-role="footer" data-position="fixed">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar" class="ui-navbar">
+                <ul id="footer_dettaglio" class="ui-grid-c">
+                    <li><span class="testo_finto">testo finto</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--page-->
+    </div>
     <script>
-		
-		
-		
+
         function caricaSlider() {
              var elem = document.getElementById('mySwipe');
         window.mySwipe = Swipe(elem, {
@@ -75,7 +407,9 @@
         });
         }
 
-        $(document).one("pagecreate", ".demo-page", function () {          
+        $(document).one("pagecreate", ".demo-page", function () {
+
+            
 
             // Initialize the external persistent header and footer
             $("#header").toolbar({ theme: "b" });
@@ -160,95 +494,18 @@
             }
         });
 
-		
-        document.addEventListener("deviceready", onDeviceReady, false);
-		
-		function onDeviceReady(){		
-								
-			window.requestFileSystem(window.TEMPORARY, 1024 * 1024 ,searchDir, errorHandler);	
-		};
-		
-		function errorHandler(e) {
-			var msg = '';
+        /*-------------------------------------------------------*/
 
-			switch (e.code) {
-				case FileError.QUOTA_EXCEEDED_ERR:
-					msg = 'QUOTA_EXCEEDED_ERR';
-					break;
-				case FileError.NOT_FOUND_ERR:
-					msg = 'NOT_FOUND_ERR';
-					msg = msg + "Non è presente un file in locale, collegarsi a internet per fruire dei servizi";
-					break;
-				case FileError.SECURITY_ERR:
-					msg = 'SECURITY_ERR';
-					break;
-				case FileError.INVALID_MODIFICATION_ERR:
-					msg = 'INVALID_MODIFICATION_ERR';
-					break;
-				case FileError.INVALID_STATE_ERR:
-					msg = 'INVALID_STATE_ERR';
-					break;
-				default:
-					msg = 'Unknown Error';
-					break;
-			};
+        var elenco_news = new Array();
+        var elenco_promo = new Array();
+        var elencoMarker = new Array();
 
-			alert('Error: ' + msg);
-		}
+        $("#page_dettaglio").on("pageshow", function (event) {
+            var id_azienda = getParameterByName("id_azienda");
 
-		function searchDir(fs){
-			var dati ="";
-			var news = "";
-			var promo = "";
-			
-			fs.root.getDirectory('dati', {create: false}, function(dirEntry){				
-				dirEntry.getFile('log.txt', {}, function (fileEntry) {
-					fileEntry.file(function (file) {						
-						var reader = new FileReader();
-						reader.onloadend = function (e) {							
-							dati=this.result;
-							caricaDettaglio(dati);
-						};
-						reader.readAsText(file);
-					}, errorHandler);
+            $.getJSON("http://www.trovoperte.com/admin/get_json_data.asp", function(info_allIndustry){                
 
-				}, errorHandler);	
-				dirEntry.getFile('news.txt', {}, function (fileEntry) {
-					fileEntry.file(function (file) {						
-						var reader = new FileReader();
-						reader.onloadend = function (e) {							
-							news=this.result;	
-							caricaNews(news);
-						};
-						reader.readAsText(file);
-					}, errorHandler);
-
-				}, errorHandler);		
-				dirEntry.getFile('promo.txt', {}, function (fileEntry) {
-					fileEntry.file(function (file) {						
-						var reader = new FileReader();
-						reader.onloadend = function (e) {							
-							promo=this.result;	
-							caricaPromo(promo);
-						};
-						reader.readAsText(file);
-					}, errorHandler);
-
-				}, errorHandler);				
-			},errorHandler);			
-			caricaDettaglio(dati,news,promo);
-		}
-				
-		
-		
-		function caricaDettaglio(dati, news, promo){
-			var internet = checkInternet();
-			var datiDecompressi = JSON.parse(dati);			
-			var elencoMarker = new Array();
-       
-                                        
-var id_azienda = getParameterByName("id_azienda");
-                $.each(datiDecompressi,function(i, name){
+                $.each(info_allIndustry,function(i, name){
                     if(name.coordinate != ""){
                           var azienda = {};
                           azienda.id = name.id;
@@ -258,12 +515,12 @@ var id_azienda = getParameterByName("id_azienda");
                           elencoMarker.push(azienda);
                     }
                 });
-				if(internet == true){
-					caricaAllIndustry(elencoMarker,"dettaglio");    
-				}
-				
-                
-            
+                caricaAllIndustry(elencoMarker);       
+
+            });
+
+            $.getJSON("http://www.trovoperte.com/admin/get_json_data.asp?id_azienda=" + id_azienda, function (info_dettaglio) {
+
                 var scheda = "";
                 var footer_dettaglio = "";
 
@@ -274,7 +531,7 @@ var id_azienda = getParameterByName("id_azienda");
                 var count_promo = 0;
                 var count_news = 0;
                 //container for $li to be added
-                $.each(datiDecompressi, function (i, name) {
+                $.each(info_dettaglio, function (i, name) {
                     //add the <li> to "li" variable
                     //note the use of += in the variable
                     //meaning I'm adding to the existing data. not replacing it.
@@ -282,11 +539,10 @@ var id_azienda = getParameterByName("id_azienda");
                     if (name.id == id_azienda) {
 
                         if (name.foto_principale != '') {
-                            scheda += "<img src='" + name.foto_principale+ "' class='logo_azienda' >";
-                        } 
-						/*else {
+                            scheda += "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/" + name.foto_principale + "' class='logo_azienda' >";
+                        } else {
                             scheda += "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/ico_vuoto.jpg' class='logo_azienda' >";
-                        }*/
+                        }
 
                         // IMMAGINE PRINCIPALE
                         $.each(name.foto, function (i, foto) {
@@ -294,11 +550,32 @@ var id_azienda = getParameterByName("id_azienda");
 
                             // GALLERY
                             if (foto.tipologia == 'gallery') {
-                                scheda_gallery += "<div><img src='foto.immagine' class='img_azienda'/></div>";
+                                scheda_gallery += "<div><img src='http://www.trovoperte.com/public/upload_gallery/immagini/" + foto.immagine + "' class='img_azienda'/></div>";
 
                                 //<div data-role='popup' id='myPopup_" + count_gallery + "'><img src='http://www.trovoperte.com%5Cpublic%5Cupload_gallery%5Cimmagini%5C" + foto.immagine + "' style='width:800px;height:400px;'></div>
                                 count_gallery += 1;
                             }
+
+
+
+                            /*if (name.tipo_contratto != 'intermedio') {
+
+                            // NEWS
+                            if (foto.tipologia == 'news') {
+                            scheda_news += "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/" + foto.immagine + "' class='img_azienda'>";
+                            count_news += 1;
+                            }
+
+
+                            // PROMO
+                            if (foto.tipologia == 'promo') {
+                            scheda_promo += "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/" + foto.immagine + "' class='img_azienda'>";
+                            count_promo += 1;
+                            }
+
+
+                            }*/
+
                         });
 
 
@@ -307,11 +584,17 @@ var id_azienda = getParameterByName("id_azienda");
 							$("#scheda_gallery .slider_next").hide();
 							$("#scheda_gallery .slider_prev").hide();
                         }
-						
+                        /* if (count_news == 0) {
+                        scheda_news += "Nessuna immagine da visualizzare";
+                        }
+                        if (count_promo == 0) {
+                        scheda_promo += "Nessuna immagine da visualizzare";
+                        }*/
+
                         scheda += "<div class='info_azienda'><h1>" + name.ragione_sociale + "</h1>"; // RAGIONE SOCIALE
                         scheda += "<p>" + name.indirizzo + " " + name.num + "</p><p>" + name.cap + " " + name.paese + " " + name.provincia + "</p>";
                         if (name.circuito != "" && name.circuito != undefined) {
-                            scheda += "<p class='info_circuito'><a href='lista_aziende.html?id_circuito=" + name.id_circuito + "' data-ajax='false'><img id='img_circuito' src='" + name.icona_circuito + "' class='ui-li-thumb'/></a></p>";
+                            scheda += "<p class='info_circuito'><a href='lista_aziende.html?id_circuito=" + name.id_circuito + "' data-ajax='false'><img id='img_circuito' src='http://www.trovoperte.com/public/upload_gallery/immagini/" + name.icona_circuito + "' class='ui-li-thumb'/></a></p>";
                         }
                         scheda += "</div>"
                         if (name.tipo_contratto != 'base' && name.tipo_contratto != 'free') {
@@ -325,475 +608,163 @@ var id_azienda = getParameterByName("id_azienda");
                             scheda += "</div>"
                         }
 
-                       
+                        //scheda += "<div data-role='collapsibleset' data-theme='a' data-content-theme='a' class='ui-collapsible-set ui-group-theme-a ui-corner-all descrizione'>";
+
+                        // DESCRIZIONE
+                        //scheda += "<div data-role='collapsible' data-collapsed='false' class='ui-collapsible ui-collapsible-inset ui-corner-all ui-collapsible-themed-content ui-first-child ui-collapsible-collapsed'><h3 class='ui-collapsible-heading ui-collapsible-heading-collapsed'><a href='#' class='ui-collapsible-heading-toggle ui-btn ui-btn-icon-left ui-btn-a ui-icon-plus'>Descrizione<span class='ui-collapsible-heading-status'>click to expand contents</span></a></h3><div class='ui-collapsible-content ui-body-a ui-collapsible-content-collapsed' aria-hidden='false'><p>" + name.descrizione + "</p></div></div>";
+
+                        // SERVIZI
+                        //scheda += "<div data-role='collapsible' class='ui-collapsible ui-collapsible-inset ui-corner-all ui-collapsible-themed-content ui-first-child ui-collapsible-collapsed'><h3 class='ui-collapsible-heading ui-collapsible-heading-collapsed'><a href='#' class='ui-collapsible-heading-toggle ui-btn ui-btn-icon-left ui-btn-a ui-icon-plus'>Servizi<span class='ui-collapsible-heading-status'>click to expand contents</span></a></h3><div class='ui-collapsible-content ui-body-a ui-collapsible-content-collapsed' aria-hidden='true'><p>" + name.servizi + "</p></div></div>";
+
+                        //scheda += "</div>";
                         if (name.tipo_contratto != 'free') {
                             scheda += "<div class='descrizione'><h3>Descrizione</h3>" + name.descrizione + "</div>"; // DESCRIZIONE
                             scheda += "<div class='servizi'><h3>Servizi</h3>" + name.servizi + "</div><br/><br/>"; // SERVIZI
                         }
 
+                        //<li class='ui-block-a' style="float:left;width:25%"><a href="#page_info" data-icon="info" data-iconpos="left" class="ui-state-persist"></a></li>
+                        //footer_dettaglio = "<li class='ui-block-a' style='float:left;width:25%'><a href='page_info' data-icon='info' data-role='button' class='ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-info ui-btn-icon-left'>Info</a></li>";
 
-                        //if(name.tipo_contratto != 'base' && name.tipo_contratto != 'free') {
-							window.indirizzo = name.web;
-                            footer_dettaglio += "<li class='ui-block-a' style='float:left;width:25%'><a onclick='checkWeb(this)' href='#' target='_blank' data-icon='heart' data-role='button' class='btn_web ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-heart ui-btn-icon-left'>Web</a></li>";
+                       // if (name.tipo_contratto != 'base' && name.tipo_contratto != 'free') {
+                            footer_dettaglio += "<li class='ui-block-a' style='float:left;width:25%'><a href='http://" + name.web + "' target='_blank' data-icon='heart' data-role='button' class='btn_web ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-heart ui-btn-icon-left'>Web</a></li>";
                             footer_dettaglio += "<li class='ui-block-b '><a href='mailto:" + name.mail + "' data-icon='mail' data-role='button' class='btn_mail ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-mail ui-btn-icon-left'>E-mail</a></li>";
                             footer_dettaglio += "<li class='ui-block-c '><a href='tel:" + name.tel + "' data-icon='phone' data-role='button'  class='btn_tel ui-btn ui-state-persist ui-btn-up-a ui-btn-inline ui-icon-phone ui-btn-icon-left'>Tel.</a></li>";
-                            footer_dettaglio += "<li class='ui-block-d '><a href='#map-page' onclick='checkMappa()' data-rel='popup'data-position-to='window' data-transition='pop' data-icon='navigation' class='btn_fax ui-btn ui-state-persist ui-btn-up-a ui-icon-navigation ui-btn-inline ui-btn-icon-left'>Raggiungici</a>";
+                            footer_dettaglio += "<li class='ui-block-d '><a href='#map-page' data-icon='navigation' data-rel='popup' data-position-to='window' data-transition='pop' class='btn_fax ui-btn ui-state-persist ui-btn-up-a ui-icon-navigation ui-btn-inline ui-btn-icon-left'>Raggiungici</a>";
                             if(name.coordinate != ""){
-								$("#map-page").attr("destinazione" , name.coordinate);
-								if(internet == true)
-								{
-									caricaMappa(name.coordinate, name.ragione_sociale);
-								}
-								
+                                caricaMappa(name.coordinate, name.ragione_sociale);
 
-                                //$("#btnNavigazione").attr("href","http://maps.google.com/maps?&daddr=" + name.coordinate);
+                                $("#btnNavigazione").attr("href","http://maps.google.com/maps?&daddr=" + name.coordinate);
                             }
                             else{
-                             
-								alert("Attenzione! Questa azienda non disponde di una mappa;");
+                                $("#map-canvas").text("Per questa attività non è disponibile la visualizzazione della mappa");
+                                
                             }
-                        //}
+                     //   }
+
                     }
                 });
                 //append list to ul
                 var htmlObject = $(scheda);
-			
+                $.getJSON("http://www.trovoperte.com/admin/get_json_data_newsPromo.asp?id_azienda=" + id_azienda + "&tipologia=news", function (info_news) {
+                
+                    $.each(info_news, function (i, name) {
+                        var news = {};
+                        news.id = name.id_newsPromo;
+                        news.titolo = name.titolo_newsPromo;
+                        news.data = name.data_newsPromo;
+                        news.icona = name.icona_newsPromo;
+                        news.descrizione = name.descrizione_newsPromo;
+                        elenco_news.push(news);
+                    });
+
+                    var blocco = "";
+                    if (elenco_news.length > 0) {
+                        for (var i = 0; i < elenco_news.length; i++) {                            
+                            blocco = blocco + "<div><h1>" + elenco_news[i].titolo + "</h1>"
+                            blocco = blocco + "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/" + elenco_news[i].icona + "' class='img_azienda'>";
+                            blocco = blocco + "<div class='descrizione_newsPromoPopup'>" + elenco_news[i].descrizione + "</div>"
+                            blocco = blocco + "<h5><br/><br/>Inserito il: " + elenco_news[i].data.split(" ")[0] + "</h5></div>"
+                        }
+                    }
+                    else {
+						blocco = blocco + "<p> Non ci sono news da visualizzare</p>"
+						$("#scheda_news .slider_next").hide();
+						$("#scheda_news .slider_prev").hide();
+					}
+
+                    $(".slider_news").append(blocco);
+                });
+
+                $.getJSON("http://www.trovoperte.com/admin/get_json_data_newsPromo.asp?id_azienda=" + id_azienda + "&tipologia=promo", function (info_promo) {
+
+
+                   
+
+                    $.each(info_promo, function (i, name) {
+                        var promo = {};
+                        promo.id = name.id_newsPromo;
+                        promo.titolo = name.titolo_newsPromo;
+                        promo.data = name.data_newsPromo;
+                        promo.icona = name.icona_newsPromo;
+                        promo.descrizione = name.descrizione_newsPromo;
+                        elenco_promo.push(promo);
+                    });
+
+                   var blocco = "";
+                 
+                    if (elenco_promo.length > 0) {
+                            for (var i = 0; i < elenco_promo.length; i++) {                            
+                            blocco = blocco + "<div><h1>" + elenco_promo[i].titolo + "</h1>"
+                            blocco = blocco + "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/" + elenco_promo[i].icona + "' class='img_azienda'>";
+                            blocco = blocco + "<div class='descrizione_newsPromoPopup'>" + elenco_promo[i].descrizione + "</div>"
+                            blocco = blocco + "<h5><br/><br/>Inserito il: " + elenco_promo[i].data.split(" ")[0] + "</h5></div>"
+                            
+                        }
+                    }
+                    else {
+                        blocco = blocco + "<p> Non ci sono promo da visualizzare</p>";
+						$("#scheda_promo .slider_next").hide();
+						$("#scheda_promo .slider_prev").hide();
+                    }
+
+                    $(".slider_promo").append(blocco);
+                });
 
                 $(".slider_gallery").append(scheda_gallery);
                 $("#footer_dettaglio").append(footer_dettaglio).promise().done(function () { });
-				 $.mobile.loading( "hide" );
-                $("#scheda_azienda").append(htmlObject).promise().done(function () { });
-                /*$("#lista_immagini").html(scheda_gallery).promise().done(function () { });*/
 
-                $("#lista_promo").append(scheda_promo).promise().done(function () { });
+                $("#scheda_azienda").append(htmlObject).promise().done(function () { });
+
+
+                //$("#lista_immagini").html(scheda_gallery).promise().done(function () { });
+
+                //$("#lista_promo").append(scheda_promo).promise().done(function () { });
                 //$("#lista_news").append(scheda_news).promise().done(function () { });
 
-        }
-		
-		function checkWeb(obj){
-			var internet = checkInternet();
-			if(internet == true){
-				var url = encodeURI("http://" + window.indirizzo);
-				window.open(url, '_system','location=yes');
-			}
-			else{
-				obj.href = "#"; 
-				alert("E' necessario avere internet per visualizzare il sito web");
-			}
-		}
-		
-		function checkMappa(){
-			var rete = checkInternet();
-			if(rete == false){
-				alert("Collegarsi a internet per visualizzare la mappa aggiornata");
-			}
-		}
-		
-		function caricaPromo(promo){
-		var id_azienda = getParameterByName("id_azienda");
-			var promoDecompresse = JSON.parse(promo);
-			var elenco_promo = new Array();
-			for(var i=0;i<promoDecompresse.length;i++){
-				if(promoDecompresse[i].id_attivita == id_azienda){
-					var promo = {};
-					promo.id = promoDecompresse[i].id_newsPromo;
-					promo.titolo = promoDecompresse[i].titolo_newsPromo;
-					promo.data = promoDecompresse[i].data_newsPromo;
-					promo.icona = promoDecompresse[i].icona_newsPromo;
-					promo.descrizione = promoDecompresse[i].descrizione_newsPromo;
-					elenco_promo.push(promo);
-				}
-			}
+            });
 
-		   var blocco = "";
-			if (elenco_promo.length > 0) {
-					for (var i = 0; i < elenco_promo.length; i++) {                            
-					blocco = blocco + "<div><h1>" + elenco_promo[i].titolo + "</h1>"
-					blocco = blocco + "<img src='" + elenco_promo[i].icona + "' class='img_azienda'>";
-					blocco = blocco + "<div class='descrizione_newsPromoPopup'>" + elenco_promo[i].descrizione + "</div>"
-					blocco = blocco + "<h5><br/><br/>Inserito il: " + elenco_promo[i].data.split(" ")[0] + "</h5></div>"					
-				}
-			}
-			else {
-				blocco = blocco + "<p> Non ci sono promo da visualizzare</p>"
-				$("#scheda_promo .slider_next").hide();
-				$("#scheda_promo .slider_prev").hide();
-			}
+            /*$.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data_newsPromo.asp?id_azienda=" + id_azienda + "tipologia=news", function (info_news) {
 
-			$(".slider_promo").append(blocco);
-		}
-		
-		function caricaNews(news){
-			var id_azienda = getParameterByName("id_azienda");
-			var newsDecompresse = JSON.parse(news);
-			var elenco_news = new Array();
-			for(var i=0;i<newsDecompresse.length;i++){                    
-				if(newsDecompresse[i].id_attivita == id_azienda){
-					var news = {};
-					news.id = newsDecompresse[i].id_newsPromo;
-					news.titolo = newsDecompresse[i].titolo_newsPromo;
-					news.data = newsDecompresse[i].data_newsPromo;
-					news.icona = newsDecompresse[i].icona_newsPromo;
-					news.descrizione = newsDecompresse[i].descrizione_newsPromo;
-					elenco_news.push(news);
-				}
-			}
 
-			var blocco = "";
-			if (elenco_news.length > 0) {
-				for (var i = 0; i < elenco_news.length; i++) { 						
-					blocco = blocco + "<div><h1>" + elenco_news[i].titolo + "</h1>"
-					blocco = blocco + "<img src='" + elenco_news[i].icona + "' class='img_azienda'>";
-					blocco = blocco + "<div class='descrizione_newsPromoPopup'>" + elenco_news[i].descrizione + "</div>"
-					blocco = blocco + "<h5><br/><br/>Inserito il: " + elenco_news[i].data.split(" ")[0] + "</h5></div>"
-				}
-			}
-			else {
-				blocco = blocco + "<p> Non ci sono news da visualizzare</p>"
-				$("#scheda_news .slider_next").hide();
-				$("#scheda_news .slider_prev").hide();
-			}
+            var news = "";
 
-			$(".slider_news").append(blocco);
-			}		
+            $.each(info_news, function (i, name) {
+            var news;
+            news.id = name.id_newsPromo;
+            news.titolo = name.titolo_newsPromo;
+            news.data = name.data_newsPromo;
+            news.icona = name.icona_newsPromo;
+            news.descrizione = name.descrizione_newsPromo;
+            elenco_news.push(news);
+            });
+            var blocco = "";
+            blocco = blocco + "<h3>" + elenco_news[0].data + "</h3>"
+            blocco = blocco + "<h1>" + elenco_news[0].titolo + "</h1>"
+            blocco = blocco + "<img src='http://www.trovoperte.com/public/upload_gallery/immagini/" + elenco_news[0].icona + "' class='img_azienda'>";
+            blocco = blocco + "<p>" + elenco_news[0].descrizione + "</p>"
+
+            $("#lista_news").append(blocco);
+            });
+
+            $.getJSON("http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te/admin/get_json_data_newsPromo.asp?id_azienda=" + id_azienda + "tipologia=promo", function (info_promo) {
+
+
+            var news = "";
+
+            $.each(info_promo, function (i, name) {
+            var promo;
+            news.id = name.id_newsPromo;
+            news.titolo = name.titolo_newsPromo;
+            news.data = name.data_newsPromo;
+            news.icona = name.icona_newsPromo;
+            news.descrizione = name.descrizione_newsPromo;
+            elenco_promo.push(promo);
+
+            });
+            });*/
+        });
+
        
     </script>
- 
-</head>
-<body>
-    <!-- dettaglio -->
-    <div data-role="page" id="page_dettaglio">
-        <!-- pannello laterale -->
-        <div data-role="panel" id="myPanel" data-display="overlay" data-position="right">
-            <div class="ui-btn-right">
-                <a href="#myPanel" class="ui-btn ui-shadow ui-btn-inline ui-btn-icon-left ui-icon-grid"
-                    data-role="button" data-icon="grid">&nbsp;</a>
-            </div>
-            <br>
-            <br>
-            <br>
-            <a href="../index.html" class="btn_search ui-btn sideOption ui-btn-inline ui-icon-home ui-btn-icon-left"
-                data-role="button" data-icon="home" data-ajax="false">Home</a> <a href="ricerca.html"
-                    class="btn_search ui-btn sideOption ui-btn-inline ui-icon-search ui-btn-icon-left"
-                    data-role="button" data-icon="search" data-ajax="false">Cerca</a>
-                    <a href='#allIndustry_mapPage' id="btnAllIndustry" data-icon='location' data-rel='popup'
-                    data-position-to='window' data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-location ui-btn-icon-left'>
-                    Mappa aziende</a>
-                     <a href='#settings' data-icon='gear' data-rel='popup' data-position-to='window' data-transition='pop'
-                        class='btn_search ui-btn sideOption ui-btn-inline ui-icon-gear ui-btn-icon-left'>
-                        Impostazioni</a>
-            <!-- setting -->
-            <div id="settings" data-role="popup">
-                <div data-role="header">
-                    <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all sideOption ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right"
-                        data-rel="back" data-icon="delete">&nbsp;</a>
-                    <h1>
-                        Impostazioni</h1>
-                </div>
-                <div data-role="content">
-                    <ul data-role="listview" style="margin: 0 !important">
-                        <li><a href="#" class="small">Testo piccolo</a></li>
-                        <li><a href="#" class="med">Testo medio</a></li>
-                        <li><a href="#" class="large">Testo grande</a></li>
-                    </ul>
-                </div>
-            </div>
-            <a href='#page_info' data-icon='info' data-rel='popup' data-position-to='window'
-                data-transition='pop' class='btn_search ui-btn sideOption ui-btn-inline ui-icon-info ui-btn-icon-left'>
-                Info generali</a> 
-				<a href='#page_richiestaInfo' data-icon='mail' data-rel='popup'
-                    data-position-to='window' data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-mail ui-btn-icon-left'>
-                    Contattaci</a> 
-					<a href='#page_registrazione' data-icon='plus' data-rel='popup' data-position-to='window'
-                        data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-plus ui-btn-icon-left'>
-                        Richiesta iscrizione</a>
-                        
-            <!-- info -->
-           
-            <div data-role="popup" id="page_info">
-                <div data-role="header">
-                    <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right"
-                        data-rel="back" data-icon="delete">&nbsp;</a>
-                    <h1>
-                        Info generali</h1>
-                </div>
-                <div data-role="main" class="ui-content">
-                    Trovo per Te è il portale ed la App creati proprio per Te, per trovare in modo semplice
-                    e veloce quello che ti serve nel tuo territorio.<br>
-                    <br>
-                    <b>Sei un privato?</b><br>
-                    <br>
-                    Potrai scaricare in modo gratuito e senza pubblicità la App su tuo smarthphone o
-                    tablet, oppure consultare il portale dedicato sul web.<br>
-                    <br />
-                    Avrai così la possibilità di trovare velocemente locali, aziende e professionisti
-                    in base alle tue necessità e approfittare di promo e offerte che verranno pubblicate.
-                    <br>
-                    <br />
-                    Potrai contattarli direttamente, mandargli una mail o raggiungerli seguendo il navigatore.<br>
-                    <br>
-                    <br>
-                    <b>Hai la partita IVA?</b><br>
-                    <br>
-                    Ideale per estendere la tua visibilità sui dispositivi mobili a basso costo e in
-                    assoluta autonomia con la gestione dei contenuti.
-                    <br>
-                    <br />
-                    Tramite un semplice pannello di controllo potrai gestire descrizioni, servizi, news,
-                    promo, offerte ogni volta che vorrai.
-                    <br>
-                    <br />
-                    Tutti potranno interagire tramite i tasti funzionali della tua scheda azienda: telefono,
-                    mail, navigatore, social, ecc..
-                    <br>
-                    <br />
-                    Quattro fasce di prezzo annuali in base alle vostre necessità: 30€, 80€, 120€, 150€
-                    iva esclusa.<br />
-                    <br />
-                    <b>Richiedi l'iscrizione cliccando <a onclick="apriRegistrazione()" href='#page_registrazione'
-                        data-rel='popup' data-position-to='window' data-transition='pop'>qui</a></b><br />
-                    <br />
-                    Oppure
-                    <br />
-                    <br />
-                    <b>Contattaci per avere maggiori informazioni cliccando <a onclick="apriInfo()" href='#page_richiestaInfo'
-                        data-rel='popup' data-position-to='window' data-transition='pop'>qui</a></b>
-                </div>
-            </div>
-            <!-- richiesta informazioni -->
-            <div data-role="popup" id="page_richiestaInfo" style="width: 35%; margin: 0 auto;">
-                <div data-role="header">
-                    <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right"
-                        data-rel="back" data-icon="delete">&nbsp;</a>
-                    <h1>
-                        Contattaci</h1>
-                </div>
-                <form method="post" onsubmit="return validateFormInfo();" action="formcdosys_generale.asp" id="form_richiestaInfo" name="form_richiestaInfo">
-				<input type="hidden" value="Richiesta informazioni"/>
-                <div class="form_left">
-                    <input name="nome" id="txtNomeInfo" type="text" placeholder="Nome" class="required" />
-                </div>
-                <div class="form_right">
-                    <input name="cognome" id="txtCognomeInfo" type="text" placeholder="Cognome" class="required" />
-                </div>
-                <div class="emailInfo">
-                    <input id="txtMailInfo" name="email" type="text" placeholder="E-mail" class="required" />
-                </div>
-                <div class="textAreaInfo">
-                    <textarea id="richiesta" placeholder="Richiesta" name="richiesta" rows="6" class="required"></textarea>
-                </div>
-                <p style="height: 75px; overflow: auto; clear: both; display: inline-block; margin-top: 20px;
-                    margin-bottom: 30px; padding: 0 10px 0 10px">
-                    Acconsento al trattamento dei miei dati da parte di "MVItalia" ( per finalita' commerciali,
-                    promozionali e statistiche, nonche' per l'invio di omaggi e/o materiale informativo
-                    su nuovi prodotti e iniziative promozionali. I suoi dati potranno essere trattati
-                    da "MVItalia", direttamente o tramite societa' preposte. Prenderemo tutte le cautele
-                    necessarie affinche' i suoi dati siano trattati con la massima sicurezza e in conformita'
-                    a quanto previsto in materia di tutela dei dati personali.Dlgs 196/2003INFORMATIVA
-                    AI SENSI DEL DLGS 196/2003 FINALITA' E MODALITA' DEL TRATTAMENTO DEI DATI PERSONALI</p>
-                <br />
-                <div style="padding: 0 10px 0 10px;">
-                    <input type="checkbox" class="required" name="conferma" id="chkConferma_info" />
-                    <label style="text-indent: 35px;" id="txtAcconsentoInfo">
-                        Acconsento il trattamento dei dati personali</label></div>
-                <div style="clear: both;" id="btnInvioInfo">
-                    <input type="submit" id="Invia_Info" value="Invia Richiesta" name="invia" />
-                </div>
-                </form>
-            </div>
-            <!-- registrazione azienda -->
-            <div data-role="popup" id="page_registrazione" style="width: 35%; margin: 0 auto;">
-                <div data-role="header">
-                    <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right"
-                        data-rel="back" data-icon="delete">&nbsp;</a>
-                    <h1>
-                        Richiesta iscrizione</h1>
-                </div>
-                <form method="post" onsubmit="return validateFormRegistrazione();" action="formcdosys_generale.asp" id="form_registrazioneAzienda" name="form_registrazioneAzienda">
-				<input type="hidden" value="Richiesta iscrizione"/>
-                <div class="form_left">
-                    <input name="nome" id="txtNomeRegistrazione" type="text" placeholder="Nome" class="required" />
-                </div>
-                <div class="form_right">
-                    <input name="cognome" id="txtCognomeRegistrazione" type="text" placeholder="Cognome"
-                        class="required" />
-                </div>
-                <div class="form_left">
-                    <input id="txtMailRegistrazione" name="email" type="text" placeholder="E-mail" class="required" />
-                </div>
-                <div class="form_right">
-                    <input id="txtTelRegistrazione" name="telefono" type="text" placeholder="Telefono"
-                        class="required" />
-                </div>
-                <div class="form_left">
-                    <input id="txtRagioneSociale" type="text" name="r_soc" placeholder="Ragione sociale"
-                        class="required" />
-                </div>
-                <div class="form_right">
-                    <input id="txtPIVA" type="text" name="piva" placeholder="P.IVA" class="required" /></div>
-                <div class="form_left">
-                    <input name="cod_fisc" id="txtCodiceFiscale" type="text" placeholder="Codice fiscale"
-                        class="required" /></div>
-                <div class="form_right">
-                    <input id="txtIndirizzo" type="text" name="indirizzo" placeholder="Indirizzo" class="required" /></div>
-                <div class="form_left">
-                    <input id="txtCAP" type="text" name="cap" placeholder="CAP" class="required" /></div>
-                <div class="form_right">
-                    <input id="txtCitta" type="text" name="citta" placeholder="Città" class="required" /></div>
-                <p style="height: 75px; overflow: auto; clear: both; margin-bottom: 30px; padding: 20px 10px 0 10px;">
-                    Acconsento al trattamento dei miei dati da parte di "MVItalia" ( per finalita' commerciali,
-                    promozionali e statistiche, nonche' per l'invio di omaggi e/o materiale informativo
-                    su nuovi prodotti e iniziative promozionali. I suoi dati potranno essere trattati
-                    da "MVItalia", direttamente o tramite societa' preposte. Prenderemo tutte le cautele
-                    necessarie affinche' i suoi dati siano trattati con la massima sicurezza e in conformita'
-                    a quanto previsto in materia di tutela dei dati personali.Dlgs 196/2003INFORMATIVA
-                    AI SENSI DEL DLGS 196/2003 FINALITA' E MODALITA' DEL TRATTAMENTO DEI DATI PERSONALI</p>
-                <br />
-                <div style="padding: 0 10px 0 10px;">
-                    <input type="checkbox" name="conferma" class="required" id="chkConferma_Richiesta" />
-                    <label style="text-indent: 35px;" id="txtAcconsento">
-                        Acconsento il trattamento dei dati personali</label></div>
-                <div style="clear: both;" id="btnInvioRegistrazione">
-                    <input type="submit" id="Invia_Registrazione" value="Invia Richiesta" name="invia" />
-                </div>
-                </form>
-            </div>
-            <!-- mappa con posizione ditta -->        
-         
-         <div data-role="popup" id="map-page" data-url="map-page" >
-				<div data-role="header">
-                    <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right"
-                        data-rel="back" data-icon="delete">&nbsp;</a>
-                    <h1>
-                        Posizione geografica</h1>
-				</div>		
-				 <div role="main" class="ui-content" id="map-canvas">          
-				</div>
-				<div data-role="footer" style="text-align: center;">
-                     <a data-role="button" href="#" class="ui-btn ui-shadow ui-btn-inline" id="btnNavigazione" >Avvia navigazione</a>
-             
-                </div>
-        </div>
-
-         <!-- mappa con tutte  le ditte -->  
-        <div data-role="popup" id="allIndustry_mapPage" data-url="map-page" >
-              <div data-role="header">
-                    <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right"
-                        data-rel="back" data-icon="delete">&nbsp;</a>
-                    <h1>
-                        Mappa aziende</h1>
-                </div>
-             <div role="main" class="ui-content" id="allIndustry_mapCanvas">          
-            </div>
-              
-        </div>
- 
-        </div>
-        <!-- fine pannello laterale -->
-        <div data-role="header" data-position="fixed">
-            <a href="#" data-rel="back" data-icon="back" data-position="inline" class="ui-btn-left">
-                &nbsp;</a> <a href="../index.html" data-role="none" class="link_index" data-ajax="false">
-                    <img src="../img/logo_trovoperte.png" class="logo_trovo"></a>
-            <div class="ui-btn-right">
-                <a href="#myPanel" class="ui-btn ui-shadow ui-btn-inline ui-btn-icon-left ui-icon-grid"
-                    data-role="button" data-icon="grid">&nbsp;</a>
-            </div>
-        </div>
-        <div role="main" id="" class="ui-content">
-            <div data-role="content">
-                <div id="scheda_azienda" data-divider-theme="a" data-inset="true">
-                    <span class="testo_finto">testo finto</span>
-                </div>
-                <!-- gallery -->
-                <div data-role="popup" id="azienda_gallery">
-                    <div data-role="header">
-                        <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right"
-                            data-rel="back" data-icon="delete">&nbsp;</a>
-                        <h1>
-                            Gallery</h1>
-                    </div>
-                    <div data-role="main" class="ui-content">
-                        <!-- Swiper -->
-                        <div id="scheda_gallery" data-divider-theme="a" data-inset="true">
-                            <div id="lista_immagini" class="liste_foto">
-                                <div data-role="content" id="contentSlider">
-                                    <a href="#"  onclick='mySwipe.prev()' class="slider_prev ui-btn ui-icon-carat-l ui-btn-icon-left">
-                                    </a><a href="#" onclick='mySwipe.next()' class=" slider_next ui-btn ui-icon-carat-r ui-btn-icon-left">
-                                    </a>
-                                    <div id='mySwipeGallery' style='margin: 0 auto' class='swipe'>
-                                        <div class='swipe-wrap slider_gallery'>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div data-role="footer" data-position="fixed">
-                    </div>
-                </div>
-                <!-- news -->
-                <div data-role="popup" id="azienda_news">
-                    <div data-role="header">
-                        <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right"
-                            data-rel="back" data-icon="delete">&nbsp;</a>
-                        <h1>
-                            News</h1>
-                    </div>
-                    <div data-role="main" class="ui-content">
-                        <div id="scheda_news" data-divider-theme="a" data-inset="true">
-                            <div id="lista_news" class="liste_foto">
-                                <div data-role="content" id="contentSlider">
-                                    <a href="#" onclick='mySwipe.prev()' class="slider_prev ui-btn ui-icon-carat-l ui-btn-icon-left">
-                                    </a><a href="#" onclick='mySwipe.next()' class=" slider_next ui-btn ui-icon-carat-r ui-btn-icon-left">
-                                    </a>
-                                    <div id='mySwipe' style='margin: 0 auto' class='swipe'>
-                                        <div class='swipe-wrap slider_news'>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div data-role="footer" data-position="fixed">
-                    </div>
-                </div>
-                <!-- promo -->
-                <div data-role="popup" id="azienda_promo">
-                    <div data-role="header">
-                        <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right"
-                            data-rel="back" data-icon="delete">&nbsp;</a>
-                        <h1>
-                            Promo</h1>
-                    </div>
-                    <div data-role="main" class="ui-content">
-                        <div id="scheda_promo" data-divider-theme="a" data-inset="true">
-                            <div id="lista_promo" class="liste_foto">
-                                <div data-role="content" id="contentSlider">
-                                    <a href="#" onclick='mySwipe.prev()' class="slider_prev ui-btn ui-icon-carat-l ui-btn-icon-left">
-                                    </a><a href="#" onclick='mySwipe.next()' class=" slider_next ui-btn ui-icon-carat-r ui-btn-icon-left">
-                                    </a>
-                                    <div id='mySwipePromo' style='margin: 0 auto' class='swipe'>
-                                        <div class='swipe-wrap slider_promo'>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div data-role="footer" data-position="fixed">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div data-role="footer" data-position="fixed">
-            <div data-role="navbar" class="ui-navbar">
-                <ul id="footer_dettaglio" class="ui-grid-c">
-                    <li><span class="testo_finto">testo finto</span></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <!--page-->
-    </div>
-   </body>
+</body>
 </html>
