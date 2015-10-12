@@ -151,12 +151,10 @@ invioDa =  Request.Form("mail")
 	End With
 	
 	' rendirizzamento
-	'response.redirect("index.html?info=ok")
+'response.redirect("index.html?info=ok")
 
 %>
-	
-
-	<html>
+<html>
 <head>
     <script type="text/javascript" src="cordova.js"></script>
     <meta charset="UTF-8">
