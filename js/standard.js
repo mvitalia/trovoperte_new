@@ -14,7 +14,9 @@ $(document).on('vclick', '.large', function(e){
     $(".txtwrapper").css('font-size', '25px');
 });
 
-$(document).on("click","#txtAcconsento",function(e){ if ($("#chkConferma_Richiesta").prop("checked") == true) {
+$(document).on("click","#txtAcconsento",function(e){ 
+		alert("prova");
+		if ($("#chkConferma_Richiesta").prop("checked") == true) {
             $("#chkConferma_Richiesta").prop("checked", false);
         }
         else {
