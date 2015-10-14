@@ -55,6 +55,39 @@ $(document).on("click",".avanzato",function(){
 		}	
 })
 
+$(document).on("click",".free input",function(){
+	if($(".free input").prop("checked")==true){
+			$(".free input").prop("checked",false)
+		}
+		else{
+			$(".free input").prop("checked",true)
+		}	
+})
+$(document).on("click",".base input",function(){
+	if($(".base input").prop("checked")==true){
+			$(".base input").prop("checked",false)
+		}
+		else{
+			$(".base input").prop("checked",true)
+		}	
+})
+$(document).on("click",".intermedio input",function(){
+	if($(".intermedio input").prop("checked")==true){
+			$(".intermedio input").prop("checked",false)
+		}
+		else{
+			$(".intermedio input").prop("checked",true)
+		}	
+})
+$(document).on("click",".avanzato input",function(){
+	if($(".avanzato input").prop("checked")==true){
+			$(".avanzato input").prop("checked",false)
+		}
+		else{
+			$(".avanzato input").prop("checked",true)
+		}	
+})
+
 $(document).ready(function () {
 	
     /*$("#txtAcconsento").click(function () {
