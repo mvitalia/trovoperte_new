@@ -75,7 +75,7 @@
 			
 			$.getJSON("http://www.trovoperte.com/get_MacroCategorie.asp?tipologia=macrocategorie", function (info) {
 				for(var i=0; i<info.length;i++){
-					var option = "<option macroID="+ info[i].id_macrocategoria +">" + info[i].titolo_macrocategoria + "</option>"
+					var option = "<option value='" + info[i].id_macrocategoria + "' macroID='"+ info[i].id_macrocategoria +"'>" + info[i].titolo_macrocategoria + "</option>"
 					$("#lstMacrocategorie").append(option);
 				}
 				
