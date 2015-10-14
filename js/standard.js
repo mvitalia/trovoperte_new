@@ -63,7 +63,7 @@ $(document).ready(function () {
 	})
 	$(".avanzato").click(function(){*/
 	
-	$(".free").click(function(){
+		$(".free").click(function(){
 			if($(".free input").prop("checked")==false){
 				$(".free input").prop("checked",true)
 				$(".pAbbonamento").css("font-weight","normal")
@@ -71,7 +71,7 @@ $(document).ready(function () {
 			}
 		
 		})
-		
+	
 		$(".free input").click(function(){
 			if($(".free input").prop("checked")==true){
 				//$(".free input").prop("checked",true)
@@ -131,29 +131,22 @@ $(document).ready(function () {
 		
 		$(".avanzato input").click(function(){
 			if($(".avanzato input").prop("checked")==true){
-				$(".avanzato input").prop("checked",true)
-					$(".pAbbonamento").css("font-weight","normal")
-				
+				$(".avanzato input").prop("checked",false)
 			}
-			
+			else{
+				$(".avanzato input").prop("checked",true)
+			}
+	
 		})
-		if($(".avanzato input").prop("checked")==true){
-			$(".avanzato input").prop("checked",false)
-		}
-		else{
-			$(".avanzato input").prop("checked",true)
-		}
-		
-	})
 	
 
-    $("#page_info").bind({
+		$("#page_info").bind({
         popupafterclose: function (event, ui) { if (page == "registrazione") { $("#page_registrazione").popup("open"); page = ""; } else if (page == "info") { $("#page_richiestaInfo").popup("open"); page = ""; } }
     });
 	
 	//$("#lstMacrocategorie").change(function(){alert("cioa")});
+	});
 
-});
 
 function caricaAllIndustry(elencoMarker,page) {
     var defaultCenter = new google.maps.LatLng(44.7392354, 7.928849);
