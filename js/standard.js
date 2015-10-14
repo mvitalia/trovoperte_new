@@ -23,7 +23,7 @@ $(document).on("click","#txtAcconsento",function(e){
             $("#chkConferma_Richiesta").prop("checked", true);
         }})
 
-/*$(document).on("click",".free",function(){
+$(document).on("click",".free",function(){
 	if($(".free input").prop("checked")==true){
 			$(".free input").prop("checked",false)
 		}
@@ -88,7 +88,7 @@ $(document).on("click",".avanzato input",function(){
 		else{
 			$(".avanzato input").prop("checked",true)
 		}	
-})*/
+})
 
 $(document).ready(function () {
 	alert("ready");
