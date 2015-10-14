@@ -91,6 +91,7 @@ $(document).on("click",".avanzato input",function(){
 })*/
 
 $(document).ready(function () {
+	alert("ready");
 	
     $("#txtAcconsento").click(function () {
 		
