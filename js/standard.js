@@ -140,7 +140,7 @@ $(document).ready(function () {
 		}
 		
 	})
-	$(".avanzato").click(function(){*/
+	$(".avanzato").click(function(){
 	
 		$(".free").click(function(){
 			if($(".free input").prop("checked")==false){
