@@ -62,8 +62,13 @@
 		
 }
 		function functionacconsento(){
-				alert("prova");
+			if ($("#chkConferma_Richiesta").prop("checked") == true) {
+            $("#chkConferma_Richiesta").prop("checked", false);
 			}
+			else {
+				$("#chkConferma_Richiesta").prop("checked", true);
+			}
+		}
 		
 		
 	</script>

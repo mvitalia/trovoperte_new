@@ -15,7 +15,7 @@ $(document).on('vclick', '.large', function(e){
 });
 
 $(document).on("click","#txtAcconsento",function(e){ 
-		alert("prova");
+		
 		if ($("#chkConferma_Richiesta").prop("checked") == true) {
             $("#chkConferma_Richiesta").prop("checked", false);
         }
