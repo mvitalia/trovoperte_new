@@ -12,6 +12,27 @@
     <script src="../js/jquery.mobile-1.4.5.min.js"></script>
       <script src='https://maps.googleapis.com/maps/api/js?v=3.exp'></script>
     <script src="../js/standard.js"></script>
+	<script>
+		$(document).ready(function(){
+				$("#lstMacrocategorie").change(function(){
+					$("#lstCategorie option").remove();
+					var macrocategoria = $("#lstMacrocategorie").val();
+					$.getJSON("http://www.trovoperte.com/get_MacroCategorie.asp?tipologia=categorie&macrocategoria="+macrocategoria, function (info) {
+						for(var i=0; i<info.length;i++){
+							var option = "<option value="+ info[i].id_categoria +">" + info[i].titolo_categoria + "</option>"
+							$("#lstCategorie").append(option);
+						}
+						var myselect3 = $("#lstCategorie");
+						myselect3[0].selectedIndex = 0;
+						myselect3.selectmenu("refresh");
+						
+					});
+				})
+				
+				
+				
+			})
+	</script>
 </head>
 <body>
     <div class="txtwrapper">
@@ -156,8 +177,8 @@ Oppure <br /><br />
                         <h1>
                             Richiesta iscrizione</h1>
                     </div>
-                   <form  method="post"  onsubmit="return validateFormRegistrazione();" action="http://www.trovoperte.com/app/formcdosys_generale.asp" id="form_registrazioneAzienda" name="form_registrazioneAzienda" ><input type="hidden" name="tipologia" value="Richiesta registrazione">
-                    
+                     <form  method="post" onSubmit="return validateFormRegistrazione();" action="http://www.mvitalia.com/dimostrativi/patrizia/alex/trovo_x_te_v2 app online/app/formcdosys_profilo_gratis.asp" id="form_registrazioneAzienda" name="form_registra" >
+                    	<input type="hidden" name="tipologia" value="Richiesta registrazione">
                         <div class="form_left">
                             <input  name="nome" id="txtNomeRegistrazione" type="text" placeholder="Nome" class="required"/>
                         </div >
@@ -165,19 +186,37 @@ Oppure <br /><br />
                             <input name="cognome" id="txtCognomeRegistrazione" type="text" placeholder="Cognome" class="required"/>
                         </div >
                         <div class="form_left">
-                            <input id="txtMailRegistrazione" name="email" type="text" placeholder="E-mail" class="required"/>
+                            <input id="txtMailRegistrazione" name="mail" type="text" placeholder="E-mail" class="required"/>
                         </div>
                        <div class="form_right">
-                            <input id="txtTelRegistrazione" name="telefono" type="text" placeholder="Telefono" class="required"/>
+                            <input id="txtTelRegistrazione" name="cell" type="text" placeholder="Telefono" class="required"/>
                         </div>
                         <div class="form_left">
-                            <input id="txtRagioneSociale" type="text" name="r_soc" placeholder="Ragione sociale" class="required"/>
+                            <input id="txtRagioneSociale" type="text" name="ragione_sociale" placeholder="Ragione sociale" class="required"/>
                         </div>
                             <div class="form_right"> <input id="txtPIVA" type="text" name="piva" placeholder="P.IVA" class="required"/></div>
-                        <div class="form_left"><input  name="cod_fisc" id="txtCodiceFiscale" type="text" placeholder="Codice fiscale" class="required"/></div>
+                        <div class="form_left"><input  name="cod_fiscale" id="txtCodiceFiscale" type="text" placeholder="Codice fiscale" class="required"/></div>
                             <div class="form_right"><input id="txtIndirizzo" type="text" name="indirizzo" placeholder="Indirizzo" class="required"/></div>
+						<div class="form_left"><input  name="num" id="txtnCivico" type="text" placeholder="n°" class="required"/></div>
+                        <div class="form_right"><input id="txtProvincia" type="text" name="provincia" placeholder="Provincia" class="required"/></div>
+							
                         <div class="form_left"><input id="txtCAP" type="text" name="cap" placeholder="CAP" class="required"/></div>
-                        <div class="form_right"><input id="txtCitta"  type="text" name="citta" placeholder="Città"class="required"/></div>
+                        <div class="form_right"><input id="txtCitta"  type="text" name="paese" placeholder="Città"class="required"/></div>
+						
+						  <div class="form_left"><input id="txtUsername" type="text" name="username" placeholder="Username" class="required"/></div>
+                        <div class="form_right"><input id="txtPassword"  type="text" name="password" placeholder="Password"class="required"/></div>
+						
+						<div class="form_left"><select class="select"  name="macrocategoria" id="lstMacrocategorie"><option value="" disabled selected >Macrocategoria</option></select></div>
+                        <div class="form_right"><select  class="select"  name="categoria" id="lstCategorie"><option value="" disabled selected >Categoria</option></select></div>
+						
+						 
+						<div class="form_right radioAbbonamento free"><input name="tipoAbbonamento" checked="true" type="radio" value="free">Free</div>
+						<div class="form_left radioAbbonamento base"><input name="tipoAbbonamento" type="radio" value="base">Base 50&euro;</div>
+						<div class="form_left radioAbbonamento intermedio"><input name="tipoAbbonamento" type="radio" value="intermedio">Intermedio 80&euro;</div>
+						<div class="form_right radioAbbonamento avanzato"><input name="tipoAbbonamento" type="radio" value="avanzato">Avanzato 150&euro;</div>
+						
+						<div style=" clear:both; margin-top:15px; padding: 0 10px 0 10px;">Per ulteriori informazioni sui piani di abbonamento clicca <a href="http://www.trovoperte.com/index.html#listinoPrezzi">qui</a></div>
+						
                         <p style="height: 75px; overflow: auto; clear:both; display:inline-block; margin-top:20px; margin-bottom:30px; padding: 0 10px 0 10px;">
                             Acconsento al trattamento dei miei dati da parte di "MVItalia" ( per finalita'
                             commerciali, promozionali e statistiche, nonche' per l'invio di omaggi e/o materiale
@@ -277,6 +316,25 @@ Oppure <br /><br />
         $("#news").on("pageshow", function (event) {
             var elencoMarker = new Array();
 
+			$.getJSON("http://www.trovoperte.com/get_MacroCategorie.asp?tipologia=macrocategorie", function (info) {
+				for(var i=0; i<info.length;i++){
+					var option = "<option value='" + info[i].id_macrocategoria + "' macroID='"+ info[i].id_macrocategoria +"'>" + info[i].titolo_macrocategoria + "</option>"
+					$("#lstMacrocategorie").append(option);
+					var myselect = $("#lstMacrocategorie");
+					myselect[0].selectedIndex = 0;
+					myselect.selectmenu("refresh");
+				}
+				
+				$.getJSON("http://www.trovoperte.com/get_MacroCategorie.asp?tipologia=categorie&macrocategoria="+info[0].id_macrocategoria, function (info) {
+					for(var i=0; i<info.length;i++){
+						var option = "<option value='"+ info[i].id_categoria +"'>" + info[i].titolo_categoria + "</option>"
+						$("#lstCategorie").append(option);
+					}
+					var myselect2 = $("#lstCategorie");
+					myselect2[0].selectedIndex = 0;
+					myselect2.selectmenu("refresh");
+				});
+			});
 
             $.getJSON("http://www.trovoperte.com/admin/get_json_data.asp", function (info_allIndustry) {
 
