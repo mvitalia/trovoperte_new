@@ -761,3 +761,32 @@ html, body {
   margin-right:10px
 
 }
+
+.radioAbbonamento{
+  background-color:red;
+  margin: 10px;
+  padding:5px;
+  border-radius:5px;
+  max-width:286px;
+  color:#fff;
+}
+
+.radioAbbonamento .ui-radio{
+  margin:0;
+}
+
+.free{
+	background-color:#57BA46;
+}
+
+.base{
+	background-color:#FDC307;
+}
+
+.intermedio{
+	background-color:#2695C2;
+}
+
+.avanzato{
+	background-color:#DB1D27;
+}
