@@ -14,16 +14,19 @@ $(document).on('vclick', '.large', function(e){
     $(".txtwrapper").css('font-size', '25px');
 });
 
+$(document).on("click","#txtAcconsento",function(e){alert("cioa");})
+
 $(document).ready(function () {
 	
-    $("#txtAcconsento").click(function () {
+    /*$("#txtAcconsento").click(function () {
+		
         if ($("#chkConferma_Richiesta").prop("checked") == true) {
             $("#chkConferma_Richiesta").prop("checked", false);
         }
         else {
             $("#chkConferma_Richiesta").prop("checked", true);
         }
-    });
+    });*/
 
     $("#txtAcconsentoInfo").click(function () {
         if ($("#chkConferma_info").prop("checked") == true) {
