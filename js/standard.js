@@ -14,7 +14,46 @@ $(document).on('vclick', '.large', function(e){
     $(".txtwrapper").css('font-size', '25px');
 });
 
-$(document).on("click","#txtAcconsento",function(e){alert("cioa");})
+$(document).on("click","#txtAcconsento",function(e){ if ($("#chkConferma_Richiesta").prop("checked") == true) {
+            $("#chkConferma_Richiesta").prop("checked", false);
+        }
+        else {
+            $("#chkConferma_Richiesta").prop("checked", true);
+        }})
+
+$(document).on("click",".free",function(){
+	if($(".free input").prop("checked")==true){
+			$(".free input").prop("checked",false)
+		}
+		else{
+			$(".free input").prop("checked",true)
+		}	
+})
+
+$(document).on("click",".base",function(){
+	if($(".base input").prop("checked")==true){
+			$(".base input").prop("checked",false)
+		}
+		else{
+			$(".base input").prop("checked",true)
+		}	
+})
+$(document).on("click",".intermedio",function(){
+	if($(".intermedio input").prop("checked")==true){
+			$(".intermedio input").prop("checked",false)
+		}
+		else{
+			$(".intermedio input").prop("checked",true)
+		}	
+})
+$(document).on("click",".avanzato",function(){
+	if($(".avanzato input").prop("checked")==true){
+			$(".avanzato input").prop("checked",false)
+		}
+		else{
+			$(".avanzato input").prop("checked",true)
+		}	
+})
 
 $(document).ready(function () {
 	
