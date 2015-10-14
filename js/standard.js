@@ -34,7 +34,7 @@ $(document).ready(function () {
 
     });
 	
-	$(".free").click(function(){
+	/*$(".free").click(function(){
 		if($(".free input").prop("checked")==true){
 			$(".free input").prop("checked",false)
 		}
@@ -61,7 +61,82 @@ $(document).ready(function () {
 		}
 		
 	})
-	$(".avanzato").click(function(){
+	$(".avanzato").click(function(){*/
+	
+	$(".free").click(function(){
+			if($(".free input").prop("checked")==false){
+				$(".free input").prop("checked",true)
+				$(".pAbbonamento").css("font-weight","normal")
+				
+			}
+		
+		})
+		
+		$(".free input").click(function(){
+			if($(".free input").prop("checked")==true){
+				//$(".free input").prop("checked",true)
+				$(".pAbbonamento").css("font-weight","normal")
+					
+			}
+		
+		})
+		
+		$(".base").click(function(){
+			if($(".base input").prop("checked")==false){
+				$(".base input").prop("checked",true)
+				$(".pAbbonamento").css("font-weight","normal")
+				
+			}
+			
+			
+		})	
+		
+		$(".base input").click(function(){
+			if($(".base input").prop("checked")==true){
+				$(".base input").prop("checked",true)
+				$(".pAbbonamento").css("font-weight","normal")
+				
+			}
+			
+			
+		})	
+		
+		
+		$(".intermedio").click(function(){
+			if($(".intermedio input").prop("checked")==false){
+				$(".intermedio input").prop("checked",true)
+				$(".pAbbonamento").css("font-weight","normal")
+				
+			}			
+		})
+		
+		$(".intermedio input").click(function(){
+			if($(".intermedio input").prop("checked")==true){
+				$(".intermedio input").prop("checked",true)
+				$(".pAbbonamento").css("font-weight","normal")
+				
+			}			
+		})
+		
+		
+		
+		$(".avanzato").click(function(){
+			if($(".avanzato input").prop("checked")==false){
+				$(".avanzato input").prop("checked",true)
+					$(".pAbbonamento").css("font-weight","normal")
+					
+			}
+			
+		})
+		
+		$(".avanzato input").click(function(){
+			if($(".avanzato input").prop("checked")==true){
+				$(".avanzato input").prop("checked",true)
+					$(".pAbbonamento").css("font-weight","normal")
+				
+			}
+			
+		})
 		if($(".avanzato input").prop("checked")==true){
 			$(".avanzato input").prop("checked",false)
 		}
