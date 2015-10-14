@@ -27,14 +27,14 @@
 							var option = "<option value="+ info[i].id_categoria +">" + info[i].titolo_categoria + "</option>"
 							$("#lstCategorie").append(option);
 						}
+						var myselect3 = $("#lstCategorie");
+						myselect3[0].selectedIndex = 0;
+						myselect3.selectmenu("refresh");
 						
 					});
-					$("#lstCategorie").find('option:eq(0)').prop('selected', true);
 				})
 				
-				var myselect = $("#lstCategorie");
-				myselect[0].selectedIndex = 0;
-				myselect.selectmenu("refresh");
+				
 				
 			})
 	
@@ -86,14 +86,14 @@
 					myselect.selectmenu("refresh");
 				}
 				
-				$.getJSON("http://www.trovoperte.com/get_MacroCategorie.asp?tipologia=categorie&macrocategoria="+info[0].titolo_macrocategoria, function (info) {
+				$.getJSON("http://www.trovoperte.com/get_MacroCategorie.asp?tipologia=categorie&macrocategoria="+info[0].id_macrocategoria, function (info) {
 					for(var i=0; i<info.length;i++){
 						var option = "<option value='"+ info[i].id_categoria +"'>" + info[i].titolo_categoria + "</option>"
 						$("#lstCategorie").append(option);
 					}
-					var myselect = $("#lstCategorie");
-					myselect[0].selectedIndex = 0;
-					myselect.selectmenu("refresh");
+					var myselect2 = $("#lstCategorie");
+					myselect2[0].selectedIndex = 0;
+					myselect2.selectmenu("refresh");
 				});
 			});
 		
@@ -293,7 +293,7 @@
                         <div class="form_right"><select  name="categoria" id="lstCategorie"></select></div>
 						
 						 
-						<div class="form_right radioAbbonamento free"><input name="tipoAbbonamento" type="radio" value="free">Free</div>
+						<div class="form_right radioAbbonamento free"><input name="tipoAbbonamento" checked="true" type="radio" value="free">Free</div>
 						<div class="form_left radioAbbonamento base"><input name="tipoAbbonamento" checked="true" type="radio" value="base">Base 50&euro;</div>
 						<div class="form_left radioAbbonamento intermedio"><input name="tipoAbbonamento" type="radio" value="intermedio">Intermedio 80&euro;</div>
 						<div class="form_right radioAbbonamento avanzato"><input name="tipoAbbonamento" type="radio" value="avanzato">Avanzato 150&euro;</div>
