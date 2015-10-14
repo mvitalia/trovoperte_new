@@ -21,7 +21,7 @@ $(document).on("click","#txtAcconsento",function(e){ if ($("#chkConferma_Richies
             $("#chkConferma_Richiesta").prop("checked", true);
         }})
 
-$(document).on("click",".free",function(){
+/*$(document).on("click",".free",function(){
 	if($(".free input").prop("checked")==true){
 			$(".free input").prop("checked",false)
 		}
@@ -79,7 +79,7 @@ $(document).on("click",".intermedio input",function(){
 			$(".intermedio input").prop("checked",true)
 		}	
 })
-$(document).on("click",".avanzato input",function(){
+$(document).on("click",".avanzato input",function(){*/
 	if($(".avanzato input").prop("checked")==true){
 			$(".avanzato input").prop("checked",false)
 		}
@@ -90,7 +90,7 @@ $(document).on("click",".avanzato input",function(){
 
 $(document).ready(function () {
 	
-    /*$("#txtAcconsento").click(function () {
+    $("#txtAcconsento").click(function () {
 		
         if ($("#chkConferma_Richiesta").prop("checked") == true) {
             $("#chkConferma_Richiesta").prop("checked", false);
@@ -98,7 +98,7 @@ $(document).ready(function () {
         else {
             $("#chkConferma_Richiesta").prop("checked", true);
         }
-    });*/
+    });
 
     $("#txtAcconsentoInfo").click(function () {
         if ($("#chkConferma_info").prop("checked") == true) {

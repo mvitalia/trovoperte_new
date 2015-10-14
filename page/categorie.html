@@ -56,8 +56,8 @@
 		}
 		function functionAvanzato(){
 			alert("avanzato")
-			if($(".avanzato input").prop("checked")==false){
-			$(".avanzato input").prop("checked",true)
+			if($(".avanzato div input").prop("checked")==false){
+			$(".avanzato div input").prop("checked",true)
 		}
 		
 }
@@ -156,13 +156,13 @@ Oppure <br /><br />
             </div>
                  <!-- richiesta informazioni -->
                 <div data-role="popup" id="page_richiestaInfo" style="width: 35%; margin: 0 auto;">
-                        
-                <div data-role="header">
-                    <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right"
-                        data-rel="back" data-icon="delete">&nbsp;</a>
-                    <h1>
-                        Contattaci</h1>
-                </div>
+							
+					<div data-role="header">
+						<a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right"
+							data-rel="back" data-icon="delete">&nbsp;</a>
+						<h1>
+							Contattaci</h1>
+					</div>
                 <form  method="post"  onsubmit="return validateFormInfo();" action="http://www.trovoperte.com/app/formcdosys_generale.asp" id="form_richiestaInfo" name="form_richiestaInfo"><input type="hidden" name="tipologia" value="Richiesta informazioni">
                      <div class="form_left">
                             <input  name="nome" id="txtNomeInfo" type="text" placeholder="Nome" class="required"/>
@@ -214,7 +214,7 @@ Oppure <br /><br />
                         <div class="form_right">
                             <input name="cognome" id="txtCognomeRegistrazione" type="text" placeholder="Cognome" class="required"/>
                         </div >
-                        <div class="form_left">
+                        <!--<div class="form_left">
                             <input id="txtMailRegistrazione" name="mail" type="text" placeholder="E-mail" class="required"/>
                         </div>
                        <div class="form_right">
@@ -233,7 +233,7 @@ Oppure <br /><br />
                         <div class="form_right"><input id="txtCitta"  type="text" name="paese" placeholder="Città" class="required"/></div>
 						
 						  <div class="form_left"><input id="txtUsername" type="text" name="username" placeholder="Username" class="required"/></div>
-                        <div class="form_right"><input id="txtPassword"  type="text" name="password" placeholder="Password" class="required"/></div>
+                        <div class="form_right"><input id="txtPassword"  type="text" name="password" placeholder="Password" class="required"/></div>-->
 						
 						<div class="form_left"><select class="select"  name="macrocategoria" id="lstMacrocategorie"><option value="" disabled selected >Macrocategoria</option></select></div>
                         <div class="form_right"><select  class="select"  name="categoria" id="lstCategorie"><option value="" disabled selected >Categoria</option></select></div>
