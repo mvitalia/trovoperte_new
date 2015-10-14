@@ -79,14 +79,14 @@ $(document).on("click",".intermedio input",function(){
 			$(".intermedio input").prop("checked",true)
 		}	
 })
-$(document).on("click",".avanzato input",function(){*/
+$(document).on("click",".avanzato input",function(){
 	if($(".avanzato input").prop("checked")==true){
 			$(".avanzato input").prop("checked",false)
 		}
 		else{
 			$(".avanzato input").prop("checked",true)
 		}	
-})
+})*/
 
 $(document).ready(function () {
 	
