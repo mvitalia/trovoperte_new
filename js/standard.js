@@ -36,37 +36,37 @@ $(document).ready(function () {
 	
 	$(".free").click(function(){
 		if($(".free input").prop("checked")==true){
-			$(".free input").prop("checked","false")
+			$(".free input").prop("checked",false)
 		}
 		else{
-			$(".free input").prop("checked","true")
+			$(".free input").prop("checked",true)
 		}
 		
 	})
 	$(".base").click(function(){
 		if($(".base input").prop("checked")==true){
-			$(".base input").prop("checked","false")
+			$(".base input").prop("checked",false)
 		}
 		else{
-			$(".base input").prop("checked","true")
+			$(".base input").prop("checked",true)
 		}
 		
 	})
 	$(".intermedio").click(function(){
 		if($(".intermedio input").prop("checked")==true){
-			$(".intermedio input").prop("checked","false")
+			$(".intermedio input").prop("checked",false)
 		}
 		else{
-			$(".intermedio input").prop("checked","true")
+			$(".intermedio input").prop("checked",true)
 		}
 		
 	})
 	$(".avanzato").click(function(){
 		if($(".avanzato input").prop("checked")==true){
-			$(".avanzato input").prop("checked","false")
+			$(".avanzato input").prop("checked",false)
 		}
 		else{
-			$(".avanzato input").prop("checked","true")
+			$(".avanzato input").prop("checked",true)
 		}
 		
 	})
