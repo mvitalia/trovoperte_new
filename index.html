@@ -32,6 +32,10 @@
 					$("#lstCategorie").find('option:eq(0)').prop('selected', true);
 				})
 				
+				var myselect = $("#lstCategorie");
+				myselect[0].selectedIndex = 0;
+				myselect.selectmenu("refresh");
+				
 			})
 	
 		
@@ -77,14 +81,19 @@
 				for(var i=0; i<info.length;i++){
 					var option = "<option value='" + info[i].id_macrocategoria + "' macroID='"+ info[i].id_macrocategoria +"'>" + info[i].titolo_macrocategoria + "</option>"
 					$("#lstMacrocategorie").append(option);
+					var myselect = $("#lstMacrocategorie");
+					myselect[0].selectedIndex = 0;
+					myselect.selectmenu("refresh");
 				}
 				
 				$.getJSON("http://www.trovoperte.com/get_MacroCategorie.asp?tipologia=categorie&macrocategoria="+info[0].titolo_macrocategoria, function (info) {
 					for(var i=0; i<info.length;i++){
-						var option = "<option value="+ info[i].id_categoria +">" + info[i].titolo_categoria + "</option>"
+						var option = "<option value='"+ info[i].id_categoria +"'>" + info[i].titolo_categoria + "</option>"
 						$("#lstCategorie").append(option);
 					}
-					
+					var myselect = $("#lstCategorie");
+					myselect[0].selectedIndex = 0;
+					myselect.selectmenu("refresh");
 				});
 			});
 		
