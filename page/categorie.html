@@ -12,66 +12,6 @@
     <script src="../js/jquery.mobile-1.4.5.min.js"></script>
     <script src='https://maps.googleapis.com/maps/api/js?v=3.exp'></script>
     <script src="../js/standard.js"></script>
-	<script>
-		$(document).ready(function(){
-				$("#lstMacrocategorie").change(function(){
-					$("#lstCategorie option").remove();
-					var macrocategoria = $("#lstMacrocategorie").val();
-					$.getJSON("http://www.trovoperte.com/get_MacroCategorie.asp?tipologia=categorie&macrocategoria="+macrocategoria, function (info) {
-						for(var i=0; i<info.length;i++){
-							var option = "<option value="+ info[i].id_categoria +">" + info[i].titolo_categoria + "</option>"
-							$("#lstCategorie").append(option);
-						}
-						var myselect3 = $("#lstCategorie");
-						myselect3[0].selectedIndex = 0;
-						myselect3.selectmenu("refresh");
-						
-					});
-				})
-				
-				
-				
-			})
-			
-		/*function functionFree(){
-			alert("free")
-			if($(".free input").prop("checked")==false){
-			$(".free input").prop("checked",true)
-		}
-		
-		}
-		function functionBase(){
-			alert("base")
-			if($(".base input").prop("checked")==false){
-			$(".base input").prop("checked",true)
-		}
-		
-		}
-		function functionIntermedio(){
-			alert("intermedio")
-			if($(".intermedio input").prop("checked")==false){
-			$(".intermedio input").prop("checked",true)
-		}
-		
-		}
-		function functionAvanzato(){
-			alert("avanzato")
-			if($(".avanzato div input").prop("checked")==false){
-			$(".avanzato div input").prop("checked",true)
-		}
-		
-}
-		function functionacconsento(){
-			if ($("#chkConferma_Richiesta").prop("checked") == true) {
-            $("#chkConferma_Richiesta").prop("checked", false);
-			}
-			else {
-				$("#chkConferma_Richiesta").prop("checked", true);
-			}
-		}*/
-		
-		
-	</script>
 </head>
 <body>
     <div class="txtwrapper">
@@ -118,9 +58,9 @@
                 <a href='#page_richiestaInfo' data-icon='mail' data-rel='popup' data-position-to='window'
                     data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-mail ui-btn-icon-left'>
                     Contattaci</a>
-                 <a href='#page_registrazione' data-icon='plus' data-rel='popup' data-position-to='window'
-                    data-transition='pop' class='btn_search sideOption ui-btn  ui-btn-inline ui-icon-plus ui-btn-icon-left'>
-                    Richiesta iscrizione</a>
+                <a href="registrazione.html"
+                        class="btn_search ui-btn sideOption ui-btn-inline ui-icon-plus ui-btn-icon-left"
+                        data-role="button" data-icon="plus" data-ajax="false">Registrati</a>
                     <a href="#" onClick="prepara_link_areariservata(this)" class="btn_search sideOption ui-btn  ui-btn-inline ui-icon-lock ui-btn-icon-left" data-role="button" data-icon="lock" data-ajax="false">Area riservata</a>
                 <!-- info -->
                 <div data-role="popup" id="page_info">
@@ -206,7 +146,7 @@ Oppure <br /><br />
                 </div>
         
                 <!-- registrazione azienda -->
-                <div data-role="popup" id="page_registrazione" style="width: 35%; margin: 0 auto;">
+                <!--<div data-role="popup" id="page_registrazione" style="width: 35%; margin: 0 auto;">
                 	<div data-role="header">
                         <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right"
                             data-rel="back" data-icon="delete">&nbsp;</a>
@@ -272,7 +212,7 @@ Oppure <br /><br />
                                  <label style="display:inline-block;"><input type="submit" id="Invia_Registrazione" value="Invia Richiesta" name="invia" /></label>
                            </div>
                     </form>
-                </div>
+                </div>-->
                  <!-- mappa con tutte  le ditte -->  
         <div data-role="popup" id="allIndustry_mapPage" data-url="map-page" >
               <div data-role="header">
@@ -308,9 +248,9 @@ Oppure <br /><br />
             <div data-role="footer" data-position="fixed">
                 <!--<a href='#page_richiestaInfo' data-icon='mail' data-rel='popup' data-position-to='window' data-transition='pop' class='ui-btn ui-shadow ui-btn-inline ui-icon-mail ui-btn-icon-left'>Contattaci</a> 
                 -->
-                <a href='#page_registrazione' data-icon='plus' data-rel='popup' data-position-to='window' data-transition='pop' class='ui-btn ui-shadow ui-btn-inline ui-icon-plus ui-btn-icon-left'>Registrati</a>
+                <a href='registrazione.html' data-icon='plus' class='ui-btn ui-shadow ui-btn-inline ui-icon-plus ui-btn-icon-left' data-ajax="false">Registrati</a>
                 
-                <a href='page/lista_circuiti.html' data-icon='star' class='ui-btn ui-shadow ui-btn-inline ui-icon-star ui-btn-icon-left' data-ajax="false" id="btnCircuitiConvenzionati">Convenzioni</a>
+                <a href='lista_circuiti.html' data-icon='star' class='ui-btn ui-shadow ui-btn-inline ui-icon-star ui-btn-icon-left' data-ajax="false" id="btnCircuitiConvenzionati">Convenzioni</a>
            
             </div>
         </div>

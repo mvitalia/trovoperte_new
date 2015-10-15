@@ -9,7 +9,7 @@ DIM corpoMessaggio, numeroCampi, invioA, invioDa, nomeDominio, indirizzoIp, modu
 	
 
 'invioA =  "p.guglielmo@mvitalia.com"
-invioA =  "info@trovoperte.com"
+invioA =  "a.nota@mvitalia.com"
 
 
 ' SALVATTAGGIO IN DB
@@ -25,21 +25,6 @@ set rs = server.CreateObject("Adodb.Recordset")
 cn.ConnectionString = connessione
 cn.Open 
 
-dim sql
-dim rs3
-set rs3 = server.CreateObject("Adodb.Recordset") 
-sql = "Select titolo FROM app_macrocategorie WHERE ID=" & request.Form("macrocategoria")
-rs3.open sql,cn
-dim nomeMacro
-nomeMacro = rs3.Fields("titolo")
-
-dim rs2
-set rs2 = server.CreateObject("Adodb.Recordset")   
-sql = "Select titolo FROM app_categorie WHERE ID=" & request.Form("categoria")
-rs2.Open sql, cn
-dim nomeCategoria 
-nomeCategoria = rs2.Fields("titolo")
-
 'AZIENDA
 rs.open "Select * From app_attivita ", cn, 2, 3
 rs.addnew()
@@ -52,7 +37,7 @@ oggi_giorno = Right(Day(oggi_data),2)
 oggi_format = Year(oggi_data) & "-" & oggi_mese & "-" & oggi_giorno & " " & hour(Time()) & ":" & minute(Time()) & ":" & second(Time())
 	
 	
-stringa_query = "insert into app_attivita(ragione_sociale,piva,indirizzo,num,paese,provincia,cap,tel,mail,data,stato,user,id_categoria) values('" & replace_apice(request.Form("ragione_sociale")) & "','" & request.Form("piva") & "','" & replace_apice(request.Form("indirizzo")) & "','" & request.Form("num") & "','" & replace_apice(request.Form("paese")) & "','" & replace_apice(request.Form("provincia")) & "','" & request.Form("cap") & "','" & request.Form("cell") & "','" & request.Form("mail") & "','" & oggi_format & "','attivo','web'," & request.Form("categoria") &")"
+stringa_query = "insert into app_attivita(ragione_sociale,piva,indirizzo,num,paese,provincia,cap,tel,data,stato,user,id_categoria) values('" & replace_apice(request.Form("ragione_sociale")) & "','" & request.Form("piva") & "','" & replace_apice(request.Form("indirizzo")) & "','" & request.Form("num") & "','" & replace_apice(request.Form("paese")) & "','" & replace_apice(request.Form("provincia")) & "','" & request.Form("cap") & "','" & request.Form("telefono") & "','" & oggi_format & "','attivo','web'," & request.Form("categoria") &")"
 
 rs = cn.Execute(stringa_query)
 
@@ -110,7 +95,7 @@ set cn=nothing
 
 		
 invioDa =  Request.Form("mail")
-if Request.Form("check_send") = "" then
+
 
 
 	'------------fine modifiche necessarie------------------
@@ -126,14 +111,8 @@ if Request.Form("check_send") = "" then
 		  corpoMessaggio = corpoMessaggio & "<br>" & Request.Form.Key(numeroCampi) & " = " & Trim(Request.Form(numeroCampi))
 		  nome = " " & Trim(Request.Form(1))
 		  cognome = " " & Trim(Request.Form(2))
-		  ragioneSociale = " " & Trim(Request.Form(3))
-		  username = " " & Trim(Request.Form(13))
-		  password = " " & Trim(Request.Form(14))
 	   END IF
 	NEXT
-	
-	corpoMessaggio = corpoMessaggio & "<br> nome_macrocategoria = " & nomeMacro
-	corpoMessaggio = corpoMessaggio & "<br> nome_categoria = " & nomeCategoria
 	
 	
 		
@@ -144,58 +123,70 @@ if Request.Form("check_send") = "" then
 	Set Flds = iConf.Fields
 	
 	Flds(cdoSendUsingMethod) = cdoSendUsingPort
-	Flds(cdoSMTPServer) = "localhost" 
+	Flds(cdoSMTPServer) = "smtp.trovoperte.com" 
 	Flds(cdoSMTPServerPort) = 25
 	Flds(cdoSMTPAuthenticate) = cdoAnonymous ' 0
 	Flds.Update
-	
-	
 	
 	With iMsg
 	  Set .Configuration = iConf
 	   .To = invioA
 	   .From = invioDa
 	   .sender=invioDa
-	   .Subject = "Richiesta iscrizione Trovo x Te " & nomeDominio
-	   .HTMLBody = "<img src='http://www.trovoperte.com/images/logo_trovoperte.png' alt='logo Trovo x Te' style='float: center' /><br><br><font face=verdana size=2>Richiesta di iscrizione<br><br><br><br> Questi i dati inseriti nel modulo presente alla pagina <b> " & modulo & " </b><br><br>" & corpoMessaggio 
+	   .Subject = "Registrazione profilo gratis a Trovo x Te " & nomeDominio
+	   .HTMLBody = "<img src='http://www.trovoperte.com/images/logo_trovoperte.png' alt='logo Trovo x Te' style='float: center;width:300px' /><br><br><font face=verdana size=2>Registrazione profilo GRATIS su Trovo x Te da " & Request.Form("ragione_sociale") & ", <br><br><br> Questi i dati inseriti nel modulo presente alla pagina <b> " & modulo & " </b>da utente con indirizzo IP <b>" & indirizzoIp & " </b> browser e sistema operativo <b>" & browserSistemaOperativo  & "</b><br><br>" & corpoMessaggio 
 	   .Send
 	End With
 	
-	Set iMsg = Nothing
-	Set Flds = Nothing
-	Set iConf = Nothing
 	
-	DIM iMsg2, Flds2, iConf2
 	
-	Set iMsg2 = CreateObject("CDO.Message")
-	Set iConf2 = CreateObject("CDO.Configuration")
-	Set Flds2 = iConf2.Fields
-	
-	Flds2(cdoSendUsingMethod) = cdoSendUsingPort
-	Flds2(cdoSMTPServer) = "smtp.trovoperte.com" 
-	Flds2(cdoSMTPServerPort) = 25
-	Flds2(cdoSMTPAuthenticate) = cdoAnonymous ' 0
-	Flds2.Update
-	
-	With iMsg2
-	  Set .Configuration = iConf2
+	With iMsg
+	  Set .Configuration = iConf
 	   .To = invioDa
 	   .From = invioA
-	   .sender=invioDa
+	   .sender=invioA
 	   .Subject = "Registrazione a Trovo x Te " & nomeDominio
-	   .HTMLBody = "<font face=verdana size=2>Buongiorno " & nome & " " & cognome & ", <br>abbiamo ricevuto la tua richiesta, un nostro operatore verificher&agrave; i dati da te inseriti e confermer&agrave; la registrazione.<br><br>Per arricchire la tua scheda non esitare, accedi al portale <a href='http://www.trovoperte.com/app'>Trovo x Te</a> e attraverso l'area riservata potrai modificare i dati della tua attivita&#768;.<br>Se vorrai potrai contattarci per cambiare la tipologia di contratto scegliendo la più adatta alle tue esigenze.<br><br>Grazie e arrivederci.<br><br> Le tue credenziali sono: <br> <b>username:</b>" & username & "<br><b>password:</b>" & password & "<br><br><br><b>Trovo x Te</b><br><i>Il portale creato apposta per te, per trovare in mondo facile e veloce quello che ti serve nel tuo territorio.</i><br><br><img src='http://www.trovoperte.com/images/logo_trovoperte.png' alt='logo Trovo x Te' style='width:300px' />"
+	   .HTMLBody = "<img src='http://www.trovoperte.com/images/logo_trovoperte.png' alt='logo Trovo x Te' style='float: center;width:300px' /><br><br><font face=verdana size=2>Buongiorno " & Request.Form("nome") & " " & Request.Form("cognome") & ", <br>abbiamo ricevuto la tua richiesta, un nostro operatore verificher&agrave; i dati da te inseriti e confermer&agrave; la registrazione.<br><br>Per arricchire la tua scheda non esitare, accedi al portale <a href='www.trovoperte.com/app'>Trovo x Te</a> e attraverso l'area riservata potrai modificare i dati della tua attivita&#768;.<br>Se vorrai potrai contattarci per cambiare la tipologia di contratto scegliendo la più adatta alle tue esigenze.<br><br>Grazie e arrivederci.<br><br><b> Le tue credenziali sono: <br> username:"&request.Form("username") & "<br>password:" & request.Form("password") &"<br><br><br>Trovo x Te</b><br><i>Il portale creato apposta per te, per trovare in mondo facile e veloce quello che ti serve nel tuo territorio.</i>"
 	   .Send
 	End With
 	
-	
-	Set iMsg2 = Nothing
-	Set Flds2 = Nothing
-	Set iConf2 = Nothing
-	response.redirect("trovo_per_te_iscrizione_ok.html")
+	' rendirizzamento
+'response.redirect("index.html?info=ok")
 
-end if
 %>
-	
+<html>
+<head>
+    <script type="text/javascript" src="cordova.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" href="css/default_theme.min.css">
+    <link rel="stylesheet" href="css/jquery.mobile.icons.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/jquery-1.11.2.min.js"></script>
+    <script src="js/jquery.mobile-1.4.5.min.js"></script>    
+ 
+<body>
+    <div class="txtwrapper">
+        <!-- Home -->
+        <div data-role="page" id="page_index">
+        	<div data-role="header" data-position="fixed">
+                <a href="index.html" data-role="none" class="link_index">
+                    <img src="img/logo_trovoperte.png" class="logo_trovo"></a>
+            </div>
+            <div data-role="main"  data-backbtn="false">
+                <p style="text-align:center">Grazie per averci contattato!<br />La sua richiesta di informazioni è stata inviata correttamente, le risponderemo appena possibile.
+                <br /><br /><br />
+                <a href='index.html' data-icon='home' data-ajax="false" class='ui-btn ui-shadow ui-btn-inline ui-icon-home ui-btn-icon-left'>Home</a>
+                <a href="#" data-iconpos="notext" data-mini="true" class="ui-btn ui-corner-all  ui-btn-inline ui-btn-b ui-icon-delete ui-mini ui-btn-icon-notext ui-btn-right" data-rel="back" data-icon="delete">&nbsp;</a></p>
+            </div>
+
+		</div>
+    </div>
+</body>
+</html>
 <%
 Function replace_apice(testo)
 	'controllo che la lunghezza della stringa sia maggiore di zero
