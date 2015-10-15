@@ -828,3 +828,17 @@ html, body {
    
 	}	
 }
+
+@media(min-width:650px){
+	#registrazione .ui-content{
+		width: 65%;
+		margin: 0 auto;
+	}	
+}
+
+@media(mx-width:649px){
+	#registrazione .ui-content{
+		width: 80%;
+		margin: 0 auto;
+	}
+}
