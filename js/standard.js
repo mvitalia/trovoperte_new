@@ -14,7 +14,7 @@ $(document).on('vclick', '.large', function(e){
     $(".txtwrapper").css('font-size', '25px');
 });
 
-$(document).on("click","#txtAcconsento",function(e){ 
+/*$(document).on("click","#txtAcconsento",function(e){ 
 		
 		if ($("#chkConferma_Richiesta").prop("checked") == true) {
             $("#chkConferma_Richiesta").prop("checked", false);
@@ -22,9 +22,9 @@ $(document).on("click","#txtAcconsento",function(e){
         else {
             $("#chkConferma_Richiesta").prop("checked", true);
         }
-})
+})*/
 
-$(document).on("click",".free",function(){
+/*$(document).on("click",".free",function(){
 	if($(".free input").prop("checked")==true){
 			$(".free input").prop("checked",false)
 		}
@@ -89,7 +89,7 @@ $(document).on("click",".avanzato input",function(){
 		else{
 			$(".avanzato input").prop("checked",true)
 		}	
-})
+})*/
 
 $(document).ready(function () {
 	
@@ -114,66 +114,54 @@ $(document).ready(function () {
 
     });
 	
-	/*$(".free").click(function(){
-		if($(".free input").prop("checked")==true){
-			$(".free input").prop("checked",false)
-		}
-		else{
+	$(".free").click(function(){
+		if($(".free input").prop("checked")==false){
+			$(".radioAbbonamento input").prop("checked",false)
 			$(".free input").prop("checked",true)
+			
 		}
 		
 	})
+	
 	$(".base").click(function(){
-		if($(".base input").prop("checked")==true){
-			$(".base input").prop("checked",false)
-		}
-		else{
+		if($(".base input").prop("checked")==false){
+			$(".radioAbbonamento input").prop("checked",false)
 			$(".base input").prop("checked",true)
+			
 		}
 		
 	})
 	$(".intermedio").click(function(){
-		if($(".intermedio input").prop("checked")==true){
-			$(".intermedio input").prop("checked",false)
-		}
-		else{
+		if($(".intermedio input").prop("checked")==false){
+			$(".radioAbbonamento input").prop("checked",false)
 			$(".intermedio input").prop("checked",true)
+			
 		}
 		
 	})
 	$(".avanzato").click(function(){		
 			if($(".avanzato input").prop("checked")==false){
-				$(".avanzato input").prop("checked",true)
-				$(".pAbbonamento").css("font-weight","normal")
-				
-			}
+			$(".radioAbbonamento input").prop("checked",false)
+			$(".avanzato input").prop("checked",true)
+			
+		}
 		
 		})
 	
 		
 		$(".free input").click(function(){
-			if($(".free input").prop("checked")==true){
-				//$(".free input").prop("checked",true)
-				$(".pAbbonamento").css("font-weight","normal")
-					
+			if($(".free input").prop("checked")==false){
+			$(".radioAbbonamento input").prop("checked",false)
+			$(".free input").prop("checked",true)
+			
 			}
 		
 		})
 		
-	/*$(".base").click(function(){
+		$(".base input").click(function(){
 			if($(".base input").prop("checked")==false){
-				$(".base input").prop("checked",true)
-				$(".pAbbonamento").css("font-weight","normal")
-				
-			}
-			
-			
-		})	*/
-		
-		/*$(".base input").click(function(){
-			if($(".base input").prop("checked")==true){
-				$(".base input").prop("checked",true)
-				$(".pAbbonamento").css("font-weight","normal")
+			$(".radioAbbonamento input").prop("checked",false)
+			$(".base input").prop("checked",true)
 				
 			}
 			
@@ -189,12 +177,12 @@ $(document).ready(function () {
 			}			
 		})*/
 		
-		/*$(".intermedio input").click(function(){
-			if($(".intermedio input").prop("checked")==true){
-				$(".intermedio input").prop("checked",true)
-				$(".pAbbonamento").css("font-weight","normal")
+		$(".intermedio input").click(function(){
+			if($(".intermedio input").prop("checked")==false){
+			$(".radioAbbonamento input").prop("checked",false)
+			$(".intermedio input").prop("checked",true)
 				
-			}			
+			}		
 		})
 		
 		
@@ -208,15 +196,14 @@ $(document).ready(function () {
 			
 		})*/
 		
-		/*$(".avanzato input").click(function(){
-			if($(".avanzato input").prop("checked")==true){
-				$(".avanzato input").prop("checked",false)
-			}
-			else{
-				$(".avanzato input").prop("checked",true)
-			}
+		$(".avanzato input").click(function(){
+			if($(".avanzato input").prop("checked")==false){
+				$(".radioAbbonamento input").prop("checked",false)
+				$(avanzato).prop("checked",true)
+				
+			}		
 	
-		})*/
+		})
 	
 
 		$("#page_info").bind({
