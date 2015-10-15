@@ -21,7 +21,8 @@ $(document).on("click","#txtAcconsento",function(e){
         }
         else {
             $("#chkConferma_Richiesta").prop("checked", true);
-        }})
+        }
+})
 
 $(document).on("click",".free",function(){
 	if($(".free input").prop("checked")==true){
@@ -140,17 +141,16 @@ $(document).ready(function () {
 		}
 		
 	})
-	$(".avanzato").click(function(){
-	
-		$(".free").click(function(){
-			if($(".free input").prop("checked")==false){
-				$(".free input").prop("checked",true)
+	$(".avanzato").click(function(){		
+			if($(".avanzato input").prop("checked")==false){
+				$(".avanzato input").prop("checked",true)
 				$(".pAbbonamento").css("font-weight","normal")
 				
 			}
 		
 		})
 	
+		
 		$(".free input").click(function(){
 			if($(".free input").prop("checked")==true){
 				//$(".free input").prop("checked",true)
@@ -160,7 +160,7 @@ $(document).ready(function () {
 		
 		})
 		
-	$(".base").click(function(){
+	/*$(".base").click(function(){
 			if($(".base input").prop("checked")==false){
 				$(".base input").prop("checked",true)
 				$(".pAbbonamento").css("font-weight","normal")
@@ -168,7 +168,7 @@ $(document).ready(function () {
 			}
 			
 			
-		})	
+		})	*/
 		
 		$(".base input").click(function(){
 			if($(".base input").prop("checked")==true){
@@ -181,13 +181,13 @@ $(document).ready(function () {
 		})
 		
 		
-		$(".intermedio").click(function(){
+		/*$(".intermedio").click(function(){
 			if($(".intermedio input").prop("checked")==false){
 				$(".intermedio input").prop("checked",true)
 				$(".pAbbonamento").css("font-weight","normal")
 				
 			}			
-		})
+		})*/
 		
 		$(".intermedio input").click(function(){
 			if($(".intermedio input").prop("checked")==true){
@@ -199,14 +199,14 @@ $(document).ready(function () {
 		
 		
 		
-		$(".avanzato").click(function(){
+		/*$(".avanzato").click(function(){
 			if($(".avanzato input").prop("checked")==false){
 				$(".avanzato input").prop("checked",true)
 					$(".pAbbonamento").css("font-weight","normal")
 					
 			}
 			
-		})
+		})*/
 		
 		$(".avanzato input").click(function(){
 			if($(".avanzato input").prop("checked")==true){
@@ -221,10 +221,11 @@ $(document).ready(function () {
 
 		$("#page_info").bind({
         popupafterclose: function (event, ui) { if (page == "registrazione") { $("#page_registrazione").popup("open"); page = ""; } else if (page == "info") { $("#page_richiestaInfo").popup("open"); page = ""; } }
-    });
+		});
 	
+})
 	//$("#lstMacrocategorie").change(function(){alert("cioa")});
-	});
+
 
 
 function caricaAllIndustry(elencoMarker,page) {
