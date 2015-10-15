@@ -12,6 +12,48 @@
     <script src="../js/jquery.mobile-1.4.5.min.js"></script>
     <script src='https://maps.googleapis.com/maps/api/js?v=3.exp'></script>
     <script src="../js/standard.js"></script>
+	
+	<script>
+		$(document).on("pageinit","registrazione",function(){
+			$.getJSON("http://www.trovoperte.com/get_MacroCategorie.asp?tipologia=macrocategorie", function (info) {
+				for(var i=0; i<info.length;i++){
+					var option = "<option value='" + info[i].id_macrocategoria + "' macroID='"+ info[i].id_macrocategoria +"'>" + info[i].titolo_macrocategoria + "</option>"
+					$("#lstMacrocategorie").append(option);
+					var myselect = $("#lstMacrocategorie");
+					myselect[0].selectedIndex = 0;
+					myselect.selectmenu("refresh");
+				}
+				
+				$.getJSON("http://www.trovoperte.com/get_MacroCategorie.asp?tipologia=categorie&macrocategoria="+info[0].id_macrocategoria, function (info) {
+					for(var i=0; i<info.length;i++){
+						var option = "<option value='"+ info[i].id_categoria +"'>" + info[i].titolo_categoria + "</option>"
+						$("#lstCategorie").append(option);
+					}
+					var myselect2 = $("#lstCategorie");
+					myselect2[0].selectedIndex = 0;
+					myselect2.selectmenu("refresh");
+				});
+			});
+		})
+		
+		$(document).ready(function(){
+			$("#lstMacrocategorie").change(function(){
+					$("#lstCategorie option").remove();
+					var macrocategoria = $("#lstMacrocategorie").val();
+					$.getJSON("http://www.trovoperte.com/get_MacroCategorie.asp?tipologia=categorie&macrocategoria="+macrocategoria, function (info) {
+						for(var i=0; i<info.length;i++){
+							var option = "<option value="+ info[i].id_categoria +">" + info[i].titolo_categoria + "</option>"
+							$("#lstCategorie").append(option);
+						}
+						var myselect3 = $("#lstCategorie");
+						myselect3[0].selectedIndex = 0;
+						myselect3.selectmenu("refresh");
+						
+					});
+				})
+		})
+	
+	</script>
 </head>
 <body>
     <div class="txtwrapper">
