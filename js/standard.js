@@ -92,7 +92,7 @@ $(document).on("click",".avanzato input",function(){
 })
 
 $(document).ready(function () {
-	alert("ready");
+	
 	
     $("#txtAcconsento").click(function () {
 		
@@ -114,7 +114,7 @@ $(document).ready(function () {
 
     });
 	
-	$(".free").click(function(){
+	/*$(".free").click(function(){
 		if($(".free input").prop("checked")==true){
 			$(".free input").prop("checked",false)
 		}
@@ -170,7 +170,7 @@ $(document).ready(function () {
 			
 		})	*/
 		
-		$(".base input").click(function(){
+		/*$(".base input").click(function(){
 			if($(".base input").prop("checked")==true){
 				$(".base input").prop("checked",true)
 				$(".pAbbonamento").css("font-weight","normal")
@@ -189,7 +189,7 @@ $(document).ready(function () {
 			}			
 		})*/
 		
-		$(".intermedio input").click(function(){
+		/*$(".intermedio input").click(function(){
 			if($(".intermedio input").prop("checked")==true){
 				$(".intermedio input").prop("checked",true)
 				$(".pAbbonamento").css("font-weight","normal")
@@ -208,7 +208,7 @@ $(document).ready(function () {
 			
 		})*/
 		
-		$(".avanzato input").click(function(){
+		/*$(".avanzato input").click(function(){
 			if($(".avanzato input").prop("checked")==true){
 				$(".avanzato input").prop("checked",false)
 			}
@@ -216,7 +216,7 @@ $(document).ready(function () {
 				$(".avanzato input").prop("checked",true)
 			}
 	
-		})
+		})*/
 	
 
 		$("#page_info").bind({
