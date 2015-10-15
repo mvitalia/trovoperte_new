@@ -9,7 +9,7 @@ DIM corpoMessaggio, numeroCampi, invioA, invioDa, nomeDominio, indirizzoIp, modu
 	
 
 'invioA =  "p.guglielmo@mvitalia.com"
-invioA =  "info@trovoperte.com"
+invioA =  "a.nota@mvitalia.com"
 
 
 ' SALVATTAGGIO IN DB
@@ -172,7 +172,7 @@ if Request.Form("check_send") = "" then
 	Set Flds2 = iConf2.Fields
 	
 	Flds2(cdoSendUsingMethod) = cdoSendUsingPort
-	Flds2(cdoSMTPServer) = "smtp.trovoperte.com" 
+	Flds2(cdoSMTPServer) = "smtp.mvitalia.com" 
 	Flds2(cdoSMTPServerPort) = 25
 	Flds2(cdoSMTPAuthenticate) = cdoAnonymous ' 0
 	Flds2.Update
