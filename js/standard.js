@@ -290,7 +290,7 @@ function caricaMappa(coordinate,nomeAzienda) {
    
 
     function validateFormRegistrazione() {
-
+		alert("prova");
         var mail_reg_exp = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-]{2,})+\.)+([a-zA-Z0-9]{2,})+$/;
 
         var moduloControllo = document.forms['form_registrazioneAzienda'];
