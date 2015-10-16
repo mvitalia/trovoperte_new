@@ -302,7 +302,7 @@ function caricaMappa(coordinate,nomeAzienda) {
             alert("Devi completare il campo: Cognome");
             return false;
         }
-        else if (moduloControllo.r_soc.value.length == 0) {
+        else if (moduloControllo.ragione_sociale.value.length == 0) {
             alert("Devi completare il campo: Ragione Sociale");
             return false;
         }
@@ -311,25 +311,25 @@ function caricaMappa(coordinate,nomeAzienda) {
             return false;
         }
 
-        else if (moduloControllo.email.value.length == 0) {
+        else if (moduloControllo.mail.value.length == 0) {
             alert("Devi completare il campo: Mail");
 
             return false;
         }
-        else if (moduloControllo.email.value.length != 0) {
+        else if (moduloControllo.mail.value.length != 0) {
             var corretto;
             var re = new RegExp(mail_reg_exp);
-            corretto=re.test(moduloControllo.email.value);
+            corretto=re.test(moduloControllo.mail.value);
             if (corretto == false) {
                 alert("Devi completare il campo: Mail");
                 return false;               
             }
 
-            else if (moduloControllo.telefono.value.length == 0) {
+            else if (moduloControllo.cell.value.length == 0) {
                 alert("Devi completare il campo: Telefono");
                 return false;
             }
-            else if (moduloControllo.cod_fisc.value.length == 0) {
+            else if (moduloControllo.cod_fiscale.value.length == 0) {
                 alert("Devi completare il campo: Codice fiscale");
                 return false;
             }
@@ -337,16 +337,20 @@ function caricaMappa(coordinate,nomeAzienda) {
                 alert("Devi completare il campo: Indirizzo");
                 return false;
             }
+			 else if (moduloControllo.num.value.length == 0) {
+                alert("Devi completare il campo: n.°");
+                return false;
+            }
             else if (moduloControllo.cap.value.length == 0) {
                 alert("Devi completare il campo: CAP");
                 return false;
             }
-            else if (moduloControllo.citta.value.length == 0) {
+            else if (moduloControllo.paese.value.length == 0) {
                 alert("Devi completare il campo: Città");
                 return false;
             }
-            else if (moduloControllo.indirizzo.value.length == 0) {
-                alert("Devi completare il campo: Indirizzo");
+            else if (moduloControllo.provincia.value.length == 0) {
+                alert("Devi completare il campo: Provincia");
                 return false;
             }
 			
@@ -356,6 +360,15 @@ function caricaMappa(coordinate,nomeAzienda) {
             }
 			 else if (moduloControllo.password.value.length == 0) {
                 alert("Devi completare il campo: Password");
+                return false;
+            }
+			
+			 else if (moduloControllo.macrocategoria.value == "") {
+                alert("Devi completare il campo: Macrocategoria");
+                return false;
+            }
+			 else if (moduloControllo.categoria.value == "") {
+                alert("Devi completare il campo: Categoria");
                 return false;
             }
 			
